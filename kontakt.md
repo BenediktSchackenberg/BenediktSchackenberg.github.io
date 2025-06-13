@@ -1,7 +1,7 @@
 ---
-title: "Kontakt"
+title: "kontakt"
 layout: page
-permalink: /Kontakt/
+permalink: /kontakt/
 ---
 
 Dann schreib mir einfach eine E-Mail – ganz oldschool, aber immer noch besser als Rauchzeichen!

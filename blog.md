@@ -1,5 +1,5 @@
 ---
-title: "Mein persönlicher Blog"
+title: "blog"
 layout: page
 permalink: /Blog/
 ---
