@@ -6,7 +6,7 @@ permalink: /Kontakt/
 
 Dann schreib mir einfach eine E-Mail – ganz oldschool, aber immer noch besser als Rauchzeichen!
 
-benedikt@schackenberg.com
+benedikt@schackenberg.com 
 
 Ich lese alles (wirklich alles) und melde mich bei dir zurück – vielleicht nicht in Lichtgeschwindigkeit, aber garantiert mit Hirn, Herz und Humor.
 
