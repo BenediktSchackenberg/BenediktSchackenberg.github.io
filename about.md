@@ -67,7 +67,7 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 ## 💼 Beruflicher Werdegang
 
 ### Seit 05/2025  
-**Aktueller Arbeitgeber (vertraulich)** — Mainz  
+**Angestellt im öffentlichen Gesundheitswesen** — Mainz  
 - SQL Server Optimierung & Hochverfügbarkeit  
 - Windows Server Administration  
 
