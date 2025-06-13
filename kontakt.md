@@ -1,5 +1,5 @@
 ---
-title: "kontakt"
+title: "Kontakt"
 layout: page
 permalink: /kontakt/
 ---
