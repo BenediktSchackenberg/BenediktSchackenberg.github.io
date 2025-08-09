@@ -32,6 +32,9 @@ github_username:  benediktschackenberg
 theme: no-style-please
 plugins:
   - jekyll-feed
+include:
+  - assets/keys/benedikt-schackenberg.asc- 
+
 
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
