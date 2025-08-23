@@ -33,7 +33,7 @@ description: "iaaaaaaaaaaaaaaaaaaaaaaaa"
 
   <!-- Bild -->
   <div style="flex:0 0 300px;display:flex;align-items:center;justify-content:center;">
-    <img src="/assets/img/pixelpapa.png" 
+    <img src="/assets/img/hasenpower.png" 
          alt="Benedikt Schackenberg" 
          loading="eager"
          style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);object-fit:cover;" />
