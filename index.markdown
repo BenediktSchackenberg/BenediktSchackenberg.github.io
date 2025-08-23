@@ -2,87 +2,111 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit | Azure & Cloud Architekturen"
+description: "iaaaaaaaaaaaaaaaaaaaaaaaa"
 ---
 
-# Hallo und willkommen
+<!-- Zufallsbereich -->
+<div style="display:flex;align-items:stretch;gap:2rem;flex-wrap:wrap;margin:0 0 2rem;">
 
-<div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin:0 0 2rem;">
-  <img src="/assets/img/pixelpapa.png" alt="Benedikt Schackenberg" width="180" height="180" loading="eager"
-       style="border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);object-fit:cover;" />
+  <!-- Zufalls-Bild -->
+  <div style="flex:0 0 300px;display:flex;align-items:center;justify-content:center;">
+    <img id="randomImage" 
+         src="/assets/img/pixelpapa.png" 
+         alt="Benedikt Schackenberg" 
+         loading="eager"
+         style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);object-fit:cover;" />
+  </div>
+
+  <!-- Zufalls-Text -->
   <div style="flex:1;min-width:260px;">
-    <p>
-      Ich bin IT‑Administrator in Mainz und betreue komplexe Datenbanksysteme – besonders gern mit
-      <strong>Microsoft SQL Server</strong>. Seit über 25 Jahren arbeite ich mit Begeisterung mit Microsoft‑Enterprise‑Technologien.
-    </p>
-    <p>
-      Ich bin nicht auf XING, LinkedIn oder Instagram aktiv – wer etwas über mich wissen will, ist hier genau richtig.
-      Wenn du Fragen hast, schreib mir einfach. <br>
-    </p>
-
-    <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
-      <a href="https://github.com/BenediktSchackenberg" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none;">
-        <img src="/assets/img/github-icon.png" alt="" width="20" height="20" style="vertical-align:middle;">
-        <span style="font-weight:600;color:#111;">GitHub</span>
-      </a>
-
-      <a href="https://dba.stackexchange.com/users/86101/benedikt-schackenberg" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none;">
-        <img src="/assets/img/stackexchange-icon.png" alt="" width="20" height="20" style="vertical-align:middle;">
-        <span style="font-weight:600;color:#111;">DBA Stack Exchange</span>
-      </a>
-
-      <a href="/kontakt/" style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .9rem;border-radius:10px;background:#111;color:#fff;text-decoration:none;">
-        ✉️ Kontakt &amp; PGP
-      </a>
-    </div>
+    <section class="random-box" style="height:100%;padding:1.5rem;border-radius:16px;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.06);line-height:1.6;">
+      <div id="randomText">
+        <!-- Text wird per JS gesetzt -->
+      </div>
+    </section>
   </div>
 </div>
 
----
 
-## Wofür ich stehe
+<!-- Fester Hasen-Alarm Block -->
+<div style="display:flex;align-items:stretch;gap:2rem;flex-wrap:wrap;margin:2rem 0;">
 
-- **SQL Server Administration & Betrieb** – robuste, sichere und nachvollziehbare Setups
-- **Performance‑Tuning** – Abfrage‑Optimierung, Indizes, Wait‑Analysis, I/O‑Profiling
-- **Hochverfügbarkeit & DR** – Always On AGs, Log‑Shipping, Backups, Wiederherstellungs‑Strategien
-- **Azure & Hybrid** – sinnvolle Cloud‑Anteile dort, wo sie technisch & wirtschaftlich passen
-- **Automatisierung** – wiederholbare Deployments, Standards, Dokumentation
+  <!-- Bild -->
+  <div style="flex:0 0 300px;display:flex;align-items:center;justify-content:center;">
+    <img src="/assets/img/pixelpapa.png" 
+         alt="Benedikt Schackenberg" 
+         loading="eager"
+         style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);object-fit:cover;" />
+  </div>
 
----
-
-## Highlights (Auswahl)
-
-- Konsolidierung verteilter SQL‑Instanzen mit spürbaren Lizenz‑ und Betriebskostenvorteilen  
-- Stabilisierung von Produktionssystemen durch gezieltes Query‑Tuning und Index‑Strategien  
-- Etablierung sauberer Backup‑/Restore‑Prozesse inklusive regelmäßiger Wiederherstellungstests  
-- Einführung von Monitoring‑Metriken (Waits, Latches, I/O, Query Store) für echte Transparenz
-
----
-
-## Verfügbarkeit
-
-<div style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.1rem;background:#fafafa;">
-  <strong>Hinweis:</strong> Ich arbeite aktuell in <strong>Festanstellung</strong> und nehme keine freiberuflichen Aufträge an.
-  Für Projekte mit viel Datenbank‑Erfahrung empfehle ich die
-  <a href="https://madafa.de" target="_blank" rel="noopener">Mainzer Datenfabrik GmbH</a>.
-</div>
-
----
-
-## Kontakt
-
-📍 Mainz  
-📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a><br>
-<strong>Benedikt Schackenberg</strong><br>
-CAYA PostBox 94520X<br>
-96035 Bamberg
-
-<p style="margin-top:.75rem;">
-  🔐 Verschlüsselt schreiben? <a href="/kontakt/">PGP‑Informationen &amp; öffentlicher Schlüssel</a>
+  <!-- Hasen-Alarm Text -->
+  <div style="flex:1;min-width:260px;">
+    <section class="hasen-alarm" style="height:100%;padding:1.5rem;border-radius:16px;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.06);line-height:1.6;">
+      <h2 style="text-align:center;font-size:1.8rem;margin-top:0;margin-bottom:1rem;">🐇 Achtung, Hasen-Alarm! 🐇</h2>
+<!-- PGP / OpenPGP -->
+<h2 id="pgp-title" style="margin-top:2rem; margin-bottom:0.5rem;">PGP / OpenPGP</h2>
+<p style="margin-top:0.25rem; color:#444;">
+  Du kannst mir gern verschlüsselt schreiben. Lade meinen öffentlichen Schlüssel herunter, importiere ihn in deinen Mail-Client
+  und verschlüssele deine Nachricht an <strong>benedikt@schackenberg.com</strong>
 </p>
 
----
+<div style="display:flex; gap:0.75rem; flex-wrap:wrap; align-items:center; margin:0.75rem 0 0.5rem;">
+  <a class="btn" href="/assets/keys/benedikt-schackenberg.asc" download
+     style="display:inline-block; border:1px solid #ddd; border-radius:10px; padding:0.6rem 0.9rem; text-decoration:none;">
+    ⬇️ Schlüssel herunterladen (.asc)
+  </a>
 
-> „Technologie kann man lernen. Leidenschaft für Lösungen macht den Unterschied.“
+  <button type="button" id="copyKeyBtn"
+    style="border:1px solid #ddd; border-radius:10px; padding:0.6rem 0.9rem; background:white; cursor:pointer;">
+    📋 Schlüssel in Zwischenablage
+  </button>
+</div>
+
+<div style="font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:0.95rem; color:#333; margin-top:0.75rem;">
+  <div><strong>Key ID:</strong> 0xE89D62B49951C283</div>
+  <div><strong>Datei-SHA-256:</strong> <code>d69b927f8a0af4fbfeb05b0908f8424c599978df3a7b7431b38339e3ccff161a</code></div>
+</div>
+    </section>
+  </div>
+</div>
+
+
+
+
+
+<!-- Script für Zufall -->
+<script>
+  // Array mit Bildpfaden
+  const images = [
+    "/assets/img/pixelpapa1.png",
+    "/assets/img/pixelpapa2.png",
+    "/assets/img/pixelpapa3.png"
+  ];
+
+  // Array mit Textvarianten
+  const texts = [
+    `
+    <h2 style="text-align:center;font-size:1.8rem;margin:0 0 1rem;">🐇 Achtung, Hasen-Alarm! 🐇</h2>
+    <p>Diese Homepage könnte Hasen enthalten.<br>
+    Warum? Ganz einfach: 👉 <strong>Ich liebe Hasenbilder!</strong> ❤️🐰</p>
+    `,
+    `
+    <h2 style="text-align:center;font-size:1.8rem;margin:0 0 1rem;">🎩 Überraschung! 🎩</h2>
+    <p>Manchmal kommen hier nicht nur Hasen, sondern auch andere Wunder ans Licht.<br>
+    Bleib gespannt und schau öfter vorbei! ✨</p>
+    `,
+    `
+    <h2 style="text-align:center;font-size:1.8rem;margin:0 0 1rem;">😏 Masterplan 😏</h2>
+    <p>Alles Teil des geheimen Plans der Langohren.<br>
+    Ich bin nur der Übermittler der Botschaft. 🐰📡</p>
+    `
+  ];
+
+  // Zufälliges Bild & Text wählen
+  const randomImage = images[Math.floor(Math.random() * images.length)];
+  const randomText = texts[Math.floor(Math.random() * texts.length)];
+
+  // In die Seite einsetzen
+  document.getElementById("randomImage").src = randomImage;
+  document.getElementById("randomText").innerHTML = randomText;
+</script>
