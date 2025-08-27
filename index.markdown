@@ -23,7 +23,7 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
     body { margin:0; background:#f6f8fb; color:#111; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; overflow-x:hidden; }
     main { width:min(100%, var(--maxw)); margin: 1.5rem auto 3rem; padding: 0 1rem; }
 
-    .frame { background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
+    .frame { position:relative; background:#fff; border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); overflow:hidden; }
     .frame .header { padding: .9rem 1rem; border-bottom: 1px solid var(--border); text-align:center; font-weight:600; }
 
     /* Kachel-Grid */
@@ -51,7 +51,6 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
     button.copy { border:1px solid #e5e7eb; border-radius:10px; padding:.6rem .9rem; background:#fff; cursor:pointer; }
     pre { background:#0b1220; color:#e6edf3; padding:1rem; border-radius:12px; overflow:auto;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.9rem; }
-    footer { text-align:center; color:#667085; padding:1rem 0 1.2rem; font-size:.95rem; }
 
     /* Rechts: Hoppel-Widget */
     .hoppel { position:fixed; top:1rem; right:1rem; width:280px; height:220px;
@@ -60,19 +59,33 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
     @media (max-width:880px){ .hoppel {display:none;} }
     .hoppel .bunny{ position:absolute; bottom:0; left:-120px; width:96px; height:96px;
       background: url("{{ '/assets/img/hase-sprite.png' | relative_url }}") 0 0 / 384px 96px no-repeat;
-      animation: hopFrames .6s steps(4) infinite, hopMove 6s linear infinite;
-    }
+      animation: hopFrames .6s steps(4) infinite, hopMove 6s linear infinite; }
     .hoppel .bunny.flip{ transform:scaleX(-1);}
     @keyframes hopFrames{from{background-position:0 0;}to{background-position:-384px 0;}}
     @keyframes hopMove{0%{left:-120px;bottom:0;}20%{bottom:60px;}40%{bottom:0;}60%{bottom:50px;}80%{bottom:0;}100%{left:calc(100% + 40px);bottom:0;}}
 
-    /* Fallende Sprüche */
+    /* Fallende Sprüche (optional) */
     .fall { position:fixed; top:-2rem; left:50%; transform:translateX(-50%);
       font:700 1rem/1.3 ui-sans-serif,system-ui; color:#3b2f2f;
       white-space:nowrap; pointer-events:none; opacity:.9;
       animation: fallDown 8s linear forwards; z-index:500;
     }
     @keyframes fallDown { to{ transform:translateX(-50%) translateY(110vh);} }
+
+    /* ===== Endlose, zufällige Carrot-Hunt über die gesamte Seite ===== */
+    .hunt-layer{
+      position: fixed; inset: 0; pointer-events: none; z-index: 700;
+      overflow: hidden;
+    }
+    .hunt-emoji{
+      position:absolute; will-change: transform, opacity;
+      transition: transform var(--moveDur, 3s) linear, opacity .3s ease;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.12));
+      user-select: none;
+    }
+    .hunt-carrot{ font-size: clamp(22px, 2.2vw, 34px); }
+    .hunt-bunny { font-size: clamp(22px, 2.2vw, 34px); }
+    .hunt-fade { opacity:0; }
   </style>
 </head>
 <body>
@@ -88,7 +101,6 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
     <div id="grid" class="grid"></div>
   </section>
 
-
   <!-- Kontakt & PGP -->
   <section class="card">
     <h2 style="margin:.2rem 0 .5rem;">Kontakt & PGP</h2>
@@ -97,8 +109,8 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
       <a class="btn" href="{{ '/assets/keys/benedikt-schackenberg.asc' | relative_url }}" download>⬇️ PGP-Schlüssel (.asc)</a>
       <button type="button" class="copy" onclick="copyKey()">📋 PGP in Zwischenablage</button>
     </div>
-    <pre id="pgp-key">
------BEGIN PGP PUBLIC KEY BLOCK-----
+    <pre id="pgp-key">-----BEGIN PGP PUBLIC KEY BLOCK-----
+    
 xsDNBGheduIBDACgouJ37Wz4Q0m7kGssgCOJNutp6/+719pcyya1IMZbzb8exbzF
 KKKIInhk6TqtY8gsREihUVwt98CrEtQ1wTuIWXAuNQXkGdTZpr0crsBIopjQdGiC
 r9IhXM2qM0F3tlDnMKZ0C/IN1WyQb7P541zy4dVv5eSHeas0GEhOKFRs/ZYvuW0C
@@ -137,16 +149,18 @@ zkz6k5Dz75OBsgInb70rjS6LCDyCfwdE4FkXF8xiTWldF2V8MqMGKVfRGfh4Ibxv
 9KY9MQKAE5cQWlrjZPxLplNgHt9GwGH91drpHP7OyMIIGMX8ofK+XUOTGJnzjUt7
 dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
 =qPcL
------END PGP PUBLIC KEY BLOCK-----
-
-</pre>
+-----END PGP PUBLIC KEY BLOCK-----</pre>
   </section>
 </main>
 
+<!-- Rechts: Pixelhase -->
 <aside class="hoppel"><div id="bunny" class="bunny"></div></aside>
 
+<!-- Carrot-Hunt Overlay -->
+<div id="huntLayer" class="hunt-layer" aria-hidden="true"></div>
+
 <script>
-  // === Bilder laden und rotieren ===
+  // === Kachel-Grid wie gehabt ===
   const IMAGES = [
     {% assign pics = site.static_files | where_exp:"f","f.path contains '/assets/img/'" | where_exp:"f","f.extname == '.png' or f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.gif' or f.extname == '.webp'" %}
     {% for f in pics %}"{{ f.path | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}
@@ -160,25 +174,99 @@ dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
     swap(next()); setInterval(()=>swap(next()),5000);
   })();
 
-  // === Fallende Hasensprüche nach 10 Sekunden ===
-  const FUNNY=[
-    "Kein Bug – nur ein fluffiges Feature!","Hasen-Alarm! Wo ist die Möhre? 🥕","Heute schon gehoppelt?","Zwei Möhren am Tag halten den Fuchs fern.","Hoppel.exe läuft stabil.","Bitte nicht stören. Ich kompiliere Möhren.","Möhre rein, Glück raus.","Pixelhase v1.0 – jetzt mit Extra-Ohren.","Fehler 404: Möhre nicht gefunden.","Flauschfaktor: over 9000!"
-  ];
-  setTimeout(()=>{
-    setInterval(()=>{
-      const el=document.createElement('div');
-      el.className='fall';
-      el.style.left=Math.random()*90+5+'vw';
-      el.textContent=FUNNY[Math.floor(Math.random()*FUNNY.length)];
-      document.body.appendChild(el);
-      el.addEventListener('animationend',()=>el.remove());
-    },800);
-  },10000);
+  // === PGP Copy ===
+  function copyKey(){
+    const key = document.getElementById('pgp-key')?.innerText || '';
+    navigator.clipboard.writeText(key).then(()=>alert('PGP-Schlüssel kopiert ✅'));
+  }
 
-  // === Bunny Flip ===
+  // === Rechts: Pixelhase flippt zufällig ===
   document.getElementById('bunny').addEventListener("animationiteration",e=>{
     if(e.animationName==="hopMove"&&Math.random()<0.5){e.target.classList.toggle("flip");}
   });
+
+  // === Endlose, zufällige Carrot-Hunt über gesamte Seite ===
+  (function(){
+    const L = document.getElementById('huntLayer');
+    const BUNNIES = ["🐇","🐰","🐭","🐿️","🦝","🦊","👨‍🔧"]; // letzter ist der „Mario-mäßige“ Gag
+    const rand = (a,b)=> Math.random()*(b-a)+a;
+    const randint = (a,b)=> Math.floor(rand(a,b+1));
+    const vw = ()=> Math.max(document.documentElement.clientWidth,  window.innerWidth  || 0);
+    const vh = ()=> Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+
+    function spawnHunt(){
+      // 1) Möhre irgendwo im Viewport
+      const cx = randint(10, vw()-50);
+      const cy = randint(60, vh()-60);
+
+      const carrot = document.createElement('div');
+      carrot.className = 'hunt-emoji hunt-carrot';
+      carrot.textContent = '🥕';
+      carrot.style.left = cx + 'px';
+      carrot.style.top  = cy + 'px';
+      L.appendChild(carrot);
+
+      // 2) Nach 2s: 3–5 Jäger spawnen an zufälligen Kanten und hoppeln zur Möhre
+      setTimeout(()=>{
+        const count = randint(3,5);
+        for (let i=0; i<count; i++){
+          const h = document.createElement('div');
+          h.className = 'hunt-emoji hunt-bunny';
+          h.textContent = BUNNIES[randint(0, BUNNIES.length-1)];
+
+          // Start: zufällige Seite (oben/unten/links/rechts) + Offsets
+          const side = randint(0,3);
+          let x, y;
+          if (side===0){ x = randint(-60, -20);  y = randint(20, vh()-20);}            // von links
+          if (side===1){ x = randint(vw()+20, vw()+60); y = randint(20, vh()-20);}     // von rechts
+          if (side===2){ x = randint(20, vw()-20); y = randint(-60, -20);}             // von oben
+          if (side===3){ x = randint(20, vw()-20); y = randint(vh()+20, vh()+60);}     // von unten
+
+          h.style.left = x + 'px';
+          h.style.top  = y + 'px';
+          // zufällige Dauer
+          const dur = rand(2.8, 4.2).toFixed(2) + 's';
+          h.style.setProperty('--moveDur', dur);
+
+          L.appendChild(h);
+
+          // Bewegung leicht gestaffelt
+          setTimeout(()=>{
+            // kleine „Hoppel“-Wackler via translateY in CSS ersparen wir uns – stattdessen Ziel leicht variieren
+            const jitterX = randint(-12, 12);
+            const jitterY = randint(-10, 10);
+            h.style.transform = `translate(${(cx - x + jitterX)}px, ${(cy - y + jitterY)}px)`;
+          }, i*180);
+        }
+
+        // 3) Nach 4–5s verschwindet die Möhre (gegessen)
+        setTimeout(()=>{
+          carrot.classList.add('hunt-fade');
+          setTimeout(()=> carrot.remove(), 350);
+        }, randint(4000, 5000));
+
+        // 4) Jäger verblassen kurz nach dem Snack
+        setTimeout(()=>{
+          [...L.querySelectorAll('.hunt-bunny')].forEach(b=>{
+            b.classList.add('hunt-fade');
+            setTimeout(()=> b.remove(), 400);
+          });
+        }, randint(4700, 6200));
+
+      }, 2000);
+
+      // 5) Nächste Jagd zufällig in 8–14s
+      const nextIn = randint(8000, 14000);
+      setTimeout(spawnHunt, nextIn);
+    }
+
+    // Start nach kurzer Wartezeit
+    setTimeout(spawnHunt, 1500);
+    // Re-Layout bei Resize: alte Jäger/Möhren sanft weg
+    window.addEventListener('resize', ()=>{
+      [...L.children].forEach(el=>{ el.classList.add('hunt-fade'); setTimeout(()=>el.remove(), 250); });
+    });
+  })();
 </script>
 </body>
 </html>
