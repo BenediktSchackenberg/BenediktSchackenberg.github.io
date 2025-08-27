@@ -18,6 +18,8 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
       --shadow: 0 10px 24px rgba(0,0,0,.07);
       --border:#e9edf3;
       --hoppel-bg: #8ecae6;
+      --bubble:#fff;
+      --bubble-border:#3b2f2f;
     }
     * { box-sizing: border-box; }
     body { margin:0; background:#f6f8fb; color:#111; font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial; overflow-x:hidden; }
@@ -53,38 +55,56 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.9rem; }
 
     /* Rechts: Hoppel-Widget */
-    .hoppel { position:fixed; top:1rem; right:1rem; width:280px; height:220px;
+    .hoppel {
+      position:fixed; top:1rem; right:1rem; width:300px; height:240px;
       border:4px solid #3b2f2f; border-radius:14px; background:var(--hoppel-bg);
-      box-shadow:0 12px 30px rgba(0,0,0,.18); overflow:hidden; image-rendering:pixelated; z-index:999; }
+      box-shadow:0 12px 30px rgba(0,0,0,.18); overflow:hidden; image-rendering:pixelated; z-index:999;
+      display:flex; flex-direction:column; justify-content:flex-end; align-items:flex-start; padding:8px 10px 10px;
+    }
     @media (max-width:880px){ .hoppel {display:none;} }
-    .hoppel .bunny{ position:absolute; bottom:0; left:-120px; width:96px; height:96px;
-      background: url("{{ '/assets/img/hase-sprite.png' | relative_url }}") 0 0 / 384px 96px no-repeat;
-      animation: hopFrames .6s steps(4) infinite, hopMove 6s linear infinite; }
-    .hoppel .bunny.flip{ transform:scaleX(-1);}
-    @keyframes hopFrames{from{background-position:0 0;}to{background-position:-384px 0;}}
-    @keyframes hopMove{0%{left:-120px;bottom:0;}20%{bottom:60px;}40%{bottom:0;}60%{bottom:50px;}80%{bottom:0;}100%{left:calc(100% + 40px);bottom:0;}}
 
-    /* Fallende Sprüche (optional) */
+    /* Sprechblase */
+    .bubble {
+      position:absolute; top:8px; right:10px; max-width:220px;
+      background:var(--bubble); border:3px solid var(--bubble-border); border-radius:12px;
+      padding:10px 12px; font:700 .9rem/1.3 ui-sans-serif,system-ui; color:#2b2626;
+      box-shadow:0 6px 16px rgba(0,0,0,.12);
+      transform-origin: 100% 0;
+      animation: bubbleIn .25s ease-out;
+    }
+    .bubble::after {
+      content:""; position:absolute; bottom:-10px; right:22px; width:0; height:0;
+      border-left:10px solid transparent; border-right:10px solid transparent;
+      border-top:10px solid var(--bubble);
+      filter: drop-shadow(0 2px 0 var(--bubble-border));
+    }
+    @keyframes bubbleIn { from{ transform:scale(.9); opacity:0 } to{ transform:scale(1); opacity:1 } }
+    .bubble.fade { opacity:0; transition: opacity .25s ease }
+
+    .hoppel .bunny{
+      position:absolute; bottom:8px; left:10px; width:96px; height:96px;
+      background: url("{{ '/assets/img/hase-sprite.png' | relative_url }}") 0 0 / 384px 96px no-repeat;
+      animation: hopFrames .6s steps(4) infinite, hopMove 6s linear infinite;
+    }
+    .hoppel .bunny.flip{ transform:scaleX(-1); }
+    @keyframes hopFrames{from{background-position:0 0;}to{background-position:-384px 0;}}
+    @keyframes hopMove{
+      0%{left:-120px;bottom:8px;} 20%{bottom:68px;} 40%{bottom:8px;}
+      60%{bottom:58px;} 80%{bottom:8px;} 100%{left:calc(100% + 40px);bottom:8px;}
+    }
+
+    /* Fallende Sprüche (optional – bleibt unangetastet) */
     .fall { position:fixed; top:-2rem; left:50%; transform:translateX(-50%);
-      font:700 1rem/1.3 ui-sans-serif,system-ui; color:#3b2f2f;
-      white-space:nowrap; pointer-events:none; opacity:.9;
+      font:700 1rem/1.3 ui-sans-serif,system-ui; color:#3b2f2f; white-space:nowrap; pointer-events:none; opacity:.9;
       animation: fallDown 8s linear forwards; z-index:500;
     }
     @keyframes fallDown { to{ transform:translateX(-50%) translateY(110vh);} }
 
-    /* ===== Endlose, zufällige Carrot-Hunt über die gesamte Seite ===== */
-    .hunt-layer{
-      position: fixed; inset: 0; pointer-events: none; z-index: 700;
-      overflow: hidden;
-    }
-    .hunt-emoji{
-      position:absolute; will-change: transform, opacity;
-      transition: transform var(--moveDur, 3s) linear, opacity .3s ease;
-      filter: drop-shadow(0 6px 10px rgba(0,0,0,.12));
-      user-select: none;
-    }
-    .hunt-carrot{ font-size: clamp(22px, 2.2vw, 34px); }
-    .hunt-bunny { font-size: clamp(22px, 2.2vw, 34px); }
+    /* Carrot-Hunt Overlay (bleibt) */
+    .hunt-layer{ position: fixed; inset: 0; pointer-events: none; z-index: 700; overflow: hidden; }
+    .hunt-emoji{ position:absolute; will-change: transform, opacity; transition: transform var(--moveDur, 3s) linear, opacity .3s ease;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,.12)); user-select: none; }
+    .hunt-carrot, .hunt-bunny { font-size: clamp(22px, 2.2vw, 34px); }
     .hunt-fade { opacity:0; }
   </style>
 </head>
@@ -110,7 +130,7 @@ description: "Kachel-Grid: alle Bilder klein, Wechsel alle 5 Sekunden"
       <button type="button" class="copy" onclick="copyKey()">📋 PGP in Zwischenablage</button>
     </div>
     <pre id="pgp-key">-----BEGIN PGP PUBLIC KEY BLOCK-----
-    
+
 xsDNBGheduIBDACgouJ37Wz4Q0m7kGssgCOJNutp6/+719pcyya1IMZbzb8exbzF
 KKKIInhk6TqtY8gsREihUVwt98CrEtQ1wTuIWXAuNQXkGdTZpr0crsBIopjQdGiC
 r9IhXM2qM0F3tlDnMKZ0C/IN1WyQb7P541zy4dVv5eSHeas0GEhOKFRs/ZYvuW0C
@@ -153,8 +173,11 @@ dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
   </section>
 </main>
 
-<!-- Rechts: Pixelhase -->
-<aside class="hoppel"><div id="bunny" class="bunny"></div></aside>
+<!-- Rechts: Pixelhase mit Sprechblase -->
+<aside class="hoppel" aria-live="polite">
+  <div class="bubble" id="hoppel-quote">Möhre in Sicht – Mission gestartet! 🥕</div>
+  <div id="bunny" class="bunny" role="img" aria-label="Pixelhase"></div>
+</aside>
 
 <!-- Carrot-Hunt Overlay -->
 <div id="huntLayer" class="hunt-layer" aria-hidden="true"></div>
@@ -185,17 +208,44 @@ dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
     if(e.animationName==="hopMove"&&Math.random()<0.5){e.target.classList.toggle("flip");}
   });
 
-  // === Endlose, zufällige Carrot-Hunt über gesamte Seite ===
+  // === Sprechblase: lustige Sprüche rotieren ===
+  (function(){
+    const QUOTES = [
+      "Möhre in Sicht – Mission gestartet! 🥕",
+      "Ich bin nicht klein, nur pixel-effizient.",
+      "Hasenregel Nr. 1: Erst hoppeln, dann denken.",
+      "Mehr Möhren, weniger Sorgen.",
+      "95% Hase, 5% Ninja.",
+      "Ich cache Karotten im RAM – Rüben-Access-Memory.",
+      "Laufzeitoptimierung? Ich hoppel JIT.",
+      "An alle: bleibt flauschig! ✨",
+      "Wer braucht Glück, wenn man Löffel hat?",
+      "Sprint beendet. Nächster Hop incoming…"
+    ];
+    const el = document.getElementById('hoppel-quote');
+    let last = -1;
+    function nextQuote(){
+      let i; do { i = Math.floor(Math.random()*QUOTES.length); } while(i===last);
+      last = i;
+      el.classList.add('fade');
+      setTimeout(()=>{ el.textContent = QUOTES[i]; el.classList.remove('fade'); }, 250);
+    }
+    // Wechsel alle 6 Sekunden
+    setInterval(nextQuote, 6000);
+    // Klick = sofort neuer Spruch
+    el.addEventListener('click', nextQuote);
+  })();
+
+  // === Endlose, zufällige Carrot-Hunt über gesamte Seite (wie gehabt) ===
   (function(){
     const L = document.getElementById('huntLayer');
-    const BUNNIES = ["🐇","🐰","🐭","🐿️","🦝","🦊","👨‍🔧"]; // letzter ist der „Mario-mäßige“ Gag
+    const BUNNIES = ["🐇","🐰","🐭","🐿️","🦝","🦊","👨‍🔧"]; // „Mario“-Gag bleibt :)
     const rand = (a,b)=> Math.random()*(b-a)+a;
     const randint = (a,b)=> Math.floor(rand(a,b+1));
     const vw = ()=> Math.max(document.documentElement.clientWidth,  window.innerWidth  || 0);
     const vh = ()=> Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
 
     function spawnHunt(){
-      // 1) Möhre irgendwo im Viewport
       const cx = randint(10, vw()-50);
       const cy = randint(60, vh()-60);
 
@@ -206,7 +256,6 @@ dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
       carrot.style.top  = cy + 'px';
       L.appendChild(carrot);
 
-      // 2) Nach 2s: 3–5 Jäger spawnen an zufälligen Kanten und hoppeln zur Möhre
       setTimeout(()=>{
         const count = randint(3,5);
         for (let i=0; i<count; i++){
@@ -214,59 +263,37 @@ dUr2LbnAVQvuEi88w0Sgk2l4s344wfhc7s7n6pA458lrBQ==
           h.className = 'hunt-emoji hunt-bunny';
           h.textContent = BUNNIES[randint(0, BUNNIES.length-1)];
 
-          // Start: zufällige Seite (oben/unten/links/rechts) + Offsets
           const side = randint(0,3);
           let x, y;
-          if (side===0){ x = randint(-60, -20);  y = randint(20, vh()-20);}            // von links
-          if (side===1){ x = randint(vw()+20, vw()+60); y = randint(20, vh()-20);}     // von rechts
-          if (side===2){ x = randint(20, vw()-20); y = randint(-60, -20);}             // von oben
-          if (side===3){ x = randint(20, vw()-20); y = randint(vh()+20, vh()+60);}     // von unten
+          if (side===0){ x = randint(-60, -20);  y = randint(20, vh()-20); }
+          if (side===1){ x = randint(vw()+20, vw()+60); y = randint(20, vh()-20); }
+          if (side===2){ x = randint(20, vw()-20); y = randint(-60, -20); }
+          if (side===3){ x = randint(20, vw()-20); y = randint(vh()+20, vh()+60); }
 
           h.style.left = x + 'px';
           h.style.top  = y + 'px';
-          // zufällige Dauer
           const dur = rand(2.8, 4.2).toFixed(2) + 's';
           h.style.setProperty('--moveDur', dur);
-
           L.appendChild(h);
 
-          // Bewegung leicht gestaffelt
           setTimeout(()=>{
-            // kleine „Hoppel“-Wackler via translateY in CSS ersparen wir uns – stattdessen Ziel leicht variieren
             const jitterX = randint(-12, 12);
             const jitterY = randint(-10, 10);
             h.style.transform = `translate(${(cx - x + jitterX)}px, ${(cy - y + jitterY)}px)`;
           }, i*180);
         }
 
-        // 3) Nach 4–5s verschwindet die Möhre (gegessen)
-        setTimeout(()=>{
-          carrot.classList.add('hunt-fade');
-          setTimeout(()=> carrot.remove(), 350);
-        }, randint(4000, 5000));
-
-        // 4) Jäger verblassen kurz nach dem Snack
-        setTimeout(()=>{
-          [...L.querySelectorAll('.hunt-bunny')].forEach(b=>{
-            b.classList.add('hunt-fade');
-            setTimeout(()=> b.remove(), 400);
-          });
-        }, randint(4700, 6200));
-
+        setTimeout(()=>{ carrot.classList.add('hunt-fade'); setTimeout(()=> carrot.remove(), 350); }, randint(4000, 5000));
+        setTimeout(()=>{ [...L.querySelectorAll('.hunt-bunny')].forEach(b=>{ b.classList.add('hunt-fade'); setTimeout(()=> b.remove(), 400); }); }, randint(4700, 6200));
       }, 2000);
 
-      // 5) Nächste Jagd zufällig in 8–14s
-      const nextIn = randint(8000, 14000);
-      setTimeout(spawnHunt, nextIn);
+      setTimeout(spawnHunt, randint(8000, 14000));
     }
 
-    // Start nach kurzer Wartezeit
     setTimeout(spawnHunt, 1500);
-    // Re-Layout bei Resize: alte Jäger/Möhren sanft weg
-    window.addEventListener('resize', ()=>{
-      [...L.children].forEach(el=>{ el.classList.add('hunt-fade'); setTimeout(()=>el.remove(), 250); });
-    });
+    window.addEventListener('resize', ()=>{ [...L.children].forEach(el=>{ el.classList.add('hunt-fade'); setTimeout(()=>el.remove(), 250); }); });
   })();
 </script>
+
 </body>
 </html>
