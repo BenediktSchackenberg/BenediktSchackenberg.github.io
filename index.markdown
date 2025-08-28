@@ -2,7 +2,7 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Kachel-Grid + Retro-Wald"
+description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 ---
 
 <html lang="de">
@@ -33,7 +33,7 @@ description: "Kachel-Grid + Retro-Wald"
   .btn:hover, button.copy:hover{ background:#f3f5f8 }
   pre{ background:#0b1220; color:#e6edf3; padding:1rem; border-radius:12px; overflow:auto; font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace; font-size:.9rem }
 
-  /* ===== Kontaktblock oben rechts ===== */
+  /* Kontakt oben rechts */
   .contact-block{
     position:fixed; top:10px; right:10px; z-index:1100;
     background:#0d0d0d; color:#fff; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.25);
@@ -44,11 +44,11 @@ description: "Kachel-Grid + Retro-Wald"
   .contact-actions .mini{ border:1px solid #2b2b2b; background:#111; color:#fff; border-radius:8px; padding:4px 8px; cursor:pointer; font-size:.85rem }
   .contact-actions .mini:hover{ background:#171717 }
 
-  /* ===== Scoreboard oben links ===== */
+  /* Score oben links */
   .score{
     position:fixed; left:10px; top:10px; z-index:1100;
     background:#111; color:#fff; border:2px solid #2a2a2a; border-radius:12px;
-    padding:10px 12px; width:min(400px, 46vw); font:600 .9rem/1.35 ui-sans-serif;
+    padding:10px 12px; width:min(430px, 50vw); font:600 .9rem/1.35 ui-sans-serif;
     box-shadow:0 10px 24px rgba(0,0,0,.25);
   }
   .score h3{ margin:.1rem 0 .4rem; font-size:1rem }
@@ -61,7 +61,7 @@ description: "Kachel-Grid + Retro-Wald"
   .karma-pop{ position:fixed; z-index:1200; pointer-events:none; font:800 .95rem/1 ui-sans-serif; color:#fff; padding:3px 8px; border-radius:10px; background:rgba(0,0,0,.75); transform:translate(-50%,-50%); animation:pop 900ms ease-out forwards; filter: drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
   @keyframes pop{ 0%{opacity:0; transform:translate(-50%,-20px) scale(.8)} 30%{opacity:1} 100%{opacity:0; transform:translate(-50%,-60px) scale(1.05)} }
 
-  /* ===== Retro Welt ===== */
+  /* Welt */
   .world{ position:fixed; inset:0; z-index:999; image-rendering:pixelated; background:#567b6c }
   .map{ position:absolute; inset:0; display:grid; grid-template-columns:repeat(var(--cols), var(--tile)); grid-auto-rows:var(--tile); pointer-events:none; z-index:1 }
   .cell{ width:var(--tile); height:var(--tile) }
@@ -78,7 +78,7 @@ description: "Kachel-Grid + Retro-Wald"
   .bg-fountain::before{ content:"⛲"; display:block; text-align:center; font-size:20px; margin-top:6px }
   .bg-tunnel::before{ content:"🕳️"; display:block; text-align:center; font-size:20px; margin-top:6px }
 
-  /* Kleines Zentrales Haus (Deko) */
+  /* zentrales Dekohaus */
   .house{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3;
     width: clamp(140px, 14vw, 220px); height: clamp(110px, 12vw, 180px); filter: drop-shadow(0 10px 20px rgba(0,0,0,.18)) }
   .house .roof{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:100%; height:40% }
@@ -89,8 +89,8 @@ description: "Kachel-Grid + Retro-Wald"
   .win{ position:absolute; bottom:24%; width:18%; height:28%; background:#cfe9ff; border:3px solid #3b2f2f; border-radius:6px; box-shadow:inset 0 0 0 3px #ffffff66 }
   .win.l{ left:18% } .win.r{ right:18% }
 
-  /* Koch-Restaurant mit Kamin */
-  .restaurant{ position:absolute; transform:translate(-50%,0); z-index:4; width:140px; height:110px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.2)) }
+  /* Koch-Restaurant */
+  .restaurant{ position:absolute; transform:translate(-50%,0); z-index:4; width:150px; height:118px; filter: drop-shadow(0 8px 16px rgba(0,0,0,.2)) }
   .restaurant .roof{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:100%; height:42% }
   .restaurant .roof::before{ content:""; position:absolute; inset:0; background:linear-gradient(#7a3c2f,#5e2b22);
     clip-path:polygon(0% 100%,50% 12%,100% 100%); filter: drop-shadow(0 2px 0 rgba(0,0,0,.35)) }
@@ -100,7 +100,7 @@ description: "Kachel-Grid + Retro-Wald"
   .smoke{ position:absolute; width:10px; height:10px; background:rgba(240,240,240,.9); border-radius:50%; left:50%; transform:translateX(-50%); animation: puff 2s ease-out forwards; filter:blur(.5px) drop-shadow(0 2px 4px rgba(0,0,0,.15)) }
   @keyframes puff{ 0%{opacity:0; transform:translate(-50%,6px) scale(.6)} 20%{opacity:1} 100%{opacity:0; transform:translate(-50%,-40px) scale(1.6)} }
 
-  /* Kleine Pixel-Häuser (NPC) */
+  /* Mini-Häuser – viele Varianten */
   .hut{ position:absolute; transform:translate(-50%,0); z-index:4; width: clamp(84px, 8.8vw, 120px); height: clamp(62px, 7vw, 95px); filter: drop-shadow(0 6px 12px rgba(0,0,0,.18)) }
   .hut .roof{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:100%; height:46% }
   .hut .roof::before{ content:""; position:absolute; inset:0; background:var(--roof,#7a3c2f); clip-path:polygon(0% 100%,50% 10%,100% 100%); filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) }
@@ -108,13 +108,32 @@ description: "Kachel-Grid + Retro-Wald"
   .hut .door{ position:absolute; left:50%; bottom:0; transform:translateX(-50%); width:18%; height:62%; background:#7b5b3e; border:2px solid #2f2626; border-radius:6px 6px 0 0 }
   .hut .win{ position:absolute; bottom:26%; width:18%; height:32%; background:#cfe9ff; border:2px solid #2f2626; border-radius:5px }
   .hut .win.l{ left:16% } .hut .win.r{ right:16% }
+
+  /* Themenfarben */
   .hut.c1{ --roof:linear-gradient(#7a3c2f,#5e2b22); --wall:#f0ead6; }
   .hut.c2{ --roof:linear-gradient(#3c5c7a,#2b425e); --wall:#e5f0f4; }
   .hut.c3{ --roof:linear-gradient(#7a6a3c,#5e512b); --wall:#efe7c9; }
   .hut.c4{ --roof:linear-gradient(#6f3c7a,#4c2b5e); --wall:#f3e5f6; }
   .hut.c5{ --roof:linear-gradient(#2f7a55,#245a3f); --wall:#e3f2e9; }
+  .hut.c6{ --roof:linear-gradient(#8c2f2f,#5a1f1f); --wall:#ffe7e1; }
+  .hut.c7{ --roof:linear-gradient(#2f6e8c,#1e465a); --wall:#e6f7ff; }
+  .hut.c8{ --roof:linear-gradient(#8c7a2f,#5a4f1e); --wall:#fff4cf; }
+  .hut.c9{ --roof:linear-gradient(#2f8c67,#1f5a46); --wall:#eafff4; }
+  .hut.c10{ --roof:linear-gradient(#8c2f7c,#5a1e53); --wall:#ffe8fb; }
 
-  /* NPC (füttert & läuft) */
+  /* Form-/Detailvarianten */
+  .hut.offsetL .door{ left:36% } .hut.offsetR .door{ left:64% }
+  .hut.single .win.l{ display:none } .hut.single .win.r{ left:50%; transform:translateX(-50%); right:auto }
+  .hut.round .win{ border-radius:50%; width:16%; height:26% }
+  .hut.brick .body{ background:repeating-linear-gradient(0deg,#e6cdb6 0 7px,#d8bfa3 7px 9px) }
+  .hut.striped .body{ background:repeating-linear-gradient(90deg,#f3efe2 0 10px,#ede4cf 10px 20px) }
+  .hut.flag::after{ content:"🏳️‍🌈"; position:absolute; top:-6px; right:8px; font-size:14px; transform:rotate(3deg) }
+  .hut.chim::after{ content:""; position:absolute; top:6px; left:20px; width:12px; height:14px; background:#6b5a4a; border:2px solid #2f2626; border-bottom:none; border-radius:3px 3px 0 0 }
+  .hut.mail::before{ content:"📮"; position:absolute; bottom:-6px; left:-10px; font-size:16px; transform:rotate(-4deg) }
+  .hut.solar .roof::after{ content:""; position:absolute; left:58%; top:12px; width:34px; height:12px; background:repeating-linear-gradient(90deg,#184,#1a6 8px); border:2px solid #0a2; border-radius:3px; transform:skewX(-15deg) }
+  .hut.flowers .body::after{ content:"🌼🌸"; position:absolute; left:6px; bottom:-10px; font-size:14px; }
+
+  /* NPC */
   .npc{ position:absolute; transform:translate(-50%,0); z-index:5 }
   .npc .face{ font-size:36px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)) }
   .npc .name{ position:absolute; bottom:50px; left:50%; transform:translateX(-50%); font:600 .72rem ui-sans-serif; background:#ffffffe6; border:2px solid #2a2a2a; padding:2px 6px; border-radius:8px }
@@ -130,13 +149,25 @@ description: "Kachel-Grid + Retro-Wald"
   .cave{ position:absolute; transform:translate(-50%,0); z-index:3; font-size:30px; text-align:center; }
   .cave .tag{ position:absolute; left:50%; bottom:30px; transform:translateX(-50%); background:#111; color:#fff; padding:2px 6px; border:2px solid #2a2a2a; border-radius:8px; font:700 .7rem ui-sans-serif }
 
+  /* Spots */
+  .zone{ position:absolute; transform:translate(-50%,0); z-index:2; pointer-events:none; text-align:center; }
+  .zone .icon{ font-size:28px; filter: drop-shadow(0 3px 6px rgba(0,0,0,.2)) }
+  .zone .label{ margin-top:2px; padding:2px 6px; border-radius:8px; font:700 .7rem/1 ui-sans-serif; display:inline-block; color:#111; background:#fff8; border:2px solid #2a2a2a66 }
+  .zone.playground .icon{ font-size:30px }
+  .zone.office .label{ background:#e6f1ffcc }
+  .zone.hotel .label{ background:#fff3d5cc }
+  .zone.market .label{ background:#eaffd5cc }
+  .zone.cafe .label{ background:#ffe5e5cc }
+  .zone.stage .label{ background:#efe5ffcc }
+  .zone.park .label{ background:#e0ffeacc }
+
   .ui{ position:absolute; top:8px; left:50%; transform:translateX(-50%); z-index:10 }
   .sound-btn{ border:2px solid #2f2626; background:#fff; border-radius:10px; padding:4px 8px; cursor:pointer; font-size:.9rem }
 </style>
 </head>
 <body>
 
-<!-- Kontaktblock -->
+<!-- Kontakt -->
 <div class="contact-block">
   <div>📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a></div>
   <div>🔐 <a href="{{ '/assets/keys/benedikt-schackenberg.asc' | relative_url }}" download>PGP-Schlüssel (.asc)</a></div>
@@ -146,7 +177,7 @@ description: "Kachel-Grid + Retro-Wald"
   </div>
 </div>
 
-<!-- Scoreboard -->
+<!-- Score -->
 <div id="score" class="score" aria-live="polite">
   <h3>🌟 Karma-Topliste</h3>
   <div id="cookline" class="cookline">👨‍🍳 Koch: –</div>
@@ -184,13 +215,13 @@ description: "Kachel-Grid + Retro-Wald"
   <div class="ui"><button id="soundBtn" class="sound-btn" aria-pressed="false" title="Sound an/aus">🔇</button></div>
   <div id="map" class="map"></div>
 
-  <!-- zentrales, kleines Deko-Haus -->
+  <!-- zentrales Dekohaus -->
   <div id="house" class="house">
     <div class="roof"></div>
     <div class="body"><div class="door"></div><div class="win l"></div><div class="win r"></div></div>
   </div>
 
-  <!-- Koch-Restaurant (Position wird per JS gesetzt) -->
+  <!-- Koch-Restaurant -->
   <div id="restaurant" class="restaurant" style="display:none;">
     <div class="roof"></div>
     <div class="body"><div class="door"></div></div>
@@ -199,7 +230,7 @@ description: "Kachel-Grid + Retro-Wald"
 </div>
 
 <script>
-/* ==== kleines Bild-Grid ==== */
+/* ==== Bilder-Grid ==== */
 const IMAGES = [
   {% assign pics = site.static_files | where_exp:"f","f.path contains '/assets/img/'" | where_exp:"f","f.extname == '.png' or f.extname == '.jpg' or f.extname == '.jpeg' or f.extname == '.gif' or f.extname == '.webp'" %}
   {% for f in pics %}"{{ f.path | relative_url }}"{% unless forloop.last %},{% endunless %}{% endfor %}
@@ -213,7 +244,7 @@ const IMAGES = [
   swap(next()); setInterval(()=>swap(next()),5000);
 })();
 
-/* ===== Spiel ===== */
+/* ====== Spiel ====== */
 (function(){
   function rand(a,b){ return Math.random()*(b-a)+a; }
   function randint(a,b){ return Math.floor(rand(a,b+1)); }
@@ -221,7 +252,7 @@ const IMAGES = [
   const T=32, world=document.getElementById('world'), mapEl=document.getElementById('map'), house=document.getElementById('house');
   const resto=document.getElementById('restaurant'), chimney=document.getElementById('chimney');
   let W=window.innerWidth, H=window.innerHeight, COLS=Math.floor(W/T), ROWS=Math.floor(H/T);
-  let GRID=[], SOLID=new Set(), FOUNTAINS=[], CAVES=[], TREASURES=[], HUTS=[], NPCS=[];
+  let GRID=[], SOLID=new Set(), FOUNTAINS=[], CAVES=[], TREASURES=[], HUTS=[], NPCS=[], HUBS=[], CITIZENS=[];
   mapEl.style.setProperty('--cols', COLS); mapEl.style.setProperty('--tile', T+'px');
 
   window.addEventListener('resize', ()=>{ W=innerWidth; H=innerHeight; COLS=Math.floor(W/T); ROWS=Math.floor(H/T); mapEl.style.setProperty('--cols', COLS); genWorld(); });
@@ -257,19 +288,22 @@ const IMAGES = [
   function randomOpenCell(){ var x=0,y=0, tries=0; do{ x=1+Math.floor(Math.random()*(COLS-2)); y=1+Math.floor(Math.random()*(ROWS-2)); tries++; if(tries>200) break; } while(solidAt(x,y)); return {x:x,y:y}; }
   function popKarma(px,py,txt){ var d=document.createElement('div'); d.className='karma-pop'; d.textContent=txt; d.style.left=Math.round(px)+'px'; d.style.top=Math.round(py)+'px'; document.body.appendChild(d); setTimeout(function(){ d.remove(); }, 950); }
 
-  /* ===== Welt bauen ===== */
+  /* ===== Zonen & Hubs ===== */
+  function addZone(x,y,cls,icon,label){
+    var el=document.createElement('div'); el.className='zone '+cls; el.style.left=(x*T+T/2)+'px'; el.style.bottom=(y*T)+'px';
+    el.innerHTML='<div class="icon">'+icon+'</div><div class="label">'+label+'</div>'; world.appendChild(el);
+    HUBS.push({x:x, y:y, type:cls, el:el, crowd:[]});
+  }
+
   function genWorld(){
-    mapEl.innerHTML=""; GRID=[]; SOLID.clear(); FOUNTAINS=[]; CAVES=[]; TREASURES=[]; HUTS=[]; NPCS=[];
-    // Labyrinth
+    mapEl.innerHTML=""; GRID=[]; SOLID.clear(); FOUNTAINS=[]; CAVES=[]; TREASURES=[]; HUTS=[]; NPCS=[]; HUBS=[]; CITIZENS=[];
+    // Maze
     var mazeW=(Math.floor(W/T))|1, mazeH=(Math.floor(H/T))|1;
     var M=Array(mazeH); for(var y=0;y<mazeH;y++){ M[y]=Array(mazeW); for(var x=0;x<mazeW;x++) M[y][x]=1; }
     function carve(cx,cy){
-      M[cy][cx]=0;
-      var dirs=[[2,0],[0,2],[-2,0],[0,-2]].sort(function(){return Math.random()-.5;});
-      for(var i=0;i<4;i++){
-        var dx=dirs[i][0], dy=dirs[i][1], nx=cx+dx, ny=cy+dy;
-        if(ny>0&&ny<mazeH-1&&nx>0&&nx<mazeW-1 && M[ny][nx]===1){ M[cy+dy/2][cx+dx/2]=0; carve(nx,ny); }
-      }
+      M[cy][cx]=0; var dirs=[[2,0],[0,2],[-2,0],[0,-2]].sort(function(){return Math.random()-.5;});
+      for(var i=0;i<4;i++){ var dx=dirs[i][0], dy=dirs[i][1], nx=cx+dx, ny=cy+dy;
+        if(ny>0&&ny<mazeH-1&&nx>0&&nx<mazeW-1 && M[ny][nx]===1){ M[cy+dy/2][cx+dx/2]=0; carve(nx,ny); } }
     }
     carve(((mazeW/2)|0)|1, ((mazeH/2)|0)|1);
 
@@ -278,46 +312,33 @@ const IMAGES = [
       for(var xx=0;xx<COLS;xx++){
         var cell=document.createElement('i'); cell.className='cell bg-grass'; mapEl.appendChild(cell);
         if(M[yy] && M[yy][xx]===0){ cell.className='cell bg-path'; GRID[yy][xx]=0; }
-        else{ var r=Math.random(); if(r<.6) cell.classList.add('bg-hedge'); else if(r<.82) cell.classList.add('bg-forest'); else cell.classList.add('bg-tree'); GRID[yy][xx]=1; SOLID.add(xx+','+yy); }
+        else{ var r=Math.random(); if(r<.55) cell.classList.add('bg-hedge'); else if(r<.8) cell.classList.add('bg-forest'); else cell.classList.add('bg-tree'); GRID[yy][xx]=1; SOLID.add(xx+','+yy); }
       }
     }
-    // Brunnen
-    for(var i=0;i<4;i++){ var fx=2+Math.floor(Math.random()*(COLS-4)), fy=2+Math.floor(Math.random()*(ROWS-4)); GRID[fy][fx]=0; mapEl.children[fy*COLS+fx].className='cell bg-fountain'; FOUNTAINS.push({x:fx,y:fy}); }
+    // Brunnenplätze + diverse Hubs
+    for(var i=0;i<3;i++){ var fx=randint(3,COLS-4), fy=randint(3,ROWS-4); GRID[fy][fx]=0; mapEl.children[fy*COLS+fx].className='cell bg-fountain'; addZone(fx,fy,'park','⛲','Brunnenplatz'); }
+    var z=7; var kinds=[['stage','🎤','Bühne'],['market','🛒','Markt'],['cafe','☕','Café'],['playground','🎠','Spielplatz'],['office','🏢','Büro'],['hotel','🏨','Hotel']];
+    while(z--){ var p=randomOpenCell(), k=kinds[randint(0,kinds.length-1)]; addZone(p.x,p.y,k[0],k[1],k[2]); }
 
-    // Zentrales Dekohaus blockieren
+    // Dekohaus blockieren
     var r=house.getBoundingClientRect(); var left=Math.floor(r.left/T), right=Math.floor(r.right/T), top=Math.floor(r.top/T), bottom=Math.floor(r.bottom/T);
     for(var yb=top; yb<=bottom; yb++) for(var xb=left; xb<=right; xb++) SOLID.add(xb+','+yb);
 
-    // Restaurant platzieren
+    // Restaurant + Höhlen + Hütten + Schätze + Bürger
     placeRestaurant();
-
-    // Höhlen (Gruppenlager)
     placeCaves();
-
-    // 10 Häuser + NPCs
     placeHuts(10);
-
-    // Anfangsschätze
-    for(var s=0;s<12;s++) spawnTreasure();
+    for(var s=0;s<14;s++) spawnTreasure();
+    spawnCitizens(8);
   }
 
   function placeRestaurant(){
     var p=randomOpenCell();
-    resto.style.left=(p.x*T+T/2)+'px'; resto.style.bottom=(p.y*T)+'px';
-    resto.style.display='block';
-    resto.dataset.tx=p.x; resto.dataset.ty=p.y;
-    // Felder begehbar halten (nur Kollision außen)
-    SOLID.add(p.x+','+p.y);
+    resto.style.left=(p.x*T+T/2)+'px'; resto.style.bottom=(p.y*T)+'px'; resto.style.display='block';
+    resto.dataset.tx=p.x; resto.dataset.ty=p.y; SOLID.add(p.x+','+p.y);
   }
   function doorCell(){ return { x:parseInt(resto.dataset.tx,10), y:parseInt(resto.dataset.ty,10) }; }
-  function puffSmoke(times){
-    var i=0; var timer=setInterval(function(){
-      var b=document.createElement('div'); b.className='smoke';
-      b.style.left='50%'; b.style.top='-6px';
-      chimney.appendChild(b); setTimeout(function(){ b.remove(); }, 2000);
-      i++; if(i>=times) clearInterval(timer);
-    }, 220);
-  }
+  function puffSmoke(times){ var i=0; var timer=setInterval(function(){ var b=document.createElement('div'); b.className='smoke'; b.style.left='50%'; b.style.top='-6px'; chimney.appendChild(b); setTimeout(function(){ b.remove(); }, 2000); i++; if(i>=times) clearInterval(timer); }, 220); }
 
   function placeCaves(){
     var groups=['Hoppel','Kletterer','Schleichis','Royals'];
@@ -330,88 +351,73 @@ const IMAGES = [
     }
   }
   function spawnTreasure(){
-    var foods=['🥕','🍓','🥜','🍄','🍎','🌰'];
-    var p=randomOpenCell();
+    var foods=['🥕','🍓','🥜','🍄','🍎','🌰']; var p=randomOpenCell();
     var el=document.createElement('div'); el.className='treasure'; el.textContent=foods[randint(0,foods.length-1)];
-    el.style.left=(p.x*T+T/2)+'px'; el.style.bottom=(p.y*T)+'px';
-    world.appendChild(el);
+    el.style.left=(p.x*T+T/2)+'px'; el.style.bottom=(p.y*T)+'px'; world.appendChild(el);
     TREASURES.push({x:p.x, y:p.y, el:el, taken:false});
   }
 
-  /* ====== Huts + NPC feeder (eindeutige Namen, Bewegung, füttern) ====== */
+  /* ===== Hütten + NPCs (massig Varianten) ===== */
   var npcFaces=['🧑‍🌾','👩‍🍳','🧔','👵','🧑‍🔧','🧑‍🎨','🧙‍♀️','🧑‍🚀','🧑‍🏫','🧑‍✈️'];
-  var roofClasses=['c1','c2','c3','c4','c5'];
-  var npcFirst=['Tutti','Bello','Rosi','Koko','Lampi','Frau Flausch','Oma Pixel','Robo','Toni','Mia','Klara','Fiete','Lilo','Momo'];
-  var npcLast=['Mampfred','Knusper','Pfefferminze','Süßholz','Quark','Zuckerhut','Pastinake','Kessel','KochFix','Topfgeist','Porridge','Löffel'];
+  var roofClasses=['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
+  var hutMods=['offsetL','offsetR','single','round','brick','striped','flag','chim','mail','solar','flowers'];
+  var npcFirst=['Tutti','Bello','Rosi','Koko','Lampi','Frau Flausch','Oma Pixel','Robo','Toni','Mia','Klara','Fiete','Lilo','Momo','Piet','Nora','Sven','Giga','Pico','Nana'];
+  var npcLast=['Mampfred','Knusper','Pfefferminze','Süßholz','Quark','Zuckerhut','Pastinake','Kessel','KochFix','Topfgeist','Porridge','Löffel','Möhrix','Mürbe','Schmackofatz'];
 
-  function uniqueNpcName(used){
-    var name=""; var tries=0; do{
-      name = npcFirst[randint(0,npcFirst.length-1)]+" "+npcLast[randint(0,npcLast.length-1)];
-      tries++; if(tries>200) break;
-    } while(used[name]); used[name]=1; return name;
-  }
+  function uniqueNpcName(used){ var name="",tries=0; do{ name = npcFirst[randint(0,npcFirst.length-1)]+" "+npcLast[randint(0,npcLast.length-1)]; tries++; if(tries>200) break; } while(used[name]); used[name]=1; return name; }
 
   function placeHuts(n){
     var used={};
     for(var i=0;i<n;i++){
       var p=randomOpenCell();
-      var hut=document.createElement('div'); hut.className='hut '+roofClasses[randint(0,roofClasses.length-1)];
+      var hut=document.createElement('div'); 
+      var cls='hut '+roofClasses[randint(0,roofClasses.length-1)];
+      // 2–4 zufällige Detailklassen
+      for(var k=0;k<randint(2,4);k++) cls+=' '+hutMods[randint(0,hutMods.length-1)];
+      hut.className=cls;
       hut.style.left=(p.x*T+T/2)+'px'; hut.style.bottom=(p.y*T)+'px';
+      // Fensteranzahl/Position wird in Klassen geregelt (single/round/offset)
       hut.innerHTML='<div class="roof"></div><div class="body"><div class="door"></div><div class="win l"></div><div class="win r"></div></div>';
       world.appendChild(hut);
 
-      // NPC
       var npcName=uniqueNpcName(used);
       var npc=document.createElement('div'); npc.className='npc'; npc.style.left=(p.x*T+T/2)+'px'; npc.style.bottom=(p.y*T)+'px';
       npc.innerHTML='<div class="face">'+npcFaces[i % npcFaces.length]+'</div><div class="name">'+npcName+'</div>';
       world.appendChild(npc);
 
-      // NPC-Objekt
-      var obj={ x:p.x*T+T/2, y:p.y*T, tx:p.x, ty:p.y, speed:0.9, el:npc, hutX:p.x, hutY:p.y, name:npcName, feedCooldown:0, path:[] };
+      var obj={ x:p.x*T+T/2, y:p.y*T, tx:p.x, ty:p.y, speed:0.95, el:npc, hutX:p.x, hutY:p.y, name:npcName, feedCooldown:0, path:[], mood:'' };
       NPCS.push(obj);
       HUTS.push({x:p.x,y:p.y, el:hut, npc:obj, timer:setInterval(function(px,py){
-        // droppt Snack vor der Hütte
         var dx=px+randint(-1,1), dy=py+randint(-1,1); if(solidAt(dx,dy)) { dx=px; dy=py; }
         var el=document.createElement('div'); el.className='treasure'; el.textContent=(['🥕','🍓','🍎','🥜','🍄'])[randint(0,4)];
         el.style.left=(dx*T+T/2)+'px'; el.style.bottom=(dy*T)+'px'; world.appendChild(el);
         TREASURES.push({x:dx,y:dy,el:el,taken:false,hutDrop:true});
-      }.bind(null,p.x,p.y), 7000+randint(0,4000))});
+      }.bind(null,p.x,p.y), 6500+randint(0,4000))});
     }
   }
 
   function steerNPC(n){
-    // nahe Tiere füttern
     if(n.feedCooldown>0) n.feedCooldown--;
-    var targetAnimal=null, best=1e9;
+    var target=null, best=1e9;
     for(var i=0;i<actors.length;i++){
       var a=actors[i]; if(a.dead || a.state==='carried') continue;
       var d=Math.hypot(a.x-n.x, a.y-n.y);
-      if(d<140 && d<best){ best=d; targetAnimal=a; }
+      if(d<160 && d<best){ best=d; target=a; }
     }
-    if(targetAnimal && n.feedCooldown<=0){
-      // gehe näher ran
-      var gx=Math.floor(targetAnimal.x/T), gy=Math.floor(targetAnimal.y/T);
+    if(target && n.feedCooldown<=0){
+      var gx=Math.floor(target.x/T), gy=Math.floor(target.y/T);
       n.path = bfs(Math.floor(n.x/T), Math.floor(n.y/T), gx, gy) || n.path;
-      // wenn sehr nah -> füttern
       if(best<22){
-        n.feedCooldown=120; // ~2s
-        // direkter Feed: Spawne Essen unter dem Tier
+        n.feedCooldown=120;
         var el=document.createElement('div'); el.className='treasure'; el.textContent=(['🥕','🍓','🍎','🥜','🍄'])[randint(0,4)];
-        el.style.left=(Math.floor(targetAnimal.x/T)*T+T/2)+'px'; el.style.bottom=(Math.floor(targetAnimal.y/T)*T)+'px'; world.appendChild(el);
-        TREASURES.push({x:Math.floor(targetAnimal.x/T),y:Math.floor(targetAnimal.y/T),el:el,taken:false});
-        say(targetAnimal,"Danke, "+n.name.split(' ')[0]+"! ❤️",1300);
-        targetAnimal.mood='lieb';
-        addKarma(targetAnimal,2);
-        sMeet();
+        el.style.left=(Math.floor(target.x/T)*T+T/2)+'px'; el.style.bottom=(Math.floor(target.y/T)*T)+'px'; world.appendChild(el);
+        TREASURES.push({x:Math.floor(target.x/T),y:Math.floor(target.y/T),el:el,taken:false});
+        say(target,"Danke, "+n.name.split(' ')[0]+"! ❤️",1300);
+        addKarma(target,2); sMeet();
       }
     }
-
-    // Bewegung: um Hütte patrouillieren, ansonsten zum nächsten Pfadziel
     if(!n.path || n.path.length===0){
-      // wähle einen Punkt um die Hütte herum
-      var rx=n.hutX + randint(-3,3), ry=n.hutY + randint(-3,3);
-      if(rx<1)rx=1; if(ry<1)ry=1; if(rx>COLS-2)rx=COLS-2; if(ry>ROWS-2)ry=ROWS-2;
-      if(!solidAt(rx,ry)) n.path = bfs(Math.floor(n.x/T), Math.floor(n.y/T), rx, ry) || [];
+      var hub=HUBS[randint(0,HUBS.length-1)]; if(hub) n.path=bfs(Math.floor(n.x/T), Math.floor(n.y/T), hub.x, hub.y) || [];
     }else{
       var step=n.path[0], tx=step[0]*T+T/2, ty=step[1]*T, dx=tx-n.x, dy=ty-n.y, m=Math.hypot(dx,dy)||1;
       var nx=n.x+(dx/m)*n.speed, ny=n.y+(dy/m)*n.speed; if(canAt(nx,ny)){ n.x=nx; n.y=ny; } else { n.path.shift(); }
@@ -420,16 +426,43 @@ const IMAGES = [
     n.el.style.left=n.x+'px'; n.el.style.bottom=n.y+'px';
   }
 
-  /* ====== Namen & Tiere ====== */
+  /* ===== Bürger mit lustigen Namen ===== */
+  var citizenFaces=['🧑‍💻','👩‍💼','🧑‍🎤','🧑‍🎓','🧑‍🎷','🧑‍🚴','🧑‍⚕️','🧑‍🚒','🧑‍🔬','🧑‍🎮'];
+  var citFirst=['Glimmer','Turbo','Pixel','Lady','Sir','Captain','Prinz','Keks','Brezel','Wusel','Knall','Mega','Zack','Motte','Zwiebel'];
+  var citLast=['Fröhlich','Karotti','Hopkinson','von Bytes','von Hoppel','GigaWatt','Sausewind','Schnatter','Flinkbein','Muffin','Smaragd','Wolkig','Schokoguss'];
+  var usedCit={};
+  function uniqueCitizen(){ var nm="", tries=0; do{ nm = citFirst[randint(0,citFirst.length-1)]+" "+citLast[randint(0,citLast.length-1)]; tries++; if(tries>200) break; } while(usedCit[nm]); usedCit[nm]=1; return nm; }
+
+  function spawnCitizens(n){
+    for(var i=0;i<n;i++){
+      var p=randomOpenCell(), el=document.createElement('div'); el.className='actor';
+      var name=uniqueCitizen(); var emo=citizenFaces[i%citizenFaces.length];
+      el.innerHTML='<span class="animal">'+emo+'</span><div class="nameplate">'+name+'</div>';
+      world.appendChild(el);
+      CITIZENS.push({el:el, x:p.x*T+T/2, y:p.y*T, speed:1.05, path:[], karma:0, name:name, emoji:emo});
+    }
+  }
+  function steerCitizen(c){
+    if(!c.path || c.path.length===0){
+      var hub=HUBS[randint(0,HUBS.length-1)]; if(hub) c.path=bfs(Math.floor(c.x/T), Math.floor(c.y/T), hub.x, hub.y) || [];
+    }else{
+      var step=c.path[0], tx=step[0]*T+T/2, ty=step[1]*T, dx=tx-c.x, dy=ty-c.y, m=Math.hypot(dx,dy)||1;
+      var nx=c.x+(dx/m)*c.speed, ny=c.y+(dy/m)*c.speed; if(canAt(nx,ny)){ c.x=nx; c.y=ny; } else { c.path.shift(); }
+      if(Math.hypot(dx,dy)<6) c.path.shift();
+    }
+    c.el.style.left=c.x+'px'; c.el.style.bottom=c.y+'px';
+  }
+
+  /* ===== Tiere ===== */
   var usedNames={};
   var titleA=["Sir","Lady","Meister","Baron","Graf","Dr.","Captain","Professor","Sultan","Queen","König","Fräulein"];
   var funnyB=["Flauschi","Wuseline","Zappel","Turbo","Pixel","Kicher","Hopps","Nüssli","Schnuff","Mopps","Quaki","Wolke","Knusper","Wackel","Fuzzy","Möhrex","Krümel","Flummi"];
-  function uniqueName(){ var n=""; var tries=0; do{ n = titleA[randint(0,titleA.length-1)]+" "+funnyB[randint(0,funnyB.length-1)]+(Math.random()<.35?("-"+funnyB[randint(0,funnyB.length-1)]):""); tries++; if(tries>200) break; } while(usedNames[n]); usedNames[n]=1; return n; }
+  function uniqueName(){ var n="",tries=0; do{ n = titleA[randint(0,titleA.length-1)]+" "+funnyB[randint(0,funnyB.length-1)]+(Math.random()<.3?("-"+funnyB[randint(0,funnyB.length-1)]):""); tries++; if(tries>200) break; } while(usedNames[n]); usedNames[n]=1; return n; }
 
   var SPECIES=[ {emoji:"🐰", group:"Hoppel"}, {emoji:"🐿️", group:"Kletterer"}, {emoji:"🦝", group:"Kletterer"},
                 {emoji:"🦊", group:"Schleichis"}, {emoji:"🦡", group:"Schleichis"}, {emoji:"🐗", group:"Schleichis"},
                 {emoji:"🦌", group:"Royals"}, {emoji:"🐻", group:"Royals"}, {emoji:"🦉", group:"Royals"}, {emoji:"🐦", group:"Royals"}, {emoji:"🐸", group:"Royals"} ];
-  var actors=[], MAX=14, MIN=10;
+  var actors=[], MAX=16, MIN=12;
 
   function makeActor(sp,x,y){
     var el=document.createElement('div'); el.className='actor';
@@ -438,65 +471,109 @@ const IMAGES = [
     el.appendChild(span); el.appendChild(label); world.appendChild(el);
     var a={el:el, emoji:sp.emoji, group:sp.group, name:uniqueName(), x:x*T+T/2, y:y*T, speed:1+Math.random()*0.5, stamina:100,
            state:'roam', goal:null, talking:false, lastTalk:0, karma:0, carrying:null, mood:''};
-    label.textContent=a.name;
-    return a;
+    label.textContent=a.name; return a;
   }
   function spawnAnimal(){ if(actors.filter(function(a){return !a.dead;}).length>=MAX) return; var sp=SPECIES[randint(0,SPECIES.length-1)], p=randomOpenCell(); var a=makeActor(sp,p.x,p.y); actors.push(a); }
   for(var i=0;i<MIN;i++) spawnAnimal();
-  setInterval(function(){ var alive=actors.filter(function(a){return !a.dead;}).length; if(alive<MIN) for(var i=0;i<MIN-alive;i++) spawnAnimal(); else if(alive<MAX && Math.random()<.5) spawnAnimal(); }, 4000);
+  setInterval(function(){ var alive=actors.filter(function(a){return !a.dead;}).length; if(alive<MIN) for(var i=0;i<MIN-alive;i++) spawnAnimal(); else if(alive<MAX && Math.random()<.6) spawnAnimal(); }, 3800);
 
-  /* ====== Scoreboard ====== */
+  /* ===== Score ===== */
   var scoreTable=document.getElementById('scoreTable'), cookline=document.getElementById('cookline');
   function updateScoreboard(){
-    actors.sort(function(a,b){ return b.karma - a.karma; });
-    var rows="";
-    for(var i=0;i<Math.min(9,actors.length);i++){
-      var a=actors[i]; if(a.dead) continue;
-      rows += '<tr><td><span class="avatar">'+a.emoji+'</span>'+a.name+'</td><td style="text-align:right">'+a.karma+' ⚡</td></tr>';
+    var list=actors.concat(CITIZENS.map(function(c){return {emoji:c.emoji, name:c.name, karma:c.karma||0, dead:false};}));
+    list.sort(function(a,b){ return (b.karma||0) - (a.karma||0); });
+    var rows=""; var shown=0;
+    for(var i=0;i<list.length&&shown<10;i++){
+      var a=list[i]; if(a.dead) continue;
+      rows += '<tr><td><span class="avatar">'+(a.emoji||'🙂')+'</span>'+a.name+'</td><td style="text-align:right">'+(a.karma||0)+' ⚡</td></tr>'; shown++;
     }
     if(rows==="") rows='<tr><td colspan="2">Noch keine Punkte …</td></tr>';
     scoreTable.innerHTML=rows;
     cookline.innerHTML='👨‍🍳 '+cook.name+': '+cook.scoreCook+' gekocht • '+cook.scoreLoot+' Beute';
   }
-  function addKarma(a,delta){ a.karma+=delta; popKarma(a.x, H - a.y, (delta>0?'+':'')+delta+' ⚡'); updateScoreboard(); }
-  function say(actor, text, ms){ if(actor.dead) return; if(!actor.mini){ actor.mini=document.createElement('div'); actor.mini.className='mini-bubble'; actor.el.appendChild(actor.mini); } actor.mini.textContent=text; actor.mini.style.display='block'; setTimeout(function(){ if(actor.mini) actor.mini.style.display='none'; }, ms||1600); }
+  function addKarma(a,delta){ a.karma=(a.karma||0)+delta; popKarma(a.x, H - a.y, (delta>0?'+':'')+delta+' ⚡'); updateScoreboard(); }
+  function say(actor, text, ms){ if(!actor || actor.dead) return; if(!actor.mini){ actor.mini=document.createElement('div'); actor.mini.className='mini-bubble'; actor.el.appendChild(actor.mini); } actor.mini.textContent=text; actor.mini.style.display='block'; setTimeout(function(){ if(actor.mini) actor.mini.style.display='none'; }, ms||1600); }
 
-  /* ====== Dialoge ====== */
-  var DLINES=[
-    function(a,b){return a+': „CI/CD – Carrot Integration/Delivery!“';},
-    function(a,b){return b+': „Load-Möhre balanciert.“';},
-    function(a,b){return a+': „Pair-Hoppeln?“';},
-    function(a,b){return b+': „Nur mit Snacks!“';},
-    function(a,b){return a+': „Ich cache heut die Nüsse.“';},
-    function(a,b){return b+': „TLS: Tolle Löffel Sicherheit!“';},
-  ];
-  function startDialogue(A,B){
+  /* ===== Dialoge (auch Hubs) ===== */
+  var THEMES={
+    generic:[
+      (a,b)=>a+': „CI/CD – Carrot Integration/Delivery!“',
+      (a,b)=>b+': „Load-Möhre balanciert.“',
+      (a,b)=>a+': „Pair-Hoppeln?“',
+      (a,b)=>b+': „Nur mit Snacks!“',
+      (a,b)=>a+': „Ich cache heut die Nüsse.“',
+      (a,b)=>b+': „TLS: Tolle Löffel Sicherheit!“'
+    ],
+    playground:[
+      (a,b)=>a+': „Wer zuerst zur Rutsche?“',
+      (a,b)=>b+': „Ich nehm die Schaukel – High Availability!“'
+    ],
+    office:[
+      (a,b)=>a+': „Daily Stand-hop in 5!“',
+      (a,b)=>b+': „Ich bringe die Karottencharts.“'
+    ],
+    hotel:[
+      (a,b)=>a+': „Suite mit Möhrenblick?“',
+      (a,b)=>b+': „All-inclusive: Nussbuffet!“'
+    ],
+    cafe:[
+      (a,b)=>a+': „Ein Flat White… ohne Milch, nur Schaum?“',
+      (a,b)=>b+': „Und ein Keks-Loadbalancer.“'
+    ],
+    stage:[
+      (a,b)=>a+': „Hallo Wald! ✨“',
+      (a,b)=>b+': „Ich spiele die Möhrenhymne.“'
+    ],
+    market:[
+      (a,b)=>a+': „Zwei Kilo Bio-Rüben, bitte.“',
+      (a,b)=>b+': „Aktion! 3-für-2-Cache.“'
+    ],
+    park:[
+      (a,b)=>a+': „Alles grün – Monitoring OK.“',
+      (a,b)=>b+': „Wasserqualität: 100 % plätscher.“'
+    ]
+  };
+
+  function startDialogue(A,B,topic){
     if(!A||!B||A.dead||B.dead||A.talking||B.talking) return;
     A.talking=B.talking=true; A.state=B.state='talk'; A.goal=B.goal=null;
-    var total=30000, step=3600, t=0;
-    sMeet(); say(A,"Hi "+B.name.split(' ')[0]+"!",1000); say(B,"Hi "+A.name.split(' ')[0]+"!",1000);
+    var lines=(THEMES[topic]||[]).concat(THEMES.generic), total=26000, step=3200, t=0;
+    sMeet(); say(A,"Hi "+(B.name||'du')+"!",1000); say(B,"Hi "+(A.name||'du')+"!",1000);
     var timer=setInterval(function(){
       if(A.dead||B.dead){ clearInterval(timer); A.talking=B.talking=false; return; }
-      var L=DLINES[randint(0,DLINES.length-1)];
-      if(Math.random()<.5) say(A,L(A.name.split(' ')[0],B.name.split(' ')[0]),3000); else say(B,L(A.name.split(' ')[0],B.name.split(' ')[0]),3000);
+      var L=lines[randint(0,lines.length-1)];
+      if(Math.random()<.5) say(A,L(A.name?.split(' ')[0]||'A',B.name?.split(' ')[0]||'B'),3000);
+      else                 say(B,L(A.name?.split(' ')[0]||'A',B.name?.split(' ')[0]||'B'),3000);
       t+=step; if(t>=total){ clearInterval(timer); A.talking=B.talking=false; A.lastTalk=B.lastTalk=Date.now(); say(A,"*kicher* 🤭",900); say(B,"*kicher* 🤭",900); sGiggle(); addKarma(A,1); addKarma(B,1); }
     }, step);
   }
-  setInterval(function(){ var pool=actors.filter(function(a){return !a.dead && !a.talking && a.state!=='carried' && Date.now()-a.lastTalk>45000;}); for(var i=0;i<pool.length-1;i+=2) startDialogue(pool[i], pool[i+1]); }, 5000);
 
-  /* ====== Koch (WASD + KI, Restaurant) ====== */
+  setInterval(function(){
+    for(var h=0; h<HUBS.length; h++){
+      var hub=HUBS[h], participants=[];
+      function near(obj){ return Math.hypot((obj.x)-(hub.x*T+T/2),(obj.y)-(hub.y*T))<70; }
+      for(var i=0;i<actors.length;i++) if(!actors[i].talking && near(actors[i])) participants.push(actors[i]);
+      for(var j=0;j<CITIZENS.length;j++) if(near(CITIZENS[j])) participants.push(CITIZENS[j]);
+      for(var k=0;k<NPCS.length;k++) if(near(NPCS[k])) participants.push(NPCS[k]);
+      for(var m=0;m<2 && participants.length>=2; m++){
+        var a=participants.splice(randint(0,participants.length-1),1)[0];
+        var b=participants.splice(randint(0,participants.length-1),1)[0];
+        startDialogue(a,b,hub.type);
+      }
+    }
+  }, 5000);
+
+  /* ===== Koch (aktiv) ===== */
   var cookNames=["Chef Carbonara","Onkel Kasserolle","Koch Kichererbse","Meister Mampf","Sir Schmor","Pan Peter","Saucier Sören"];
-  var cook={ name:cookNames[randint(0,cookNames.length-1)], x:T*2+T/2, y:T*2, speed:1.2, path:[], carrying:null, carryingLoot:false, scoreCook:0, scoreLoot:0, stuck:0 };
+  var cook={ name:cookNames[randint(0,cookNames.length-1)], x:T*2+T/2, y:T*2, speed:1.35, path:[], carrying:null, carryingLoot:false, scoreCook:0, scoreLoot:0, stuck:0 };
   var cookEl=document.createElement('div'); cookEl.className='actor'; cookEl.style.zIndex=7;
   cookEl.innerHTML='<span class="animal">👨‍🍳</span><div class="nameplate">'+cook.name+'</div>'; world.appendChild(cookEl);
-
-  function placeCookOnOpen(){ var sx=Math.floor(cook.x/T), sy=Math.floor(cook.y/T); if(solidAt(sx,sy)){ var p=randomOpenCell(); cook.x=p.x*T+T/2; cook.y=p.y*T; } }
-  placeCookOnOpen();
+  function placeCookOnOpen(){ var sx=Math.floor(cook.x/T), sy=Math.floor(cook.y/T); if(solidAt(sx,sy)){ var p=randomOpenCell(); cook.x=p.x*T+T/2; cook.y=p.y*T; } } placeCookOnOpen();
 
   var keys={w:false,a:false,s:false,d:false}, manualUntil=0;
   document.addEventListener('keydown', function(e){ var k=e.key.toLowerCase(); if(k==='w'||k==='a'||k==='s'||k==='d'){ keys[k]=true; manualUntil=Date.now()+3000; cook.path=[]; }});
   document.addEventListener('keyup', function(e){ var k=e.key.toLowerCase(); if(keys[k]!==undefined){ keys[k]=false; }});
-  function moveCookManual(){ var vx=(keys.a?-1:0)+(keys.d?1:0), vy=(keys.s?1:0)+(keys.w?-1:0); if(vx===0&&vy===0) return; var m=Math.sqrt(vx*vx+vy*vy); vx/=m; vy/=m; var nx=cook.x+vx*cook.speed*1.8, ny=cook.y+vy*cook.speed*1.8; if(canAt(nx,ny)){ cook.x=nx; cook.y=ny; } }
+  function moveCookManual(){ var vx=(keys.a?-1:0)+(keys.d?1:0), vy=(keys.s?1:0)+(keys.w?-1:0); if(vx===0&&vy===0) return; var m=Math.sqrt(vx*vx+vy*vy); vx/=m; vy/=m; var nx=cook.x+vx*cook.speed*1.9, ny=cook.y+vy*cook.speed*1.9; if(canAt(nx,ny)){ cook.x=nx; cook.y=ny; } }
 
   function targetByKarma(){
     var list=actors.filter(function(a){return !a.dead && a.state!=='carried';});
@@ -506,40 +583,25 @@ const IMAGES = [
   }
   function planHunt(){
     if(Date.now()<manualUntil) return;
-    if(cook.carrying || cook.carryingLoot){
-      var d=doorCell(); cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), d.x, d.y) || []; return;
-    }
-    // reichste Höhle beklauen
-    if(Math.random()<.5){
-      var richest=null, best=0;
-      for(var i=0;i<CAVES.length;i++){ if(CAVES[i].stored>best){ best=CAVES[i].stored; richest=CAVES[i]; } }
-      if(richest && best>0){ cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), richest.x, richest.y) || []; return; }
-    }
+    if(cook.carrying || cook.carryingLoot){ var d=doorCell(); cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), d.x, d.y) || []; return; }
+    if(Math.random()<.5 && HUBS.length){ var hub=HUBS[randint(0,HUBS.length-1)]; cook.path=bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), hub.x, hub.y)||[]; return; }
+    var richest=null, best=0; for(var i=0;i<CAVES.length;i++){ if(CAVES[i].stored>best){ best=CAVES[i].stored; richest=CAVES[i]; } }
+    if(richest && best>0 && Math.random()<.6){ cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), richest.x, richest.y) || []; return; }
     var t=targetByKarma(); if(t){ cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), Math.floor(t.x/T), Math.floor(t.y/T)) || []; return; }
-    // Patrouille: zu zufälliger Hütte
-    if(HUTS.length){ var h=HUTS[randint(0,HUTS.length-1)]; cook.path = bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), h.x, h.y) || []; }
+    if(HUTS.length){ var h=HUTS[randint(0,HUTS.length-1)]; cook.path=bfs(Math.floor(cook.x/T), Math.floor(cook.y/T), h.x, h.y)||[]; }
   }
-  setInterval(planHunt, 1200);
+  setInterval(planHunt, 900);
 
-  /* ====== Tiere (Aufgaben) ====== */
-  function nearestTreasure(a){
-    var best=null, bd=1e9;
-    for(var i=0;i<TREASURES.length;i++){ var t=TREASURES[i]; if(t.taken) continue; var d=Math.abs(t.x-Math.floor(a.x/T))+Math.abs(t.y-Math.floor(a.y/T)); if(d<bd){ bd=d; best=t; } }
-    return best;
-  }
-  function caveForGroup(g){
-    for(var i=0;i<CAVES.length;i++) if(CAVES[i].group===g) return CAVES[i];
-    return CAVES[0];
-  }
-  function nearestHut(a){
-    var best=null, bd=1e9; for(var i=0;i<HUTS.length;i++){ var h=HUTS[i], d=Math.abs(h.x-Math.floor(a.x/T))+Math.abs(h.y-Math.floor(a.y/T)); if(d<bd){ bd=d; best=h; } } return best;
-  }
+  /* ===== Tiere: Aufgaben ===== */
+  function nearestTreasure(a){ var best=null, bd=1e9; for(var i=0;i<TREASURES.length;i++){ var t=TREASURES[i]; if(t.taken) continue; var d=Math.abs(t.x-Math.floor(a.x/T))+Math.abs(t.y-Math.floor(a.y/T)); if(d<bd){ bd=d; best=t; } } return best; }
+  function caveForGroup(g){ for(var i=0;i<CAVES.length;i++) if(CAVES[i].group===g) return CAVES[i]; return CAVES[0]; }
+  function nearestHub(a){ var best=null, bd=1e9; for(var i=0;i<HUBS.length;i++){ var h=HUBS[i], d=Math.abs(h.x-Math.floor(a.x/T))+Math.abs(h.y-Math.floor(a.y/T)); if(d<bd){ bd=d; best=h; } } return best; }
+  function nearestHut(a){ var best=null, bd=1e9; for(var i=0;i<HUTS.length;i++){ var h=HUTS[i], d=Math.abs(h.x-Math.floor(a.x/T))+Math.abs(h.y-Math.floor(a.y/T)); if(d<bd){ bd=d; best=h; } } return best; }
 
   function steerAnimal(a){
     if(a.dead || a.talking || a.state==='carried') return;
     a.stamina -= 0.02;
 
-    // Flucht vor Koch
     var dd=Math.hypot(a.x-cook.x, a.y-cook.y);
     if(dd<9*T){
       var vx=a.x-cook.x, vy=a.y-cook.y;
@@ -548,12 +610,14 @@ const IMAGES = [
       a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), tx, ty) || a.goal;
     }
 
-    // zum Essen (Hütte) wenn hungrig
+    if(!a.carrying && !a.goal && Math.random()<.02){
+      var hub=nearestHub(a); if(hub) a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), hub.x, hub.y) || [];
+    }
+
     if(a.stamina<60 && !a.carrying && !a.goal){
       var h=nearestHut(a); if(h) a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), h.x, h.y) || [];
     }
 
-    // Schatz suchen/bringen
     if(!a.carrying && !a.goal){
       var tr=nearestTreasure(a);
       if(tr){ a.targetTreasure=tr; a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), tr.x, tr.y) || []; }
@@ -567,51 +631,42 @@ const IMAGES = [
       var nx=a.x+(dx/m)*a.speed, ny=a.y+(dy/m)*a.speed; if(canAt(nx,ny)){ a.x=nx; a.y=ny; } else { a.goal.shift(); }
       if(Math.hypot(dx,dy)<6) a.goal.shift();
 
-      // Abholen / Abgeben
       if(!a.carrying && a.targetTreasure && Math.floor(a.x/T)===a.targetTreasure.x && Math.floor(a.y/T)===a.targetTreasure.y && !a.targetTreasure.taken){
         a.carrying=a.targetTreasure; a.targetTreasure.taken=true; if(a.carrying.el) a.carrying.el.style.display='none';
-        addKarma(a,2); // gefunden
-        var cave=caveForGroup(a.group); a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), cave.x, cave.y) || [];
+        addKarma(a,2); var cave=caveForGroup(a.group); a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), cave.x, cave.y) || [];
       }
       if(a.carrying){
         var cave2=caveForGroup(a.group);
         if(Math.floor(a.x/T)===cave2.x && Math.floor(a.y/T)===cave2.y){
-          cave2.stored++; cave2.tag.textContent=cave2.group+': '+cave2.stored; a.carrying=null; addKarma(a,3); // abgegeben
+          cave2.stored++; cave2.tag.textContent=cave2.group+': '+cave2.stored; a.carrying=null; addKarma(a,3);
           if(Math.random()<.6) spawnTreasure();
         }
       }
-
-      // an Hütte essen (lieb)
       for(var i=0;i<HUTS.length;i++){
-        var h=HUTS[i];
-        if(Math.floor(a.x/T)===h.x && Math.floor(a.y/T)===h.y){
-          a.stamina=100; a.mood='lieb'; addKarma(a,1); say(a,"Nom nom 😋❤️",1000);
-        }
+        var hu=HUTS[i]; if(Math.floor(a.x/T)===hu.x && Math.floor(a.y/T)===hu.y){ a.stamina=100; a.mood='lieb'; addKarma(a,1); say(a,"Nom nom 😋❤️",1000); }
       }
     } else if(Math.random()<.02){ var p=randomOpenCell(); a.goal=bfs(Math.floor(a.x/T), Math.floor(a.y/T), p.x, p.y) || []; }
 
     a.el.style.left=a.x+'px'; a.el.style.bottom=a.y+'px';
   }
 
-  /* ====== Loop ====== */
+  /* ===== Koch-Update ===== */
   function updateCook(){
     if(Date.now()<manualUntil){ moveCookManual(); cook.stuck=0; }
     else if(cook.path && cook.path.length){
       var step=cook.path[0], tx=step[0]*T+T/2, ty=step[1]*T, dx=tx-cook.x, dy=ty-cook.y, m=Math.hypot(dx,dy)||1;
-      var nx=cook.x+(dx/m)*cook.speed*1.25, ny=cook.y+(dy/m)*cook.speed*1.25;
+      var nx=cook.x+(dx/m)*cook.speed*1.3, ny=cook.y+(dy/m)*cook.speed*1.3;
       if(canAt(nx,ny)){ cook.x=nx; cook.y=ny; cook.stuck=0; } else { cook.path.shift(); cook.stuck++; }
       if(Math.hypot(dx,dy)<6){ cook.path.shift(); }
       if(cook.stuck>8){ cook.path=[]; cook.stuck=0; }
     } else { planHunt(); }
 
-    // Fangen / Beute
     if(!cook.carrying && !cook.carryingLoot){
       for(var i=0;i<actors.length;i++){
         var a=actors[i]; if(a.dead || a.state==='carried') continue;
         var d=Math.hypot(a.x-cook.x, a.y-cook.y);
         if(d<20){ sCatch(); a.state='carried'; a.el.style.display='none'; cook.carrying=a; break; }
       }
-      // Höhle beklauen
       for(var j=0;j<CAVES.length && !cook.carrying;j++){
         var c=CAVES[j]; var dd=Math.hypot(c.x*T+T/2 - cook.x, c.y*T - cook.y);
         if(dd<18 && c.stored>0){ c.stored--; c.tag.textContent=c.group+': '+c.stored; cook.carryingLoot=true; break; }
@@ -627,19 +682,19 @@ const IMAGES = [
     cookEl.style.left=cook.x+'px'; cookEl.style.bottom=cook.y+'px';
   }
 
+  /* ===== Loop ===== */
   function loop(){
     updateCook();
     for(var n=0;n<NPCS.length;n++) steerNPC(NPCS[n]);
+    for(var c=0;c<CITIZENS.length;c++) steerCitizen(CITIZENS[c]);
     for(var k=0;k<actors.length;k++) steerAnimal(actors[k]);
     requestAnimationFrame(loop);
   }
 
   // Start
   genWorld();
-  // Score
   updateScoreboard();
-  // Erste Gespräche
-  setTimeout(function(){ var pool=actors.slice(0,Math.min(actors.length-1,4)); for(var i=0;i<pool.length-1;i+=2) (function(a,b){ setTimeout(function(){ startDialogue(a,b); }, i*400); })(pool[i],pool[i+1]); }, 1000);
+  setTimeout(function(){ var pool=actors.slice(0,Math.min(actors.length-1,4)); for(var i=0;i<pool.length-1;i+=2) (function(a,b){ setTimeout(function(){ startDialogue(a,b,'generic'); }, i*400); })(pool[i],pool[i+1]); }, 1200);
   planHunt();
   requestAnimationFrame(loop);
 })();
