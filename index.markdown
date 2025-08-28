@@ -2,7 +2,7 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
+description: "Kachel-Grid + Retro-Stadtwald (Seasons, Day/Night & Minimap)"
 ---
 
 <html lang="de">
@@ -35,7 +35,7 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 
   /* Kontakt oben rechts */
   .contact-block{
-    position:fixed; top:10px; right:10px; z-index:1100;
+    position:fixed; top:10px; right:10px; z-index:1200;
     background:#0d0d0d; color:#fff; border-radius:12px; box-shadow:0 10px 24px rgba(0,0,0,.25);
     padding:10px 12px; font:600 .94rem/1.4 ui-sans-serif; min-width:260px;
   }
@@ -46,29 +46,37 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 
   /* Score oben links */
   .score{
-    position:fixed; left:10px; top:10px; z-index:1100;
+    position:fixed; left:10px; top:10px; z-index:1200;
     background:#111; color:#fff; border:2px solid #2a2a2a; border-radius:12px;
-    padding:10px 12px; width:min(430px, 50vw); font:600 .9rem/1.35 ui-sans-serif;
+    padding:10px 12px; width:min(440px, 52vw); font:600 .9rem/1.35 ui-sans-serif;
     box-shadow:0 10px 24px rgba(0,0,0,.25);
   }
   .score h3{ margin:.1rem 0 .4rem; font-size:1rem }
-  .score .tip{ opacity:.7; font-weight:500; font-size:.78rem; margin-top:.35rem }
+  .score .tip{ opacity:.75; font-weight:500; font-size:.78rem; margin-top:.35rem }
   .score table{ width:100%; border-collapse:collapse; }
   .score td{ padding:4px 6px; border-bottom:1px solid #2a2a2a; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
   .score tr:last-child td{ border-bottom:none }
   .avatar{ display:inline-grid; place-items:center; width:22px; height:22px; border-radius:6px; background:#222; margin-right:6px; font-size:16px; line-height:1 }
 
-  .karma-pop{ position:fixed; z-index:1200; pointer-events:none; font:800 .95rem/1 ui-sans-serif; color:#fff; padding:3px 8px; border-radius:10px; background:rgba(0,0,0,.75); transform:translate(-50%,-50%); animation:pop 900ms ease-out forwards; filter: drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+  .karma-pop{ position:fixed; z-index:1300; pointer-events:none; font:800 .95rem/1 ui-sans-serif; color:#fff; padding:3px 8px; border-radius:10px; background:rgba(0,0,0,.75); transform:translate(-50%,-50%); animation:pop 900ms ease-out forwards; filter: drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
   @keyframes pop{ 0%{opacity:0; transform:translate(-50%,-20px) scale(.8)} 30%{opacity:1} 100%{opacity:0; transform:translate(-50%,-60px) scale(1.05)} }
 
-  /* Welt */
-  .world{ position:fixed; inset:0; z-index:999; image-rendering:pixelated; background:#567b6c }
+  /* Welt + Saisons + Himmel */
+  .world{ position:fixed; inset:0; z-index:999; image-rendering:pixelated; background:#567b6c; --g1:#6a8f68; --g2:#658963; --gbase:#5f8460; }
+  .world.season-spring{ --g1:#7abf7a; --g2:#72b874; --gbase:#5e9f63; }
+  .world.season-summer{ --g1:#6da86a; --g2:#669f65; --gbase:#5b8e5d; }
+  .world.season-autumn{ --g1:#9b8a5c; --g2:#937f4f; --gbase:#7e6e46; }
+  .world.season-winter{ --g1:#7aa1b4; --g2:#6a92a6; --gbase:#5b7f93; }
+
   .map{ position:absolute; inset:0; display:grid; grid-template-columns:repeat(var(--cols), var(--tile)); grid-auto-rows:var(--tile); pointer-events:none; z-index:1 }
   .cell{ width:var(--tile); height:var(--tile) }
-  .bg-grass{ background:
-    linear-gradient(45deg,#6a8f68 25%,transparent 25%) 0 0/var(--tile) var(--tile),
-    linear-gradient(-45deg,#658963 25%,transparent 25%) 0 0/var(--tile) var(--tile),
-    #5f8460; opacity:.9 }
+  .bg-grass{
+    background:
+      linear-gradient(45deg,var(--g1) 25%,transparent 25%) 0 0/var(--tile) var(--tile),
+      linear-gradient(-45deg,var(--g2) 25%,transparent 25%) 0 0/var(--tile) var(--tile),
+      var(--gbase);
+    opacity:.92;
+  }
   .bg-path{ background:
     linear-gradient(45deg,#b8b08a 25%,transparent 25%) 0 0/8px 8px,
     linear-gradient(-45deg,#b3aa83 25%,transparent 25%) 0 0/8px 8px,#9e946c }
@@ -78,7 +86,9 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
   .bg-fountain::before{ content:"⛲"; display:block; text-align:center; font-size:20px; margin-top:6px }
   .bg-tunnel::before{ content:"🕳️"; display:block; text-align:center; font-size:20px; margin-top:6px }
 
-  /* zentrales Dekohaus */
+  .sky{ position:absolute; inset:0; z-index:9; pointer-events:none; transition:background .6s, opacity .6s; }
+
+  /* zentrales Mini-Dekohaus */
   .house{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); z-index:3;
     width: clamp(140px, 14vw, 220px); height: clamp(110px, 12vw, 180px); filter: drop-shadow(0 10px 20px rgba(0,0,0,.18)) }
   .house .roof{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:100%; height:40% }
@@ -100,7 +110,7 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
   .smoke{ position:absolute; width:10px; height:10px; background:rgba(240,240,240,.9); border-radius:50%; left:50%; transform:translateX(-50%); animation: puff 2s ease-out forwards; filter:blur(.5px) drop-shadow(0 2px 4px rgba(0,0,0,.15)) }
   @keyframes puff{ 0%{opacity:0; transform:translate(-50%,6px) scale(.6)} 20%{opacity:1} 100%{opacity:0; transform:translate(-50%,-40px) scale(1.6)} }
 
-  /* Mini-Häuser – viele Varianten */
+  /* Mini-Häuser (vielfältig) */
   .hut{ position:absolute; transform:translate(-50%,0); z-index:4; width: clamp(84px, 8.8vw, 120px); height: clamp(62px, 7vw, 95px); filter: drop-shadow(0 6px 12px rgba(0,0,0,.18)) }
   .hut .roof{ position:absolute; left:50%; top:0; transform:translateX(-50%); width:100%; height:46% }
   .hut .roof::before{ content:""; position:absolute; inset:0; background:var(--roof,#7a3c2f); clip-path:polygon(0% 100%,50% 10%,100% 100%); filter:drop-shadow(0 2px 0 rgba(0,0,0,.35)) }
@@ -109,7 +119,6 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
   .hut .win{ position:absolute; bottom:26%; width:18%; height:32%; background:#cfe9ff; border:2px solid #2f2626; border-radius:5px }
   .hut .win.l{ left:16% } .hut .win.r{ right:16% }
 
-  /* Themenfarben */
   .hut.c1{ --roof:linear-gradient(#7a3c2f,#5e2b22); --wall:#f0ead6; }
   .hut.c2{ --roof:linear-gradient(#3c5c7a,#2b425e); --wall:#e5f0f4; }
   .hut.c3{ --roof:linear-gradient(#7a6a3c,#5e512b); --wall:#efe7c9; }
@@ -121,7 +130,6 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
   .hut.c9{ --roof:linear-gradient(#2f8c67,#1f5a46); --wall:#eafff4; }
   .hut.c10{ --roof:linear-gradient(#8c2f7c,#5a1e53); --wall:#ffe8fb; }
 
-  /* Form-/Detailvarianten */
   .hut.offsetL .door{ left:36% } .hut.offsetR .door{ left:64% }
   .hut.single .win.l{ display:none } .hut.single .win.r{ left:50%; transform:translateX(-50%); right:auto }
   .hut.round .win{ border-radius:50%; width:16%; height:26% }
@@ -133,12 +141,11 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
   .hut.solar .roof::after{ content:""; position:absolute; left:58%; top:12px; width:34px; height:12px; background:repeating-linear-gradient(90deg,#184,#1a6 8px); border:2px solid #0a2; border-radius:3px; transform:skewX(-15deg) }
   .hut.flowers .body::after{ content:"🌼🌸"; position:absolute; left:6px; bottom:-10px; font-size:14px; }
 
-  /* NPC */
+  /* NPC / Akteure / Items */
   .npc{ position:absolute; transform:translate(-50%,0); z-index:5 }
   .npc .face{ font-size:36px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)) }
   .npc .name{ position:absolute; bottom:50px; left:50%; transform:translateX(-50%); font:600 .72rem ui-sans-serif; background:#ffffffe6; border:2px solid #2a2a2a; padding:2px 6px; border-radius:8px }
 
-  /* Akteure & Items */
   .actor{ position:absolute; transform:translate(-50%,0); user-select:none; pointer-events:none; z-index:5 }
   .animal{ font-size:54px; line-height:1; filter: drop-shadow(0 6px 10px rgba(0,0,0,.15)) }
   .nameplate{ position:absolute; bottom:72px; left:50%; transform:translateX(-50%); font:600 .75rem ui-sans-serif; color:#20312a; background:#ffffffd9; border:2px solid #2f2626; border-radius:8px; padding:2px 6px }
@@ -163,6 +170,28 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 
   .ui{ position:absolute; top:8px; left:50%; transform:translateX(-50%); z-index:10 }
   .sound-btn{ border:2px solid #2f2626; background:#fff; border-radius:10px; padding:4px 8px; cursor:pointer; font-size:.9rem }
+
+  /* Minimap */
+  .minimap{
+    position:fixed; right:10px; bottom:10px; z-index:1200;
+    background:#0f0f10e6; color:#fff; border:2px solid #2a2a2a; border-radius:12px;
+    box-shadow:0 8px 20px rgba(0,0,0,.25); padding:8px;
+  }
+  .minimap canvas{ display:block; width:180px; height:180px; image-rendering:pixelated; border-radius:8px; background:#141414 }
+  .minimap .legend{ display:flex; gap:8px; margin-top:6px; font:600 .72rem/1 ui-sans-serif; opacity:.85; flex-wrap:wrap }
+  .badge{ display:inline-flex; align-items:center; gap:4px; }
+  .dot{ width:10px; height:10px; border-radius:2px; background:#999; display:inline-block }
+  .dot.cook{ background:#ff4d4d } .dot.animal{ background:#5cff9d } .dot.treasure{ background:#ffd257 } .dot.cave{ background:#9ac1ff } .dot.hub{ background:#ffa6e7 }
+
+  /* Partikel */
+  .particle{ position:fixed; z-index:1150; pointer-events:none; will-change: transform, opacity; }
+  @keyframes fallA { 0%{ transform:translate(var(--x,0),-8vh) rotate(0deg); opacity:0 } 10%{opacity:1} 100%{ transform:translate(var(--x,0),110vh) rotate(360deg); opacity:0 } }
+  .snow{ font-size:14px; animation: fallA var(--dur,10s) linear forwards; filter: drop-shadow(0 2px 6px rgba(0,0,0,.2)) }
+  .leaf{ font-size:16px; animation: fallA var(--dur,9s) linear forwards; }
+  .petal{ font-size:16px; animation: fallA var(--dur,9s) linear forwards; }
+  .butter{ font-size:16px; animation: fallA var(--dur,9s) linear forwards; }
+  .firefly{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,180,.95); box-shadow:0 0 8px 3px rgba(255,255,160,.8); animation: fire 2.2s ease-in-out infinite alternate; }
+  @keyframes fire{ from{ transform:translateY(0) scale(.9); opacity:.6 } to{ transform:translateY(-14px) scale(1.1); opacity:1 } }
 </style>
 </head>
 <body>
@@ -179,14 +208,14 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 
 <!-- Score -->
 <div id="score" class="score" aria-live="polite">
-  <h3>🌟 Karma-Topliste</h3>
+  <h3>🌟 Karma-Topliste <span id="seasonLabel" style="opacity:.8;font-weight:500;"></span> <span id="clockLabel" style="opacity:.8;font-weight:500;"></span></h3>
   <div id="cookline" class="cookline">👨‍🍳 Koch: –</div>
   <table id="scoreTable"></table>
   <div class="tip">Tipp: 👨‍🍳 mit <b>WASD</b> steuern (nach 3s Inaktivität übernimmt die KI).</div>
 </div>
 
 <!-- ElevenLabs optional -->
-<div style="position:fixed;top:1rem;left:1rem;z-index:1000;">
+<div style="position:fixed;top:1rem;left:1rem;z-index:1200;">
   <elevenlabs-convai agent-id="agent_1001k3etgzc8ejnt6q640dcwhxww"></elevenlabs-convai>
 </div>
 <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
@@ -211,9 +240,10 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
 </main>
 
 <!-- Welt -->
-<div id="world" class="world">
+<div id="world" class="world season-spring">
   <div class="ui"><button id="soundBtn" class="sound-btn" aria-pressed="false" title="Sound an/aus">🔇</button></div>
   <div id="map" class="map"></div>
+  <div id="sky" class="sky"></div>
 
   <!-- zentrales Dekohaus -->
   <div id="house" class="house">
@@ -226,6 +256,18 @@ description: "Kachel-Grid + Retro-Stadtwald (bunte Häuser & Bürgernamen)"
     <div class="roof"></div>
     <div class="body"><div class="door"></div></div>
     <div class="chimney" id="chimney"></div>
+  </div>
+</div>
+
+<!-- Minimap -->
+<div class="minimap">
+  <canvas id="minimap" width="180" height="180" aria-label="Minimap"></canvas>
+  <div class="legend">
+    <span class="badge"><span class="dot cook"></span> Koch</span>
+    <span class="badge"><span class="dot animal"></span> Tiere/NPC/Bürger</span>
+    <span class="badge"><span class="dot treasure"></span> Essen</span>
+    <span class="badge"><span class="dot cave"></span> Höhlen</span>
+    <span class="badge"><span class="dot hub"></span> Treffpunkte</span>
   </div>
 </div>
 
@@ -250,12 +292,13 @@ const IMAGES = [
   function randint(a,b){ return Math.floor(rand(a,b+1)); }
 
   const T=32, world=document.getElementById('world'), mapEl=document.getElementById('map'), house=document.getElementById('house');
-  const resto=document.getElementById('restaurant'), chimney=document.getElementById('chimney');
+  const resto=document.getElementById('restaurant'), chimney=document.getElementById('chimney'), sky=document.getElementById('sky');
+  const mini=document.getElementById('minimap'), mctx=mini.getContext('2d');
   let W=window.innerWidth, H=window.innerHeight, COLS=Math.floor(W/T), ROWS=Math.floor(H/T);
   let GRID=[], SOLID=new Set(), FOUNTAINS=[], CAVES=[], TREASURES=[], HUTS=[], NPCS=[], HUBS=[], CITIZENS=[];
   mapEl.style.setProperty('--cols', COLS); mapEl.style.setProperty('--tile', T+'px');
 
-  window.addEventListener('resize', ()=>{ W=innerWidth; H=innerHeight; COLS=Math.floor(W/T); ROWS=Math.floor(H/T); mapEl.style.setProperty('--cols', COLS); genWorld(); });
+  window.addEventListener('resize', ()=>{ W=innerWidth; H=innerHeight; COLS=Math.floor(W/T); ROWS=Math.floor(H/T); mapEl.style.setProperty('--cols', COLS); genWorld(); buildMiniBG(); });
 
   /* ===== Audio ===== */
   let audioCtx=null, soundOn=false;
@@ -288,6 +331,39 @@ const IMAGES = [
   function randomOpenCell(){ var x=0,y=0, tries=0; do{ x=1+Math.floor(Math.random()*(COLS-2)); y=1+Math.floor(Math.random()*(ROWS-2)); tries++; if(tries>200) break; } while(solidAt(x,y)); return {x:x,y:y}; }
   function popKarma(px,py,txt){ var d=document.createElement('div'); d.className='karma-pop'; d.textContent=txt; d.style.left=Math.round(px)+'px'; d.style.top=Math.round(py)+'px'; document.body.appendChild(d); setTimeout(function(){ d.remove(); }, 950); }
 
+  /* ===== Minimap ===== */
+  let miniBG=null;
+  function buildMiniBG(){
+    miniBG=document.createElement('canvas'); miniBG.width=mini.width; miniBG.height=mini.height;
+    const c=miniBG.getContext('2d'); c.clearRect(0,0,miniBG.width,miniBG.height);
+    const sx = mini.width / COLS, sy = mini.height / ROWS;
+    for(let y=0;y<ROWS;y++){
+      for(let x=0;x<COLS;x++){
+        if(solidAt(x,y)) c.fillStyle='#34513f'; else c.fillStyle='#bcae84';
+        c.fillRect(Math.floor(x*sx), mini.height - Math.floor((y+1)*sy), Math.ceil(sx), Math.ceil(sy));
+      }
+    }
+  }
+  function drawMinimap(){
+    if(!miniBG) buildMiniBG();
+    mctx.drawImage(miniBG,0,0);
+    const sx = mini.width / COLS, sy = mini.height / ROWS;
+    // hubs
+    mctx.fillStyle='#ffa6e7'; for(const h of HUBS) mctx.fillRect(h.x*sx, mini.height-(h.y+1)*sy, Math.max(2,1*sx), Math.max(2,1*sy));
+    // caves
+    mctx.fillStyle='#9ac1ff'; for(const c of CAVES) mctx.fillRect(c.x*sx, mini.height-(c.y+1)*sy, Math.max(2,1*sx), Math.max(2,1*sy));
+    // treasures
+    mctx.fillStyle='#ffd257'; for(const t of TREASURES){ if(!t.taken) mctx.fillRect(t.x*sx, mini.height-(t.y+1)*sy, Math.max(2,1*sx), Math.max(2,1*sy)); }
+    // animals / citizens / npcs
+    mctx.fillStyle='#5cff9d';
+    function dot(px,py){ mctx.fillRect((px/T-0.5)*sx, mini.height-((py/T)+0.5)*sy, Math.max(2,1*sx), Math.max(2,1*sy)); }
+    for(const a of actors){ if(!a.dead) dot(a.x,a.y); }
+    for(const c of CITIZENS){ dot(c.x,c.y); }
+    for(const n of NPCS){ dot(n.x,n.y); }
+    // cook
+    mctx.fillStyle='#ff4d4d'; mctx.fillRect((cook.x/T-0.5)*sx, mini.height-((cook.y/T)+0.5)*sy, Math.max(2,1*sx), Math.max(2,1*sy));
+  }
+
   /* ===== Zonen & Hubs ===== */
   function addZone(x,y,cls,icon,label){
     var el=document.createElement('div'); el.className='zone '+cls; el.style.left=(x*T+T/2)+'px'; el.style.bottom=(y*T)+'px';
@@ -295,6 +371,64 @@ const IMAGES = [
     HUBS.push({x:x, y:y, type:cls, el:el, crowd:[]});
   }
 
+  /* ===== Seasons & Day/Night ===== */
+  const SEASONS=['spring','summer','autumn','winter'];
+  const SEASON_MS=60000; // 60s pro Jahreszeit
+  const DAY_MS=90000;    // 90s pro Tag
+  let seasonIndex=0, seasonStart=performance.now(), dayStart=performance.now();
+  const seasonLabel=document.getElementById('seasonLabel'), clockLabel=document.getElementById('clockLabel');
+
+  function setSeasonClass(i){
+    world.classList.remove('season-spring','season-summer','season-autumn','season-winter');
+    world.classList.add('season-'+SEASONS[i]);
+    seasonLabel.textContent='• Saison: '+({spring:'Frühling',summer:'Sommer',autumn:'Herbst',winter:'Winter'})[SEASONS[i]];
+  }
+
+  function skyUpdate(){
+    const t=performance.now();
+    // season
+    const sProg=((t-seasonStart)% (SEASON_MS*SEASONS.length))/SEASON_MS;
+    const newIdx=Math.floor(sProg)%SEASONS.length;
+    if(newIdx!==seasonIndex){ seasonIndex=newIdx; setSeasonClass(seasonIndex); }
+
+    // day/night
+    const dProg=((t-dayStart)%DAY_MS)/DAY_MS; // 0..1
+    const darkness = 0.5 + 0.5*Math.cos(2*Math.PI*dProg); // 1 bei Mitternacht, 0 bei Mittag
+    const alpha = 0.6*darkness; // deckkraft
+    const tint = `rgba(10,17,28,${alpha.toFixed(3)})`;
+    sky.style.background = `radial-gradient(120vw 80vh at 50% 60%, rgba(255,255,255,${0.06*alpha}), rgba(0,0,0,0) 40%), ${tint}`;
+
+    const hh = Math.floor(dProg*24); const mm = Math.floor((dProg*24 - hh)*60);
+    clockLabel.textContent='• Zeit: '+String(hh).padStart(2,'0')+':'+String(mm).padStart(2,'0');
+
+    // Nacht-Glühwürmchen
+    if(alpha>0.35 && Math.random()<.06) spawnFirefly();
+    // Saison-Partikel
+    if(SEASONS[seasonIndex]==='winter' && Math.random()<.2) spawnSnow();
+    if(SEASONS[seasonIndex]==='autumn' && Math.random()<.18) spawnLeaf();
+    if(SEASONS[seasonIndex]==='spring' && Math.random()<.16) spawnPetal();
+    if(SEASONS[seasonIndex]==='summer' && Math.random()<.1) spawnButter();
+
+    drawMinimap();
+    requestAnimationFrame(skyUpdate);
+  }
+
+  function spawnParticle(cls, html, dur=9000){
+    const d=document.createElement('div'); d.className='particle '+cls; if(html) d.innerHTML=html;
+    d.style.left=rand(0,100)+'vw'; d.style.top='-5vh'; d.style.setProperty('--x', (rand(-6,6))+'vw'); d.style.setProperty('--dur', (dur/1000)+'s');
+    document.body.appendChild(d); d.addEventListener('animationend', ()=>d.remove()); setTimeout(()=>d.remove(), dur+2000);
+  }
+  function spawnSnow(){ const snow=['❄️','❅','❆'][randint(0,2)]; spawnParticle('snow', snow, randint(8000,12000)); }
+  function spawnLeaf(){ const leaf=['🍂','🍁','🍃'][randint(0,2)]; spawnParticle('leaf', leaf, randint(9000,12000)); }
+  function spawnPetal(){ const pet=['🌸','🌷','💮'][randint(0,2)]; spawnParticle('petal', pet, randint(9000,12000)); }
+  function spawnButter(){ const b=['🦋','🐝'][randint(0,1)]; spawnParticle('butter', b, randint(8000,11000)); }
+  function spawnFirefly(){
+    const f=document.createElement('div'); f.className='particle firefly';
+    f.style.left=rand(5,95)+'vw'; f.style.top=rand(55,88)+'vh';
+    document.body.appendChild(f); setTimeout(()=>f.remove(), 4000+randint(0,2000));
+  }
+
+  /* ===== Welt-Erzeugung ===== */
   function genWorld(){
     mapEl.innerHTML=""; GRID=[]; SOLID.clear(); FOUNTAINS=[]; CAVES=[]; TREASURES=[]; HUTS=[]; NPCS=[]; HUBS=[]; CITIZENS=[];
     // Maze
@@ -315,7 +449,7 @@ const IMAGES = [
         else{ var r=Math.random(); if(r<.55) cell.classList.add('bg-hedge'); else if(r<.8) cell.classList.add('bg-forest'); else cell.classList.add('bg-tree'); GRID[yy][xx]=1; SOLID.add(xx+','+yy); }
       }
     }
-    // Brunnenplätze + diverse Hubs
+    // Brunnen + Hubs
     for(var i=0;i<3;i++){ var fx=randint(3,COLS-4), fy=randint(3,ROWS-4); GRID[fy][fx]=0; mapEl.children[fy*COLS+fx].className='cell bg-fountain'; addZone(fx,fy,'park','⛲','Brunnenplatz'); }
     var z=7; var kinds=[['stage','🎤','Bühne'],['market','🛒','Markt'],['cafe','☕','Café'],['playground','🎠','Spielplatz'],['office','🏢','Büro'],['hotel','🏨','Hotel']];
     while(z--){ var p=randomOpenCell(), k=kinds[randint(0,kinds.length-1)]; addZone(p.x,p.y,k[0],k[1],k[2]); }
@@ -330,6 +464,7 @@ const IMAGES = [
     placeHuts(10);
     for(var s=0;s<14;s++) spawnTreasure();
     spawnCitizens(8);
+    buildMiniBG();
   }
 
   function placeRestaurant(){
@@ -340,6 +475,7 @@ const IMAGES = [
   function doorCell(){ return { x:parseInt(resto.dataset.tx,10), y:parseInt(resto.dataset.ty,10) }; }
   function puffSmoke(times){ var i=0; var timer=setInterval(function(){ var b=document.createElement('div'); b.className='smoke'; b.style.left='50%'; b.style.top='-6px'; chimney.appendChild(b); setTimeout(function(){ b.remove(); }, 2000); i++; if(i>=times) clearInterval(timer); }, 220); }
 
+  /* ===== Höhlen / Schätze ===== */
   function placeCaves(){
     var groups=['Hoppel','Kletterer','Schleichis','Royals'];
     for(var i=0;i<groups.length;i++){
@@ -357,26 +493,22 @@ const IMAGES = [
     TREASURES.push({x:p.x, y:p.y, el:el, taken:false});
   }
 
-  /* ===== Hütten + NPCs (massig Varianten) ===== */
+  /* ===== Häuser + NPCs ===== */
   var npcFaces=['🧑‍🌾','👩‍🍳','🧔','👵','🧑‍🔧','🧑‍🎨','🧙‍♀️','🧑‍🚀','🧑‍🏫','🧑‍✈️'];
   var roofClasses=['c1','c2','c3','c4','c5','c6','c7','c8','c9','c10'];
   var hutMods=['offsetL','offsetR','single','round','brick','striped','flag','chim','mail','solar','flowers'];
   var npcFirst=['Tutti','Bello','Rosi','Koko','Lampi','Frau Flausch','Oma Pixel','Robo','Toni','Mia','Klara','Fiete','Lilo','Momo','Piet','Nora','Sven','Giga','Pico','Nana'];
   var npcLast=['Mampfred','Knusper','Pfefferminze','Süßholz','Quark','Zuckerhut','Pastinake','Kessel','KochFix','Topfgeist','Porridge','Löffel','Möhrix','Mürbe','Schmackofatz'];
-
   function uniqueNpcName(used){ var name="",tries=0; do{ name = npcFirst[randint(0,npcFirst.length-1)]+" "+npcLast[randint(0,npcLast.length-1)]; tries++; if(tries>200) break; } while(used[name]); used[name]=1; return name; }
 
   function placeHuts(n){
     var used={};
     for(var i=0;i<n;i++){
-      var p=randomOpenCell();
-      var hut=document.createElement('div'); 
+      var p=randomOpenCell(), hut=document.createElement('div'); 
       var cls='hut '+roofClasses[randint(0,roofClasses.length-1)];
-      // 2–4 zufällige Detailklassen
       for(var k=0;k<randint(2,4);k++) cls+=' '+hutMods[randint(0,hutMods.length-1)];
       hut.className=cls;
       hut.style.left=(p.x*T+T/2)+'px'; hut.style.bottom=(p.y*T)+'px';
-      // Fensteranzahl/Position wird in Klassen geregelt (single/round/offset)
       hut.innerHTML='<div class="roof"></div><div class="body"><div class="door"></div><div class="win l"></div><div class="win r"></div></div>';
       world.appendChild(hut);
 
@@ -426,7 +558,7 @@ const IMAGES = [
     n.el.style.left=n.x+'px'; n.el.style.bottom=n.y+'px';
   }
 
-  /* ===== Bürger mit lustigen Namen ===== */
+  /* ===== Bürger (lustige Namen) ===== */
   var citizenFaces=['🧑‍💻','👩‍💼','🧑‍🎤','🧑‍🎓','🧑‍🎷','🧑‍🚴','🧑‍⚕️','🧑‍🚒','🧑‍🔬','🧑‍🎮'];
   var citFirst=['Glimmer','Turbo','Pixel','Lady','Sir','Captain','Prinz','Keks','Brezel','Wusel','Knall','Mega','Zack','Motte','Zwiebel'];
   var citLast=['Fröhlich','Karotti','Hopkinson','von Bytes','von Hoppel','GigaWatt','Sausewind','Schnatter','Flinkbein','Muffin','Smaragd','Wolkig','Schokoguss'];
@@ -494,7 +626,7 @@ const IMAGES = [
   function addKarma(a,delta){ a.karma=(a.karma||0)+delta; popKarma(a.x, H - a.y, (delta>0?'+':'')+delta+' ⚡'); updateScoreboard(); }
   function say(actor, text, ms){ if(!actor || actor.dead) return; if(!actor.mini){ actor.mini=document.createElement('div'); actor.mini.className='mini-bubble'; actor.el.appendChild(actor.mini); } actor.mini.textContent=text; actor.mini.style.display='block'; setTimeout(function(){ if(actor.mini) actor.mini.style.display='none'; }, ms||1600); }
 
-  /* ===== Dialoge (auch Hubs) ===== */
+  /* ===== Dialoge ===== */
   var THEMES={
     generic:[
       (a,b)=>a+': „CI/CD – Carrot Integration/Delivery!“',
@@ -523,10 +655,6 @@ const IMAGES = [
     stage:[
       (a,b)=>a+': „Hallo Wald! ✨“',
       (a,b)=>b+': „Ich spiele die Möhrenhymne.“'
-    ],
-    market:[
-      (a,b)=>a+': „Zwei Kilo Bio-Rüben, bitte.“',
-      (a,b)=>b+': „Aktion! 3-für-2-Cache.“'
     ],
     park:[
       (a,b)=>a+': „Alles grün – Monitoring OK.“',
@@ -563,7 +691,7 @@ const IMAGES = [
     }
   }, 5000);
 
-  /* ===== Koch (aktiv) ===== */
+  /* ===== Koch ===== */
   var cookNames=["Chef Carbonara","Onkel Kasserolle","Koch Kichererbse","Meister Mampf","Sir Schmor","Pan Peter","Saucier Sören"];
   var cook={ name:cookNames[randint(0,cookNames.length-1)], x:T*2+T/2, y:T*2, speed:1.35, path:[], carrying:null, carryingLoot:false, scoreCook:0, scoreLoot:0, stuck:0 };
   var cookEl=document.createElement('div'); cookEl.className='actor'; cookEl.style.zIndex=7;
@@ -694,9 +822,13 @@ const IMAGES = [
   // Start
   genWorld();
   updateScoreboard();
+  setSeasonClass(seasonIndex);
+  requestAnimationFrame(loop);
+  requestAnimationFrame(skyUpdate);
+
+  // Erste Dialoge
   setTimeout(function(){ var pool=actors.slice(0,Math.min(actors.length-1,4)); for(var i=0;i<pool.length-1;i+=2) (function(a,b){ setTimeout(function(){ startDialogue(a,b,'generic'); }, i*400); })(pool[i],pool[i+1]); }, 1200);
   planHunt();
-  requestAnimationFrame(loop);
 })();
 </script>
 </body>
