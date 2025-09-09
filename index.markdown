@@ -2,7 +2,7 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum & Heiligabend-Countdown"
+description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heiligabend-Countdown, Video & Kontakt"
 ---
 
 <!doctype html>
@@ -17,7 +17,7 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
   *{box-sizing:border-box} html,body{height:100%}
   body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;overflow:hidden}
 
-  /* Hintergrund / Watermark */
+  /* Hintergrund */
   .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;
     background:
       repeating-linear-gradient(25deg,rgba(255,255,255,.03) 0 2px,transparent 2px 14px),
@@ -26,6 +26,13 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
       var(--bg);
   }
   .wm-text{position:absolute;inset:0;display:grid;place-items:center;opacity:.06;font-weight:900;text-align:center;line-height:1.1;font-size:clamp(36px,8vw,84px);letter-spacing:.02em;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));user-select:none}
+
+  /* Video oben links */
+  .videoBox{position:fixed;top:12px;left:12px;z-index:30;width:min(360px,32vw)}
+  .videoBox iframe{width:100%;aspect-ratio:16/9;border-radius:12px;box-shadow:var(--shadow);border:2px solid #222}
+  .videoBox .caption{margin-top:6px;font:700 13px/1.3 ui-sans-serif;text-align:center}
+  .videoBox .caption a{color:#ffd257;text-decoration:none}
+  .videoBox .caption a:hover{text-decoration:underline}
 
   /* Kontakt oben rechts */
   .contact{position:fixed;top:12px;right:12px;z-index:20;background:#0d0f12f0;border:1px solid #222a2f;border-radius:12px;box-shadow:var(--shadow);padding:10px 12px;min-width:260px}
@@ -37,7 +44,7 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
   /* Bühne */
   .stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:10;padding:16px}
 
-  /* Name – einzeilig */
+  /* Name */
   .titleWrap{display:flex;justify-content:center;width:100%}
   .title{display:flex;white-space:nowrap;gap:.18em;filter:drop-shadow(0 8px 22px rgba(0,0,0,.35))}
   .px{
@@ -57,9 +64,9 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 
   /* Digital-Uhr */
   .clockArea{display:flex;flex-direction:column;align-items:center;gap:10px}
-  .digital{position:relative; width:min(86vw,860px); height:min(30vw,220px);
+  .digital{position:relative;width:min(86vw,860px);height:min(30vw,220px);
     background:#0d1014;border:3px solid #222a2f;border-radius:18px;
-    box-shadow:inset 0 0 0 6px #121821, 0 10px 26px #0006; overflow:hidden;
+    box-shadow:inset 0 0 0 6px #121821, 0 10px 26px #0006;overflow:hidden;
   }
   .grid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%}
   .pixel{position:absolute;width:14px;height:14px;border-radius:3px;background:#9ac1ff;box-shadow:0 0 0 1px #0006 inset, 0 2px 0 #0004;transition:transform .45s cubic-bezier(.2,.8,.2,1), opacity .25s}
@@ -70,15 +77,14 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
     0%{transform:scale(1) translate(var(--x,0),var(--y,0)); box-shadow:0 0 0 1px #fff8 inset, 0 0 0 0 rgba(255,255,255,.6)}
     100%{transform:scale(1) translate(var(--x,0),var(--y,0)); box-shadow:0 0 0 1px #0006 inset, 0 0 20px 6px rgba(255,255,255,0)}
   }
-
-  /* Ghost-Plan (Vorschau nächste Minute) */
+  /* Ghost-Plan (Vorschau) */
   .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.18;filter:contrast(1.1)}
   .ghost .gpx{position:absolute;width:14px;height:14px;border-radius:3px;background:#86a9ff}
 
   /* Doppelpunkt */
   .colonDot{position:absolute;width:12px;height:12px;border-radius:3px;background:#eaf2f6;box-shadow:0 0 0 1px #0006 inset, 0 2px 0 #0004;opacity:.85;transition:opacity .35s}
 
-  /* Material- / Schuttzonen */
+  /* Material / Schutt */
   .yard{position:absolute;bottom:8px;left:10px;font:800 12px ui-sans-serif;opacity:.85}
   .dump{position:absolute;bottom:8px;right:10px;font:800 12px ui-sans-serif;opacity:.85}
   .pile{display:inline-block;margin-left:6px}
@@ -97,7 +103,7 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
     100%{transform:translate(-50%,-50%) rotate(-2deg)}
   }
 
-  /* Bausteine („Bricks“) */
+  /* Ziegel */
   .brick{position:absolute;width:14px;height:14px;border-radius:3px;background:#cfe3ff;box-shadow:0 0 0 1px #0006 inset, 0 2px 0 #0004;transform:translate(-50%,-50%)}
   .brick.spin{animation:spin 1.2s linear infinite}
   @keyframes spin{ to{ transform:translate(-50%,-50%) rotate(360deg) } }
@@ -109,8 +115,15 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 </head>
 <body>
 
-<!-- Watermark -->
+<!-- Hintergrund -->
 <div class="watermark"><div class="wm-text"><div><span>Benedikt Schackenberg</span></div></div></div>
+
+<!-- Video oben links -->
+<div class="videoBox">
+  <iframe src="https://www.youtube-nocookie.com/embed/8R92e_U0fzI?autoplay=1&mute=1&loop=1&playlist=8R92e_U0fzI"
+          title="YouTube video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <div class="caption"><a href="https://blobtv.de" target="_blank">meta-autistische Comedy rund um die Uhr</a></div>
+</div>
 
 <!-- Kontakt oben rechts -->
 <div class="contact">
@@ -124,15 +137,12 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 
 <!-- Bühne -->
 <div class="stage">
-  <!-- Name -->
   <div class="titleWrap"><div id="title" class="title" aria-label="Benedikt Schackenberg"></div></div>
-
-  <!-- Digital-Uhr -->
   <div class="clockArea">
     <div class="digital" id="digital">
       <div class="grid" id="grid"></div>
       <div class="ghost" id="ghost"></div>
-      <div class="yard">Material:<span class="pile" id="pile">🧱🧱🧱🧱</span></div>
+      <div class="yard">Material:<span class="pile" id="pile">🧱🧱🧱🧱🧱</span></div>
       <div class="dump">Schutt:<span class="pile" id="dump">🗿</span></div>
       <div class="workers" id="workers"></div>
     </div>
@@ -154,7 +164,7 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 (function(){
   document.getElementById('y').textContent=new Date().getFullYear();
 
-  /* ===== Name – einzeilig, bunte Fall-Animation mit 90s Hold ===== */
+  /* ===== Name – bunte Fall-Animation 90s ===== */
   const titleEl=document.getElementById('title');
   const nameText="Benedikt Schackenberg";
   const colors=["#7dd36f","#ffd257","#9ac1ff","#ffa6e7","#f5a3a3","#a8f0c6","#ff9f7a","#b2f07f","#f5d0fe","#c2e7ff","#ffd6a5","#b8f2e6"];
@@ -279,7 +289,7 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
   }
 
   /* ===== Umbau: Unterschiede, Ghost-Plan, Jobs ===== */
-  function layoutForKey(key){ // Koordinaten-Liste für ein 4-stelliges „HHMM“
+  function layoutForKey(key){
     const pos=layout(); const D=[key[0],key[1],key[2],key[3]]; const pts=[];
     for(let di=0;di<4;di++){
       const m=DIGITS[D[di]];
@@ -287,7 +297,6 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
     }
     return pts;
   }
-
   function showGhost(nextKey){
     ghost.innerHTML='';
     const pts = layoutForKey(nextKey);
@@ -323,14 +332,10 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 
   function assignJobs(nextKey){
     const {removes, adds}=diffTo(nextKey);
-    // Erst Removals, dann Adds – sichtbar getaktet
     const jobs=[];
     removes.forEach(pt=> jobs.push({kind:'remove', target:pt}));
     adds.forEach(pt=> jobs.push({kind:'add', target:pt}));
-
-    // fair verteilen
     jobs.forEach((job,i)=>{ ACTORS[i % ACTORS.length].queue.push(job); });
-    // alle starten
     ACTORS.forEach(a=>{ if(!a.job) runNext(a); });
   }
 
@@ -347,10 +352,10 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
       const p = Math.min(1, (t-t0)/(dur*1000));
       const eased = p<.5 ? (2*p*p) : (-1+(4-2*p)*p); // easeInOutQuad
       const nx = ax + (tx-ax)*eased, ny = ay + (ty-ay)*eased;
-      const bob = Math.sin(p*Math.PI*2)*3; // Wipp-Bewegung
+      const bob = Math.sin(p*Math.PI*2)*3;
       actor.x=nx; actor.y=ny+bob;
       actor.el.style.left=(grid.offsetLeft+actor.x)+'px'; actor.el.style.top=(grid.offsetTop+actor.y)+'px';
-      if(carry){ // Ziegel mitnehmen + leichte Rotation
+      if(carry){
         carry.style.left=(grid.offsetLeft+actor.x)+'px'; carry.style.top=(grid.offsetTop+actor.y-8)+'px';
         carry.style.transform=`translate(-50%,-50%) rotate(${p*720|0}deg)`;
       }
@@ -365,10 +370,8 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
     actor.job=job;
 
     if(job.kind==='remove'){
-      // zum Pixel, Spruch, aufheben, zum Schutt
       speak(actor,"Abbruch!",700);
       moveActorTo(actor, job.target.x, job.target.y, .7, ()=>{
-        // Pixel „dimmen“ (Optik: wird abgebaut)
         const px = findNearestPixel(job.target.x, job.target.y); if(px){ px.style.opacity=.12; }
         const brick = spawnBrickAt(job.target.x, job.target.y, true);
         const dumpX = grid.clientWidth-24, dumpY = grid.clientHeight-24;
@@ -378,7 +381,6 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
         }, brick);
       });
     } else {
-      // vom Material holen, Spruch, zum Ziel, „plopp“ setzen
       const pileX=24, pileY=grid.clientHeight-24;
       moveActorTo(actor, pileX, pileY, .7, ()=>{
         speak(actor,"Neuaufbau!",700);
@@ -386,7 +388,6 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
         updatePiles();
         const brick = spawnBrickAt(pileX, pileY, true);
         moveActorTo(actor, job.target.x, job.target.y, 1.0, ()=>{
-          // Zielpixel kurz „ploppen“ (sichtbar: da entsteht was)
           const px = findNearestPixel(job.target.x, job.target.y);
           if(px){ px.style.opacity=1; px.classList.remove('pulse'); void px.offsetWidth; px.classList.add('pulse'); }
           brick.remove(); actor.job=null; runNext(actor);
@@ -409,17 +410,14 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
   function daysUntilChristmasEve(now=new Date()){
     const z=tz;
     const y = new Intl.DateTimeFormat('de-DE',{timeZone:z,year:'numeric'}).format(now)*1;
-    const xmas = new Date(new Date(now).toLocaleString('en-US',{timeZone:z}));
-    let target = new Date(Date.UTC(y, 11, 24, 0,0,0)); // 24.12. (Monat 11)
-    const nowUTC = new Date(Date.now());
-    // Falls heute nach Heiligabend in Berlin, nimm nächstes Jahr:
     const berlinNow = new Date(new Date().toLocaleString('en-US',{timeZone:z}));
-    const berlinTarget = new Date(Date.UTC(y,11,24,0,0,0));
-    if(berlinNow > new Date(berlinTarget)) target = new Date(Date.UTC(y+1,11,24,0,0,0));
-    const diffMs = (target.getTime() - (new Date(new Date().toLocaleString('en-US',{timeZone:z}))).getTime());
+    let targetYear = y;
+    const xmasThisYear = new Date(Date.UTC(y, 11, 24, 0,0,0)); // 24.12.
+    if(berlinNow > xmasThisYear) targetYear = y+1;
+    const target = new Date(Date.UTC(targetYear,11,24,0,0,0));
+    const diffMs = target - berlinNow;
     return Math.max(0, Math.ceil(diffMs/86400000));
   }
-
   function updateDateRow(){
     const p=fmtParts(new Date());
     const pretty = `${p.w}, ${p.d}. ${p.mo} ${p.y}`;
@@ -433,13 +431,12 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
     const p=fmtParts(now);
     tzLabel.textContent=`Europa/Berlin • ${p.h}:${p.m}:${p.s}`;
 
-    // Sekunden-Blinken
     if(+p.s!==lastSec){
       const on=(+p.s)%2===0; document.querySelectorAll('.colonDot').forEach(d=>d.style.opacity=on?1:0.35);
       lastSec=+p.s; updateDateRow();
     }
 
-    // ~3s vorher: Ghost-Plan zeigen + Jobs anstoßen (einmal)
+    // 3s vorher: Ghost-Plan und Jobs
     if((+p.s)===57){
       const future=new Date(now.getTime()+3000);
       const np=fmtParts(future); const nextKey=np.h+np.m;
@@ -450,13 +447,11 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
       }
     }
 
-    // Beim Wechsel: Ghost weg, Anzeige auf neu
+    // Wechsel
     const key=p.h+p.m;
     if(key!==current){
       current=key; render(current); hideGhost();
-      // Material auffüllen
       while(pileIcons.length<5) pileIcons.push('🧱'); updatePiles();
-      // evtl. Restjobs leeren
       ACTORS.forEach(a=>{ a.queue=[]; a.job=null; });
     }
 
@@ -475,11 +470,11 @@ description: "Bunte Namens-Intro + Digitale Pixeluhr mit sichtbarem Umbau, Datum
 
   // Init
   function init(){
-    render(fmtParts().h + fmtParts().m); updateDateRow();
+    const start = fmtParts(); current = start.h + start.m; render(current); updateDateRow();
     spawnActors(); updatePiles(); tick(); startWanderLoop();
   }
 
-  // Resize -> neu layouten & Ghost neu zeichnen
+  // Resize
   window.addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); });
 
   init();
