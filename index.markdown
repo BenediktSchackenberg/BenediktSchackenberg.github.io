@@ -2,7 +2,7 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heiligabend-Countdown, Video & Kontakt"
+description: "Retro-Intro + Digitale Pixeluhr, Umbau-Worker, Datum & Heiligabend-Countdown, Video & Kontakt"
 ---
 
 <!doctype html>
@@ -13,28 +13,70 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
 <title>Benedikt Schackenberg</title>
 <link rel="icon" href="data:,">
 <style>
-  :root{ --bg:#0e1418; --fg:#f2f5f7; --shadow:0 12px 26px rgba(0,0,0,.25) }
-  *{box-sizing:border-box} html,body{height:100%}
-  body{margin:0;background:var(--bg);color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;overflow:hidden}
-
-  /* Hintergrund */
-  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none;
-    background:
-      repeating-linear-gradient(25deg,rgba(255,255,255,.03) 0 2px,transparent 2px 14px),
-      radial-gradient(1200px 700px at 20% 10%, rgba(125,211,111,.06), transparent 60%),
-      radial-gradient(1000px 600px at 85% 80%, rgba(255,210,87,.06), transparent 60%),
-      var(--bg);
+  /* Layout-Override – verhindert weißen Top-Rand */
+  html, body { height:100%; background:#0e1418; }
+  .site-header, header, .page, .page-content, main, .site-footer {
+    background: transparent !important; box-shadow:none !important; border:0 !important;
   }
+
+  :root{ --bg:#0e1418; --fg:#f2f5f7; --shadow:0 12px 26px rgba(0,0,0,.25) }
+  *{box-sizing:border-box} body{margin:0;color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;overflow:hidden}
+
+  /* Retro Pixel Sky */
+  .retro-sky{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(2px 2px at 10% 12%, #fff8 50%, transparent 51%),
+      radial-gradient(2px 2px at 22% 28%, #fff6 50%, transparent 51%),
+      radial-gradient(2px 2px at 78% 18%, #fff7 50%, transparent 51%),
+      radial-gradient(2px 2px at 65% 30%, #fff8 50%, transparent 51%),
+      repeating-linear-gradient(0deg, transparent 0 6px, rgba(255,255,255,.03) 6px 12px),
+      linear-gradient(180deg, #0f1a22 0%, #0e1418 42%, #0e1418 100%);
+  }
+  .retro-sky::before{
+    content:""; position:absolute; left:-20vw; right:-20vw; height:28vh; top:0;
+    background:
+      radial-gradient(70px 18px at 12% 34%, #ffffff15 60%, transparent 61%),
+      radial-gradient(90px 20px at 40% 26%, #ffffff18 60%, transparent 61%),
+      radial-gradient(70px 18px at 72% 32%, #ffffff12 60%, transparent 61%),
+      radial-gradient(90px 22px at 90% 22%, #ffffff14 60%, transparent 61%);
+    image-rendering: pixelated; animation: clouds 60s linear infinite;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,.2));
+  }
+  .retro-sky::after{
+    content:""; position:absolute; left:0; right:0; height:24vh; bottom:58vh; opacity:.9;
+    background:
+      linear-gradient(180deg, #15242d 0, #15242d 40%, transparent 41%),
+      linear-gradient(160deg, transparent 40%, #1a2f38 41% 100%),
+      linear-gradient(200deg, transparent 44%, #1d333d 45% 100%);
+    clip-path: polygon(0 100%,0 60%,10% 62%,20% 54%,34% 66%,48% 50%,60% 64%,75% 52%,88% 60%,100% 55%,100% 100%);
+  }
+  @keyframes clouds{ to{ transform: translateX(40vw) } }
+
+  /* Ambient-Parallax */
+  .ambient{position:fixed;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+  .layer{position:absolute;inset:-10vh -10vw;opacity:.08;filter:blur(.2px)}
+  .l1{background:
+      radial-gradient(1200px 700px at 20% 10%, rgba(125,211,111,.6), transparent 60%),
+      radial-gradient(1000px 600px at 85% 80%, rgba(255,210,87,.65), transparent 60%);
+     animation: drift1 60s linear infinite}
+  .l2{background:repeating-linear-gradient(25deg,rgba(255,255,255,.8) 0 2px,transparent 2px 14px);
+     opacity:.05; animation: drift2 70s linear infinite reverse}
+  @keyframes drift1{ to{ transform:translate3d(6vw,-4vh,0) } }
+  @keyframes drift2{ to{ transform:translate3d(-6vw,3vh,0) } }
+
+  /* Wasserzeichen */
+  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none}
   .wm-text{position:absolute;inset:0;display:grid;place-items:center;opacity:.06;font-weight:900;text-align:center;line-height:1.1;font-size:clamp(36px,8vw,84px);letter-spacing:.02em;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));user-select:none}
 
-  /* Video oben links */
+  /* Video */
   .videoBox{position:fixed;top:12px;left:12px;z-index:30;width:min(360px,32vw)}
   .videoBox iframe{width:100%;aspect-ratio:16/9;border-radius:12px;box-shadow:var(--shadow);border:2px solid #222}
   .videoBox .caption{margin-top:6px;font:700 13px/1.3 ui-sans-serif;text-align:center}
   .videoBox .caption a{color:#ffd257;text-decoration:none}
   .videoBox .caption a:hover{text-decoration:underline}
 
-  /* Kontakt oben rechts */
+  /* Kontakt */
   .contact{position:fixed;top:12px;right:12px;z-index:20;background:#0d0f12f0;border:1px solid #222a2f;border-radius:12px;box-shadow:var(--shadow);padding:10px 12px;min-width:260px}
   .contact a{color:#eaf2f6;text-decoration:none;border-bottom:1px dotted #6b7a86}
   .contact-actions{display:flex;gap:8px;margin-top:6px}
@@ -44,7 +86,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
   /* Bühne */
   .stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;z-index:10;padding:16px}
 
-  /* Name */
+  /* Titel */
   .titleWrap{display:flex;justify-content:center;width:100%}
   .title{display:flex;white-space:nowrap;gap:.18em;filter:drop-shadow(0 8px 22px rgba(0,0,0,.35))}
   .px{
@@ -56,13 +98,13 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
   }
   .falling{ animation:fallIn var(--fall,520ms) cubic-bezier(.2,.8,.2,1) forwards }
   @keyframes fallIn{
-    0%   { transform:translateY(-120vh) rotate(-8deg) scale(.8); opacity:0 }
-    60%  { transform:translateY(18px)    rotate( 1deg) scale(1.04); opacity:1 }
-    78%  { transform:translateY(-8px)    rotate(-1deg) scale(.98) }
-    100% { transform:translateY(0)       rotate( 0deg) scale(1);   opacity:1 }
+    0%{transform:translateY(-120vh) rotate(-8deg) scale(.8); opacity:0}
+    60%{transform:translateY(18px) rotate(1deg) scale(1.04); opacity:1}
+    78%{transform:translateY(-8px) rotate(-1deg) scale(.98)}
+    100%{transform:translateY(0) rotate(0deg) scale(1); opacity:1}
   }
 
-  /* Digital-Uhr */
+  /* Digitale Pixel-Uhr */
   .clockArea{display:flex;flex-direction:column;align-items:center;gap:10px}
   .digital{position:relative;width:min(86vw,860px);height:min(30vw,220px);
     background:#0d1014;border:3px solid #222a2f;border-radius:18px;
@@ -73,23 +115,17 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
   .pixel.h{background:#ffd257} /* Stunden */
   .pixel.m{background:#7dd36f} /* Minuten */
   .pixel.pulse{animation:pulse .38s ease-out}
-  @keyframes pulse{
-    0%{transform:scale(1) translate(var(--x,0),var(--y,0)); box-shadow:0 0 0 1px #fff8 inset, 0 0 0 0 rgba(255,255,255,.6)}
-    100%{transform:scale(1) translate(var(--x,0),var(--y,0)); box-shadow:0 0 0 1px #0006 inset, 0 0 20px 6px rgba(255,255,255,0)}
-  }
-  /* Ghost-Plan (Vorschau) */
-  .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.18;filter:contrast(1.1)}
-  .ghost .gpx{position:absolute;width:14px;height:14px;border-radius:3px;background:#86a9ff}
+  @keyframes pulse{ 0%{filter:drop-shadow(0 0 10px #fff8)} 100%{filter:none} }
 
-  /* Doppelpunkt */
+  .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.18;filter:contrast(1.1)}
+  .ghost .gpx{position:absolute;width:14px;height:14px;border-radius:3px;background:#86a9ff;transition:background .2s, transform .2s}
+
   .colonDot{position:absolute;width:12px;height:12px;border-radius:3px;background:#eaf2f6;box-shadow:0 0 0 1px #0006 inset, 0 2px 0 #0004;opacity:.85;transition:opacity .35s}
 
-  /* Material / Schutt */
   .yard{position:absolute;bottom:8px;left:10px;font:800 12px ui-sans-serif;opacity:.85}
   .dump{position:absolute;bottom:8px;right:10px;font:800 12px ui-sans-serif;opacity:.85}
   .pile{display:inline-block;margin-left:6px}
 
-  /* Akteure */
   .workers{position:absolute;inset:0;pointer-events:none}
   .actor{
     position:absolute;transform:translate(-50%,-50%);
@@ -97,35 +133,35 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
     animation:wiggle .8s steps(2,end) infinite;
   }
   .actor .bubble{position:absolute;left:50%;top:-22px;transform:translateX(-50%);font:800 10px ui-sans-serif;background:#ffffffd9;color:#111;border:2px solid #2f2626;border-radius:8px;padding:0 6px;white-space:nowrap;display:none}
-  @keyframes wiggle{
-    0%{transform:translate(-50%,-50%) rotate(-2deg)}
-    50%{transform:translate(-50%,-50%) rotate(2deg)}
-    100%{transform:translate(-50%,-50%) rotate(-2deg)}
-  }
+  @keyframes wiggle{ 0%{transform:translate(-50%,-50%) rotate(-2deg)} 50%{transform:translate(-50%,-50%) rotate(2deg)} 100%{transform:translate(-50%,-50%) rotate(-2deg)} }
 
-  /* Ziegel */
   .brick{position:absolute;width:14px;height:14px;border-radius:3px;background:#cfe3ff;box-shadow:0 0 0 1px #0006 inset, 0 2px 0 #0004;transform:translate(-50%,-50%)}
   .brick.spin{animation:spin 1.2s linear infinite}
   @keyframes spin{ to{ transform:translate(-50%,-50%) rotate(360deg) } }
 
-  /* Datum / Countdown */
+  .spark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:14px;opacity:1;pointer-events:none}
+
+  .progress{position:absolute;left:0;right:0;bottom:0;height:6px;background:#1a2330}
+  .progress i{display:block;height:100%;background:#86a9ff;transition:width .2s}
+
   .dateRow{font:800 14px/1.3 ui-sans-serif;opacity:.9}
   .footer{position:fixed;bottom:10px;right:12px;opacity:.6;font-size:12px;z-index:12}
 </style>
 </head>
 <body>
 
-<!-- Hintergrund -->
+<div class="retro-sky" aria-hidden="true"></div>
+<div class="ambient"><div class="layer l1"></div><div class="layer l2"></div></div>
 <div class="watermark"><div class="wm-text"><div><span>Benedikt Schackenberg</span></div></div></div>
 
-<!-- Video oben links -->
+<!-- Video & Link -->
 <div class="videoBox">
   <iframe src="https://www.youtube-nocookie.com/embed/8R92e_U0fzI?autoplay=1&mute=1&loop=1&playlist=8R92e_U0fzI"
           title="YouTube video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  <div class="caption"><a href="https://blobtv.de" target="_blank">meta-autistische Comedy rund um die Uhr</a></div>
+  <div class="caption"><a href="https://blobtv.de" target="_blank" rel="noopener">meta-autistische Comedy rund um die Uhr</a></div>
 </div>
 
-<!-- Kontakt oben rechts -->
+<!-- Kontakt -->
 <div class="contact">
   <div>📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a></div>
   <div>🔐 <a href="{{ '/assets/keys/benedikt-schackenberg.asc' | relative_url }}" download>PGP-Schlüssel (.asc)</a></div>
@@ -136,22 +172,23 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
 </div>
 
 <!-- Bühne -->
-<div class="stage">
+<div class="stage" id="stage">
   <div class="titleWrap"><div id="title" class="title" aria-label="Benedikt Schackenberg"></div></div>
   <div class="clockArea">
-    <div class="digital" id="digital">
+    <div class="digital" id="digital" aria-live="polite">
       <div class="grid" id="grid"></div>
       <div class="ghost" id="ghost"></div>
       <div class="yard">Material:<span class="pile" id="pile">🧱🧱🧱🧱🧱</span></div>
       <div class="dump">Schutt:<span class="pile" id="dump">🗿</span></div>
       <div class="workers" id="workers"></div>
+      <div class="progress"><i id="prog" style="width:0%"></i></div>
     </div>
     <div class="dateRow" id="dateRow">–</div>
     <div class="badge" id="tzLabel">Europa/Berlin</div>
   </div>
 </div>
 
-<!-- Versteckter PGP -->
+<!-- versteckter PGP-Text fürs Kopieren -->
 <pre id="pgp-key" style="position:fixed;left:-9999px;top:-9999px">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 ...dein Key...
@@ -164,12 +201,18 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
 (function(){
   document.getElementById('y').textContent=new Date().getFullYear();
 
-  /* ===== Name – bunte Fall-Animation 90s ===== */
+  /* ===== Name – bunte Fall-Animation mit 90s Haltezeit ===== */
   const titleEl=document.getElementById('title');
   const nameText="Benedikt Schackenberg";
   const colors=["#7dd36f","#ffd257","#9ac1ff","#ffa6e7","#f5a3a3","#a8f0c6","#ff9f7a","#b2f07f","#f5d0fe","#c2e7ff","#ffd6a5","#b8f2e6"];
   const perCharFall=520, betweenChars=90, holdVisibleMs=90000; let nameLoop=null;
 
+  function autoScaleOneLine(){
+    const wrap=document.querySelector('.titleWrap');
+    const max=wrap.clientWidth-16;
+    const w=titleEl.getBoundingClientRect().width;
+    titleEl.style.transform=`scale(${Math.min(1,max/w)})`;
+  }
   function buildName(){
     clearTimeout(nameLoop); titleEl.innerHTML="";
     const frag=document.createDocumentFragment(); let i=0;
@@ -179,35 +222,44 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
       frag.appendChild(s); i++;
     } titleEl.appendChild(frag); autoScaleOneLine();
   }
-  function autoScaleOneLine(){
-    const wrap=document.querySelector('.titleWrap');
-    const max=wrap.clientWidth-16; const w=titleEl.getBoundingClientRect().width;
-    titleEl.style.transform=`scale(${Math.min(1,max/w)})`;
-  }
-  window.addEventListener('resize', autoScaleOneLine);
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-  async function playName(){ for(const s of [...titleEl.querySelectorAll('.px')]){ s.style.setProperty('--fall', perCharFall+'ms'); s.classList.remove('falling'); void s.offsetWidth; s.classList.add('falling'); await sleep(perCharFall+betweenChars);} nameLoop=setTimeout(()=>{buildName();playName();}, holdVisibleMs); }
+  async function playName(){
+    for(const s of [...titleEl.querySelectorAll('.px')]){
+      s.style.setProperty('--fall', perCharFall+'ms'); s.classList.remove('falling'); void s.offsetWidth; s.classList.add('falling');
+      await sleep(perCharFall+betweenChars);
+    }
+    nameLoop=setTimeout(()=>{buildName();playName();}, holdVisibleMs);
+  }
   buildName(); playName();
+  addEventListener('resize', autoScaleOneLine);
 
   /* ===== Uhr & Umbau ===== */
   const tz='Europe/Berlin';
-  const grid=document.getElementById('grid'), ghost=document.getElementById('ghost'), workersLayer=document.getElementById('workers');
-  const tzLabel=document.getElementById('tzLabel'), pileEl=document.getElementById('pile'), dumpEl=document.getElementById('dump');
+  const grid=document.getElementById('grid');
+  const ghost=document.getElementById('ghost');
+  const workersLayer=document.getElementById('workers'); // nur hier deklariert ✔
+  const tzLabel=document.getElementById('tzLabel');
+  const pileEl=document.getElementById('pile');
+  const dumpEl=document.getElementById('dump');
   const dateRow=document.getElementById('dateRow');
+  const prog=document.getElementById('prog');
+  const stage=document.getElementById('stage');
 
   // 5×7 Font
-  const DIGITS={ "0":[1,1,1,1,1, 1,0,0,0,1, 1,0,1,0,1, 1,0,1,0,1, 1,0,1,0,1, 1,0,0,0,1, 1,1,1,1,1],
-    "1":[0,1,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,0,1,0,0, 0,1,1,1,0],
-    "2":[1,1,1,1,1, 0,0,0,0,1, 0,0,0,0,1, 0,1,1,1,1, 1,0,0,0,0, 1,0,0,0,0, 1,1,1,1,1],
-    "3":[1,1,1,1,1, 0,0,0,0,1, 0,0,0,0,1, 0,0,1,1,1, 0,0,0,0,1, 0,0,0,0,1, 1,1,1,1,1],
-    "4":[1,0,0,1,0, 1,0,0,1,0, 1,0,0,1,0, 1,1,1,1,1, 0,0,0,1,0, 0,0,0,1,0, 0,0,0,1,0],
-    "5":[1,1,1,1,1, 1,0,0,0,0, 1,0,0,0,0, 1,1,1,1,0, 0,0,0,0,1, 0,0,0,0,1, 1,1,1,1,0],
-    "6":[1,1,1,1,0, 1,0,0,0,0, 1,0,0,0,0, 1,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
-    "7":[1,1,1,1,1, 0,0,0,0,1, 0,0,0,1,0, 0,0,1,0,0, 0,1,0,0,0, 0,1,0,0,0, 0,1,0,0,0],
-    "8":[0,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,0],
-    "9":[0,1,1,1,0, 1,0,0,0,1, 1,0,0,0,1, 0,1,1,1,1, 0,0,0,0,1, 0,0,0,0,1, 1,1,1,1,0] };
+  const DIGITS={
+    "0":[1,1,1,1,1,1,0,0,0,1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,1,1,0,0,0,1,1,1,1,1,1],
+    "1":[0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,0],
+    "2":[1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1],
+    "3":[1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1],
+    "4":[1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,1,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0],
+    "5":[1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,0],
+    "6":[1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0],
+    "7":[1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],
+    "8":[0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0],
+    "9":[0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0]
+  };
 
-  // Layout & Pixelpool
+  // Layout-Funktion
   const px=14, gap=4, cols=5, rows=7, digitGap=10, groupGap=20;
   function layout(){
     const box=grid.getBoundingClientRect();
@@ -222,29 +274,27 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
       return {x:sx + gOff + dOff + c*(px+gap), y: sy + r*(px+gap)};
     };
   }
+
+  // Pixel-Pool + Doppelpunkt
   const PIXELS=[]; for(let i=0;i<160;i++){ const d=document.createElement('div'); d.className='pixel'; grid.appendChild(d); PIXELS.push(d); }
   const colonTop=document.createElement('div'), colonBot=document.createElement('div'); colonTop.className='colonDot'; colonBot.className='colonDot'; grid.appendChild(colonTop); grid.appendChild(colonBot);
 
-  // Anzeige
-  let current="0000"; let lastSec=-1;
-
-  function render(timeStr){
-    const pos=layout(); const digits=[timeStr[0],timeStr[1],timeStr[2],timeStr[3]]; let idx=0;
+  function render(key){
+    const pos=layout(); const digits=[key[0],key[1],key[2],key[3]]; let idx=0;
     for(let di=0; di<4; di++){
       const map=DIGITS[digits[di]];
       for(let r=0;r<rows;r++){
         for(let c=0;c<cols;c++){
           const p=PIXELS[idx++], on = map[r*cols+c]===1;
           const {x,y}=pos(di,c,r);
-          p.style.setProperty('--x', x+'px'); p.style.setProperty('--y', y+'px');
           p.style.transform=`translate(${x}px,${y}px)`;
           p.style.opacity=on?1:0.08;
           p.classList.toggle('h', di<2); p.classList.toggle('m', di>=2);
-          p.dataset.on=on?1:0; p.dataset.x=x; p.dataset.y=y;
+          p.dataset.x=x; p.dataset.y=y; p.dataset.on=on?1:0;
         }
       }
     }
-    // Doppelpunkt
+    // Doppelpunkt positionieren
     const box=grid.getBoundingClientRect(), wDigit=cols*px+(cols-1)*gap, height=rows*px+(rows-1)*gap;
     const y0=(box.height-height)/2, cx=box.width/2-6;
     colonTop.style.transform=`translate(${cx}px, ${y0+height*0.32}px)`;
@@ -253,16 +303,17 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
 
   function fmtParts(d=new Date()){
     const p=new Intl.DateTimeFormat('de-DE',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',weekday:'long',day:'2-digit',month:'long',year:'numeric',hour12:false}).formatToParts(d).reduce((a,c)=>{a[c.type]=c.value;return a;},{});
-    return {h:p.hour,m:p.minute,s:p.second, w:p.weekday, d:p.day, mo:p.month, y:p.year};
+    return {h:p.hour,m:p.minute,s:p.second,w:p.weekday,d:p.day,mo:p.month,y:p.year};
   }
 
-  /* ===== Akteure ===== */
+  /* Akteure */
   const ACTOR_TYPES=[
     {em:'👷', lines:["Mörtel!","Wasserwaage!","Abbruch!","Neuaufbau!"]},
     {em:'🐿️', lines:["Nuss gegen Stein!","Flitz!","Ich kann tragen!"]},
-    {em:'🐍', lines:["sssschieb!","weg mit dem Klotz","Neuer Block!"]}
+    {em:'🐍', lines:["sssschieb!","weg mit dem Klotz","Neuer Block!"]},
+    {em:'🦺', lines:["Plan A!","Nicht anfassen!","Ich zähl'…"]}
   ];
-  const ACTOR_COUNT=7;
+  const ACTOR_COUNT=8;
   const ACTORS=[];
   function spawnActors(){
     workersLayer.innerHTML=""; ACTORS.length=0;
@@ -288,7 +339,11 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
     actor.el.style.left=(grid.offsetLeft+actor.x)+'px'; actor.el.style.top=(grid.offsetTop+actor.y)+'px';
   }
 
-  /* ===== Umbau: Unterschiede, Ghost-Plan, Jobs ===== */
+  /* Materialanzeige */
+  const pileIcons=['🧱','🧱','🧱','🧱','🧱']; const dumpIcons=['🗿'];
+  function updatePiles(){ document.getElementById('pile').textContent=pileIcons.join(''); document.getElementById('dump').textContent=dumpIcons.join(''); }
+
+  /* Ghost & Diff */
   function layoutForKey(key){
     const pos=layout(); const D=[key[0],key[1],key[2],key[3]]; const pts=[];
     for(let di=0;di<4;di++){
@@ -304,6 +359,12 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
       const g=document.createElement('div'); g.className='gpx'; g.style.left=p.x+'px'; g.style.top=p.y+'px';
       ghost.appendChild(g);
     }
+  }
+  function tintGhost(progress){
+    ghost.querySelectorAll('.gpx').forEach(g=>{
+      g.style.background = `hsl(${200 - progress*80}deg 80% ${70+progress*10}%)`;
+      g.style.transform = `scale(${1+progress*0.05})`;
+    });
   }
   function hideGhost(){ ghost.innerHTML=''; }
 
@@ -326,44 +387,62 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
     return {removes, adds};
   }
 
-  const pileIcons=['🧱','🧱','🧱','🧱','🧱'];
-  const dumpIcons=['🗿'];
-  function updatePiles(){ pileEl.textContent=pileIcons.join(''); dumpEl.textContent=dumpIcons.join(''); }
-
-  function assignJobs(nextKey){
-    const {removes, adds}=diffTo(nextKey);
-    const jobs=[];
-    removes.forEach(pt=> jobs.push({kind:'remove', target:pt}));
-    adds.forEach(pt=> jobs.push({kind:'add', target:pt}));
-    jobs.forEach((job,i)=>{ ACTORS[i % ACTORS.length].queue.push(job); });
-    ACTORS.forEach(a=>{ if(!a.job) runNext(a); });
-  }
-
   function spawnBrickAt(x,y,spin=false){
     const b=document.createElement('div'); b.className='brick'; if(spin) b.classList.add('spin');
     b.style.left=(grid.offsetLeft+x)+'px'; b.style.top=(grid.offsetTop+y)+'px';
     workersLayer.appendChild(b); return b;
   }
-
   function moveActorTo(actor, tx, ty, dur, onDone, carry){
-    const ax=actor.x, ay=actor.y;
-    const t0=performance.now();
-    function anim(t){
+    const ax=actor.x, ay=actor.y; const t0=performance.now();
+    (function anim(t){
       const p = Math.min(1, (t-t0)/(dur*1000));
-      const eased = p<.5 ? (2*p*p) : (-1+(4-2*p)*p); // easeInOutQuad
-      const nx = ax + (tx-ax)*eased, ny = ay + (ty-ay)*eased;
-      const bob = Math.sin(p*Math.PI*2)*3;
-      actor.x=nx; actor.y=ny+bob;
-      actor.el.style.left=(grid.offsetLeft+actor.x)+'px'; actor.el.style.top=(grid.offsetTop+actor.y)+'px';
+      const eased = p<.5 ? (2*p*p) : (-1+(4-2*p)*p);
+      const nx = ax + (tx-ax)*eased, ny = ay + (ty-ay)*eased + Math.sin(p*Math.PI*2)*3;
+      actor.x=nx; actor.y=ny;
+      actor.el.style.left=(grid.offsetLeft+nx)+'px'; actor.el.style.top=(grid.offsetTop+ny)+'px';
       if(carry){
-        carry.style.left=(grid.offsetLeft+actor.x)+'px'; carry.style.top=(grid.offsetTop+actor.y-8)+'px';
+        carry.style.left=(grid.offsetLeft+nx)+'px'; carry.style.top=(grid.offsetTop+ny-8)+'px';
         carry.style.transform=`translate(-50%,-50%) rotate(${p*720|0}deg)`;
       }
       if(p<1) requestAnimationFrame(anim); else onDone && onDone();
-    }
-    requestAnimationFrame(anim);
+    })(t0);
   }
+  function findNearestPixel(x,y){
+    let best=null, bd=1e12;
+    for(const p of PIXELS){
+      const px=parseFloat(p.dataset.x||'0'), py=parseFloat(p.dataset.y||'0');
+      const d=(px-x)*(px-x)+(py-y)*(py-y);
+      if(d<bd){ bd=d; best=p; }
+    }
+    return best;
+  }
+  function burst(x,y,emoji='✨',n=14,life=0.8){
+    for(let i=0;i<n;i++){
+      const s=document.createElement('div'); s.className='spark';
+      s.textContent=emoji; s.style.left=(grid.offsetLeft+x)+'px'; s.style.top=(grid.offsetTop+y)+'px';
+      stage.appendChild(s);
+      const ang=Math.random()*Math.PI*2, sp=60+Math.random()*120;
+      const vx=Math.cos(ang)*sp, vy=Math.sin(ang)*sp-40;
+      const t0=performance.now();
+      (function anim(t){
+        const dt=(t-t0)/1000, px2=x+vx*dt, py2=y+vy*dt+220*dt*dt;
+        s.style.left=(grid.offsetLeft+px2)+'px'; s.style.top=(grid.offsetTop+py2)+'px'; s.style.opacity=1-Math.min(1,dt/life);
+        if(dt<life) requestAnimationFrame(anim); else s.remove();
+      })(t0);
+    }
+  }
+  function ploppAt(x,y){ burst(x,y,'✨',10,0.6); setTimeout(()=>burst(x,y,'🧱',6,0.6),90); }
+  function dust(x,y){ burst(x,y,'·',8,0.5); }
 
+  function assignJobs(nextKey){
+    const {removes, adds}=diffTo(nextKey);
+    const jobs=[];
+    removes.forEach((pt,i)=> jobs.push({kind:'remove', target:pt}));
+    adds.forEach(pt=> jobs.push({kind:'add', target:pt}));
+    // gleichmäßig verteilen
+    jobs.forEach((job,i)=>{ ACTORS[i % ACTORS.length].queue.push(job); });
+    ACTORS.forEach(a=>{ if(!a.job) runNext(a); });
+  }
   function runNext(actor){
     if(actor.job) return;
     const job=actor.queue.shift(); if(!job){ actor.job=null; return; }
@@ -372,7 +451,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
     if(job.kind==='remove'){
       speak(actor,"Abbruch!",700);
       moveActorTo(actor, job.target.x, job.target.y, .7, ()=>{
-        const px = findNearestPixel(job.target.x, job.target.y); if(px){ px.style.opacity=.12; }
+        const px = findNearestPixel(job.target.x, job.target.y); if(px){ px.style.opacity=.12; dust(job.target.x, job.target.y); }
         const brick = spawnBrickAt(job.target.x, job.target.y, true);
         const dumpX = grid.clientWidth-24, dumpY = grid.clientHeight-24;
         moveActorTo(actor, dumpX, dumpY, 1.0, ()=>{
@@ -384,37 +463,23 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
       const pileX=24, pileY=grid.clientHeight-24;
       moveActorTo(actor, pileX, pileY, .7, ()=>{
         speak(actor,"Neuaufbau!",700);
-        if(pileIcons.length>0) pileIcons.pop();
-        updatePiles();
+        if(pileIcons.length>0) pileIcons.pop(); updatePiles();
         const brick = spawnBrickAt(pileX, pileY, true);
         moveActorTo(actor, job.target.x, job.target.y, 1.0, ()=>{
           const px = findNearestPixel(job.target.x, job.target.y);
-          if(px){ px.style.opacity=1; px.classList.remove('pulse'); void px.offsetWidth; px.classList.add('pulse'); }
+          if(px){ px.style.opacity=1; px.classList.remove('pulse'); void px.offsetWidth; px.classList.add('pulse'); ploppAt(job.target.x, job.target.y); }
           brick.remove(); actor.job=null; runNext(actor);
         }, brick);
       });
     }
   }
 
-  function findNearestPixel(x,y){
-    let best=null, bd=1e12;
-    for(const p of PIXELS){
-      const px=parseFloat(p.dataset.x||'0'), py=parseFloat(p.dataset.y||'0');
-      const d=(px-x)*(px-x)+(py-y)*(py-y);
-      if(d<bd){ bd=d; best=p; }
-    }
-    return best;
-  }
-
-  /* ===== Datum & Heiligabend-Countdown ===== */
+  /* Datum & Countdown */
   function daysUntilChristmasEve(now=new Date()){
-    const z=tz;
-    const y = new Intl.DateTimeFormat('de-DE',{timeZone:z,year:'numeric'}).format(now)*1;
-    const berlinNow = new Date(new Date().toLocaleString('en-US',{timeZone:z}));
-    let targetYear = y;
-    const xmasThisYear = new Date(Date.UTC(y, 11, 24, 0,0,0)); // 24.12.
-    if(berlinNow > xmasThisYear) targetYear = y+1;
-    const target = new Date(Date.UTC(targetYear,11,24,0,0,0));
+    const berlinNow = new Date(new Date().toLocaleString('en-US',{timeZone:tz}));
+    const y = berlinNow.getFullYear();
+    let target = new Date(Date.UTC(y,11,24,0,0,0));
+    if(berlinNow > target) target = new Date(Date.UTC(y+1,11,24,0,0,0));
     const diffMs = target - berlinNow;
     return Math.max(0, Math.ceil(diffMs/86400000));
   }
@@ -425,40 +490,45 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
     dateRow.textContent = `${pretty} • Tage bis Heiligabend: ${days}`;
   }
 
-  /* ===== Haupt-Loop ===== */
+  /* Haupt-Ticker */
+  let current="0000", lastBlink=-1;
   function tick(){
-    const now=new Date();
-    const p=fmtParts(now);
+    const now=new Date(); const p=fmtParts(now);
     tzLabel.textContent=`Europa/Berlin • ${p.h}:${p.m}:${p.s}`;
+    const s=+p.s;
 
-    if(+p.s!==lastSec){
-      const on=(+p.s)%2===0; document.querySelectorAll('.colonDot').forEach(d=>d.style.opacity=on?1:0.35);
-      lastSec=+p.s; updateDateRow();
+    if(s!==lastBlink){
+      const on=(s%2===0); document.querySelectorAll('.colonDot').forEach(d=>d.style.opacity=on?1:0.35);
+      lastBlink=s; updateDateRow();
     }
 
-    // 3s vorher: Ghost-Plan und Jobs
-    if((+p.s)===57){
-      const future=new Date(now.getTime()+3000);
+    // Vorlauf 3s: Ghost & Jobs
+    if(s>=57){
+      const ms = now.getMilliseconds();
+      const future = new Date(now.getTime() + (60000 - (s-57)*1000 - ms));
       const np=fmtParts(future); const nextKey=np.h+np.m;
       if(tick.prepared!==nextKey){
-        tick.prepared=nextKey;
-        showGhost(nextKey);
-        assignJobs(nextKey);
+        tick.prepared=nextKey; showGhost(nextKey); assignJobs(nextKey);
       }
-    }
+      const progVal=(s-57 + ms/1000)/3; prog.style.width=(progVal*100)+'%'; tintGhost(progVal);
+    } else { prog.style.width='0%'; tintGhost(0); }
 
-    // Wechsel
+    // Minutenwechsel
     const key=p.h+p.m;
     if(key!==current){
       current=key; render(current); hideGhost();
       while(pileIcons.length<5) pileIcons.push('🧱'); updatePiles();
       ACTORS.forEach(a=>{ a.queue=[]; a.job=null; });
+      // kleines Feuerwerk am Doppelpunkt
+      const box=grid.getBoundingClientRect(), height=rows*px+(rows-1)*gap;
+      const y0=(box.height-height)/2, cx=box.width/2-6;
+      burst(cx, y0+height*0.5, '✨', 24, 1.0);
     }
 
     requestAnimationFrame(tick);
   }
 
-  // Dauer-Wandern separat
+  // Dauer-Wandern
   function startWanderLoop(){
     let last=performance.now();
     (function loop(ts){
@@ -470,12 +540,12 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Animation, Datum, Heilig
 
   // Init
   function init(){
-    const start = fmtParts(); current = start.h + start.m; render(current); updateDateRow();
+    const start=fmtParts(); current=start.h+start.m; render(current); updateDateRow();
     spawnActors(); updatePiles(); tick(); startWanderLoop();
   }
 
   // Resize
-  window.addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); });
+  addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); autoScaleOneLine(); });
 
   init();
 })();
