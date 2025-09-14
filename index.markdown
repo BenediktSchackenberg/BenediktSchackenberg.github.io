@@ -136,13 +136,6 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
 <div class="ambient"><div class="layer l1"></div><div class="layer l2"></div></div>
 <div class="watermark"><div class="wm-text"><div><span>Benedikt Schackenberg</span></div></div></div>
 
-<!-- Video & Link -->
-<div class="videoBox">
-  <iframe src="https://www.youtube-nocookie.com/embed/8R92e_U0fzI?autoplay=1&mute=1&loop=1&playlist=8R92e_U0fzI"
-          title="YouTube video" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-  <div class="caption"><a href="https://blobtv.de" target="_blank" rel="noopener">meta-autistische Comedy rund um die Uhr</a></div>
-</div>
-
 <!-- Kontakt -->
 <div class="contact">
   <div>📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a></div>
