@@ -52,16 +52,6 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   .watermark{position:fixed;inset:0;z-index:0;pointer-events:none}
   .wm-text{position:absolute;inset:0;display:grid;place-items:center;opacity:.06;font-weight:900;text-align:center;line-height:1.1;font-size:clamp(28px,8vw,84px);letter-spacing:.02em;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));user-select:none}
 
-  /* Video + Link */
-  .videoBox{position:fixed;top:12px;left:12px;z-index:30;width:min(360px,36vw)}
-  .videoBox iframe{width:100%;aspect-ratio:16/9;border-radius:12px;box-shadow:var(--shadow);border:2px solid #222}
-  .videoBox .caption{margin-top:6px;font:700 13px/1.3 ui-sans-serif;text-align:center}
-  .videoBox .caption a{color:#ffd257;text-decoration:none}
-  .videoBox .caption a:hover{text-decoration:underline}
-  @media (max-width:420px){
-    .videoBox{width:calc(100vw - 24px)}
-  }
-
   /* Kontakt */
   .contact{position:fixed;top:12px;right:12px;z-index:20;background:#0d0f12f0;border:1px solid #222a2f;border-radius:12px;box-shadow:var(--shadow);padding:10px 12px;min-width:260px;max-width:42vw}
   .contact a{color:#eaf2f6;text-decoration:none;border-bottom:1px dotted #6b7a86}
@@ -89,7 +79,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     0%{transform:translateY(-120vh) rotate(-8deg) scale(.8);opacity:0}
     60%{transform:translateY(18px) rotate(1deg) scale(1.04);opacity:1}
     78%{transform:translateY(-8px) rotate(-1deg) scale(.98)}
-    100%{transform:translateY(0) rotate(0deg) scale(1);opacity:1}
+    100%{transform:translateY(0) rotate(0) scale(1);opacity:1}
   }
 
   /* Digitale Pixel-Uhr */
@@ -128,6 +118,27 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
 
   .dateRow{font:800 14px/1.3 ui-sans-serif;opacity:.9;padding-inline:8px;text-align:center}
   .footer{position:fixed;bottom:10px;right:12px;opacity:.6;font-size:12px;z-index:12}
+
+  /* Krokodile (Original-Version, nur Anzahl reduziert) */
+  .crocs{position:fixed;left:0;right:0;bottom:18px;pointer-events:none;z-index:15}
+  .croc{
+    position:absolute;bottom:0;transform:translateX(-50%);
+    font-size:28px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))
+  }
+  .croc.flip{transform:translateX(-50%) scaleX(-1)}
+  .croc .bubble{
+    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+    font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none
+  }
+  .croc.walk{animation:step 600ms steps(2,end) infinite}
+  @keyframes step{50%{transform:translateX(-50%) translateY(-2px)}}
+  @media (max-width:540px){
+    .croc{font-size:22px}
+    .croc .bubble{font-size:10px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .croc.walk{animation:none}
+  }
 </style>
 </head>
 <body>
@@ -163,6 +174,9 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   </div>
 </div>
 
+<!-- Krokodil-Layer -->
+<div class="crocs" id="crocs" aria-hidden="true"></div>
+
 <!-- versteckter PGP-Text fürs Kopieren -->
 <pre id="pgp-key" style="position:fixed;left:-9999px;top:-9999px">
 -----BEGIN PGP PUBLIC KEY BLOCK-----
@@ -176,7 +190,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
 (function(){
   document.getElementById('y').textContent=new Date().getFullYear();
 
-  /* ===== Name – bunte Fall-Animation, 90s sichtbar ===== */
+  /* ===== Name – bunte Fall-Animation ===== */
   const titleEl=document.getElementById('title');
   const nameText="Benedikt Schackenberg";
   const colors=["#7dd36f","#ffd257","#9ac1ff","#ffa6e7","#f5a3a3","#a8f0c6","#ff9f7a","#b2f07f","#f5d0fe","#c2e7ff","#ffd6a5","#b8f2e6"];
@@ -208,7 +222,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   buildName(); playName();
   addEventListener('resize', autoScaleOneLine);
 
-  /* ===== Uhr & Umbau – mobil dynamisch skalierend ===== */
+  /* ===== Uhr & Umbau ===== */
   const tz='Europe/Berlin';
   const grid=document.getElementById('grid');
   const ghost=document.getElementById('ghost');
@@ -220,24 +234,20 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   const prog=document.getElementById('prog');
   const stage=document.getElementById('stage');
 
-  /* dynamische Pixelgröße für Mobile */
   let PX=14, GAP=4, COLS=5, ROWS=7, DIGIT_GAP=10, GROUP_GAP=20;
   function recomputeSizes(){
     const w=grid.clientWidth||window.innerWidth;
     const h=grid.clientHeight||window.innerHeight;
     const s=Math.min(w,h);
-    // kleiner Screen -> kleinere Pixel
     PX = s<420 ? 10 : s<680 ? 12 : 14;
     GAP = s<420 ? 3 : 4;
     DIGIT_GAP = s<420 ? 8 : 10;
     GROUP_GAP = s<420 ? 14 : 20;
-    // vorhandene Pixel/Geister auf neue Größe bringen
     document.querySelectorAll('.pixel,.ghost .gpx').forEach(el=>{
       el.style.width=PX+'px'; el.style.height=PX+'px'; el.style.borderRadius=Math.max(2,Math.round(PX*.22))+'px';
     });
   }
 
-  // 5x7 Digit-Map
   const DIGITS={
     "0":[1,1,1,1,1,1,0,0,0,1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,1,1,0,0,0,1,1,1,1,1,1],
     "1":[0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,0],
@@ -265,7 +275,6 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     };
   }
 
-  // Pixelpool
   const PIXELS=[]; for(let i=0;i<160;i++){ const d=document.createElement('div'); d.className='pixel'; grid.appendChild(d); PIXELS.push(d); }
   const colonTop=document.createElement('div'), colonBot=document.createElement('div'); colonTop.className='colonDot'; colonBot.className='colonDot'; grid.appendChild(colonTop); grid.appendChild(colonBot);
 
@@ -297,7 +306,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     return {h:p.hour,m:p.minute,s:p.second,w:p.weekday,d:p.day,mo:p.month,y:p.year};
   }
 
-  /* Akteure – auf Mobile weniger */
+  /* Akteure */
   const ACTOR_TYPES=[
     {em:'👷', lines:["Mörtel!","Wasserwaage!","Abbruch!","Neuaufbau!"]},
     {em:'🐿️', lines:["Nuss gegen Stein!","Flitz!","Ich kann tragen!"]},
@@ -336,7 +345,6 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     actor.el.style.left=(grid.offsetLeft+actor.x)+'px'; actor.el.style.top=(grid.offsetTop+actor.y)+'px';
   }
 
-  /* Materialanzeige */
   const pileIcons=['🧱','🧱','🧱','🧱','🧱']; const dumpIcons=['🗿'];
   function updatePiles(){ pileEl.textContent=pileIcons.join(''); dumpEl.textContent=dumpIcons.join(''); }
 
@@ -534,10 +542,60 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     })(last);
   }
 
+  /* ===== Krokodile – wie zuvor, aber MAX=2 ===== */
+  function spawnCrocs(){
+    const layer=document.getElementById('crocs');
+    layer.innerHTML='';
+    const MAX = 2; // <— nur zwei Krokos
+    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const voices=["Mama?","Maaaaama?","Wo bist du?","Mama, ich hab Hunger!","Hallo?"];
+    const W = () => document.documentElement.clientWidth;
+
+    for(let i=0;i<MAX;i++){
+      const c=document.createElement('div');
+      c.className='croc walk';
+      c.innerHTML=`<div class="bubble"></div><span aria-hidden="true">🐊</span>`;
+      layer.appendChild(c);
+
+      const startLeft = Math.random()<0.5;
+      let x = startLeft ? -20 - Math.random()*80 : W() + 20 + Math.random()*80;
+      let dir = startLeft ? 1 : -1;
+      let speed = (RM?32:48) + Math.random()*28; // Originaltempo
+
+      c.style.bottom = (12 + Math.random()*10) + 'px';
+      function updateFlip(){ c.classList.toggle('flip', dir<0); }
+      updateFlip();
+
+      const bubble=c.querySelector('.bubble');
+      function say(){
+        if(Math.random()<0.35){
+          bubble.textContent=voices[(Math.random()*voices.length)|0];
+          bubble.style.display='block';
+          setTimeout(()=> bubble.style.display='none', 1200);
+        }
+      }
+      setInterval(say, 2000 + (Math.random()*2000|0));
+
+      let last=performance.now();
+      (function loop(ts){
+        const dt = Math.min(0.05,(ts-last)/1000); last=ts;
+        x += dir * speed * dt;
+
+        if(dir>0 && x > W()+40){ dir=-1; updateFlip(); say(); }
+        if(dir<0 && x < -40){ dir=1; updateFlip(); say(); }
+        if(Math.random()<0.01){ speed = Math.max(28,(RM?32:48) + (Math.random()*36-18)); }
+
+        c.style.left = x + 'px';
+        requestAnimationFrame(loop);
+      })(last);
+    }
+  }
+
   function init(){
     recomputeSizes();
-    const start=fmtParts(); current=start.h+start.m; render(current); updateDateRow();
+    const start=fmtParts(); let key=start.h+start.m; current=key; render(current); updateDateRow();
     spawnActors(); updatePiles(); tick(); startWanderLoop();
+    spawnCrocs(); // 🐊
   }
 
   addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); autoScaleOneLine(); });
