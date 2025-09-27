@@ -90,9 +90,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   .pixel.h{background:#ffd257}.pixel.m{background:#7dd36f}
   .pixel.pulse{animation:pulse .38s ease-out}
   @keyframes pulse{0%{filter:drop-shadow(0 0 10px #fff8)}100%{filter:none}}
-  @media (max-width:480px){
-    .digital{height:min(64vw,220px)}
-  }
+  @media (max-width:480px){.digital{height:min(64vw,220px)}}
 
   .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.18;filter:contrast(1.1)}
   .ghost .gpx{position:absolute;width:14px;height:14px;border-radius:3px;background:#86a9ff;transition:background .2s,transform .2s}
@@ -105,9 +103,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   .actor{position:absolute;transform:translate(-50%,-50%);font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6));animation:wiggle .8s steps(2,end) infinite}
   .actor .bubble{position:absolute;left:50%;top:-22px;transform:translateX(-50%);font:800 10px ui-sans-serif;background:#ffffffd9;color:#111;border:2px solid #2f2626;border-radius:8px;padding:0 6px;white-space:nowrap;display:none}
   @keyframes wiggle{0%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-50%) rotate(2deg)}100%{transform:translate(-50%,-50%) rotate(-2deg)}}
-  @media (prefers-reduced-motion:reduce){
-    .actor{animation:none}
-  }
+  @media (prefers-reduced-motion:reduce){.actor{animation:none}}
 
   .brick{position:absolute;width:14px;height:14px;border-radius:3px;background:#cfe3ff;box-shadow:0 0 0 1px #0006 inset,0 2px 0 #0004;transform:translate(-50%,-50%)}
   .brick.spin{animation:spin 1.2s linear infinite}
@@ -119,26 +115,27 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
   .dateRow{font:800 14px/1.3 ui-sans-serif;opacity:.9;padding-inline:8px;text-align:center}
   .footer{position:fixed;bottom:10px;right:12px;opacity:.6;font-size:12px;z-index:12}
 
-  /* Krokodile (Original-Version, nur Anzahl reduziert) */
+  /* Krokodile (reduziert) */
   .crocs{position:fixed;left:0;right:0;bottom:18px;pointer-events:none;z-index:15}
-  .croc{
-    position:absolute;bottom:0;transform:translateX(-50%);
-    font-size:28px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))
-  }
+  .croc{position:absolute;bottom:0;transform:translateX(-50%);font-size:28px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))}
   .croc.flip{transform:translateX(-50%) scaleX(-1)}
-  .croc .bubble{
-    position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
-    font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none
-  }
+  .croc .bubble{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none}
   .croc.walk{animation:step 600ms steps(2,end) infinite}
   @keyframes step{50%{transform:translateX(-50%) translateY(-2px)}}
-  @media (max-width:540px){
-    .croc{font-size:22px}
-    .croc .bubble{font-size:10px}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .croc.walk{animation:none}
-  }
+  @media (max-width:540px){.croc{font-size:22px}.croc .bubble{font-size:10px}}
+  @media (prefers-reduced-motion:reduce){.croc.walk{animation:none}}
+
+  /* 🎄 NEU: Pixel-Dorf & Parade */
+  .village{position:fixed;left:50%;bottom:54px;transform:translateX(-50%);z-index:8;pointer-events:none}
+  .hut{width:min(58vw,520px);height:auto;image-rendering:pixelated;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
+  .parade{position:fixed;left:0;right:0;bottom:36px;z-index:14;pointer-events:none}
+  .char{position:absolute;bottom:0;transform:translate(-50%,0);font-size:32px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.65))}
+  .char.small{font-size:28px}
+  .char .bubble{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none}
+  .walk{animation:walky 820ms steps(2,end) infinite}
+  @keyframes walky{50%{transform:translate(-50%,-3px)}}
+  @media (max-width:540px){.char{font-size:26px}.char.small{font-size:22px}}
+  @media (prefers-reduced-motion:reduce){.walk{animation:none}}
 </style>
 </head>
 <body>
@@ -173,6 +170,43 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     <div class="badge" id="tzLabel">Europa/Berlin</div>
   </div>
 </div>
+
+<!-- 🎄 NEU: Hexenhäuschen & Parade -->
+<div class="village" id="village" aria-hidden="true">
+  <!-- Pixeliges Hexenhäuschen als crisp SVG -->
+  <svg class="hut" id="witchHut" viewBox="0 0 160 120" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" aria-label="Hexenhäuschen">
+    <!-- Boden -->
+    <rect x="0" y="100" width="160" height="20" fill="#1a252d"/>
+    <!-- Hauskörper -->
+    <rect x="32" y="48" width="96" height="52" fill="#3a2f3b"/>
+    <rect x="36" y="52" width="88" height="44" fill="#4b3b4a"/>
+    <!-- Tür -->
+    <rect x="72" y="68" width="16" height="28" fill="#2b222a"/>
+    <rect x="74" y="70" width="12" height="24" fill="#3a2e37"/>
+    <rect x="80" y="84" width="2" height="4" fill="#1a151a"/>
+    <!-- Fenster links/rechts -->
+    <rect x="44" y="64" width="16" height="12" fill="#1b2230"/>
+    <rect x="45" y="65" width="14" height="10" fill="#9ad1ff"/>
+    <rect x="100" y="64" width="16" height="12" fill="#1b2230"/>
+    <rect x="101" y="65" width="14" height="10" fill="#ffd257"/>
+    <!-- Zuckerstangen-Deko -->
+    <rect x="32" y="48" width="4" height="52" fill="#b53c47"/>
+    <rect x="124" y="48" width="4" height="52" fill="#b53c47"/>
+    <rect x="34" y="50" width="2" height="48" fill="#fff"/>
+    <rect x="126" y="50" width="2" height="48" fill="#fff"/>
+    <!-- Dach -->
+    <polygon points="24,50 80,22 136,50 132,54 80,30 28,54" fill="#2c2430"/>
+    <polygon points="28,54 80,30 132,54 128,58 80,38 32,58" fill="#3b2f39"/>
+    <!-- Rauch aus Kamin -->
+    <rect x="116" y="38" width="8" height="10" fill="#2c2430"/>
+    <g id="smoke">
+      <rect x="118" y="28" width="6" height="6" fill="#7a8696"/>
+      <rect x="120" y="20" width="5" height="5" fill="#9aa6b6"/>
+      <rect x="122" y="13" width="4" height="4" fill="#b8c2cf"/>
+    </g>
+  </svg>
+</div>
+<div class="parade" id="parade" aria-hidden="true"></div>
 
 <!-- Krokodil-Layer -->
 <div class="crocs" id="crocs" aria-hidden="true"></div>
@@ -244,7 +278,8 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     DIGIT_GAP = s<420 ? 8 : 10;
     GROUP_GAP = s<420 ? 14 : 20;
     document.querySelectorAll('.pixel,.ghost .gpx').forEach(el=>{
-      el.style.width=PX+'px'; el.style.height=PX+'px'; el.style.borderRadius=Math.max(2,Math.round(PX*.22))+'px';
+      el.style.width=PX+'px'; el.style.height=PX+'px';
+      el.style.borderRadius=Math.max(2,Math.round(PX*.22))+'px';
     });
   }
 
@@ -306,7 +341,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     return {h:p.hour,m:p.minute,s:p.second,w:p.weekday,d:p.day,mo:p.month,y:p.year};
   }
 
-  /* Akteure */
+  /* Akteure (Uhr) */
   const ACTOR_TYPES=[
     {em:'👷', lines:["Mörtel!","Wasserwaage!","Abbruch!","Neuaufbau!"]},
     {em:'🐿️', lines:["Nuss gegen Stein!","Flitz!","Ich kann tragen!"]},
@@ -314,11 +349,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     {em:'🦺', lines:["Plan A!","Nicht anfassen!","Ich zähl'…"]}
   ];
   const ACTORS=[];
-  function actorCount(){
-    const w=window.innerWidth;
-    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 4;
-    return w<420 ? 5 : w<768 ? 7 : 8;
-  }
+  function actorCount(){ const w=window.innerWidth; if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 4; return w<420 ? 5 : w<768 ? 7 : 8; }
   function spawnActors(){
     workersLayer.innerHTML=""; ACTORS.length=0;
     const N=actorCount();
@@ -542,13 +573,13 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     })(last);
   }
 
-  /* ===== Krokodile – wie zuvor, aber MAX=2 ===== */
+  /* ===== Krokodile – reduziert ===== */
   function spawnCrocs(){
     const layer=document.getElementById('crocs');
     layer.innerHTML='';
-    const MAX = 2; // <— nur zwei Krokos
+    const MAX = 2;
     const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const voices=["Mama?","Maaaaama?","Wo bist du?","Mama, ich hab Hunger!","Hallo?"];
+    const voices=["Mama?","Maaaaama?","Wo bist du?","Ich hab Hunger!","Hallo?"];
     const W = () => document.documentElement.clientWidth;
 
     for(let i=0;i<MAX;i++){
@@ -560,7 +591,7 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
       const startLeft = Math.random()<0.5;
       let x = startLeft ? -20 - Math.random()*80 : W() + 20 + Math.random()*80;
       let dir = startLeft ? 1 : -1;
-      let speed = (RM?32:48) + Math.random()*28; // Originaltempo
+      let speed = (RM?32:48) + Math.random()*28;
 
       c.style.bottom = (12 + Math.random()*10) + 'px';
       function updateFlip(){ c.classList.toggle('flip', dir<0); }
@@ -591,11 +622,143 @@ description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdo
     }
   }
 
+  /* ===== 🎄 NEU: Winter-Parade zum Hexenhäuschen ===== */
+  const paradeLayer = document.getElementById('parade');
+  const villageEl = document.getElementById('village');
+  const hutEl = document.getElementById('witchHut');
+
+  const PARADE_TYPES = [
+    {em:'🎅', size:'normal', lines:["Ho ho ho!","Warmer Kakao?","Wer hat Plätzchen?"]},
+    {em:'🦌', size:'small',  lines:["Schnauf…","Glöckchenzeit!","Karotte?"]},
+    {em:'🧙‍♀️', size:'normal', lines:["Hokus… Fokus!","Kessel blubbert!","Besen geparkt."]},
+    {em:'🧙‍♂️', size:'normal', lines:["Zauberhaft!","Lumina maxima!","Feinstes Hexenwerk."]},
+  ];
+  const PARADE_CHAT = [
+    "Schöne Hütte!", "Wer hat das Dach verziert?", "Glühwein oder Tee?",
+    "Ich hab Sternenstaub.", "Rentier-Selfie?", "Zauberstab laden…",
+    "Plätzchenrunde!", "Noch ein Lied?", "Glocken klingen 🎶"
+  ];
+
+  function getHutMeetingPoint(){
+    const r = hutEl.getBoundingClientRect();
+    // vor der Tür – leicht zufällig
+    const x = r.left + r.width*0.5 + (Math.random()*30-15);
+    const y = r.bottom - 8;
+    return {x,y};
+  }
+
+  function spawnParade(){
+    paradeLayer.innerHTML='';
+    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const W = () => document.documentElement.clientWidth;
+    const H = () => document.documentElement.clientHeight;
+
+    const count = Math.max(5, Math.min(8, Math.round(W()/260))); // dezent
+    const chars=[];
+    for(let i=0;i<count;i++){
+      const t = PARADE_TYPES[i % PARADE_TYPES.length];
+      const el = document.createElement('div');
+      el.className='char walk'+(t.size==='small'?' small':'');
+      el.innerHTML=`<div class="bubble"></div><span>${t.em}</span>`;
+      paradeLayer.appendChild(el);
+      // Start: außerhalb links oder rechts
+      const fromLeft = Math.random()<0.5;
+      const startX = fromLeft ? (-40 - Math.random()*80) : (W()+40+Math.random()*80);
+      const startY = 0; // Bodenlinie via bottom:0
+      el.style.left = startX+'px';
+
+      chars.push({
+        el, type:t,
+        x:startX, y:startY,
+        dir: fromLeft? 1 : -1,
+        arrived:false,
+        sayCooldown: 1 + Math.random()*2
+      });
+      // Blickrichtung
+      el.style.transformOrigin='50% 100%';
+      el.style.scale = fromLeft ? '1 1' : '-1 1';
+    }
+
+    // Meetingpos berechnen, wenn Layout stabil
+    function computeGoal(){ return getHutMeetingPoint(); }
+    let goal = computeGoal();
+
+    // Chat nach Ankunft
+    function chatLoop(){
+      chars.filter(c=>c.arrived).forEach(c=>{
+        c.sayCooldown -= 0.5;
+        if(c.sayCooldown<=0){
+          const b=c.el.querySelector('.bubble');
+          const lines = Math.random()<0.5 ? c.type.lines : PARADE_CHAT;
+          b.textContent = lines[(Math.random()*lines.length)|0];
+          b.style.display='block';
+          setTimeout(()=>{b.style.display='none';}, 1400);
+          c.sayCooldown = 2 + Math.random()*3;
+        }
+      });
+      setTimeout(chatLoop, 500);
+    }
+
+    // Bewegung
+    let last=performance.now();
+    (function loop(ts){
+      const dt=Math.min(0.05,(ts-last)/1000); last=ts;
+      // bei Resize Ziel aktualisieren
+      goal = computeGoal();
+
+      chars.forEach(c=>{
+        if(c.arrived) return;
+        const speedBase = RM ? 18 : 28;
+        const jitter = RM ? 0 : (Math.sin((ts/1000)+(c.x*0.01))*2);
+        const speed = speedBase + jitter;
+        const dir = Math.sign(goal.x - c.x) || c.dir;
+        c.x += dir * speed * dt;
+
+        // Blickrichtung
+        c.el.style.scale = dir>=0 ? '1 1' : '-1 1';
+        c.el.style.left = c.x + 'px';
+
+        // Ankunft?
+        if(Math.abs(c.x - goal.x) < 10){
+          c.arrived = true;
+          c.el.classList.remove('walk');
+          c.el.style.bottom = '0';
+          // minimal verteilen
+          c.el.style.left = (goal.x + (Math.random()*60-30))+'px';
+          // Begrüßung
+          const b=c.el.querySelector('.bubble');
+          b.textContent = ["Hallo!", "Frohe Zeit!", "Bin da!", "Mäh… äh… Ho!"][Math.floor(Math.random()*4)];
+          b.style.display='block';
+          setTimeout(()=>b.style.display='none',1200);
+        }
+      });
+
+      requestAnimationFrame(loop);
+    })(last);
+
+    // sanftes Kamin-Rauch „ankern“
+    ;(function smoke(){
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const s=document.getElementById('smoke');
+      if(!s) return;
+      let t=0;
+      (function anim(){
+        t+=0.01;
+        s.setAttribute('transform',`translate(${Math.sin(t)*0.8}, ${-Math.cos(t*0.6)*0.4})`);
+        requestAnimationFrame(anim);
+      })();
+    })();
+
+    chatLoop();
+    addEventListener('resize', ()=>{ goal = computeGoal(); });
+  }
+
   function init(){
-    recomputeSizes();
     const start=fmtParts(); let key=start.h+start.m; current=key; render(current); updateDateRow();
     spawnActors(); updatePiles(); tick(); startWanderLoop();
-    spawnCrocs(); // 🐊
+    spawnCrocs();
+    // 🎄 Starte Parade nach kurzem Delay
+    setTimeout(spawnParade, 1200);
   }
 
   addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); autoScaleOneLine(); });
