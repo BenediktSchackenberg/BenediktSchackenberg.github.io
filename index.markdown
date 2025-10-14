@@ -2,768 +2,202 @@
 title: "Profil Benedikt Schackenberg"
 layout: default
 permalink: /
-description: "Retro-Intro + Digitale Pixeluhr mit Umbau-Workern, Datum & Countdown – mobil optimiert"
+description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit | Azure & Cloud Architekturen"
 ---
-
-<!doctype html>
 <html lang="de">
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
 <title>Benedikt Schackenberg</title>
 <link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Inter:wght@400;600&display=swap" rel="stylesheet">
 <style>
-  html,body{height:100%;background:#0e1418}
-  .site-header, header, .page, .page-content, main, .site-footer{background:transparent!important;box-shadow:none!important;border:0!important}
-  :root{--fg:#f2f5f7;--shadow:0 12px 26px rgba(0,0,0,.25)}
-  *{box-sizing:border-box}
-  body{margin:0;color:var(--fg);font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial;overflow:hidden;-webkit-tap-highlight-color:transparent}
-
-  /* Retro-Hintergrund */
-  .retro-sky{position:fixed;inset:0;z-index:0;pointer-events:none;background:
-    radial-gradient(2px 2px at 10% 12%, #fff8 50%, transparent 51%),
-    radial-gradient(2px 2px at 22% 28%, #fff6 50%, transparent 51%),
-    radial-gradient(2px 2px at 78% 18%, #fff7 50%, transparent 51%),
-    radial-gradient(2px 2px at 65% 30%, #fff8 50%, transparent 51%),
-    repeating-linear-gradient(0deg,transparent 0 6px,rgba(255,255,255,.03) 6px 12px),
-    linear-gradient(180deg,#0f1a22 0%,#0e1418 42%,#0e1418 100%)}
-  .retro-sky::before{content:"";position:absolute;left:-20vw;right:-20vw;height:28vh;top:0;
-    background:
-      radial-gradient(70px 18px at 12% 34%, #ffffff15 60%, transparent 61%),
-      radial-gradient(90px 20px at 40% 26%, #ffffff18 60%, transparent 61%),
-      radial-gradient(70px 18px at 72% 32%, #ffffff12 60%, transparent 61%),
-      radial-gradient(90px 22px at 90% 22%, #ffffff14 60%, transparent 61%);
-    image-rendering:pixelated;animation:clouds 60s linear infinite;filter:drop-shadow(0 6px 10px rgba(0,0,0,.2))}
-  @keyframes clouds{to{transform:translateX(40vw)}}
-
-  .ambient{position:fixed;inset:0;pointer-events:none;z-index:1}
-  .layer{position:absolute;inset:-10vh -10vw;opacity:.08;filter:blur(.2px)}
-  .l1{background:
-      radial-gradient(1200px 700px at 20% 10%, rgba(125,211,111,.6), transparent 60%),
-      radial-gradient(1000px 600px at 85% 80%, rgba(255,210,87,.65), transparent 60%);
-     animation:drift1 60s linear infinite}
-  .l2{background:repeating-linear-gradient(25deg,rgba(255,255,255,.8) 0 2px,transparent 2px 14px);opacity:.05;animation:drift2 70s linear infinite reverse}
-  @keyframes drift1{to{transform:translate3d(6vw,-4vh,0)}}
-  @keyframes drift2{to{transform:translate3d(-6vw,3vh,0)}}
-  @media (prefers-reduced-motion:reduce){
-    .retro-sky::before,.l1,.l2{animation:none}
+  :root{
+    --bg:#f9f6ef;       /* hell-freundlich */
+    --fg:#2d2a26;       /* dunkles Braun-Grau */
+    --ink:#2d2a26;
+    --box:#fffaf1;      /* Papier-Look */
+    --muted:#6f6a63;
+    --accent:#4479ff;   /* Retro-Blau */
+    --accent2:#ff6b6b;  /* sanftes Rot */
+    --line:#d9d6cd;
+    --shadow:0 6px 16px rgba(0,0,0,.12);
   }
+  *,*::before,*::after{box-sizing:border-box}
+  html,body{height:100%}
+  body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial}
+  main{max-width:1000px;margin:0 auto;padding:28px 16px 72px}
 
-  .watermark{position:fixed;inset:0;z-index:0;pointer-events:none}
-  .wm-text{position:absolute;inset:0;display:grid;place-items:center;opacity:.06;font-weight:900;text-align:center;line-height:1.1;font-size:clamp(28px,8vw,84px);letter-spacing:.02em;filter:drop-shadow(0 4px 14px rgba(0,0,0,.35));user-select:none}
+  /* Retro Fensterrahmen */
+  .window{background:var(--box);border:2px solid #cfc8b5;border-radius:12px;box-shadow:var(--shadow);overflow:hidden}
+  .window-header{background:linear-gradient(180deg,#ece8df,#e2ded5);padding:.45rem .75rem;display:flex;align-items:center;justify-content:space-between;font-family:'VT323',monospace;font-size:1.1rem;border-bottom:1px solid var(--line)}
+  .window-buttons span{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px}
+  .red{background:#ff6b6b}.yellow{background:#ffca3a}.green{background:#8ac926}
 
-  /* Kontakt */
-  .contact{position:fixed;top:12px;right:12px;z-index:20;background:#0d0f12f0;border:1px solid #222a2f;border-radius:12px;box-shadow:var(--shadow);padding:10px 12px;min-width:260px;max-width:42vw}
-  .contact a{color:#eaf2f6;text-decoration:none;border-bottom:1px dotted #6b7a86}
-  .contact-actions{display:flex;gap:8px;margin-top:6px;flex-wrap:wrap}
-  .mini{border:1px solid #2a343b;background:#11181d;color:#eaf2f6;border-radius:8px;padding:6px 10px;cursor:pointer;font-size:.85rem}
-  .mini:hover{background:#152027}
-  @media (max-width:540px){
-    .contact{min-width:auto;max-width:calc(100vw - 24px);left:12px;right:12px;top:auto;bottom:12px}
-  }
+  /* Hero */
+  .hero{display:flex;flex-wrap:wrap;gap:18px;padding:14px;align-items:center}
+  .avatar{flex:0 0 180px;background:#f3efe5;border:2px solid #cfc8b5;box-shadow:inset 0 0 0 2px #fff, 0 4px 8px rgba(0,0,0,.12);border-radius:8px;padding:6px}
+  .avatar img{width:100%;height:auto;image-rendering:pixelated;border-radius:4px}
+  .intro{flex:1;min-width:260px}
+  h1{font-family:'VT323',monospace;font-size:2rem;margin:.2rem 0 .6rem;color:var(--accent)}
+  .subtitle{color:var(--accent2);margin-bottom:.8rem}
+  .intro p{margin:.5rem 0}
+  .buttons{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.8rem}
+  .btn{display:inline-flex;align-items:center;gap:.45rem;background:#fff;border:2px solid #ccc;border-radius:8px;padding:.5rem .85rem;text-decoration:none;color:var(--fg);font-weight:600;box-shadow:0 3px 0 #ccc}
+  .btn:hover{background:#f3efe5}
+  .btn-primary{background:var(--accent);color:#fff;border-color:#3d68e3;box-shadow:0 3px 0 #3d68e3}
 
-  /* Bühne */
-  .stage{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;z-index:10;padding:16px}
+  /* Info-Karten */
+  .grid{display:grid;gap:12px;padding:14px}
+  @media(min-width:760px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px}
+  .card h3{margin:.1rem 0 .5rem;font-family:'VT323',monospace;color:var(--accent2);font-size:1.35rem}
+  .list{margin:0;padding-left:1.2rem}
+  .list li{margin:.35rem 0}
 
-  /* Titel */
-  .titleWrap{display:flex;justify-content:center;width:100%;padding-inline:12px}
-  .title{display:flex;white-space:nowrap;gap:.18em;filter:drop-shadow(0 8px 22px rgba(0,0,0,.35))}
-  .px{
-    position:relative;display:inline-block;font-weight:900;font-size:clamp(22px,9vw,92px);letter-spacing:.02em;
-    text-shadow:0 0 0 #0008, .6ch .6ch 0 #0006, 1.2ch 1.2ch 0 #0004;
-    box-shadow:0 0 0 .15ch #0b0f12 inset;border-radius:.4ch;padding:.02em .06em;
-    transform:translateY(-120vh) rotate(-8deg) scale(.8);opacity:0;color:var(--col,#f2f5f7);will-change:transform,opacity
-  }
-  .falling{animation:fallIn var(--fall,520ms) cubic-bezier(.2,.8,.2,1) forwards}
-  @keyframes fallIn{
-    0%{transform:translateY(-120vh) rotate(-8deg) scale(.8);opacity:0}
-    60%{transform:translateY(18px) rotate(1deg) scale(1.04);opacity:1}
-    78%{transform:translateY(-8px) rotate(-1deg) scale(.98)}
-    100%{transform:translateY(0) rotate(0) scale(1);opacity:1}
-  }
+  /* Notice */
+  .notice{margin:18px 14px;background:#fffdf5;border:1px solid #e4e1d8;border-radius:12px;padding:14px}
 
-  /* Digitale Pixel-Uhr */
-  .clockArea{display:flex;flex-direction:column;align-items:center;gap:10px;width:100%}
-  .digital{position:relative;width:min(92vw,860px);height:min(56vw,220px);background:#0d1014;border:3px solid #222a2f;border-radius:18px;box-shadow:inset 0 0 0 6px #121821,0 10px 26px #0006;overflow:hidden}
-  .grid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:100%;height:100%}
-  .pixel{position:absolute;width:14px;height:14px;border-radius:3px;background:#9ac1ff;box-shadow:0 0 0 1px #0006 inset,0 2px 0 #0004;transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .25s}
-  .pixel.h{background:#ffd257}.pixel.m{background:#7dd36f}
-  .pixel.pulse{animation:pulse .38s ease-out}
-  @keyframes pulse{0%{filter:drop-shadow(0 0 10px #fff8)}100%{filter:none}}
-  @media (max-width:480px){.digital{height:min(64vw,220px)}}
+  /* Kontaktblock */
+  .contact{margin:14px;padding:14px;border:1px solid var(--line);background:#fff;border-radius:12px}
 
-  .ghost{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;opacity:.18;filter:contrast(1.1)}
-  .ghost .gpx{position:absolute;width:14px;height:14px;border-radius:3px;background:#86a9ff;transition:background .2s,transform .2s}
-  .colonDot{position:absolute;width:12px;height:12px;border-radius:3px;background:#eaf2f6;box-shadow:0 0 0 1px #0006 inset,0 2px 0 #0004;opacity:.85;transition:opacity .35s}
+  /* Kleine Digital-Uhr (ohne Figuren) */
+  .clockWrap{padding:0 14px 14px}
+  .clock{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px}
+  .digits{font-family:'VT323',monospace;font-size:2.2rem;letter-spacing:.06em}
+  .date{font-weight:600;color:var(--muted)}
 
-  .yard,.dump{position:absolute;bottom:8px;font:800 12px ui-sans-serif;opacity:.85}
-  .yard{left:10px}.dump{right:10px}
-  .pile{display:inline-block;margin-left:6px}
-  .workers{position:absolute;inset:0;pointer-events:none}
-  .actor{position:absolute;transform:translate(-50%,-50%);font-size:22px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.6));animation:wiggle .8s steps(2,end) infinite}
-  .actor .bubble{position:absolute;left:50%;top:-22px;transform:translateX(-50%);font:800 10px ui-sans-serif;background:#ffffffd9;color:#111;border:2px solid #2f2626;border-radius:8px;padding:0 6px;white-space:nowrap;display:none}
-  @keyframes wiggle{0%{transform:translate(-50%,-50%) rotate(-2deg)}50%{transform:translate(-50%,-50%) rotate(2deg)}100%{transform:translate(-50%,-50%) rotate(-2deg)}}
-  @media (prefers-reduced-motion:reduce){.actor{animation:none}}
+  /* Privat-Block */
+  .privat{display:flex;gap:14px;align-items:flex-start}
+  .privat .p-avatar{flex:0 0 160px;background:#f3efe5;border:2px solid #cfc8b5;border-radius:8px;padding:6px;box-shadow:inset 0 0 0 2px #fff, 0 3px 6px rgba(0,0,0,.12)}
+  .privat .p-avatar img{width:100%;height:auto;image-rendering:pixelated;border-radius:4px}
+  .speech{display:inline-block;position:relative;background:#fff;border:2px solid #cfc8b5;border-radius:10px;padding:6px 10px;font-weight:700;margin-bottom:8px}
+  .speech::after{content:"";position:absolute;left:14px;bottom:-8px;width:12px;height:12px;background:#fff;border-left:2px solid #cfc8b5;border-bottom:2px solid #cfc8b5;transform:rotate(45deg)}
+  .hobbies{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:.35rem .6rem;font-size:.95rem;color:var(--muted)}
 
-  .brick{position:absolute;width:14px;height:14px;border-radius:3px;background:#cfe3ff;box-shadow:0 0 0 1px #0006 inset,0 2px 0 #0004;transform:translate(-50%,-50%)}
-  .brick.spin{animation:spin 1.2s linear infinite}
-  @keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
-  .spark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-size:14px;opacity:1;pointer-events:none}
-  .progress{position:absolute;left:0;right:0;bottom:0;height:6px;background:#1a2330}
-  .progress i{display:block;height:100%;background:#86a9ff;transition:width .2s}
-
-  .dateRow{font:800 14px/1.3 ui-sans-serif;opacity:.9;padding-inline:8px;text-align:center}
-  .footer{position:fixed;bottom:10px;right:12px;opacity:.6;font-size:12px;z-index:12}
-
-  /* Krokodile (reduziert) */
-  .crocs{position:fixed;left:0;right:0;bottom:18px;pointer-events:none;z-index:15}
-  .croc{position:absolute;bottom:0;transform:translateX(-50%);font-size:28px;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6))}
-  .croc.flip{transform:translateX(-50%) scaleX(-1)}
-  .croc .bubble{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none}
-  .croc.walk{animation:step 600ms steps(2,end) infinite}
-  @keyframes step{50%{transform:translateX(-50%) translateY(-2px)}}
-  @media (max-width:540px){.croc{font-size:22px}.croc .bubble{font-size:10px}}
-  @media (prefers-reduced-motion:reduce){.croc.walk{animation:none}}
-
-  /* 🎄 NEU: Pixel-Dorf & Parade */
-  .village{position:fixed;left:50%;bottom:54px;transform:translateX(-50%);z-index:8;pointer-events:none}
-  .hut{width:min(58vw,520px);height:auto;image-rendering:pixelated;filter:drop-shadow(0 6px 14px rgba(0,0,0,.5))}
-  .parade{position:fixed;left:0;right:0;bottom:36px;z-index:14;pointer-events:none}
-  .char{position:absolute;bottom:0;transform:translate(-50%,0);font-size:32px;line-height:1;filter:drop-shadow(0 3px 6px rgba(0,0,0,.65))}
-  .char.small{font-size:28px}
-  .char .bubble{position:absolute;bottom:42px;left:50%;transform:translateX(-50%);font:800 11px/1.2 ui-sans-serif;background:#fff;color:#111;border:2px solid #2f2626;border-radius:10px;padding:3px 6px;white-space:nowrap;display:none}
-  .walk{animation:walky 820ms steps(2,end) infinite}
-  @keyframes walky{50%{transform:translate(-50%,-3px)}}
-  @media (max-width:540px){.char{font-size:26px}.char.small{font-size:22px}}
-  @media (prefers-reduced-motion:reduce){.walk{animation:none}}
+  /* Footer */
+  footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);text-align:center;color:#57524a}
 </style>
 </head>
 <body>
-
-<div class="retro-sky" aria-hidden="true"></div>
-<div class="ambient"><div class="layer l1"></div><div class="layer l2"></div></div>
-<div class="watermark"><div class="wm-text"><div><span>Benedikt Schackenberg</span></div></div></div>
-
-<!-- Kontakt -->
-<div class="contact">
-  <div>📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a></div>
-  <div>🔐 <a href="{{ '/assets/keys/benedikt-schackenberg.asc' | relative_url }}" download>PGP-Schlüssel (.asc)</a></div>
-  <div class="contact-actions">
-    <button class="mini" onclick="navigator.clipboard.writeText('benedikt@schackenberg.com')">E-Mail kopieren</button>
-    <button class="mini" onclick="(function(){const t=document.getElementById('pgp-key'); if(t){navigator.clipboard.writeText(t.innerText)}})()">PGP kopieren</button>
-  </div>
-</div>
-
-<!-- Bühne -->
-<div class="stage" id="stage">
-  <div class="titleWrap"><div id="title" class="title" aria-label="Benedikt Schackenberg"></div></div>
-  <div class="clockArea">
-    <div class="digital" id="digital" aria-live="polite">
-      <div class="grid" id="grid"></div>
-      <div class="ghost" id="ghost"></div>
-      <div class="yard">Material:<span class="pile" id="pile">🧱🧱🧱🧱🧱</span></div>
-      <div class="dump">Schutt:<span class="pile" id="dump">🗿</span></div>
-      <div class="workers" id="workers"></div>
-      <div class="progress"><i id="prog" style="width:0%"></i></div>
+<main>
+  <div class="window">
+    <div class="window-header">
+      <div class="window-buttons"><span class="red"></span><span class="yellow"></span><span class="green"></span></div>
+      <div>Profil – Benedikt Schackenberg</div>
     </div>
-    <div class="dateRow" id="dateRow">–</div>
-    <div class="badge" id="tzLabel">Europa/Berlin</div>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="avatar">
+        <img src="/assets/img/pixeldad2.png" alt="Benedikt Schackenberg Pixelavatar" width="180" height="180"/>
+      </div>
+      <div class="intro">
+        <h1>Ich bin Benedikt Schackenberg</h1>
+        <div class="subtitle">Microsoft SQL Server & Cloud Architekturen</div>
+        <p>Ich lebe im schönen Mainz und arbeite als IT‑Systemadministrator an einem großen Krankenhaus. Dort betreue ich komplexe Datenbanksysteme und sorge dafür, dass Technik zuverlässig läuft – am liebsten mit Microsoft SQL Server und einer guten Portion Kaffee.</p>
+        <nav class="buttons" aria-label="Wichtige Links">
+          <a class="btn" href="https://github.com/BenediktSchackenberg" target="_blank" rel="noopener">🐙 <b>GitHub</b></a>
+          <a class="btn" href="https://dba.stackexchange.com/users/86101/benedikt-schackenberg" target="_blank" rel="noopener">💾 <b>DBA StackExchange</b></a>
+          <a class="btn btn-primary" href="/kontakt/"><span aria-hidden>✉️</span> <b>Kontakt &amp; PGP</b></a>
+        </nav>
+      </div>
+    </section>
+
+    <!-- Uhr + Datum (dezent) -->
+    <div class="clockWrap">
+      <div class="clock" role="status" aria-live="polite">
+        <div class="digits" id="digits">--:--</div>
+        <div class="date" id="date">–</div>
+      </div>
+    </div>
+
+    <!-- Was ich anbiete / Wofür ich stehe -->
+    <section class="grid">
+      <article class="card">
+        <h3>Wofür ich stehe</h3>
+        <ul class="list">
+          <li>Robuste, sichere und nachvollziehbare <strong>SQL Server</strong>-Setups</li>
+          <li>Transparente Standards & Dokumentation</li>
+          <li>Saubere Backup-/Restore-Prozesse mit Tests</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Performance‑Tuning</h3>
+        <ul class="list">
+          <li>Abfrage‑Optimierung & Index‑Strategien</li>
+          <li>Wait‑Analyse, I/O‑Profiling, Query Store</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Hochverfügbarkeit & DR</h3>
+        <ul class="list">
+          <li>Always On AGs, Log‑Shipping, Backups</li>
+          <li>Wiederherstellungs‑Strategien & regelmäßige Tests</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Azure & Hybrid</h3>
+        <ul class="list">
+          <li>Sinnvolle Cloud‑Anteile – technisch & wirtschaftlich</li>
+          <li>Security, Kosten, Automatisierung im Blick</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- 🌿 Privat (neu) -->
+    <section>
+      <h2 style="margin:22px 14px 8px;font-family:'VT323',monospace;color:var(--accent2);font-size:1.5rem">🌿 Privat</h2>
+      <article class="card">
+        <div class="privat">
+          <div class="p-avatar"><img src="/assets/img/rad.png" alt="Benedikt – privat" width="160" height="160"></div>
+          <div>
+            <div class="speech">Pause vom SQL‑Server!</div>
+            <p>Wenn ich nicht gerade Datenbanken pflege, bin ich meistens <strong>Papa, Spaziergänger oder Radfahrer</strong>. Ich mag frische Luft, kleine Abenteuer mit den Kindern und Runden durchs Viertel – mit Sonne, Regen oder Gegenwind.</p>
+            <div class="hobbies" aria-label="Hobbys">
+              <span class="chip">👨‍👧‍👦 Zeit mit den Kindern</span>
+              <span class="chip">🚶 Spazieren</span>
+              <span class="chip">🚲 Radfahren</span>
+            </div>
+          </div>
+        </div>
+      </article>
+    </section>
+    <!-- Kontakt -->
+    <section class="contact">
+      📍 Mainz<br>
+      📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a><br>
+      🔐 <a href="/kontakt/">PGP‑Informationen & öffentlicher Schlüssel</a>
+    </section>
   </div>
-</div>
 
-<!-- 🎄 NEU: Hexenhäuschen & Parade -->
-<div class="village" id="village" aria-hidden="true">
-  <!-- Pixeliges Hexenhäuschen als crisp SVG -->
-  <svg class="hut" id="witchHut" viewBox="0 0 160 120" shape-rendering="crispEdges" xmlns="http://www.w3.org/2000/svg" aria-label="Hexenhäuschen">
-    <!-- Boden -->
-    <rect x="0" y="100" width="160" height="20" fill="#1a252d"/>
-    <!-- Hauskörper -->
-    <rect x="32" y="48" width="96" height="52" fill="#3a2f3b"/>
-    <rect x="36" y="52" width="88" height="44" fill="#4b3b4a"/>
-    <!-- Tür -->
-    <rect x="72" y="68" width="16" height="28" fill="#2b222a"/>
-    <rect x="74" y="70" width="12" height="24" fill="#3a2e37"/>
-    <rect x="80" y="84" width="2" height="4" fill="#1a151a"/>
-    <!-- Fenster links/rechts -->
-    <rect x="44" y="64" width="16" height="12" fill="#1b2230"/>
-    <rect x="45" y="65" width="14" height="10" fill="#9ad1ff"/>
-    <rect x="100" y="64" width="16" height="12" fill="#1b2230"/>
-    <rect x="101" y="65" width="14" height="10" fill="#ffd257"/>
-    <!-- Zuckerstangen-Deko -->
-    <rect x="32" y="48" width="4" height="52" fill="#b53c47"/>
-    <rect x="124" y="48" width="4" height="52" fill="#b53c47"/>
-    <rect x="34" y="50" width="2" height="48" fill="#fff"/>
-    <rect x="126" y="50" width="2" height="48" fill="#fff"/>
-    <!-- Dach -->
-    <polygon points="24,50 80,22 136,50 132,54 80,30 28,54" fill="#2c2430"/>
-    <polygon points="28,54 80,30 132,54 128,58 80,38 32,58" fill="#3b2f39"/>
-    <!-- Rauch aus Kamin -->
-    <rect x="116" y="38" width="8" height="10" fill="#2c2430"/>
-    <g id="smoke">
-      <rect x="118" y="28" width="6" height="6" fill="#7a8696"/>
-      <rect x="120" y="20" width="5" height="5" fill="#9aa6b6"/>
-      <rect x="122" y="13" width="4" height="4" fill="#b8c2cf"/>
-    </g>
-  </svg>
-</div>
-<div class="parade" id="parade" aria-hidden="true"></div>
-
-<!-- Krokodil-Layer -->
-<div class="crocs" id="crocs" aria-hidden="true"></div>
-
-<!-- versteckter PGP-Text fürs Kopieren -->
-<pre id="pgp-key" style="position:fixed;left:-9999px;top:-9999px">
------BEGIN PGP PUBLIC KEY BLOCK-----
-...dein Key...
------END PGP PUBLIC KEY BLOCK-----
-</pre>
-
-<div class="footer">© <span id="y"></span> Benedikt Schackenberg</div>
+  <footer>
+    „Technologie kann man lernen. Leidenschaft für Lösungen macht den Unterschied.“
+  </footer>
+</main>
 
 <script>
 (function(){
-  document.getElementById('y').textContent=new Date().getFullYear();
-
-  /* ===== Name – bunte Fall-Animation ===== */
-  const titleEl=document.getElementById('title');
-  const nameText="Benedikt Schackenberg";
-  const colors=["#7dd36f","#ffd257","#9ac1ff","#ffa6e7","#f5a3a3","#a8f0c6","#ff9f7a","#b2f07f","#f5d0fe","#c2e7ff","#ffd6a5","#b8f2e6"];
-  const perCharFall=520, betweenChars=90, holdVisibleMs=90000; let nameLoop=null;
-
-  function autoScaleOneLine(){
-    const wrap=document.querySelector('.titleWrap');
-    const max=wrap.clientWidth-16;
-    const w=titleEl.getBoundingClientRect().width || 1;
-    titleEl.style.transform=`scale(${Math.min(1,max/w)})`;
-  }
-  function buildName(){
-    clearTimeout(nameLoop); titleEl.innerHTML="";
-    const frag=document.createDocumentFragment(); let i=0;
-    for(const ch of nameText){
-      const s=document.createElement('span'); s.className='px';
-      const col=colors[i%colors.length]; s.style.setProperty('--col',col); s.style.color=col; s.textContent=ch;
-      frag.appendChild(s); i++;
-    } titleEl.appendChild(frag); autoScaleOneLine();
-  }
-  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
-  async function playName(){
-    for(const s of [...titleEl.querySelectorAll('.px')]){
-      s.style.setProperty('--fall', perCharFall+'ms'); s.classList.remove('falling'); void s.offsetWidth; s.classList.add('falling');
-      await sleep(perCharFall+betweenChars);
-    }
-    nameLoop=setTimeout(()=>{buildName();playName();}, holdVisibleMs);
-  }
-  buildName(); playName();
-  addEventListener('resize', autoScaleOneLine);
-
-  /* ===== Uhr & Umbau ===== */
+  const d=document.getElementById('digits');
+  const dateEl=document.getElementById('date');
   const tz='Europe/Berlin';
-  const grid=document.getElementById('grid');
-  const ghost=document.getElementById('ghost');
-  const workersLayer=document.getElementById('workers');
-  const tzLabel=document.getElementById('tzLabel');
-  const pileEl=document.getElementById('pile');
-  const dumpEl=document.getElementById('dump');
-  const dateRow=document.getElementById('dateRow');
-  const prog=document.getElementById('prog');
-  const stage=document.getElementById('stage');
-
-  let PX=14, GAP=4, COLS=5, ROWS=7, DIGIT_GAP=10, GROUP_GAP=20;
-  function recomputeSizes(){
-    const w=grid.clientWidth||window.innerWidth;
-    const h=grid.clientHeight||window.innerHeight;
-    const s=Math.min(w,h);
-    PX = s<420 ? 10 : s<680 ? 12 : 14;
-    GAP = s<420 ? 3 : 4;
-    DIGIT_GAP = s<420 ? 8 : 10;
-    GROUP_GAP = s<420 ? 14 : 20;
-    document.querySelectorAll('.pixel,.ghost .gpx').forEach(el=>{
-      el.style.width=PX+'px'; el.style.height=PX+'px';
-      el.style.borderRadius=Math.max(2,Math.round(PX*.22))+'px';
-    });
-  }
-
-  const DIGITS={
-    "0":[1,1,1,1,1,1,0,0,0,1,1,0,1,0,1,1,0,1,0,1,1,0,1,0,1,1,0,0,0,1,1,1,1,1,1],
-    "1":[0,1,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0,0,0,1,1,1,0],
-    "2":[1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,1,1,1,1,1,1,0,0,0,0,1,1,0,0,0,1,1,1,1],
-    "3":[1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,0,0,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,1,1],
-    "4":[1,0,0,1,0,1,0,0,1,0,1,0,0,1,0,1,1,1,1,1,0,0,0,1,0,0,0,0,1,0,0,0,0,1,0],
-    "5":[1,1,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0,0,0,0,0,1,0,0,0,0,1,1,1,1,1,0],
-    "6":[1,1,1,1,0,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0],
-    "7":[1,1,1,1,1,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],
-    "8":[0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,0],
-    "9":[0,1,1,1,0,1,0,0,0,1,1,0,0,0,1,0,1,1,1,1,0,0,0,0,1,0,0,0,0,1,1,1,1,0]
-  };
-
-  function layout(){
-    const box=grid.getBoundingClientRect();
-    const wDigit = COLS*PX + (COLS-1)*GAP;
-    const wGroup = wDigit*2 + DIGIT_GAP;
-    const total  = wGroup*2 + GROUP_GAP;
-    const sx=(box.width-total)/2;
-    const sy=(box.height - (ROWS*PX+(ROWS-1)*GAP))/2;
-    return (di,c,r)=>{
-      const gOff = di<2 ? 0 : (wGroup + GROUP_GAP);
-      const dOff = (di%2)*(wDigit + DIGIT_GAP);
-      return {x:sx + gOff + dOff + c*(PX+GAP), y: sy + r*(PX+GAP)};
-    };
-  }
-
-  const PIXELS=[]; for(let i=0;i<160;i++){ const d=document.createElement('div'); d.className='pixel'; grid.appendChild(d); PIXELS.push(d); }
-  const colonTop=document.createElement('div'), colonBot=document.createElement('div'); colonTop.className='colonDot'; colonBot.className='colonDot'; grid.appendChild(colonTop); grid.appendChild(colonBot);
-
-  function render(key){
-    recomputeSizes();
-    const pos=layout(); const digits=[key[0],key[1],key[2],key[3]]; let idx=0;
-    for(let di=0; di<4; di++){
-      const map=DIGITS[digits[di]];
-      for(let r=0;r<ROWS;r++){
-        for(let c=0;c<COLS;c++){
-          const p=PIXELS[idx++], on = map[r*COLS+c]===1;
-          const {x,y}=pos(di,c,r);
-          p.style.transform=`translate(${x}px,${y}px)`;
-          p.style.opacity=on?1:0.08;
-          p.classList.toggle('h', di<2); p.classList.toggle('m', di>=2);
-          p.dataset.x=x; p.dataset.y=y; p.dataset.on=on?1:0;
-          p.style.width=PX+'px'; p.style.height=PX+'px';
-        }
-      }
-    }
-    const box=grid.getBoundingClientRect(), height=ROWS*PX+(ROWS-1)*GAP;
-    const y0=(box.height-height)/2, cx=box.width/2-6;
-    colonTop.style.transform=`translate(${cx}px, ${y0+height*0.32}px)`;
-    colonBot.style.transform=`translate(${cx}px, ${y0+height*0.68}px)`;
-  }
-
-  function fmtParts(d=new Date()){
-    const p=new Intl.DateTimeFormat('de-DE',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',weekday:'long',day:'2-digit',month:'long',year:'numeric',hour12:false}).formatToParts(d).reduce((a,c)=>{a[c.type]=c.value;return a;},{});
-    return {h:p.hour,m:p.minute,s:p.second,w:p.weekday,d:p.day,mo:p.month,y:p.year};
-  }
-
-  /* Akteure (Uhr) */
-  const ACTOR_TYPES=[
-    {em:'👷', lines:["Mörtel!","Wasserwaage!","Abbruch!","Neuaufbau!"]},
-    {em:'🐿️', lines:["Nuss gegen Stein!","Flitz!","Ich kann tragen!"]},
-    {em:'🐍', lines:["sssschieb!","weg mit dem Klotz","Neuer Block!"]},
-    {em:'🦺', lines:["Plan A!","Nicht anfassen!","Ich zähl'…"]}
-  ];
-  const ACTORS=[];
-  function actorCount(){ const w=window.innerWidth; if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return 4; return w<420 ? 5 : w<768 ? 7 : 8; }
-  function spawnActors(){
-    workersLayer.innerHTML=""; ACTORS.length=0;
-    const N=actorCount();
-    for(let i=0;i<N;i++){
-      const t=ACTOR_TYPES[i % ACTOR_TYPES.length];
-      const a=document.createElement('div'); a.className='actor'; a.innerHTML=`<div class="bubble"></div><span>${t.em}</span>`;
-      workersLayer.appendChild(a);
-      ACTORS.push({el:a,type:t,x:Math.random()*grid.clientWidth,y:Math.random()*grid.clientHeight,vx:0,vy:0,timer:Math.random()*1.2+0.4,sayCooldown:0,job:null,queue:[]});
-    }
-  }
-  function speak(actor, txt, ms=900){ const b=actor.el.querySelector('.bubble'); b.textContent=txt; b.style.display='block'; setTimeout(()=>b.style.display='none',ms); }
-  function wander(actor, dt){
-    if(actor.job) return;
-    actor.timer-=dt;
-    if(actor.timer<=0){
-      const speed = (window.innerWidth<420)?35:50;
-      actor.vx=(Math.random()*2-1)*speed; actor.vy=(Math.random()*2-1)*speed;
-      actor.timer=Math.random()*1.2+0.6;
-      if(actor.sayCooldown<=0 && Math.random()<.35){ speak(actor, actor.type.lines[(Math.random()*actor.type.lines.length)|0]); actor.sayCooldown=2.5; }
-    }
-    actor.sayCooldown=Math.max(0, actor.sayCooldown-dt);
-    actor.x=Math.max(20, Math.min(grid.clientWidth-20, actor.x+actor.vx*dt));
-    actor.y=Math.max(20, Math.min(grid.clientHeight-20,actor.y+actor.vy*dt));
-    actor.el.style.left=(grid.offsetLeft+actor.x)+'px'; actor.el.style.top=(grid.offsetTop+actor.y)+'px';
-  }
-
-  const pileIcons=['🧱','🧱','🧱','🧱','🧱']; const dumpIcons=['🗿'];
-  function updatePiles(){ pileEl.textContent=pileIcons.join(''); dumpEl.textContent=dumpIcons.join(''); }
-
-  function layoutForKey(key){
-    const pos=layout(); const D=[key[0],key[1],key[2],key[3]]; const pts=[];
-    for(let di=0;di<4;di++){
-      const m=DIGITS[D[di]];
-      for(let r=0;r<ROWS;r++)for(let c=0;c<COLS;c++) if(m[r*COLS+c]===1){ const {x,y}=pos(di,c,r); pts.push({x,y}); }
-    }
-    return pts;
-  }
-  function showGhost(nextKey){
-    ghost.innerHTML='';
-    const pts = layoutForKey(nextKey);
-    for(const p of pts){
-      const g=document.createElement('div'); g.className='gpx'; g.style.left=p.x+'px'; g.style.top=p.y+'px';
-      g.style.width=PX+'px'; g.style.height=PX+'px';
-      ghost.appendChild(g);
-    }
-  }
-  function tintGhost(progress){
-    ghost.querySelectorAll('.gpx').forEach(g=>{
-      g.style.background=`hsl(${200 - progress*80}deg 80% ${70+progress*10}%)`;
-      g.style.transform=`scale(${1+progress*0.05})`;
-    });
-  }
-  function hideGhost(){ ghost.innerHTML=''; }
-
-  function diffTo(nextKey){
-    const pos=layout();
-    const cur=[current[0],current[1],current[2],current[3]];
-    const nxt=[nextKey[0],nextKey[1],nextKey[2],nextKey[3]];
-    const removes=[], adds=[];
-    for(let di=0; di<4; di++){
-      const mC=DIGITS[cur[di]], mN=DIGITS[nxt[di]];
-      for(let r=0;r<ROWS;r++){
-        for(let c=0;c<COLS;c++){
-          const {x,y}=pos(di,c,r);
-          const i=r*COLS+c;
-          if(mC[i]===1 && mN[i]===0) removes.push({x,y});
-          if(mC[i]===0 && mN[i]===1) adds.push({x,y});
-        }
-      }
-    }
-    return {removes, adds};
-  }
-
-  function spawnBrickAt(x,y,spin=false){
-    const b=document.createElement('div'); b.className='brick'; if(spin) b.classList.add('spin');
-    b.style.width=PX+'px'; b.style.height=PX+'px';
-    b.style.left=(grid.offsetLeft+x)+'px'; b.style.top=(grid.offsetTop+y)+'px';
-    workersLayer.appendChild(b); return b;
-  }
-  function moveActorTo(actor, tx, ty, dur, onDone, carry){
-    const ax=actor.x, ay=actor.y; const t0=performance.now();
-    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const duration = RM ? dur*0.5 : dur;
-    (function anim(t){
-      const p = Math.min(1, (t-t0)/(duration*1000));
-      const eased = p<.5 ? (2*p*p) : (-1+(4-2*p)*p);
-      const wobble = RM?0:Math.sin(p*Math.PI*2)*3;
-      const nx = ax + (tx-ax)*eased, ny = ay + (ty-ay)*eased + wobble;
-      actor.x=nx; actor.y=ny;
-      actor.el.style.left=(grid.offsetLeft+nx)+'px'; actor.el.style.top=(grid.offsetTop+ny)+'px';
-      if(carry){
-        carry.style.left=(grid.offsetLeft+nx)+'px'; carry.style.top=(grid.offsetTop+ny-8)+'px';
-        if(!RM) carry.style.transform=`translate(-50%,-50%) rotate(${p*720|0}deg)`;
-      }
-      if(p<1) requestAnimationFrame(anim); else onDone && onDone();
-    })(t0);
-  }
-  function findNearestPixel(x,y){
-    let best=null, bd=1e12;
-    for(const p of PIXELS){
-      const px=parseFloat(p.dataset.x||'0'), py=parseFloat(p.dataset.y||'0');
-      const d=(px-x)*(px-x)+(py-y)*(py-y);
-      if(d<bd){ bd=d; best=p; }
-    }
-    return best;
-  }
-  function burst(x,y,emoji='✨',n=14,life=0.8){
-    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const count = RM ? Math.max(4, n*0.4|0) : n;
-    for(let i=0;i<count;i++){
-      const s=document.createElement('div'); s.className='spark';
-      s.textContent=emoji; s.style.left=(grid.offsetLeft+x)+'px'; s.style.top=(grid.offsetTop+y)+'px';
-      stage.appendChild(s);
-      const ang=Math.random()*Math.PI*2, sp=60+Math.random()*120;
-      const vx=Math.cos(ang)*sp, vy=Math.sin(ang)*sp-40;
-      const t0=performance.now();
-      (function anim(t){
-        const dt=(t-t0)/1000, px2=x+vx*dt, py2=y+vy*dt+220*dt*dt;
-        s.style.left=(grid.offsetLeft+px2)+'px'; s.style.top=(grid.offsetTop+py2)+'px'; s.style.opacity=1-Math.min(1,dt/life);
-        if(dt<life) requestAnimationFrame(anim); else s.remove();
-      })(t0);
-    }
-  }
-  function ploppAt(x,y){ burst(x,y,'✨',10,0.6); setTimeout(()=>burst(x,y,'🧱',6,0.6),90); }
-  function dust(x,y){ burst(x,y,'·',8,0.5); }
-
-  function assignJobs(nextKey){
-    const {removes, adds}=diffTo(nextKey);
-    const jobs=[];
-    removes.forEach(pt=> jobs.push({kind:'remove', target:pt}));
-    adds.forEach(pt=> jobs.push({kind:'add', target:pt}));
-    jobs.forEach((job,i)=>{ ACTORS[i % ACTORS.length].queue.push(job); });
-    ACTORS.forEach(a=>{ if(!a.job) runNext(a); });
-  }
-  function runNext(actor){
-    if(actor.job) return;
-    const job=actor.queue.shift(); if(!job){ actor.job=null; return; }
-    actor.job=job;
-
-    if(job.kind==='remove'){
-      speak(actor,"Abbruch!",700);
-      moveActorTo(actor, job.target.x, job.target.y, .6, ()=>{
-        const px = findNearestPixel(job.target.x, job.target.y); if(px){ px.style.opacity=.12; dust(job.target.x, job.target.y); }
-        const brick = spawnBrickAt(job.target.x, job.target.y, true);
-        const dumpX = grid.clientWidth-24, dumpY = grid.clientHeight-24;
-        moveActorTo(actor, dumpX, dumpY, .9, ()=>{
-          dumpIcons.push('🗿'); updatePiles();
-          brick.remove(); actor.job=null; runNext(actor);
-        }, brick);
-      });
-    } else {
-      const pileX=24, pileY=grid.clientHeight-24;
-      moveActorTo(actor, pileX, pileY, .6, ()=>{
-        speak(actor,"Neuaufbau!",700);
-        if(pileIcons.length>0) pileIcons.pop(); updatePiles();
-        const brick = spawnBrickAt(pileX, pileY, true);
-        moveActorTo(actor, job.target.x, job.target.y, .9, ()=>{
-          const px = findNearestPixel(job.target.x, job.target.y);
-          if(px){ px.style.opacity=1; px.classList.remove('pulse'); void px.offsetWidth; px.classList.add('pulse'); ploppAt(job.target.x, job.target.y); }
-          brick.remove(); actor.job=null; runNext(actor);
-        }, brick);
-      });
-    }
-  }
-
-  function daysUntilChristmasEve(now=new Date()){
-    const berlinNow = new Date(new Date().toLocaleString('en-US',{timeZone:tz}));
-    const y = berlinNow.getFullYear();
-    let target = new Date(Date.UTC(y,11,24,0,0,0));
-    if(berlinNow > target) target = new Date(Date.UTC(y+1,11,24,0,0,0));
-    const diffMs = target - berlinNow;
-    return Math.max(0, Math.ceil(diffMs/86400000));
-  }
-  function updateDateRow(){
-    const p=fmtParts(new Date());
-    const pretty = `${p.w}, ${p.d}. ${p.mo} ${p.y}`;
-    const days = daysUntilChristmasEve();
-    dateRow.textContent = `${pretty} • Tage bis Heiligabend: ${days}`;
-  }
-
-  let current="0000", lastBlink=-1;
+  const fmtTime=new Intl.DateTimeFormat('de-DE',{timeZone:tz,hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false});
+  const fmtDate=new Intl.DateTimeFormat('de-DE',{timeZone:tz,weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+  let lastSec=-1;
   function tick(){
-    const now=new Date(); const p=fmtParts(now);
-    tzLabel.textContent=`Europa/Berlin • ${p.h}:${p.m}:${p.s}`;
-    const s=+p.s;
-
-    if(s!==lastBlink){
-      const on=(s%2===0); document.querySelectorAll('.colonDot').forEach(d=>d.style.opacity=on?1:0.35);
-      lastBlink=s; updateDateRow();
+    const now=new Date();
+    const parts=fmtTime.formatToParts(now).reduce((a,c)=>{a[c.type]=c.value;return a;},{});
+    if(parts.second!==lastSec){
+      lastSec=parts.second;
+      d.textContent=`${parts.hour}:${parts.minute}`;
+      dateEl.textContent=fmtDate.format(now);
     }
-
-    if(s>=57){
-      const ms = now.getMilliseconds();
-      const future = new Date(now.getTime() + (60000 - (s-57)*1000 - ms));
-      const np=fmtParts(future); const nextKey=np.h+np.m;
-      if(tick.prepared!==nextKey){
-        tick.prepared=nextKey; showGhost(nextKey); assignJobs(nextKey);
-      }
-      const progVal=(s-57 + ms/1000)/3; prog.style.width=(progVal*100)+'%'; tintGhost(progVal);
-    } else { prog.style.width='0%'; tintGhost(0); }
-
-    const key=p.h+p.m;
-    if(key!==current){
-      current=key; render(current); hideGhost();
-      while(pileIcons.length<5) pileIcons.push('🧱'); updatePiles();
-      ACTORS.forEach(a=>{ a.queue=[]; a.job=null; });
-      const box=grid.getBoundingClientRect(), height=ROWS*PX+(ROWS-1)*GAP;
-      const y0=(box.height-height)/2, cx=box.width/2-6;
-      burst(cx, y0+height*0.5, '✨', 20, 1.0);
-    }
-
     requestAnimationFrame(tick);
   }
-
-  function startWanderLoop(){
-    let last=performance.now();
-    (function loop(ts){
-      const dt=Math.min(0.05,(ts-last)/1000); last=ts;
-      ACTORS.forEach(a=>wander(a,dt));
-      requestAnimationFrame(loop);
-    })(last);
-  }
-
-  /* ===== Krokodile – reduziert ===== */
-  function spawnCrocs(){
-    const layer=document.getElementById('crocs');
-    layer.innerHTML='';
-    const MAX = 2;
-    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const voices=["Mama?","Maaaaama?","Wo bist du?","Ich hab Hunger!","Hallo?"];
-    const W = () => document.documentElement.clientWidth;
-
-    for(let i=0;i<MAX;i++){
-      const c=document.createElement('div');
-      c.className='croc walk';
-      c.innerHTML=`<div class="bubble"></div><span aria-hidden="true">🐊</span>`;
-      layer.appendChild(c);
-
-      const startLeft = Math.random()<0.5;
-      let x = startLeft ? -20 - Math.random()*80 : W() + 20 + Math.random()*80;
-      let dir = startLeft ? 1 : -1;
-      let speed = (RM?32:48) + Math.random()*28;
-
-      c.style.bottom = (12 + Math.random()*10) + 'px';
-      function updateFlip(){ c.classList.toggle('flip', dir<0); }
-      updateFlip();
-
-      const bubble=c.querySelector('.bubble');
-      function say(){
-        if(Math.random()<0.35){
-          bubble.textContent=voices[(Math.random()*voices.length)|0];
-          bubble.style.display='block';
-          setTimeout(()=> bubble.style.display='none', 1200);
-        }
-      }
-      setInterval(say, 2000 + (Math.random()*2000|0));
-
-      let last=performance.now();
-      (function loop(ts){
-        const dt = Math.min(0.05,(ts-last)/1000); last=ts;
-        x += dir * speed * dt;
-
-        if(dir>0 && x > W()+40){ dir=-1; updateFlip(); say(); }
-        if(dir<0 && x < -40){ dir=1; updateFlip(); say(); }
-        if(Math.random()<0.01){ speed = Math.max(28,(RM?32:48) + (Math.random()*36-18)); }
-
-        c.style.left = x + 'px';
-        requestAnimationFrame(loop);
-      })(last);
-    }
-  }
-
-  /* ===== 🎄 NEU: Winter-Parade zum Hexenhäuschen ===== */
-  const paradeLayer = document.getElementById('parade');
-  const villageEl = document.getElementById('village');
-  const hutEl = document.getElementById('witchHut');
-
-  const PARADE_TYPES = [
-    {em:'🎅', size:'normal', lines:["Ho ho ho!","Warmer Kakao?","Wer hat Plätzchen?"]},
-    {em:'🦌', size:'small',  lines:["Schnauf…","Glöckchenzeit!","Karotte?"]},
-    {em:'🧙‍♀️', size:'normal', lines:["Hokus… Fokus!","Kessel blubbert!","Besen geparkt."]},
-    {em:'🧙‍♂️', size:'normal', lines:["Zauberhaft!","Lumina maxima!","Feinstes Hexenwerk."]},
-  ];
-  const PARADE_CHAT = [
-    "Schöne Hütte!", "Wer hat das Dach verziert?", "Glühwein oder Tee?",
-    "Ich hab Sternenstaub.", "Rentier-Selfie?", "Zauberstab laden…",
-    "Plätzchenrunde!", "Noch ein Lied?", "Glocken klingen 🎶"
-  ];
-
-  function getHutMeetingPoint(){
-    const r = hutEl.getBoundingClientRect();
-    // vor der Tür – leicht zufällig
-    const x = r.left + r.width*0.5 + (Math.random()*30-15);
-    const y = r.bottom - 8;
-    return {x,y};
-  }
-
-  function spawnParade(){
-    paradeLayer.innerHTML='';
-    const RM = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const W = () => document.documentElement.clientWidth;
-    const H = () => document.documentElement.clientHeight;
-
-    const count = Math.max(5, Math.min(8, Math.round(W()/260))); // dezent
-    const chars=[];
-    for(let i=0;i<count;i++){
-      const t = PARADE_TYPES[i % PARADE_TYPES.length];
-      const el = document.createElement('div');
-      el.className='char walk'+(t.size==='small'?' small':'');
-      el.innerHTML=`<div class="bubble"></div><span>${t.em}</span>`;
-      paradeLayer.appendChild(el);
-      // Start: außerhalb links oder rechts
-      const fromLeft = Math.random()<0.5;
-      const startX = fromLeft ? (-40 - Math.random()*80) : (W()+40+Math.random()*80);
-      const startY = 0; // Bodenlinie via bottom:0
-      el.style.left = startX+'px';
-
-      chars.push({
-        el, type:t,
-        x:startX, y:startY,
-        dir: fromLeft? 1 : -1,
-        arrived:false,
-        sayCooldown: 1 + Math.random()*2
-      });
-      // Blickrichtung
-      el.style.transformOrigin='50% 100%';
-      el.style.scale = fromLeft ? '1 1' : '-1 1';
-    }
-
-    // Meetingpos berechnen, wenn Layout stabil
-    function computeGoal(){ return getHutMeetingPoint(); }
-    let goal = computeGoal();
-
-    // Chat nach Ankunft
-    function chatLoop(){
-      chars.filter(c=>c.arrived).forEach(c=>{
-        c.sayCooldown -= 0.5;
-        if(c.sayCooldown<=0){
-          const b=c.el.querySelector('.bubble');
-          const lines = Math.random()<0.5 ? c.type.lines : PARADE_CHAT;
-          b.textContent = lines[(Math.random()*lines.length)|0];
-          b.style.display='block';
-          setTimeout(()=>{b.style.display='none';}, 1400);
-          c.sayCooldown = 2 + Math.random()*3;
-        }
-      });
-      setTimeout(chatLoop, 500);
-    }
-
-    // Bewegung
-    let last=performance.now();
-    (function loop(ts){
-      const dt=Math.min(0.05,(ts-last)/1000); last=ts;
-      // bei Resize Ziel aktualisieren
-      goal = computeGoal();
-
-      chars.forEach(c=>{
-        if(c.arrived) return;
-        const speedBase = RM ? 18 : 28;
-        const jitter = RM ? 0 : (Math.sin((ts/1000)+(c.x*0.01))*2);
-        const speed = speedBase + jitter;
-        const dir = Math.sign(goal.x - c.x) || c.dir;
-        c.x += dir * speed * dt;
-
-        // Blickrichtung
-        c.el.style.scale = dir>=0 ? '1 1' : '-1 1';
-        c.el.style.left = c.x + 'px';
-
-        // Ankunft?
-        if(Math.abs(c.x - goal.x) < 10){
-          c.arrived = true;
-          c.el.classList.remove('walk');
-          c.el.style.bottom = '0';
-          // minimal verteilen
-          c.el.style.left = (goal.x + (Math.random()*60-30))+'px';
-          // Begrüßung
-          const b=c.el.querySelector('.bubble');
-          b.textContent = ["Hallo!", "Frohe Zeit!", "Bin da!", "Mäh… äh… Ho!"][Math.floor(Math.random()*4)];
-          b.style.display='block';
-          setTimeout(()=>b.style.display='none',1200);
-        }
-      });
-
-      requestAnimationFrame(loop);
-    })(last);
-
-    // sanftes Kamin-Rauch „ankern“
-    ;(function smoke(){
-      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const s=document.getElementById('smoke');
-      if(!s) return;
-      let t=0;
-      (function anim(){
-        t+=0.01;
-        s.setAttribute('transform',`translate(${Math.sin(t)*0.8}, ${-Math.cos(t*0.6)*0.4})`);
-        requestAnimationFrame(anim);
-      })();
-    })();
-
-    chatLoop();
-    addEventListener('resize', ()=>{ goal = computeGoal(); });
-  }
-
-  function init(){
-    const start=fmtParts(); let key=start.h+start.m; current=key; render(current); updateDateRow();
-    spawnActors(); updatePiles(); tick(); startWanderLoop();
-    spawnCrocs();
-    // 🎄 Starte Parade nach kurzem Delay
-    setTimeout(spawnParade, 1200);
-  }
-
-  addEventListener('resize', ()=>{ render(current); if(ghost.children.length) showGhost(current); autoScaleOneLine(); });
-
-  init();
+  tick();
 })();
 </script>
 </body>

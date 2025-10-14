@@ -17,12 +17,6 @@ permalink: /kontakt/
     aber garantiert mit Hirn, Herz und Humor.
   </p>
 
-  <div style="font-size: 1.05rem; line-height: 1.6; margin: 1.5rem 0 2rem;">
-    <strong>Benedikt Schackenberg</strong><br>
-    CAYA PostBox 94520X<br>
-    96035 Bamberg
-  </div>
-
   <!-- PGP / OpenPGP -->
 <section aria-labelledby="pgp-title" style="text-align:left; border:1px solid #eee; border-radius:12px; padding:1rem 1.25rem; background:#fafafa;">
   <h2 id="pgp-title" style="margin-top:0; margin-bottom:0.5rem;">PGP / OpenPGP</h2>
