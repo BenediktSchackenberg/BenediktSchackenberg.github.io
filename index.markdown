@@ -153,7 +153,7 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
       <h2 style="margin:22px 14px 8px;font-family:'VT323',monospace;color:var(--accent2);font-size:1.5rem">🌿 Privat</h2>
       <article class="card">
         <div class="privat">
-          <div class="p-avatar"><img src="/assets/img/rad.png" alt="Benedikt – privat" width="160" height="160"></div>
+          <div class="p-avatar"><img src="/assets/img/RAD.png" alt="Benedikt – privat" width="160" height="160"></div>
           <div>
             <div class="speech">Pause vom SQL‑Server!</div>
             <p>Wenn ich nicht gerade Datenbanken pflege, bin ich meistens <strong>Papa, Spaziergänger oder Radfahrer</strong>. Ich mag frische Luft, kleine Abenteuer mit den Kindern und Runden durchs Viertel – mit Sonne, Regen oder Gegenwind.</p>
