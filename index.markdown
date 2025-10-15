@@ -7,43 +7,25 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
 
 # Hallo auf meiner privaten Homepage 👋
 
-<div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin:0 0 2rem;">
-  <img src="/assets/img/pixeldad2.png" alt="Benedikt Schackenberg" width="180" height="180" loading="eager"
-       style="border-radius:12px;box-shadow:0 4px 14px rgba(0,0,0,.12);object-fit:cover;" />
-  <div style="flex:1;min-width:260px;">
-    <p>
-      Ich bin jemand, der sich gern in richtig knifflige technische Themen verbeißt, bis alles läuft. In meiner bisherigen Berufslaufbahn habe ich jede Menge Erfahrung gesammelt, spannende Projekte umgesetzt und unzählige Geschichten für den nächsten IT-Stammtisch mitgenommen.
-      Neben der Arbeit arbeite an diversen Open-Source-Projekten mit.
-    </p>
+**Hi, ich bin Benedikt Schackenberg – SQL-Server-Tüftler, Datenarchitekt und Retro-Nerd. Schön, dass du da bist!**  
 
-
-    <div style="margin-top:1rem;display:flex;gap:.75rem;flex-wrap:wrap;">
-      <a href="https://github.com/BenediktSchackenberg" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none;">
-        <img src="/assets/img/github-icon.png" alt="" width="20" height="20" style="vertical-align:middle;">
-        <span style="font-weight:600;color:#111;">GitHub</span>
-      </a>
-
-      <a href="https://dba.stackexchange.com/users/86101/benedikt-schackenberg" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid #e5e7eb;border-radius:10px;text-decoration:none;">
-        <img src="/assets/img/stackexchange-icon.png" alt="" width="20" height="20" style="vertical-align:middle;">
-        <span style="font-weight:600;color:#111;">DBA Stack Exchange</span>
-      </a>
-
-      <a href="/kontakt/" style="display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .9rem;border-radius:10px;background:#111;color:#fff;text-decoration:none;">
-        ✉️ Kontakt &amp; PGP
-      </a>
-    </div>
-  </div>
-</div>
-
-
-## Kontakt
-📧 <a href="mailto:benedikt@schackenberg.com">benedikt@schackenberg.com</a><br>
-<p style="margin-top:.75rem;">
-  🔐 Verschlüsselt schreiben? <a href="/kontakt/">PGP‑Informationen &amp; öffentlicher Schlüssel</a>
-</p>
+![Desktop View](/assets/img/pixeldad2.png){: width="150" height="150" }{: .left }
 
 ---
 
-> „Technologie kann man lernen. Leidenschaft für Lösungen macht den Unterschied.“
+  Kind der 80er, irgendwo zwischen Diskettenlaufwerk und Modem, ISDN und DSL großgeworden – und gedanklich wahrscheinlich für immer im 2000er-Jahrzehnt hängengeblieben. 😄 Ich freue mich, dass du meine private Webseite gefunden hast!
+  Ich bin nicht mehr auf LinkedIn, Instagram oder in sonstigen Social-Media-Bubbles unterwegs – wer also wissen will, was ich so mache, ist hier genau richtig.
+
+
+---
+
+Ich tüftle gern an richtig kniffligen technischen Themen, bis alles rund läuft.  
+In den letzten Jahren durfte ich viele spannende Projekte umsetzen, jede Menge Erfahrung sammeln  
+und so manche Anekdote für den nächsten IT-Stammtisch mitnehmen.  
+Nebenbei engagiere ich mich in verschiedenen Open-Source-Projekten – einfach, weil’s Spaß macht und ich gern Neues ausprobiere.  
+
+---
+
+
+Lange Zeit war ich selbständig als IT-Consultant unterwegs – mit spannenden Aufgaben, viel Verantwortung und erfolgreichen Modernisierungen.  
+Heute arbeite ich wieder in **Festanstellung**, wo ich mein Wissen gezielt einsetzen und meine Leidenschaft für nachhaltige technische Lösungen einbringen kann.  

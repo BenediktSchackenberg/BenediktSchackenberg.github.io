@@ -1,7 +1,15 @@
 ---
-title: "Über mich"
+title: "Mein Portfolio"
 layout: page
 permalink: /ueber-mich/
+---
+![Desktop View](/assets/img/nerdy.png){: width="100" height="100" }{: .left }
+
+
+Hier findest du meine technische Expertise und meinen bisherigen Werdegang.  
+Wenn du bei einem Thema mal festhängst oder einfach Input brauchst – melde dich gerne.  
+Bei spannenden Projekten oder kniffligen Datenbankfragen schau ich auch mal drüber. 🚀  
+
 ---
 
 - 🛠️ [Meine Schwerpunkte](#-meine-schwerpunkte)
@@ -14,6 +22,7 @@ permalink: /ueber-mich/
 
 ---
 
+
 ## 🔧 Meine Schwerpunkte
 
 - Performanceoptimierung für Microsoft SQL Server
@@ -22,10 +31,6 @@ permalink: /ueber-mich/
 - Infrastructure as Code & Automatisierung
 - CI/CD-Prozesse & DevOps
 - Containerisierte Datenplattformen (Kubernetes, Docker)
-
-Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannenden Projekten, großen Verantwortungen und erfolgreichen Modernisierungen. Heute bin ich wieder in einer **Festanstellung**, wo ich mein Wissen gezielt einsetzen und mein Herz für nachhaltige Lösungen einbringen kann.
-
----
 
 ## 🛠 Fachliche Schwerpunkte
 
@@ -38,8 +43,6 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - CI/CD mit GitLab, Terraform, DevOps  
 - Monitoring: PRTG, SQL Monitor, Dynatrace
 
----
-
 ## 🎓 Zertifizierungen (Auswahl)
 
 - **Microsoft Certified: Fabric Analytics Engineer Associate** (2024)  
@@ -47,8 +50,6 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - **Microsoft Certified: DevOps Engineer Expert** (2020)  
 - **Google Cloud Certified – Professional Cloud Architect** (2020)  
 - **Microsoft Certified Trainer** (seit 2012)
-
----
 
 ## 💼 Beruflicher Werdegang
 
@@ -76,7 +77,6 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - Microsoft SQL Server Administration & Tuning  
 - Windows Server Betrieb
 
----
 
 ## 🧰 Technologien & Skills
 
@@ -88,7 +88,6 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - **Monitoring:** PRTG, Dynatrace, SQL Monitor  
 - **Container-Plattformen:** Kubernetes, Docker, Helm
 
----
 
 ## 🧩 Erweiterte Expertise
 
@@ -99,7 +98,6 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - ☁️ **Cloud & Infrastruktur:** Azure (11+ Jahre), GCP (6 Jahre), AWS, Linux-Administration (15 Jahre)  
 - 🛠 **DevOps & Tools:** Git/SVN, Terraform, Ansible, CI/CD, PRTG, Redgate, Jira, Confluence
 
----
 
 ## 📌 Referenzprojekte (Auswahl)
 
@@ -114,7 +112,5 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 - **SQL-Betrieb & Support im Handel** (2018–2019): 2nd-Level, Compliance-Checks, Release-Deployments  
 - **Modernisierung Reporting-Plattform** (Bank, 2017–2018): Upgrade auf moderne Architektur inkl. Azure Service Bus  
 - **Neuaufbau SQL-Landschaft & Betrieb** (Bank, 2014–2016): ETL, Tuning, Dokumentation
-
----
 
 > *"Technologie kann man lernen. Leidenschaft für Lösungen macht den Unterschied."*
