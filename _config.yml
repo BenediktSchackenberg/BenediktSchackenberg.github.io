@@ -34,7 +34,7 @@ header_pages:
   - kontakt/index.md
 
 # Build settings
-theme: no-style-please
+theme: jekyll-theme-chirpy
 plugins:
   - jekyll-feed
 include:
