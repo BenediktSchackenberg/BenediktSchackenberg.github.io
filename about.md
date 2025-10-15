@@ -4,20 +4,6 @@ layout: page
 permalink: /ueber-mich/
 ---
 
-<div style="max-width: 800px; margin: 0 auto; text-align: center;">
-  <img src="/assets/img/pixelpapa.png" alt="Benedikt Schackenberg" width="220" 
-       style="border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); margin-bottom: 1.5rem;" />
-
-  <div style="font-size: 1.1rem; line-height: 1.6; text-align: center;">
-    Ich bin <strong>Benedikt Schackenberg</strong> – ein Technikbegeisterter mit über 25 Jahren Erfahrung in der Microsoft-Welt.<br>
-    Was mich antreibt, ist die Freude daran, Systeme zum Laufen zu bringen, Performanceprobleme zu knacken und aus komplexen Datenstrukturen echte Mehrwerte zu schaffen.
-  </div>
-</div>
-
----
-
-## 🧭 Navigation
-
 - 🛠️ [Meine Schwerpunkte](#-meine-schwerpunkte)
 - ⚙️ [Fachliche Schwerpunkte](#-fachliche-schwerpunkte)
 - 🎓 [Zertifizierungen](#-zertifizierungen-auswahl)
@@ -67,7 +53,7 @@ Ich habe viele Jahre als selbständiger IT-Consultant gearbeitet – mit spannen
 ## 💼 Beruflicher Werdegang
 
 ### Seit 05/2025  
-**Aktueller Arbeitgeber (vertraulich)** — Mainz  
+**Angestellt im öffentlichen Gesundheitswesen** — Mainz  
 - SQL Server Optimierung & Hochverfügbarkeit  
 - Windows Server Administration  
 

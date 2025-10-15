@@ -17,6 +17,12 @@ permalink: /kontakt/
     aber garantiert mit Hirn, Herz und Humor.
   </p>
 
+<div style="border:1px solid #e5e7eb;border-radius:12px;padding:1rem 1.1rem;background:#fafafa;">
+  <strong>Hinweis:</strong> Meine Zeit in der Selbstständigkeit liegt hinter mir – ich arbeite heute in Festanstellung und nehme keine freiberuflichen Aufträge mehr an. Für Projekte mit umfangreicher Datenbank-Expertise empfehle ich die Mainzer Datenfabrik GmbH.
+  <a href="https://madafa.de" target="_blank" rel="noopener">Mainzer Datenfabrik GmbH</a>.
+</div>
+
+
   <!-- PGP / OpenPGP -->
 <section aria-labelledby="pgp-title" style="text-align:left; border:1px solid #eee; border-radius:12px; padding:1rem 1.25rem; background:#fafafa;">
   <h2 id="pgp-title" style="margin-top:0; margin-bottom:0.5rem;">PGP / OpenPGP</h2>
