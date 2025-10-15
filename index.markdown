@@ -5,7 +5,7 @@ permalink: /
 description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit | Azure & Cloud Architekturen"
 ---
 
-# Hallo und willkommen
+# Hallo auf meiner privaten Homepage 👋
 
 <div style="display:flex;align-items:center;gap:2rem;flex-wrap:wrap;margin:0 0 2rem;">
   <img src="/assets/img/pixeldad2.png" alt="Benedikt Schackenberg" width="180" height="180" loading="eager"
