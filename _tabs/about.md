@@ -73,13 +73,35 @@ SQL Server 2008/2012/2014 MCSA/MCSE/MCITP, Data Platform, Data Analytics, MCT Hi
 ## 💼 Beruflicher Werdegang
 
 ### Seit 05/2025  
-**Öffentliches Gesundheitswesen – Universitätsmedizin Mainz**  
+**Öffentliches Gesundheitswesen**  
+Ich bin Teil eines engagierten Teams im Bereich Systembetrieb und Datenbankinfrastruktur im öffentlichen Gesundheitswesen.
+Gemeinsam betreuen wir komplexe SQL-Server-Landschaften und sorgen für Stabilität, Performance und Sicherheit der zentralen Systeme – von Fachanwendungen bis hin zu Forschungs- und Verwaltungsdatenbanken.
+Mein Schwerpunkt liegt dabei auf der Konsolidierung und Modernisierung bestehender SQL-Server-Umgebungen (Versionen 2012–2022), der Automatisierung von Betriebsprozessen und der Optimierung von AlwaysOn-Clusterarchitekturen in virtuellen und physischen Umgebungen.
+Ich arbeite eng mit Kolleg:innen aus Netzwerk, Storage, Security und Application-Teams zusammen – in einem fachlich starken, kollegialen Umfeld mit echter Teamkultur, kurzen Wegen und einer ausgeprägten „Hands-on-Mentalität“.
+
+Zu meinen Aufgaben gehören:
+
+- Administration, Performance-Tuning und Patch-Management von SQL-Server-Instanzen
+- Aufbau und Betrieb von AlwaysOn-Verfügbarkeitsgruppen
+- Monitoring und Reporting über DBA Dash, PRTG und eigene T-SQL-Analysen
+- Automatisierung von Routineaufgaben (PowerShell, T-SQL, Wartungspläne)
+- Unterstützung bei Infrastrukturprojekten (Cluster-Migration, Verschlüsselung, TDE, gMSA)
+- Wissenstransfer und Teamunterstützung bei datenbanknahen Projekten
 - SQL Server Optimierung & Hochverfügbarkeit  
-- Windows Server Administration  
+
 
 ### 02/2025 – 05/2025  
 **Berufliche Auszeit**
 
+![Profilbild](/assets/img/meme.png){: width="400" height="400" }{: .left }
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 ### 04/2018 – 02/2025  
 **Mainzer Datenfabrik GmbH – Geschäftsführer & IT-Berater** — Mainz  
 Ich habe die Mainzer Datenfabrik GmbH im Jahr 2019 als alleiniger Gesellschafter und Geschäftsführer gegründet und das Unternehmen bis Februar 2025 geleitet. In dieser Zeit habe ich die Ausrichtung der Firma maßgeblich geprägt – von der strategischen Positionierung über den Aufbau eines starken Teams bis hin zur Entwicklung eines breiten Kompetenzspektrums in modernen IT-Technologien. Gemeinsam mit meinem Team habe ich zahlreiche anspruchsvolle IT-Projekte umgesetzt und dabei ein vielseitiges Umfeld geschaffen, das tiefes Know-how in unterschiedlichen Systemen, Programmiersprachen und Datenbanken vereint.  
