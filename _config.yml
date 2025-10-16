@@ -23,7 +23,7 @@ github:
 social:
   name: B e N e Dikt Schackenberg
   links:
-    - https://github.com/BenediktSchackenberg 
+    - https://github.com/BenediktSchackenberg    
 baseurl: ""                       # leer lassen, wenn Seite auf der Domainwurzel liegt
 
 theme: jekyll-theme-chirpy

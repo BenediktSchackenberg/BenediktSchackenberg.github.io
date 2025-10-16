@@ -3,114 +3,130 @@ title: "Mein Portfolio"
 layout: page
 permalink: /ueber-mich/
 ---
-![Desktop View](/assets/img/nerdy.png){: width="100" height="100" }{: .left }
 
+![Profilbild](/assets/img/nerdy.png){: width="100" height="100" }{: .left }
 
-Hier findest du meine technische Expertise und meinen bisherigen Werdegang.  
-Wenn du bei einem Thema mal festhängst oder einfach Input brauchst – melde dich gerne.  
-Bei spannenden Projekten oder kniffligen Datenbankfragen schau ich auch mal drüber. 🚀  
+## 👋 Über mich
+
+Seit über **25 Jahren** arbeite ich mit Begeisterung in der IT – spezialisiert auf **Microsoft SQL Server**, **Azure Cloud**, **Performance-Tuning** und **Hochverfügbarkeit**.  
+Ich bin jemand, der sich gern in richtig knifflige Themen verbeißt, bis alles läuft.  
 
 ---
 
-- 🛠️ [Meine Schwerpunkte](#-meine-schwerpunkte)
-- ⚙️ [Fachliche Schwerpunkte](#-fachliche-schwerpunkte)
-- 🎓 [Zertifizierungen](#-zertifizierungen-auswahl)
+- 🧭 [Schwerpunkte](#-schwerpunkte)
+- 🛠 [Fachliche Skills](#-fachliche-skills)
+- 🎓 [Zertifizierungen](#-zertifizierungen)
 - 💼 [Beruflicher Werdegang](#-beruflicher-werdegang)
-- 🧰 [Technologien & Skills](#-technologien--skills)
 - 🧩 [Erweiterte Expertise](#-erweiterte-expertise)
-- 📌 [Referenzprojekte](#-referenzprojekte-auswahl)
+- 📚 [Projektportfolio](#-projektportfolio-auswahl)
 
 ---
 
+## 🔧 Schwerpunkte
 
-## 🔧 Meine Schwerpunkte
+- ⚙️ Performance-Optimierung & Troubleshooting für Microsoft SQL Server  
+- ☁️ Aufbau & Betrieb von AlwaysOn-Clustern  
+- 🧱 Azure Data Services & Cloud-Architekturen  
+- 🔄 Infrastructure as Code (Terraform, Ansible)  
+- 🚀 CI/CD & DevOps Pipelines (GitLab, Azure DevOps)  
+- 🐳 Containerisierte Plattformen (Kubernetes, Docker)  
+- 🔐 Daten- & Sicherheitsarchitekturen in regulierten Umfeldern
 
-- Performanceoptimierung für Microsoft SQL Server
-- Hochverfügbarkeitslösungen (AlwaysOn, Logshipping, etc.)
-- Azure Data Services & Cloud-Architekturen
-- Infrastructure as Code & Automatisierung
-- CI/CD-Prozesse & DevOps
-- Containerisierte Datenplattformen (Kubernetes, Docker)
+---
 
-## 🛠 Fachliche Schwerpunkte
+## 🛠 Fachliche Skills
 
-- Microsoft SQL Server (inkl. AlwaysOn, Logshipping, Mirroring)  
-- Performanceanalyse & Troubleshooting  
-- Azure SQL, Data Factory, Synapse, Cosmos DB  
-- Business Intelligence (SSIS, SSRS, SSAS, Power BI)  
-- Cloud-Migrationen (Azure, GCP, AWS)  
-- Kubernetes & containerisierte Datenplattformen  
-- CI/CD mit GitLab, Terraform, DevOps  
-- Monitoring: PRTG, SQL Monitor, Dynatrace
+| Kategorie | Technologien / Tools |
+|------------|----------------------|
+| 🗄️ **Datenbanken** | SQL Server (2000–2022), AlwaysOn, Logshipping, Mirroring, MongoDB, MySQL |
+| 📊 **BI & Analytics** | SSIS, SSAS, SSRS, Power BI, Microsoft Fabric |
+| ☁️ **Cloud & Infra** | Azure (PaaS/IaaS), GCP, AWS, Datafactory, Synapse, Vertex AI |
+| 🩺 **Monitoring** | PRTG, SQL Monitor, Dynatrace, Redgate |
+| 💻 **Programmierung** | T-SQL, Python (12 J.), MDX (14 J.), PowerShell |
+| 🧰 **DevOps & Tools** | GitLab, Terraform, Ansible, Jira, Confluence, CI/CD |
+| 🧩 **OS & Plattformen** | Windows Server, RHEL, SLES, Ubuntu, Kubernetes |
 
-## 🎓 Zertifizierungen (Auswahl)
+---
+
+## 🎓 Zertifizierungen
 
 - **Microsoft Certified: Fabric Analytics Engineer Associate** (2024)  
+- **Microsoft Certified: Azure Data Engineer Associate** (2022)  
 - **Microsoft Certified: Azure Solutions Architect Expert** (2021)  
 - **Microsoft Certified: DevOps Engineer Expert** (2020)  
 - **Google Cloud Certified – Professional Cloud Architect** (2020)  
-- **Microsoft Certified Trainer** (seit 2012)
+- **Microsoft Certified Trainer (MCT)** (seit 2012)  
+- **MCSE Data Management & Analytics (Charter)** (2016)  
+
+👉 **[Mein offizielles Microsoft-Learn-Profil mit vollständiger Zertifikatsübersicht](https://learn.microsoft.com/de-de/users/benediktschackenberg-2319/transcript/vm4m1f6k3m894j0?tab=credentials-tab)**  
+
+<details>
+<summary>📜 Alle Zertifikate anzeigen</summary>
+
+Azure Fundamentals, Azure Developer Associate, Azure Database Administrator Associate,  
+Azure Administrator Associate, Azure Data Fundamentals, Azure Architect Design & Technologies,  
+SQL Server 2008/2012/2014 MCSA/MCSE/MCITP, Data Platform, Data Analytics, MCT History u. v. m.
+</details>
+
+---
 
 ## 💼 Beruflicher Werdegang
 
 ### Seit 05/2025  
-**Angestellt im öffentlichen Gesundheitswesen** — Mainz  
+**Öffentliches Gesundheitswesen – Universitätsmedizin Mainz**  
 - SQL Server Optimierung & Hochverfügbarkeit  
 - Windows Server Administration  
 
-### 04/2018 – 05/2025  
+### 02/2025 – 05/2025  
+**Berufliche Auszeit**
+
+### 04/2018 – 02/2025  
 **Mainzer Datenfabrik GmbH – Geschäftsführer & IT-Berater** — Mainz  
+Ich habe die Mainzer Datenfabrik GmbH im Jahr 2019 als alleiniger Gesellschafter und Geschäftsführer gegründet und das Unternehmen bis Februar 2025 geleitet. In dieser Zeit habe ich die Ausrichtung der Firma maßgeblich geprägt – von der strategischen Positionierung über den Aufbau eines starken Teams bis hin zur Entwicklung eines breiten Kompetenzspektrums in modernen IT-Technologien. Gemeinsam mit meinem Team habe ich zahlreiche anspruchsvolle IT-Projekte umgesetzt und dabei ein vielseitiges Umfeld geschaffen, das tiefes Know-how in unterschiedlichen Systemen, Programmiersprachen und Datenbanken vereint.  
+- Unternehmensentwicklung, Teamleitung, Projektleitung Großprojekte  
+- Öffentlichkeitsarbeit, Qualitätsmanagement, Kooperationsanbahnungen  
 - Projektleitung & Kundenberatung (SQL, Azure, BI)  
-- Aufbau & Führung eines Beratungsunternehmens
 
 ### 02/2017 – 04/2018  
 **IT Consultant – DekaBank Frankfurt** — Frankfurt  
+Während meiner Tätigkeit bei der DekaBank war ich in der Organisationseinheit Vertriebssteuerung tätig und verantwortete die Betreuung, Pflege und Weiterentwicklung komplexer Datenbank- und Analyseprozesse im Umfeld des Sparkassenvertriebs. Ein besonderer Schwerpunkt lag auf dem Design und der Entwicklung relationaler sowie multidimensionaler Datenbanken und der Programmierung von SQL-Skripten und ETL-Prozessen zur Automatisierung von Vertriebs- und Controllingabläufen. Darüber hinaus war ich maßgeblich an der fachlichen und technischen Analyse von Geschäftsprozessen beteiligt und habe zahlreiche Projekte zur Optimierung und Digitalisierung der Vertriebssteuerungssysteme umgesetzt. Mein technisches Wissen – insbesondere im Microsoft-SQL-Server-Umfeld – konnte ich dabei ebenso einbringen wie mein strukturiertes, analytisches Denken und meine Freude an lösungsorientierter Zusammenarbeit im Team.  
 - SQL Optimierung & SSIS/SSAS/SSRS-Entwicklung  
-- Windows Server Projekte
+- Windows Server Projekte  
 
 ### 09/2013 – 01/2017  
 **Expert System Engineer – Deutsche Telekom Technik GmbH** — Bonn  
-- Rechenzentrumskonsolidierung & Windows-Infrastruktur
+Ich war mehrere Jahre bei der Deutschen Telekom im Bereich Network and Service Operations (NSO) tätig und verantwortete als Teamleiter die Bereitstellung, Konfiguration und den Betrieb von rund 5 000 virtuellen und dedizierten Servern innerhalb der Produktionsplattformen. Zu meinen Aufgaben zählten die fachliche und disziplinarische Führung von 24 Mitarbeitenden, die Konsolidierung und Modernisierung von Rechenzentrumsinfrastrukturen sowie der Aufbau hochverfügbarer Plattformen für unternehmenskritische Dienste wie E-Mail, EntertainTV oder Machine-to-Machine-Kommunikation.  
+
+Ich war für ein jährliches Budget von rund einer Million Euro zuständig und verantwortete die kontinuierliche Weiterentwicklung der Hardware- und Management-Tools, inklusive Evaluierung, Validierung und Einführung neuer Technologien. Dabei arbeitete ich eng mit interdisziplinären Projektteams, Herstellern und Partnern unter NDA zusammen, um die Leistungsfähigkeit und Innovationskraft der Telekom-Plattformen nachhaltig zu stärken.  
+- Rechenzentrumskonsolidierung & Windows-Infrastruktur  
 
 ### 04/2003 – 08/2013  
 **IT Consultant – S&P Data GmbH** — Rhein-Main-Gebiet  
 - Microsoft SQL Server Administration & Tuning  
-- Windows Server Betrieb
+- Windows Server Betrieb  
 
-
-## 🧰 Technologien & Skills
-
-- **SQL Server:** über 25 Jahre Erfahrung  
-- **Azure Plattform:** PaaS, IaaS, Security, Monitoring  
-- **DevOps & CI/CD:** GitLab, Terraform, Ansible  
-- **Business Intelligence:** SSIS, SSAS, SSRS, Power BI  
-- **Cloud:** Azure, GCP, AWS  
-- **Monitoring:** PRTG, Dynatrace, SQL Monitor  
-- **Container-Plattformen:** Kubernetes, Docker, Helm
-
+---
 
 ## 🧩 Erweiterte Expertise
 
-- 💼 **Rollen:** Infrastruktur-Architekt, DBA, Principal Consultant, Solution Architekt, Entwickler, Trainer, Projektleiter  
-- 🌐 **Branchenkenntnis:** Projekte in Automobil, Banken, öffentlicher Dienst, Gesundheitswesen, Logistik, Einzelhandel & mehr  
-- 💻 **Programmierung:** Python (12+ Jahre), MDX (14 Jahre), T-SQL  
-- 📊 **BI & Datenbanken:** 25 Jahre SQL Server, 15 Jahre BI-Tools (SSIS, SSAS, SSRS), Reporting, OLAP, ETL  
-- ☁️ **Cloud & Infrastruktur:** Azure (11+ Jahre), GCP (6 Jahre), AWS, Linux-Administration (15 Jahre)  
-- 🛠 **DevOps & Tools:** Git/SVN, Terraform, Ansible, CI/CD, PRTG, Redgate, Jira, Confluence
+- **Rollen:** Architekt, DBA, Trainer, Projektleiter, Consultant  
+- **Branchen:** Banken, Gesundheit, Behörden, Telekom, Produktion, Logistik, Versicherung  
+- **Soft Skills:** Teamführung, Strategieentwicklung, Mentoring, Audits & Dokumentation  
 
+---
 
-## 📌 Referenzprojekte (Auswahl)
+## 📚 Projektportfolio (Auswahl)
 
-- **MySQL/Hadoop-Migration zu Google Cloud** (Bank, 2022–2024): Cloud SQL & Dataproc, PySpark-Pipelines  
-- **Containerbasierte Analytics-Plattform mit Vertex AI** (Telekom, 2022–2024): Apache Beam, Cloud Dataflow  
-- **MongoDB-Migration zu AWS** (Gesundheit, 2024): Cloud-Architektur & Umsetzung im Projektteam  
-- **MongoDB & Kubernetes-Plattform** (Finanzen, 2021–2024): Aufbau & Betrieb Multicluster, Beratung & Support  
-- **DWH-Audit & BI-Beratung** (Versicherung, 2021): Audit von SSIS, SSRS, Power BI, SQL-Optimierung  
-- **SAP-Datenbank-Migration ins Rechenzentrum** (Produktion, 2019–2020): Ohne Serviceunterbrechung  
-- **SQL Server Migration unter Compliance-Vorgaben** (Bank, 2020–2021): SQL 2000 → 2019 inkl. ETL-Modernisierung  
-- **SQL-Plattform-Neuaufbau im öffentlichen Dienst** (2018–2019): Migration, HA-Architektur, Betriebshandbuch  
-- **SQL-Betrieb & Support im Handel** (2018–2019): 2nd-Level, Compliance-Checks, Release-Deployments  
-- **Modernisierung Reporting-Plattform** (Bank, 2017–2018): Upgrade auf moderne Architektur inkl. Azure Service Bus  
-- **Neuaufbau SQL-Landschaft & Betrieb** (Bank, 2014–2016): ETL, Tuning, Dokumentation
+| Zeitraum | Branche | Projekt | Technologien | Rolle |
+|-----------|----------|----------|---------------|--------|
+| 2024 | Energie | **Azure SQL Absicherungen** | Azure SQL, Datafactory, CI/CD | Enterprise Architekt |
+| 2024 | Bank | **MongoDB Cluster Fehlerbehebung** | Kubernetes, Helm, ArgoCD | MongoDB Berater |
+| 2022–2024 | Bank | **Cloud SQL & Dataproc Migration** | GCP, PySpark, Hadoop | Data Engineer |
+| 2021–2024 | Telekom | **Analytics Platform & CI/CD** | Vertex AI, Beam, Dataflow | Data Engineer |
+| 2021–2023 | Telekom | **DWH Weiterentwicklung** | SSIS/SSAS/SSRS, Azure | Solution Architekt |
+| 2019–2023 | Gesundheit | **SQL Betrieb & Optimierung** | SQL Server, PRTG, Fabric | DBA |
+| 2019–2020 | Produktion | **SAP Migration ohne Downtime** | Azure SQL, Power BI | Principal Architekt |
+| 2018–2019 | Öffentlicher Dienst | **SQL Landschaft Neuaufbau** | AlwaysOn, Dynatrace | Principal DBA |
+| 2017–2018 | Bank | **Reporting-Modernisierung** | SQL Server, Azure Service Bus | Consultant |
 
-> *"Technologie kann man lernen. Leidenschaft für Lösungen macht den Unterschied."*
+> *„Technologie kann man lernen – Leidenschaft für Lösungen macht den Unterschied.“*
