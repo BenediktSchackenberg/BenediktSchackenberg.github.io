@@ -4,7 +4,7 @@ layout: page
 permalink: /ueber-mich/
 ---
 
-![Profilbild](/assets/img/nerdy.png){: width="100" height="100" }{: .left }
+![Profilbild](/assets/img/ichbins.png){: width="100" height="100" }{: .left }
 
 ## 👋 Über mich
 
