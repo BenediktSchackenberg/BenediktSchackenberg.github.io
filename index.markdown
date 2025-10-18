@@ -12,7 +12,7 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
 ![Desktop View](/assets/img/bene.jpg){: width="150" height="150" }{: .left }
 
   Kind der 80er, irgendwo zwischen Diskettenlaufwerk und Modem, ISDN und DSL großgeworden – und gedanklich wahrscheinlich für immer im 2000er-Jahrzehnt hängengeblieben. 😄 Ich freue mich, dass du meine private Webseite gefunden hast!
-  Ich bin nicht mehr auf LinkedIn, Instagram oder in sonstigen Social-Media-Bubbles unterwegs – wer also wissen will, was ich so mache, ist hier genau richtig.
+  Wer wissen will, was ich so mache, ist hier genau richtig.
 
 
 
