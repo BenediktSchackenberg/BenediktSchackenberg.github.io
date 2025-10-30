@@ -1,7 +1,7 @@
 ﻿---
 layout: post
 category: private gedanken
-image: /assets/img/oktober.jpg
+image: /assets/img/oktober_30.jpg
 ---
 # 🍂 🍂 Oktoberlicht 🍂 🍂
 
