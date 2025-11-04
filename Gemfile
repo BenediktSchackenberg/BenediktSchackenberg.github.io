@@ -20,7 +20,7 @@ group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.12"
   gem "jekyll", "~> 4.4"
   gem "jekyll-sass-converter", "~> 3.1"
-  gem "sass-embedded", "~> 1.77"   # <-- Pin hier rein
+  gem "sass-embedded", ">= 1.77", "< 1.78"  # <-- Pin hier rein
 end
 
 # Windows and JRuby does not include zoneinfo files, so bundle the tzinfo-data gem
