@@ -27,7 +27,7 @@ social:
 baseurl: ""                       # leer lassen, wenn Seite auf der Domainwurzel liegt
 
 theme: jekyll-theme-chirpy
-theme_mode: auto
+theme_mode: Auto
 avatar: /assets/img/meta.png
 
 plugins:
