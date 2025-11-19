@@ -10,12 +10,11 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
 **Hi, ich bin Benedikt Schackenberg – Tüftler und Retro-Nerd. Schön, dass du da bist!**  
 
 <div class="retro-gallery">
-  <img src="/assets/img/Metzger.png" alt="Metzger" class="retro-img" />
-  <img src="/assets/img/Stop.jpg" alt="Stop" class="retro-img" />
+  <img src="/assets/img/Metzger.jpg" alt="Metzger" class="retro-img" />
   <img src="/assets/img/cartorns.jpg" alt="Cartoons" class="retro-img" />
   <img src="/assets/img/muethenmuh.jpg" alt="Muethenmuh" class="retro-img" />
   <img src="/assets/img/BenediktSchackenberg.jpg" alt="Benedikt" class="retro-img round" />
-  <img src="/assets/img/benediktinBlond.png" alt="Benedikt Blond" class="retro-img round" />
+  <img src="/assets/img/benediktinblond.jpg" alt="Benedikt Blond" class="retro-img round" />
   <img src="/assets/img/abgehts.jpg" alt="Benedikt Blond" class="retro-img round" />
   <img src="/assets/img/nackt.jpg" alt="Benedikt Blond" class="retro-img round" />
 </div>
