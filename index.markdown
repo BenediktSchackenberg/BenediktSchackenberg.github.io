@@ -15,8 +15,9 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
   <img src="/assets/img/muethenmuh.jpg" alt="Muethenmuh" class="retro-img" />
   <img src="/assets/img/benediktread.jpg" alt="Benedikt" class="retro-img round" />
   <img src="/assets/img/blony.jpg" alt="Benedikt Blond" class="retro-img round" />
-  <img src="/assets/img/wirfahren.jpg" alt="Benedikt Blond" class="retro-img round" />
+  <img src="/assets/img/stube.jpg" alt="Benedikt Blond" class="retro-img round" />
   <img src="/assets/img/nackt.jpg" alt="Benedikt Blond" class="retro-img round" />
+   <img src="/assets/img/stopo.jpg" alt="stopo mainz" class="retro-img round" />
 </div>
 
 <p>
