@@ -1,0 +1,25 @@
+﻿---
+layout: page
+---
+
+{% assign tagname = page.tag | default: page.title %}
+
+<h1 class="post-title">
+    {{ tagname }}
+    <span class="text-muted">
+        {{ site.tags[tagname] | size }}
+    </span>
+</h1>
+
+<ul class="post-list">
+    {% for post in site.tags[tagname] %}
+    <li>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="post-meta">
+            {{ post.date | date: "%d.%m.%Y" }}
+        </span>
+    </li>
+    {% else %}J
+    <p>Keine Beiträge mit diesem Tag gefunden.</p>
+    {% endfor %}
+</ul>

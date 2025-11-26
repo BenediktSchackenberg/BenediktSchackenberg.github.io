@@ -1,6 +1,7 @@
 ﻿---
 layout: post
 category: technik
+tags: ["Mainz", "Deutschland"]
 image: /assets/img/meineStadt.jpg
 ---
 # 🌤️ Vielfalt, Offenheit und eine lebendige Stadtkultur
