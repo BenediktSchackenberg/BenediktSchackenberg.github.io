@@ -2,24 +2,16 @@
 layout: page
 ---
 
-{% assign tagname = page.tag | default: page.title %}
+<h1>{{ page.title }}</h1>
 
-<h1 class="post-title">
-    {{ tagname }}
-    <span class="text-muted">
-        {{ site.tags[tagname] | size }}
-    </span>
-</h1>
-
-<ul class="post-list">
-    {% for post in site.tags[tagname] %}
+<ul>
+    {% assign t = page.tag | downcase %}
+    {% for post in site.posts %}
+    {% if post.tags contains page.tag or post.tags contains t %}
     <li>
         <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="post-meta">
-            {{ post.date | date: "%d.%m.%Y" }}
-        </span>
+        <span> – {{ post.date | date: "%d.%m.%Y" }}</span>
     </li>
-    {% else %}J
-    <p>Keine Beiträge mit diesem Tag gefunden.</p>
+    {% endif %}
     {% endfor %}
 </ul>
