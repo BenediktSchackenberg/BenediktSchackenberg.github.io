@@ -1,7 +1,6 @@
 ﻿---
 layout: post
 category: technik
-tags: ["Ludwigshafen", "CyberSecurity"]
 image: /assets/img/ludwigshafen.jpg
 ---
 # 🌤️ Stadtverwaltung Ludwigshafen offline – vermutlich über VPN kompromittiert

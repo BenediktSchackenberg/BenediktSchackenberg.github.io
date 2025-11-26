@@ -3,7 +3,6 @@ layout: post
 title: "Zwischen Verfall und Aufbruch: Ein Abend in Mainz-Kastel"
 date: 2025-11-23 20:00:00 +0100
 categories: ["Blog"]
-tags: ["Mainz-Kastel", "Rhein", "Deutschland", "Wirtschaft", "Innenstadt", "Politik"]
 description: "Ein Spaziergang am Rheinufer in Mainz-Kastel, der erstaunlich gut widerspiegelt, wie sich Deutschland 2025 anfühlt – zwischen Stillstand, Potenzial und der Frage, wohin sich unsere Städte entwickeln."
 image: /assets/img/aroundme.jpg
 excerpt: "Ein verlassenes Boot am Rhein, warmes Abendlicht – und ein Gefühl, das sinnbildlich für die Stimmung in Deutschland steht. Ein persönlicher Blick aus Mainz-Kastel."

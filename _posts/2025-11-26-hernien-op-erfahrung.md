@@ -3,7 +3,6 @@ layout: post
 title: "Routine und Risiko – mein unerwarteter Weg nach einer Hernien-OP"
 date: 2025-11-26 16:55:00 +0100
 categories: ["Blog"]
-tags: ["Gesundheit", "Hernie", "Operation", "Patientensicherheit", "Erfahrung", "Mainz", "Schlichtung", "Medizin"]
 description: "Wie aus einem Routineeingriff eine lebensbedrohliche Situation wurde – und warum ich heute dankbarer denn je bin."
 image: /assets/img/opop.jpg
 excerpt: "Ein Eingriff, der Routine sein sollte – und eine Nacht, die mein Leben verändert hat."
