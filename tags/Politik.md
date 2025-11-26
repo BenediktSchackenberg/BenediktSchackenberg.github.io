@@ -1,5 +1,5 @@
----
+﻿---
 layout: tag-page  
 title: Politik
-tag: Politik
+tag: politik
 ---
