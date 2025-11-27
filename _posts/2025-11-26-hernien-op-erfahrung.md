@@ -19,24 +19,21 @@ Doch nach der Operation entwickelte sich etwas, womit niemand gerechnet hatte.
 
 ## Die Stunden nach der Operation
 
-Nachdem ich in mein Zimmer gebracht wurde, fühlte ich mich zunehmend schlechter.  
-Mein Kreislauf sackte ab, mir war schwindelig, ich bekam starke Schmerzen und merkte, dass **etwas nicht stimmt**.
-
-Die Symptome wurden im Laufe des Tages und Abends stärker.  
-Erst gegen **00:30 Uhr** – also viele Stunden nach dem Eingriff – wurde ich per Rettungswagen weitertransportiert.
-
-Dort stellte sich heraus, dass bei dem Eingriff in der Tagesklinik **eine Arterie verletzt** worden war.  
-Über **3,5 Liter Blut** hatten sich in meinem Bauchraum gesammelt.  
-Ich war innerlich verblutet.
+Nach Abschluss der Operation in der Tagesklinik befand ich mich zunächst im Aufwachraum, wo laut Aussage des Personals meine Vitalwerte stabil waren. Anschließend wurde ich in mein Patientenzimmer verlegt, in dem ich planmäßig zwei Tage zur Nachbeobachtung bleiben sollte.
+Bereits am Mittag wurde mir beim Aufstehen vom Bett zur Toilette plötzlich schwindelig, ich bekam starken Schweißausbruch und Übelkeit. Die anwesende Pflegekraft sagte mir, dies sei „ganz normal“ und ich solle mir keine Sorgen machen. Ich legte mich daraufhin wieder ins Bett.
+Im weiteren Verlauf des Tages verschlechterte sich mein Zustand zunehmend. Gegen 21 Uhr kam es zu mehrfachem, starkem Erbrechen, was sich im Verlauf der Nacht mehrfach wiederholte. Die Nachtschwester reinigte mich jedes Mal und legte mir, soweit ich mich erinnere, eine Infusion, deren Inhalt mir nicht bekannt war.
+Gegen 23:30 Uhr trat erneut heftiges Erbrechen auf, verbunden mit starkem Schwitzen und deutlicher Schwäche. Zu diesem Zeitpunkt kam erneut eine Pflegekraft ins Zimmer. Aus meiner Sicht handelte es sich hierbei nicht um eine erfahrene Krankenschwester oder zumindest um eine sehr unerfahrene Pflegekraft, da sie die Schwere meines Zustands über viele Stunden nicht erkannt oder ernst genommen hat.
+Ich konnte hören, dass sie kurz darauf mit einem Arzt telefonierte, vermutlich dem Anästhesisten der Klinik. Nach meinem Eindruck hatte sie zuvor kurz mein Nachthemd angehoben, möglicherweise um den Bauchbereich zu kontrollieren.
+Etwa gegen Mitternacht (die genaue Uhrzeit kann ich nicht mehr exakt angeben, die Angaben sind ungefähre Schätzungen) erschien der Arzt im Zimmer. Er machte sofort das Licht an, begann meine Tasche zu packen und sagte mir, dass man mir hier nicht mehr helfen könne und ich sofort ins Krankenhaus müsse.
+Ich bin mir zu 100 % sicher, dass erst zu diesem Zeitpunkt ein Arzt anwesend war. Eine ärztliche Untersuchung wurde nicht durchgeführt; der Arzt teilte mir lediglich mit, dass er einen Krankenwagen gerufen habe.
 
 ---
 
 ## Der Moment, der mir das Leben rettete
 
-Als ich schließlich behandelt wurde, ging alles sehr schnell.  
-Ich wurde **notoperiert**, die Blutung wurde gestillt, der Bauchraum gespült und ich bekam Bluttransfusionen.
-
-An dieser Stelle möchte ich sehr deutlich sagen:
+Ich wurde daraufhin per Rettungswagen in die Notaufnahme der Universitätsmedizin Mainz gebracht. Ab diesem Moment ging alles sehr schnell – es erfolgte ein CT, bei dem die Ursache erkannt wurde, und ich wurde unmittelbar danach notoperiert.
+Aus meiner Sicht lag hier ein Versäumnis in der postoperativen Überwachung und Betreuung in der Tagesklinik vor. Die Symptome (anhaltendes Erbrechen, Kreislaufprobleme, starkes Schwitzen) hätten deutlich früher ärztlich abgeklärt und behandelt werden müssen. 
+ An dieser Stelle möchte ich sehr deutlich sagen:
 
 > **Ich bin unglaublich dankbar für die Hilfe, die ich in dieser Nacht erhalten habe.**  
 > Die schnelle Reaktion hat mir das Leben gerettet.
