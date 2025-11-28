@@ -17,7 +17,7 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
   <img src="/assets/img/blony.jpg" alt="Benedikt Blond" class="retro-img round" />
   <img src="/assets/img/stube.jpg" alt="Benedikt Blond" class="retro-img round" />
   <img src="/assets/img/nackt.jpg" alt="Benedikt Blond" class="retro-img round" />
-   <img src="/assets/img/stopo.jpg" alt="stopo mainz" class="retro-img round" />
+  <img src="/assets/img/stopo.jpg" alt="stopo mainz" class="retro-img round" />
 </div>
 
 <p>
@@ -25,8 +25,8 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
   Wer wissen will, was ich so mache, ist hier genau richtig.
 </p>
 
-<!-- Weihnachtsmann-Button + Audio -->
-<div id="xmas-toggle" class="xmas-icon-button" title="Weihnachtsmodus an/aus">
+<!-- Weihnachtsmann-Button + Audio (nur noch für Musik) -->
+<div id="xmas-toggle" class="xmas-icon-button" title="Weihnachtsmusik an/aus">
   🎅
 </div>
 <audio id="xmas-audio" src="/assets/audio/chiptune-christmas.mp3" loop></audio>
@@ -56,7 +56,6 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
     border-radius: 5px;
   }
 
-  /* Wackel-Animation direkt per :hover */
   .retro-img:hover {
     animation: retro-wiggle 0.3s ease-in-out 0s 2;
     transform: translateY(-4px) scale(1.03);
@@ -72,42 +71,10 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
     100% { transform: translateX(0); }
   }
 
-  /* Pixel-Männchen */
-  .pixel-sprite {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    image-rendering: pixelated;
-    pointer-events: none;
-    z-index: 9999;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    animation: float-up 1.1s ease-out forwards;
-  }
-
-  @keyframes float-up {
-    0% {
-      transform: translate(-50%, -20%) scale(0.9);
-      opacity: 0;
-    }
-    15% {
-      opacity: 1;
-    }
-    60% {
-      transform: translate(-50%, -60%) scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: translate(-50%, -90%) scale(1);
-      opacity: 0;
-    }
-  }
-
   /* Weihnachtsmann-Button */
   .xmas-icon-button {
     position: fixed;
-    bottom: 30px;            /* <- hier war vorher 90x */
+    bottom: 30px;
     right: 30px;
     width: 70px;
     height: 70px;
@@ -119,7 +86,7 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    font-size: 42px;         /* groß, aber nicht völlig riesig */
+    font-size: 42px;
     user-select: none;
     opacity: 0.92;
     transition:
@@ -149,4 +116,89 @@ description: "Microsoft SQL Server Spezialist | Performance & Hochverfügbarkeit
       radial-gradient(circle at 40% 90%, rgba(255,255,255,0.1) 0, transparent 60%);
     background-color: #020617;
   }
+
+  /* Laufender Weihnachtsmann */
+  .santa-walker {
+    position: fixed;
+    bottom: 90px;                /* etwas über dem Button */
+    left: -80px;                 /* Start links außerhalb */
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+    pointer-events: none;
+    z-index: 9998;
+    background-image: url('/assets/img/pixel-santa.png'); /* <- deine Grafik */
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: santa-walk 12s linear forwards;
+  }
+
+  @keyframes santa-walk {
+    0%   { transform: translateX(0) translateY(0); }
+    25%  { transform: translateX(30vw) translateY(-3px); }
+    50%  { transform: translateX(60vw) translateY(0); }
+    75%  { transform: translateX(90vw) translateY(-3px); }
+    100% { transform: translateX(120vw) translateY(0); }
+  }
 </style>
+
+<script>
+  (function () {
+    /* -----------------------------
+       1) Bilder zufällig anordnen
+       ----------------------------- */
+    var gallery = document.querySelector('.retro-gallery');
+    if (gallery) {
+      var items = Array.prototype.slice.call(gallery.children);
+      items.sort(function () {
+        return Math.random() - 0.5;
+      });
+      items.forEach(function (item) {
+        gallery.appendChild(item);
+      });
+    }
+
+    /* -----------------------------
+       2) Weihnachtsmann läuft immer
+       ----------------------------- */
+    var SANTA_INTERVAL = 14000;
+
+    function createSanta() {
+      var santa = document.createElement('div');
+      santa.className = 'santa-walker';
+      document.body.appendChild(santa);
+
+      santa.addEventListener('animationend', function () {
+        santa.remove();
+      });
+    }
+
+    // direkt beim Laden einmal starten
+    createSanta();
+    // danach alle 14 Sekunden wieder
+    setInterval(createSanta, SANTA_INTERVAL);
+
+    /* -----------------------------
+       3) Button nur für Musik
+       ----------------------------- */
+    var xmasToggle = document.getElementById('xmas-toggle');
+    var xmasAudio  = document.getElementById('xmas-audio');
+
+    if (xmasToggle) {
+      xmasToggle.addEventListener('click', function () {
+        var isActive = xmasToggle.classList.toggle('active');
+        document.body.classList.toggle('xmas-mode', isActive);
+
+        if (xmasAudio) {
+          if (isActive) {
+            xmasAudio.play().catch(function () {});
+          } else {
+            xmasAudio.pause();
+            xmasAudio.currentTime = 0;
+          }
+        }
+      });
+    }
+  })();
+</script>
