@@ -3,6 +3,7 @@ layout: post
 title: "Der beste schlechte Tag: Mein Einauge von Mainz"
 date: 2025-11-28 11:30:00 +0100
 categories: ["Blog"]
+tags: ["mainz", "humor", "alltag", "urban"]
 description: "Wie ich in Mainz über zwei völlig unterschiedliche Wandfiguren gestolpert bin – ein müdes Einauge und eine übermotivierte Helau-Kugel."
 image: /assets/img/PXL_20251129_08424.png
 excerpt: "Mainz hat jetzt offiziell zwei neue Maskottchen: eine fröhliche Helau-Kugel und ein einäugiges Ei mit Zunge. Irgendwo dazwischen bewege ich mich auch."

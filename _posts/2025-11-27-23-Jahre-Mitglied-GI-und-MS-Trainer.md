@@ -2,7 +2,8 @@
 layout: post
 title: "Seit 2002 dabei – warum mir die GI und Wissensvermittlung bis heute wichtig sind"
 date: 2025-11-28 17:45:00 +0100
-categories: ["Blog"]
+categories: [Informatik, GI, Wissen, Microsoft, Blog]
+tags: [gi, informatik, wissen]
 description: "Warum mich die Gesellschaft für Informatik seit 2002 begleitet – und wieso Wissensaustausch für mich heute wichtiger denn je ist."
 image: /assets/img/sonne1.jpg
 ---
@@ -83,3 +84,12 @@ Wissen ist etwas, das man teilt – damit andere wachsen können.**
 
 Wenn du selbst in der GI bist oder überlegst, dich stärker zu vernetzen – schreib mir gern.  
 Austausch hat mich persönlich immer weitergebracht.
+
+
+{% if page.tags %}
+<p class="post-tags">
+  {% for tag in page.tags %}
+    <a href="{{ '/tags/#' | append: tag | slugify | relative_url }}">#{{ tag }}</a>
+  {% endfor %}
+</p>
+{% endif %}
