@@ -1,6 +1,7 @@
 ﻿---
 layout: post
 category: technik
+tags: ["osint", "ludwigshafen", "it-sicherheit", "deutschland"]
 image: /assets/img/ludwigshafen.jpg
 ---
 # 🌤️ Stadtverwaltung Ludwigshafen offline – vermutlich über VPN kompromittiert

@@ -1,6 +1,7 @@
 ﻿---
 title: "Sichtbare Systeme, Netze und Dienste der Stadt Ludwigshafen"
 layout: page
+tags: ["osint", "ludwigshafen", "it-sicherheit", "deutschland"]
 description: "Sichtbare Systeme, Netze und Dienste der Stadt Ludwigshafen"
 permalink: /blog/ludwigshafen-osint/
 image: /assets/img/explo.jpg
