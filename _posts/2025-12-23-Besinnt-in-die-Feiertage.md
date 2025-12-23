@@ -3,7 +3,7 @@ layout: post
 title: "Zwischen Verantwortung und Erkenntnis – ein ruhiger Start in die Feiertage"
 date: 2025-12-23 20:30:00 +0100
 categories: ["Gedanken", "Persönliches"]
-tags: [selbstständigkeit", "arbeit", "weihnachten"]
+tags: ["selbstständigkeit", "arbeit", "weihnachten"]
 image: /assets/img/chilenzio.jpg
 description: "Eine persönliche Rückschau auf Jahre der Selbstständigkeit, Verantwortung, falsche Annahmen – und die Erkenntnis, warum ein ruhiger Start in die Feiertage heute mehr bedeutet als früher."
 ---
