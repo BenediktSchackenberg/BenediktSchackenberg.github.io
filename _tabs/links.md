@@ -31,11 +31,6 @@ permalink: /linkslinks/
       <td style="text-align: center">Internet News</td>
       <td style="text-align: right">Tech</td>
     </tr>
-    <tr>
-      <td><a href="https://www.madafa.de/">Mainzer Datenfabrik Gmbh, meine alte Wirkungsstätte</a></td>
-      <td style="text-align: center">Alles rund um SQL Server</td>
-      <td style="text-align: right">Tech</td>
-    </tr>
   </tbody>
 </table>
 
