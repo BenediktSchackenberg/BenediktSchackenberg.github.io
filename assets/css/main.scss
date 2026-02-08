@@ -44,3 +44,26 @@ $susy: (
 @import "slimmenu";
 @import "post";
 @import "page";
+
+/* Custom overrides for more breathing room */
+.topnav {
+  margin-top: 2em;
+  margin-bottom: 3em;
+  padding-top: 1em;
+}
+
+.page__content {
+  padding-top: 1.5em;
+}
+
+article {
+  padding-bottom: 2em;
+}
+
+h1, h2 {
+  margin-top: 1.5em;
+}
+
+.site__name {
+  margin-bottom: 0.5em;
+}

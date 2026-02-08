@@ -1,8 +1,8 @@
 # Site Settings
 encoding                 : "utf-8"
-locale                   : "de"
+locale                   : "en"
 title                    : "Benedikt Schackenberg"
-description              : "Software Engineer aus Deutschland. OpenClaw Entwickler."
+description              : "Software Engineer from Germany. OpenClaw Developer."
 favicon                  : "/assets/images/benedikt.jpg"
 avatar                   : "/assets/images/benedikt.jpg"
 url                      : "https://schackenberg.com"
