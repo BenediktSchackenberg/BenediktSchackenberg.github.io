@@ -2,29 +2,49 @@
 layout: home
 comments: false
 seotitle: Benedikt Schackenberg - Software Engineer
-description: Software Engineer aus Deutschland. Entwickler von OpenClaw Inventory Platform.
+description: Software Engineer with 25+ years in IT. Specialized in SQL Server, Azure Cloud, and High Availability.
 ---
 
-# Moin! 👋
+# Hi, I'm Benedikt 👋
 
-Ich bin Benedikt, Software Engineer aus Deutschland. Aktuell arbeite ich an **OpenClaw Inventory** — einer Open-Source Endpoint Management Platform für Windows-Flotten.
-
-## Was ich baue
-
-🖥️ **[OpenClaw Inventory Platform](https://github.com/BenediktSchackenberg/openclaw-windows-agent)** — Hardware/Software Inventar, Package Deployment, Remote Commands für Windows PCs. Denk an ein leichtgewichtiges SCCM/Intune für Homelabs.
-
-## Tech Stack
-
-- **Backend:** Python, FastAPI, PostgreSQL, TimescaleDB
-- **Frontend:** Next.js, TypeScript, Tailwind CSS
-- **Agent:** .NET 8, C#, Windows Services
-- **AI:** OpenClaw, Claude, GPT-4o
-
-## Kontakt
-
-- 📧 [benedikt@schackenberg.com](mailto:benedikt@schackenberg.com)
-- 🐙 [GitHub](https://github.com/BenediktSchackenberg)
+[About Me](/about/) · [GitHub](https://github.com/BenediktSchackenberg) · [Email](mailto:benedikt@schackenberg.com)
 
 ---
 
-## Neueste Blog Posts
+## 🚀 Current Project
+
+**[OpenClaw Windows Agent](https://github.com/BenediktSchackenberg/openclaw-windows-agent)**
+
+A native Windows agent that connects your PC to an [OpenClaw](https://openclaw.ai) Gateway. AI agents can remotely execute commands, collect hardware inventory, check security status, and more.
+
+![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet) ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6?style=flat-square&logo=windows) ![Status](https://img.shields.io/badge/Status-Alpha-orange?style=flat-square)
+
+---
+
+## 🔧 Tech Stack
+
+C# / .NET · TypeScript · Python · PostgreSQL · SQL Server · Docker · WPF · FastAPI
+
+---
+
+## 📈 Activity
+
+![GitHub Streak](https://github-readme-streak-stats.herokuapp.com/?user=BenediktSchackenberg&theme=transparent&hide_border=true&date_format=j%20M%5B%20Y%5D)
+
+[View all repositories →](https://github.com/BenediktSchackenberg?tab=repositories)
+
+---
+
+## 📫 Contact
+
+**Address**  
+Benedikt Schackenberg  
+275 New N Rd, PMB 3229  
+London, N1 7AA
+
+**🔐 PGP**  
+[Download key](/assets/keys/benedikt-schackenberg.asc) · `0xA25274BE4DD68691`
+
+---
+
+## Latest Posts
