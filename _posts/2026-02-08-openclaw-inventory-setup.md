@@ -1,30 +1,36 @@
 ---
-title: "OpenClaw Inventory Platform - Complete Server Setup Guide"
+title: "Building an Endpoint Management Platform from Scratch"
 date: 2026-02-08 22:00:00 +0100
 tag: openclaw
 headerimage: /assets/images/openclaw-inventory-robots.jpg
-description: "Komplette Anleitung zur Installation der OpenClaw Inventory Platform - PostgreSQL, Backend, Frontend, Gateway und Windows Agent."
+description: "How I built OpenClaw Inventory - an open-source endpoint management platform for Windows fleets. Complete setup guide included."
 ---
 
-# 🖥️ OpenClaw Inventory Platform
+I got tired of manually checking what's installed on my Windows machines. SSH into one, run some commands, note it down somewhere, repeat for the next one. You know the drill.
 
-Du willst wissen, was auf all deinen Windows-Rechnern installiert ist? Software remote ausrollen? Befehle auf 50 Maschinen gleichzeitig ausführen? Dann ist OpenClaw Inventory genau das Richtige.
+So I built something better.
 
-## 🎯 Was ist das?
+## The Problem
 
-OpenClaw Inventory ist eine **Open-Source Endpoint Management Platform** für Windows-Flotten:
+I have about a dozen Windows machines scattered around my network. Some are workstations, some are servers, one is a test rig that I keep breaking and rebuilding. Keeping track of what's running on each one was becoming a nightmare.
 
-- 📊 **Hardware & Software Inventar** automatisch sammeln
-- 📦 **Software deployen** (MSI/EXE mit Silent Install)
-- 🎮 **Remote Commands** auf allen Maschinen ausführen
-- 🏷️ **Geräte gruppieren** und organisieren
-- 🔒 **Security-Status tracken** (Firewall, BitLocker, UAC, lokale Admins)
+Commercial solutions like SCCM or Intune exist, but they're either expensive, overcomplicated, or both. I wanted something lightweight that I could self-host and actually understand.
 
-Think of it as a lightweight alternative to SCCM/Intune für kleinere Umgebungen, Labs oder Homelabs.
+## What I Built
 
----
+OpenClaw Inventory is an endpoint management platform that does a few things really well:
 
-## 🏗️ Architektur
+- **Collects hardware and software inventory** automatically from Windows machines
+- **Deploys software** remotely (MSI/EXE with silent install flags)
+- **Runs commands** on any machine from a central dashboard
+- **Groups devices** however you want
+- **Tracks security status** - firewall, BitLocker, UAC, local admins
+
+It's basically what I wished existed when I started managing multiple Windows boxes.
+
+## Architecture
+
+The setup has four main pieces:
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -58,25 +64,29 @@ Think of it as a lightweight alternative to SCCM/Intune für kleinere Umgebungen
       └──────────┘      └──────────┘      └──────────┘
 ```
 
----
+The Windows agents are .NET 8 services that run in the background and report back to the gateway. The backend stores everything in PostgreSQL with TimescaleDB for time-series data. The frontend is a Next.js dashboard that makes it all usable.
 
-## 📋 Voraussetzungen
+## Prerequisites
 
-| Komponente | Version | Zweck |
+Before we start, you'll need:
+
+| Component | Version | Purpose |
 |-----------|---------|---------|
-| 🐧 **Ubuntu Server** | 22.04+ | Host OS |
-| 🐘 **PostgreSQL** | 16+ | Datenbank |
-| ⏱️ **TimescaleDB** | 2.x | Time-series Extension |
-| 🐍 **Python** | 3.12+ | Backend API |
-| 📦 **Node.js** | 20+ | Frontend Dashboard |
-| 🔗 **OpenClaw Gateway** | Latest | Node-Kommunikation |
+| Ubuntu Server | 22.04+ | Host OS |
+| PostgreSQL | 16+ | Database |
+| TimescaleDB | 2.x | Time-series extension |
+| Python | 3.12+ | Backend API |
+| Node.js | 20+ | Frontend dashboard |
+| OpenClaw Gateway | Latest | Node communication |
 
----
+I'm running all of this on a single Ubuntu box, but you could split it up if you wanted to.
 
-## 🚀 Step 1: PostgreSQL + TimescaleDB installieren
+## Step 1: Database Setup
+
+TimescaleDB is PostgreSQL with superpowers for time-series data. We'll use it to store inventory snapshots and job history efficiently.
 
 ```bash
-# TimescaleDB Repository hinzufügen
+# Add the TimescaleDB repository
 sudo apt install -y gnupg postgresql-common apt-transport-https lsb-release wget
 sudo /usr/share/postgresql-common/pgdg/apt.postgresql.org.sh -y
 
@@ -86,42 +96,44 @@ echo "deb https://packagecloud.io/timescale/timescaledb/ubuntu/ $(lsb_release -c
 wget --quiet -O - https://packagecloud.io/timescale/timescaledb/gpgkey | sudo apt-key add -
 sudo apt update
 
-# PostgreSQL 16 mit TimescaleDB installieren
+# Install PostgreSQL 16 with TimescaleDB
 sudo apt install -y postgresql-16 timescaledb-2-postgresql-16
 
-# TimescaleDB aktivieren
+# Let TimescaleDB tune itself
 sudo timescaledb-tune --quiet --yes
 sudo systemctl restart postgresql
 
-# Datenbank erstellen
-sudo -u postgres psql -c "CREATE USER openclaw WITH PASSWORD 'dein-sicheres-passwort';"
+# Create the database
+sudo -u postgres psql -c "CREATE USER openclaw WITH PASSWORD 'your-secure-password';"
 sudo -u postgres psql -c "CREATE DATABASE inventory OWNER openclaw;"
 sudo -u postgres psql -d inventory -c "CREATE EXTENSION IF NOT EXISTS timescaledb;"
 ```
 
----
+Pick a real password. Don't use `your-secure-password`. I know you were about to.
 
-## 🐍 Step 2: Backend Setup
+## Step 2: Backend
+
+The backend is a FastAPI app that handles all the API endpoints and database operations.
 
 ```bash
-# Repository klonen
+# Clone the repo
 git clone https://github.com/BenediktSchackenberg/openclaw-windows-agent.git
 cd openclaw-windows-agent
 
-# Python Virtual Environment
+# Set up Python environment
 cd backend
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 
-# Datenbank-Verbindung konfigurieren
-export DATABASE_URL="postgresql://openclaw:dein-sicheres-passwort@localhost:5432/inventory"
+# Configure the database connection
+export DATABASE_URL="postgresql://openclaw:your-secure-password@localhost:5432/inventory"
 
-# Backend starten
+# Start the backend
 uvicorn main:app --host 0.0.0.0 --port 8080
 ```
 
-### 🔧 Production: Systemd Service
+For production, you'll want a systemd service so it starts on boot:
 
 ```bash
 sudo tee /etc/systemd/system/openclaw-inventory.service << 'EOF'
@@ -131,10 +143,10 @@ After=network.target postgresql.service
 
 [Service]
 Type=simple
-User=dein-user
-WorkingDirectory=/pfad/zu/openclaw-windows-agent/backend
-Environment="DATABASE_URL=postgresql://openclaw:dein-sicheres-passwort@localhost:5432/inventory"
-ExecStart=/pfad/zu/openclaw-windows-agent/backend/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8080
+User=your-user
+WorkingDirectory=/path/to/openclaw-windows-agent/backend
+Environment="DATABASE_URL=postgresql://openclaw:your-secure-password@localhost:5432/inventory"
+ExecStart=/path/to/openclaw-windows-agent/backend/venv/bin/uvicorn main:app --host 0.0.0.0 --port 8080
 Restart=always
 RestartSec=10
 
@@ -146,23 +158,25 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now openclaw-inventory
 ```
 
----
+Replace the paths and credentials with your actual values.
 
-## ⚛️ Step 3: Frontend Setup
+## Step 3: Frontend
+
+The dashboard is a Next.js app. Pretty standard stuff.
 
 ```bash
 cd ../frontend
 npm install
 
-# Development
+# For development
 npm run dev
 
-# Production
+# For production
 npm run build
 npm start
 ```
 
-### 🔧 Production: Systemd Service
+Production systemd service:
 
 ```bash
 sudo tee /etc/systemd/system/openclaw-inventory-ui.service << 'EOF'
@@ -172,8 +186,8 @@ After=network.target
 
 [Service]
 Type=simple
-User=dein-user
-WorkingDirectory=/pfad/zu/openclaw-windows-agent/frontend
+User=your-user
+WorkingDirectory=/path/to/openclaw-windows-agent/frontend
 ExecStart=/usr/bin/npm start
 Restart=always
 RestartSec=10
@@ -186,24 +200,22 @@ sudo systemctl daemon-reload
 sudo systemctl enable --now openclaw-inventory-ui
 ```
 
----
+## Step 4: Gateway
 
-## 🔗 Step 4: OpenClaw Gateway
-
-Der Gateway ist der Kommunikations-Hub zwischen Backend und Windows Agents.
+The OpenClaw Gateway is the communication hub. It handles the connection between the backend and all your Windows agents.
 
 ```bash
-# OpenClaw via npm installieren
+# Install OpenClaw
 npm install -g openclaw
 
-# Konfiguration initialisieren
+# Initialize config
 openclaw init
 
-# Config bearbeiten
+# Edit the config
 nano ~/.openclaw/openclaw.json
 ```
 
-### Minimum Gateway Config
+Here's a minimal config that works:
 
 ```json
 {
@@ -213,7 +225,7 @@ nano ~/.openclaw/openclaw.json
   },
   "auth": {
     "mode": "token",
-    "tokens": ["dein-geheimer-token"]
+    "tokens": ["your-secret-token-here"]
   },
   "nodes": {
     "enabled": true,
@@ -222,86 +234,74 @@ nano ~/.openclaw/openclaw.json
 }
 ```
 
+Generate a proper token. Something like `openssl rand -hex 24` works.
+
 ```bash
-# Gateway starten
+# Start the gateway
 openclaw gateway start
 ```
 
----
+## Step 5: Firewall
 
-## 🔥 Step 5: Firewall konfigurieren
+Open the ports you need:
 
 ```bash
 sudo ufw allow 3000/tcp    # Frontend
 sudo ufw allow 8080/tcp    # Backend API
-sudo ufw allow 18789/tcp   # Gateway (für Windows Agents)
+sudo ufw allow 18789/tcp   # Gateway
 ```
 
----
+## Step 6: Verify Everything Works
 
-## ✅ Step 6: Installation prüfen
+Quick sanity check:
 
-| Service | URL | Erwartet |
-|---------|-----|----------|
-| 🌐 Frontend | `http://dein-server:3000` | Dashboard lädt |
-| 📡 Backend API | `http://dein-server:8080/docs` | Swagger UI |
-| 🔗 Gateway | `http://dein-server:18789` | Connection accepted |
+| Service | URL | What you should see |
+|---------|-----|---------------------|
+| Frontend | `http://your-server:3000` | Dashboard loads |
+| Backend API | `http://your-server:8080/docs` | Swagger UI |
+| Gateway | `http://your-server:18789` | Connection accepted |
 
----
+If any of these don't work, check systemd logs with `journalctl -u service-name -f`.
 
-## 💻 Windows Agent Installation
+## Installing Windows Agents
 
-Jetzt können wir Agents auf den Windows-Maschinen installieren:
+Now for the fun part. On each Windows machine you want to manage, run this in an elevated PowerShell prompt:
 
 ```powershell
-# Als Administrator ausführen!
 irm https://raw.githubusercontent.com/BenediktSchackenberg/openclaw-windows-agent/main/installer/Install-OpenClawAgent.ps1 -OutFile Install.ps1
-.\Install.ps1 -GatewayUrl "http://DEIN-SERVER-IP:18789" -GatewayToken "dein-geheimer-token"
+.\Install.ps1 -GatewayUrl "http://YOUR-SERVER-IP:18789" -GatewayToken "your-secret-token-here"
 ```
 
-Der Installer macht automatisch:
-1. ✅ Download des Agents von GitHub Releases
-2. ✅ SHA256 Hash-Verifikation
-3. ✅ Installation nach `C:\Program Files\OpenClaw\Agent`
-4. ✅ Windows Service registrieren (Auto-Start)
-5. ✅ Verbindung zum Gateway herstellen
+The installer downloads the agent, verifies its hash, installs it to Program Files, and registers a Windows service. Takes about 30 seconds.
 
-### 🔄 Bestehende Agents updaten
+To update existing agents, just run the installer again - it preserves your config and only replaces the binary.
 
-```powershell
-.\Install.ps1  # Behält Config, updated nur Binary
-```
+## A Note About Admin Rights
 
----
+The agent needs admin rights for some features:
 
-## ⚠️ Agent: Admin-Rechte
+| Feature | Needs Admin |
+|---------|-------------|
+| MSI/EXE software installation | Yes |
+| Windows Update operations | Yes |
+| BitLocker status | Yes |
+| Security Event Log | Yes |
+| Basic inventory (CPU, RAM, software list) | No |
 
-Der Windows Agent **sollte als Administrator laufen** für volle Funktionalität:
+I recommend running the service as Local System or a dedicated admin service account.
 
-| Feature | Braucht Admin |
-|---------|----------------|
-| MSI/EXE Software-Installation | ✅ Ja |
-| Windows Update Operationen | ✅ Ja |
-| BitLocker Status | ✅ Ja |
-| Security Event Log | ✅ Ja |
-| Basis-Inventar (CPU, RAM, Software) | ❌ Nein |
+## What's Next
 
-**Empfehlung:** Service als `Local System` oder dedizierter Admin-Account laufen lassen.
+Once everything's running, your Windows machines will start showing up in the dashboard. From there you can:
 
----
+- Browse hardware and software inventory
+- Deploy packages to devices or groups
+- Run arbitrary commands
+- Organize devices into groups
 
-## 🎉 Fertig!
+I'm still adding features - event log collection and a software vulnerability dashboard are on the roadmap. Check the [GitHub repo](https://github.com/BenediktSchackenberg/openclaw-windows-agent) if you want to follow along or contribute.
 
-Nach der Installation sollten die Windows-Maschinen im Dashboard erscheinen. Von dort aus kannst du:
-
-- 📊 Hardware & Software Inventar einsehen
-- 📦 Pakete auf Geräte oder Gruppen deployen
-- 🎮 Remote Commands ausführen
-- 🏷️ Geräte in Gruppen organisieren
-
----
-
-## 🔗 Links
+## Links
 
 - [GitHub Repository](https://github.com/BenediktSchackenberg/openclaw-windows-agent)
 - [OpenClaw Gateway](https://github.com/openclaw/openclaw)
