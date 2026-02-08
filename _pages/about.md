@@ -4,17 +4,11 @@ title: About
 permalink: /about/
 ---
 
-<div style="display: flex; align-items: flex-start; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap;">
-  <img src="/assets/images/ichbins.png" alt="Benedikt" style="width: 120px; height: 120px; border-radius: 50%; object-fit: cover;">
-  <div style="flex: 1; min-width: 250px;">
-    <h2 style="margin: 0 0 0.5rem;">👋 Hey there</h2>
-    <p>
-      25+ years in IT — specialized in <strong>Microsoft SQL Server</strong>, <strong>Azure Cloud</strong>, 
-      <strong>Performance Tuning</strong>, and <strong>High Availability</strong>.<br>
-      I'm someone who loves diving deep into tricky problems until everything just works.
-    </p>
-  </div>
-</div>
+## 👋 Hey there
+
+25+ years in IT — specialized in **Microsoft SQL Server**, **Azure Cloud**, **Performance Tuning**, and **High Availability**.
+
+I'm someone who loves diving deep into tricky problems until everything just works.
 
 ---
 
