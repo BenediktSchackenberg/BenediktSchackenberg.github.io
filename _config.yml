@@ -1,96 +1,73 @@
+# Beautiful Jekyll Theme
+remote_theme: daattali/beautiful-jekyll@6.0.1
+
 # Site Settings
-encoding                 : "utf-8"
-locale                   : "en"
-title                    : "Benedikt Schackenberg"
-description              : "Just an IT guy."
-favicon                  : "/assets/images/benedikt.jpg"
-avatar                   : "/assets/images/benedikt.jpg"
-url                      : "https://schackenberg.com"
-baseurl                  : ""
+title: Benedikt Schackenberg
+description: "Just an IT guy."
+url: "https://schackenberg.com"
+baseurl: ""
 
-future: true
+# Author
+author: Benedikt Schackenberg
 
-# Site Author
-author:
-  name                   : "Benedikt Schackenberg"
+# Avatar/Logo
+avatar: "/assets/images/benedikt.jpg"
+round-avatar: true
 
-comments                 : false
+# Navigation bar links
+navbar-links:
+  About: "about"
+  Projects: "projects"
+  Blog: "blog"
+  GitHub: "https://github.com/BenediktSchackenberg"
 
-atom_feed:
-  path                   :
+# Social network links
+social-network-links:
+  github: BenediktSchackenberg
+  email: "benedikt@schackenberg.com"
 
-og_image                 : "/assets/images/benedikt.jpg"
+# Timezone
+timezone: "Europe/Berlin"
 
-# Social sharing
-twitter:
-  username               :
-
-# Analytics
-analytics:
-  google:
-    tracking_id          :
-
-# Reading Files
+# Reading files
 include:
   - _pages
 
 exclude:
-- README.md
-- LICENSE
-- Gemfile
-- Gemfile.lock
-- sparrowx-jekyll-theme.gemspec
+  - README.md
+  - LICENSE
+  - Gemfile
+  - Gemfile.lock
+  - CNAME
 
-# Conversion
+# Markdown
 markdown: kramdown
 highlighter: rouge
-lsi: false
-excerpt_separator: "\n\n"
-incremental: false
-
-# Markdown Processing
 kramdown:
   input: GFM
-  hard_wrap: false
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
 
-# Sass/SCSS
-sass:
-  sass_dir: _sass
-  style: compressed
-
-# Outputting
-permalink: /:title/
+# Pagination
 paginate: 5
 paginate_path: "/blog/page:num/"
-timezone: Europe/Berlin
 
 # Plugins
 plugins:
   - jekyll-paginate
   - jekyll-feed
-
-whitelist:
-  - jekyll-paginate
-  - jekyll-feed
+  - jekyll-seo-tag
 
 # Front matter defaults
 defaults:
   - scope:
       path: ""
-      type: pages
+      type: "posts"
     values:
-      layout: page
+      layout: "post"
       comments: false
+      show-avatar: true
   - scope:
       path: ""
-      type: posts
+      type: "pages"
     values:
-      layout: post
-      comments: false
-      share: true
+      layout: "page"
+      show-avatar: true

@@ -1,14 +1,7 @@
 ---
 layout: home
-comments: false
-seotitle: Benedikt Schackenberg - Software Engineer
-description: Software Engineer with 25+ years in IT. Specialized in SQL Server, Azure Cloud, and High Availability.
----
-
-# Hi, I'm Benedikt 👋
-
-[About Me](/about/) · [GitHub](https://github.com/BenediktSchackenberg) · [Email](mailto:benedikt@schackenberg.com)
-
+title: Benedikt Schackenberg
+subtitle: Software Engineer with 25+ years in IT
 ---
 
 ## 🚀 Current Project
@@ -44,7 +37,3 @@ London, N1 7AA
 
 **🔐 PGP**  
 [Download key](/assets/keys/benedikt-schackenberg.asc) · `0xA25274BE4DD68691`
-
----
-
-## Latest Posts
