@@ -1,6 +1,7 @@
 ---
 layout: page
-title: About
+title: About Me
+subtitle: 25+ years in IT — specialized in databases, cloud, and high availability
 permalink: /about/
 ---
 
@@ -25,15 +26,19 @@ I'm someone who loves diving deep into tricky problems until everything just wor
 
 ## 🛠️ Technical Skills
 
-| Area | Technologies |
-|------|--------------|
-| **🗄️ Databases** | SQL Server (2000–2022), AlwaysOn, Logshipping, Mirroring, MongoDB, MySQL |
-| **📊 BI & Analytics** | SSIS, SSAS, SSRS, Power BI, Microsoft Fabric |
-| **☁️ Cloud & Infra** | Azure (PaaS/IaaS), GCP, AWS, Data Factory, Synapse, Vertex AI |
-| **🩺 Monitoring** | PRTG, SQL Monitor, Dynatrace, Redgate, DBA Dash |
-| **💻 Programming** | T-SQL, Python (12 yrs), MDX (14 yrs), PowerShell, C# |
-| **🧰 DevOps & Tools** | GitLab, Terraform, Ansible, Jira, Confluence, CI/CD |
-| **🧩 OS & Platforms** | Windows Server, RHEL, SLES, Ubuntu, Kubernetes |
+**🗄️ Databases:** SQL Server (2000–2022), AlwaysOn, Logshipping, Mirroring, MongoDB, MySQL
+
+**📊 BI & Analytics:** SSIS, SSAS, SSRS, Power BI, Microsoft Fabric
+
+**☁️ Cloud & Infra:** Azure (PaaS/IaaS), GCP, AWS, Data Factory, Synapse, Vertex AI
+
+**🩺 Monitoring:** PRTG, SQL Monitor, Dynatrace, Redgate, DBA Dash
+
+**💻 Programming:** T-SQL, Python (12 yrs), MDX (14 yrs), PowerShell, C#
+
+**🧰 DevOps & Tools:** GitLab, Terraform, Ansible, Jira, Confluence, CI/CD
+
+**🧩 OS & Platforms:** Windows Server, RHEL, SLES, Ubuntu, Kubernetes
 
 ---
 
@@ -56,19 +61,12 @@ I'm someone who loves diving deep into tricky problems until everything just wor
 ### University Medical Center Mainz
 **Since May 2025**
 
-Database infrastructure & system operations in healthcare. Managing complex SQL Server environments, AlwaysOn clusters, performance tuning, and automation. Working with a great team on consolidation and modernization projects.
-
-### Career Break
-**Feb 2025 – May 2025**
-
-<div style="text-align: center; padding: 1rem;">
-  <img src="/assets/images/meme.png" alt="Taking a break" style="max-width: 400px; width: 100%; border-radius: 12px;">
-</div>
+Database infrastructure & system operations in healthcare. Managing complex SQL Server environments, AlwaysOn clusters, performance tuning, and automation.
 
 ### Mainzer Datenfabrik GmbH — Founder & CEO
 **Apr 2018 – Feb 2025**
 
-Founded and led the company as sole shareholder and CEO. Built a strong team, shaped strategy, and delivered complex IT projects across SQL, Azure, and BI. Developed deep expertise in modern technologies, databases, and programming languages.
+Founded and led the company as sole shareholder and CEO. Built a strong team, shaped strategy, and delivered complex IT projects across SQL, Azure, and BI.
 
 ### DekaBank Frankfurt — IT Consultant
 **Feb 2017 – Apr 2018**
@@ -78,7 +76,7 @@ Sales controlling division. Designed relational and multidimensional databases, 
 ### Deutsche Telekom Technik GmbH — Expert System Engineer
 **Sep 2013 – Jan 2017**
 
-Team lead for ~5,000 virtual and dedicated servers. Responsible for datacenter consolidation, high-availability platforms, and a €1M annual budget. Led 24 team members.
+Team lead for ~5,000 virtual and dedicated servers. Responsible for datacenter consolidation, high-availability platforms, and a €1M annual budget.
 
 ### S&P Data GmbH — IT Consultant
 **Apr 2003 – Aug 2013**
@@ -92,14 +90,6 @@ SQL Server administration, performance tuning, and Windows Server operations.
 **[OpenClaw Windows Agent](https://github.com/BenediktSchackenberg/openclaw-windows-agent)**
 
 A native Windows application that connects your PC to an OpenClaw Gateway. Lets AI agents remotely execute commands, collect hardware inventory, check security status, and more. Built with .NET 8, WPF, and a lot of late-night coding sessions. 😈
-
----
-
-## 🧩 Extended Expertise
-
-- **Roles:** Architect, DBA, Trainer, Project Lead, Consultant
-- **Industries:** Banking, Healthcare, Government, Telecom, Manufacturing, Logistics, Insurance
-- **Soft Skills:** Team leadership, strategy development, mentoring, audits & documentation
 
 ---
 
