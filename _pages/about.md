@@ -61,12 +61,17 @@ I'm someone who loves diving deep into tricky problems until everything just wor
 ### University Medical Center Mainz
 **Since May 2025**
 
-Database infrastructure & system operations in healthcare. Managing complex SQL Server environments, AlwaysOn clusters, performance tuning, and automation.
+Database infrastructure & system operations in healthcare. Managing complex SQL Server environments, AlwaysOn clusters, performance tuning, and automation. Working with a great team on consolidation and modernization projects.
+
+### Career Break
+**Feb 2025 – May 2025**
+
+Took some well-deserved time off after running my own company for 7 years. Recharged, traveled, and got ready for the next chapter.
 
 ### Mainzer Datenfabrik GmbH — Founder & CEO
 **Apr 2018 – Feb 2025**
 
-Founded and led the company as sole shareholder and CEO. Built a strong team, shaped strategy, and delivered complex IT projects across SQL, Azure, and BI.
+Founded and led the company as sole shareholder and CEO. Built a strong team, shaped strategy, and delivered complex IT projects across SQL, Azure, and BI. Developed deep expertise in modern technologies, databases, and programming languages.
 
 ### DekaBank Frankfurt — IT Consultant
 **Feb 2017 – Apr 2018**
@@ -76,7 +81,7 @@ Sales controlling division. Designed relational and multidimensional databases, 
 ### Deutsche Telekom Technik GmbH — Expert System Engineer
 **Sep 2013 – Jan 2017**
 
-Team lead for ~5,000 virtual and dedicated servers. Responsible for datacenter consolidation, high-availability platforms, and a €1M annual budget.
+Team lead for ~5,000 virtual and dedicated servers. Responsible for datacenter consolidation, high-availability platforms, and a €1M annual budget. Led 24 team members.
 
 ### S&P Data GmbH — IT Consultant
 **Apr 2003 – Aug 2013**
@@ -90,6 +95,22 @@ SQL Server administration, performance tuning, and Windows Server operations.
 **[OpenClaw Windows Agent](https://github.com/BenediktSchackenberg/openclaw-windows-agent)**
 
 A native Windows application that connects your PC to an OpenClaw Gateway. Lets AI agents remotely execute commands, collect hardware inventory, check security status, and more. Built with .NET 8, WPF, and a lot of late-night coding sessions. 😈
+
+---
+
+## 🧩 Extended Expertise
+
+- **Roles:** Architect, DBA, Trainer, Project Lead, Consultant
+- **Industries:** Banking, Healthcare, Government, Telecom, Manufacturing, Logistics, Insurance
+- **Soft Skills:** Team leadership, strategy development, mentoring, audits & documentation
+
+---
+
+## 🔗 Connect
+
+- [LinkedIn](https://www.linkedin.com/in/benedikt-schackenberg-b7422338b/)
+- [GitHub](https://github.com/BenediktSchackenberg)
+- [Email](mailto:benedikt@schackenberg.com)
 
 ---
 

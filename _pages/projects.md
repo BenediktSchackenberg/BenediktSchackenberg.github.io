@@ -5,6 +5,10 @@ subtitle: What I'm building
 permalink: /projects/
 ---
 
+> **📌 Note:** I'm no longer available for consulting or freelance work. I'm happily employed full-time at the University Medical Center Mainz and loving it! If you'd like to connect, feel free to reach out on [LinkedIn](https://www.linkedin.com/in/benedikt-schackenberg-b7422338b/).
+
+---
+
 ## 🖥️ OpenClaw Inventory Platform
 
 An open-source endpoint management platform for Windows fleets.
