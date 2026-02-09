@@ -55,6 +55,7 @@ plugins:
   - jekyll-paginate
   - jekyll-feed
   - jekyll-seo-tag
+  - jekyll-remote-theme
 
 # Front matter defaults
 defaults:
