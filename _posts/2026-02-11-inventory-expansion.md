@@ -1,54 +1,54 @@
 ---
 layout: post
-title: "7 Features, 1 Abend: Das Inventory kriegt Muskeln"
+title: "7 Features, 1 Evening: The Inventory Gets Serious"
 date: 2026-02-11
 thumbnail-img: /assets/images/controller.png
 tags: [openclaw, release, devops, dashboard]
 ---
 
-Manchmal sitzt man abends da und denkt: "Das Dashboard könnte mehr." Drei Stunden später hat man sieben neue Features deployed und fragt sich, ob man nicht doch mal schlafen sollte.
+Sometimes you sit down in the evening thinking "The dashboard could use more." Three hours later you've deployed seven new features and wonder if sleep is even a thing anymore.
 
 ![Controller](/assets/images/controller.png)
 
-## Was neu ist
+## What's New
 
-**🛡️ Compliance Dashboard** — Endlich sehen, welche Rechner Defender deaktiviert haben. Oder keine Firewall. Oder BitLocker vergessen. Pie Charts zeigen den Security-Status der ganzen Flotte. Die roten Balken sind absichtlich rot.
+**🛡️ Compliance Dashboard** — Finally see which machines have Defender disabled. Or no firewall. Or forgot BitLocker. Pie charts show the security status of the entire fleet. The red bars are red on purpose.
 
-**📊 Software Compare** — Chrome auf 30 Rechnern in 12 verschiedenen Versionen? Jetzt findest du raus welche. Klick auf einen Namen, sieh alle Versionen, schäm dich für dein Patch-Management.
+**📊 Software Compare** — Chrome on 30 machines in 12 different versions? Now you can find out which ones. Click a name, see all versions, feel ashamed of your patch management.
 
-**📈 Eventlog Charts** — Trends über die letzten 7 Tage. Errors gehen hoch? Schlecht. Errors gehen runter? Weniger schlecht. Zumindest weißt du jetzt Bescheid.
+**📈 Eventlog Charts** — Trends over the last 7 days. Errors going up? Bad. Errors going down? Less bad. At least now you know.
 
-**🥧 OS Distribution** — Pie Chart auf dem Dashboard. Windows 11 in blau, Windows 10 in lila, der eine Windows Server 2019 in grün. Schön bunt, überraschend nützlich.
+**🥧 OS Distribution** — Pie chart on the dashboard. Windows 11 in blue, Windows 10 in purple, that one Windows Server 2019 in green. Colorful and surprisingly useful.
 
-**📥 Export** — CSV oder JSON, für Nodes, Software oder Compliance. Dropdown in der Navbar. Klick, Download, fertig. Dein Excel freut sich.
+**📥 Export** — CSV or JSON, for nodes, software, or compliance. Dropdown in the navbar. Click, download, done. Your Excel will be happy.
 
-**🌙 Dark Mode Toggle** — Weil manche Leute tatsächlich Light Mode benutzen. Ich versteh's nicht, aber bitte.
+**🌙 Dark Mode Toggle** — Because some people actually use Light Mode. I don't get it, but you do you.
 
 ## Backend
 
-Sechs neue Endpoints:
-- `/api/v1/eventlog/trends` — Aggregierte Fehler pro Tag
-- `/api/v1/software/compare` — Versions-Vergleich
-- `/api/v1/compliance/summary` — Security-Übersicht
-- `/api/v1/nodes/os-distribution` — Wer hat was
-- `/api/v1/export/*` — Alles raus in CSV/JSON
+Six new endpoints:
+- `/api/v1/eventlog/trends` — Aggregated errors per day
+- `/api/v1/software/compare` — Version comparison
+- `/api/v1/compliance/summary` — Security overview
+- `/api/v1/nodes/os-distribution` — Who's running what
+- `/api/v1/export/*` — Everything out to CSV/JSON
 
-Die `main.py` wächst langsam Richtung 5000 Zeilen. Irgendwann muss ich das aufteilen. Heute ist nicht irgendwann.
+The `main.py` is slowly growing towards 5000 lines. Eventually I need to split it up. Today is not that day.
 
-## Der Workflow
+## The Workflow
 
-Komponente bauen, TypeScript beschwert sich, `percent` könnte `undefined` sein, Fix pushen, Build läuft, Services neustarten, Browser refreshen, funktioniert. Repeat.
+Build component, TypeScript complains, `percent` could be `undefined`, push fix, build runs, restart services, refresh browser, works. Repeat.
 
-Git sagt 1500+ Zeilen geändert. Fühlte sich nach weniger an.
+Git says 1500+ lines changed. Felt like less.
 
-## Warum das Ganze
+## Why All This
 
-Weil ein Inventory-System ohne Compliance-Übersicht nur eine glorifizierte Hostliste ist. Weil ich wissen will ob meine Rechner sicher sind, ohne auf jeden einzeln zu klicken. Weil Charts besser aussehen als Tabellen.
+Because an inventory system without a compliance overview is just a glorified host list. Because I want to know if my machines are secure without clicking through each one. Because charts look better than tables.
 
-Und weil's Spaß macht.
+And because it's fun.
 
 ---
 
 *Code: [github.com/BenediktSchackenberg/openclaw-windows-agent](https://github.com/BenediktSchackenberg/openclaw-windows-agent)*
 
-*Live: http://192.168.0.5:3000 (wenn du im Netzwerk bist)*
+*Live: http://192.168.0.5:3000 (if you're on the network)*
