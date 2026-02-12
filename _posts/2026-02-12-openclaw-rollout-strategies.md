@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "OpenClaw v0.4.5: Rollout Strategies & Maintenance Windows"
+title: "OpenClaw Inventory System v0.4.5: Rollout Strategies & Maintenance Windows"
 date: 2026-02-12 20:00:00 +0100
 categories: [DevOps, OpenClaw]
 tags: [endpoint-management, deployment, canary, devops, automation]
