@@ -4,13 +4,13 @@ title: Benedikt Schackenberg
 subtitle: Software Engineer with 25+ years in IT
 ---
 
-## 🚀 Current Project
+## 🐙 Current Project
 
-**[OpenClaw Windows Agent](https://github.com/BenediktSchackenberg/openclaw-windows-agent)**
+**[Octofleet](https://github.com/BenediktSchackenberg/octofleet)** - Open-source Endpoint Management Platform
 
-A native Windows agent that connects your PC to an [OpenClaw](https://openclaw.ai) Gateway. AI agents can remotely execute commands, collect hardware inventory, check security status, and more.
+Monitor your entire fleet of Windows & Linux systems from a single dashboard. Hardware inventory, vulnerability scanning, remote terminal, screen mirroring, and automated remediation.
 
-![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet) ![Windows](https://img.shields.io/badge/Windows-10%2F11-0078D6?style=flat-square&logo=windows) ![Status](https://img.shields.io/badge/Status-Alpha-orange?style=flat-square)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-black?style=flat-square&logo=next.js) ![.NET 8](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat-square&logo=dotnet) ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat-square&logo=postgresql&logoColor=white)
 
 ---
 
