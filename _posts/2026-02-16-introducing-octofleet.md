@@ -4,7 +4,7 @@ title: "Introducing Octofleet 🐙 - Open Source Endpoint Management"
 subtitle: "From internal project to public release"
 date: 2026-02-16
 tags: [octofleet, opensource, endpoint-management, monitoring, devops]
-image: /assets/img/octofleet-banner.png
+image: /assets/img/octofleet-banner.svg
 ---
 
 Today marks a big milestone: **Octofleet is now open source!** 
@@ -12,7 +12,7 @@ Today marks a big milestone: **Octofleet is now open source!**
 What started a few weeks ago as a simple Windows inventory agent has evolved into a full-featured endpoint management platform. And now it's available for everyone.
 
 <p align="center">
-  <img src="/assets/img/octofleet-logo.png" alt="Octofleet Logo" width="200">
+  <img src="/assets/img/octofleet-logo.svg" alt="Octofleet Logo" width="200">
 </p>
 
 ## 🐙 Why "Octofleet"?
