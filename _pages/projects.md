@@ -9,29 +9,41 @@ permalink: /projects/
 
 ---
 
-## 🖥️ OpenClaw Inventory Platform
+## 🐙 Octofleet
 
-An open-source endpoint management platform for Windows fleets.
+<p align="center">
+  <img src="/assets/img/octofleet-logo.svg" alt="Octofleet Logo" width="120">
+</p>
+
+**Open Source Endpoint Management Platform**
+
+A self-hosted solution for managing Windows and Linux fleets. No cloud subscriptions, no vendor lock-in — your infrastructure, your control.
 
 **Features:**
-- 📊 Automatic hardware & software inventory collection
-- 📦 Remote software deployment (MSI/EXE with silent install)
-- 🎮 Remote command execution across all machines
-- 🏷️ Device grouping and organization
-- 🔒 Security status tracking (Firewall, BitLocker, UAC)
+- 📊 **Inventory** — Hardware & software collection across all endpoints
+- 🔍 **Vulnerability Scanning** — CVE tracking via NVD API with auto-remediation
+- 🖥️ **Remote Terminal** — PowerShell/Bash directly in your browser
+- 📺 **Screen Mirroring** — View remote desktops in real-time
+- 📈 **Performance Monitoring** — CPU, RAM, Disk metrics over time
+- 🚀 **Job System** — Deploy commands and packages across your fleet
+- 🔔 **Alerting** — Discord notifications when things go wrong
+- 🛡️ **Compliance** — Track Firewall, BitLocker, Antivirus status
 
 **Tech Stack:** Python, FastAPI, PostgreSQL, TimescaleDB, Next.js, .NET 8
 
-[GitHub Repository →](https://github.com/BenediktSchackenberg/openclaw-windows-agent)
+<p>
+  <a href="https://github.com/BenediktSchackenberg/octofleet">GitHub Repository →</a> · 
+  <a href="/2026/02/16/introducing-octofleet.html">Read the announcement →</a>
+</p>
 
 ---
 
 ## 🤖 OpenClaw Contributions
 
-Contributions to the OpenClaw project — an AI agent framework:
+Contributions to the [OpenClaw](https://github.com/openclaw/openclaw) project — an AI agent framework:
 
-- Bug fixes (Timeout Overflow Warning)
-- Azure OpenAI Proxy Skill for ClawHub
-- Windows Agent integration
+- 🐛 Bug fixes (Timeout Overflow Warning)
+- ☁️ Azure OpenAI Proxy Skill for ClawHub
+- 🔧 Various integrations and improvements
 
 [OpenClaw on GitHub →](https://github.com/openclaw/openclaw)
