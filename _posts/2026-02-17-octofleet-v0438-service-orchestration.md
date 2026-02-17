@@ -11,6 +11,18 @@ image: /assets/img/octofleet-guardian.svg
   <img src="/assets/img/octofleet-guardian.svg" alt="Octofleet Guardian" width="400">
 </p>
 
+## 🎬 See It In Action
+
+<div style="text-align: center; margin: 2rem 0;">
+  <video width="100%" max-width="800px" controls autoplay muted loop style="border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+    <source src="/assets/video/octofleet-demo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <p style="color: #666; font-size: 0.9em; margin-top: 0.5rem;">
+    <em>Dashboard → Nodes → Hardware → Jobs → Packages → Deployments → Services → Vulnerabilities → Settings</em>
+  </p>
+</div>
+
 Today we're releasing **Octofleet v0.4.38** — our biggest update yet! This release introduces **Service Orchestration**, completing all 18 planned epics and making Octofleet a truly enterprise-ready endpoint management platform.
 
 ## 🎯 What's New: Service Orchestration
