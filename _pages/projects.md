@@ -11,9 +11,9 @@ permalink: /projects/
 
 ## 🐙 Octofleet
 
-<p align="center">
-  <img src="/assets/img/octofleet-logo.svg" alt="Octofleet Logo" width="120">
-</p>
+<div style="text-align: center; margin: 20px 0;">
+  <img src="{{ '/assets/img/octofleet-logo.svg' | relative_url }}" alt="Octofleet Logo" width="150" height="150">
+</div>
 
 **Open Source Endpoint Management Platform**
 
@@ -35,15 +35,3 @@ A self-hosted solution for managing Windows and Linux fleets. No cloud subscript
   <a href="https://github.com/BenediktSchackenberg/octofleet">GitHub Repository →</a> · 
   <a href="/2026/02/16/introducing-octofleet.html">Read the announcement →</a>
 </p>
-
----
-
-## 🤖 OpenClaw Contributions
-
-Contributions to the [OpenClaw](https://github.com/openclaw/openclaw) project — an AI agent framework:
-
-- 🐛 Bug fixes (Timeout Overflow Warning)
-- ☁️ Azure OpenAI Proxy Skill for ClawHub
-- 🔧 Various integrations and improvements
-
-[OpenClaw on GitHub →](https://github.com/openclaw/openclaw)
