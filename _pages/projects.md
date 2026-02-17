@@ -12,10 +12,8 @@ permalink: /projects/
 ## 🐙 Octofleet
 
 <div style="text-align: center; margin: 20px 0;">
-  <img src="{{ '/assets/img/octofleet-logo.svg' | relative_url }}" alt="Octofleet Logo" width="150" height="150">
+  <img src="{{ '/assets/img/octofleet-banner.png' | relative_url }}" alt="Octofleet - Open Source Endpoint Management" style="max-width: 100%; border-radius: 8px;">
 </div>
-
-**Open Source Endpoint Management Platform**
 
 A self-hosted solution for managing Windows and Linux fleets. No cloud subscriptions, no vendor lock-in — your infrastructure, your control.
 
