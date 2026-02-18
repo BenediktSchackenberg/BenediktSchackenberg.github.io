@@ -3,7 +3,8 @@ layout: post
 title: "Automating SQL Server Deployments with Octofleet 🐙"
 date: 2026-02-18
 tags: [octofleet, sql-server, automation, devops, infrastructure]
-headerimage: /assets/images/octofleet-sql-deployment.png
+cover-img: /assets/images/octofleet-sql-deployment.png
+thumbnail-img: /assets/images/octofleet-sql-deployment.png
 description: "No more manual SQL Server installations. Octofleet now handles disk preparation, storage configuration, and silent installation automatically. Deploy database servers in minutes, not hours."
 ---
 
