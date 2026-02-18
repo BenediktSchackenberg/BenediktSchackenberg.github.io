@@ -10,6 +10,8 @@ description: "No more manual SQL Server installations. Octofleet now handles dis
 
 # Automating SQL Server Deployments with Octofleet
 
+![Octofleet SQL Server Deployment](/assets/images/octofleet-sql-deployment.png){: .mx-auto.d-block :}
+
 Ever spent hours manually installing SQL Server on a new machine? Creating the right disk partitions, configuring storage for optimal performance, running through the setup wizard... again and again for each new database server?
 
 I've been there. Too many times.
