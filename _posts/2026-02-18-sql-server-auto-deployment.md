@@ -5,56 +5,72 @@ date: 2026-02-18
 tags: [octofleet, sql-server, automation, devops, infrastructure]
 cover-img: /assets/images/octofleet-sql-deployment.png
 thumbnail-img: /assets/images/octofleet-sql-deployment.png
-description: "No more manual SQL Server installations. Octofleet now handles disk preparation, storage configuration, and silent installation automatically. Deploy database servers in minutes, not hours."
+description: "SQL Server deployment as a use case for Octofleet's endpoint management capabilities. First steps toward comprehensive database fleet management."
 ---
 
 # Automating SQL Server Deployments with Octofleet
 
 ![Octofleet SQL Server Deployment](/assets/images/octofleet-sql-deployment.png){: .mx-auto.d-block :}
 
-Ever spent hours manually installing SQL Server on a new machine? Creating the right disk partitions, configuring storage for optimal performance, running through the setup wizard... again and again for each new database server?
+Let me be clear upfront: **there are already excellent tools for SQL Server deployment**. SCCM, Ansible, dbatools, SQL Server's own Configuration Manager — these are battle-tested, enterprise-proven solutions that have been doing this job for years.
 
-I've been there. Too many times.
+So why build SQL Server deployment into Octofleet?
 
-That's why I built automated SQL Server deployment into Octofleet.
+Because it's the perfect **use case** to demonstrate what an endpoint management platform can do — and it's just the beginning of what I'm planning for SQL Server support.
 
 ---
 
-## The Problem
+## Why SQL Server as a Use Case?
 
-Setting up a proper SQL Server installation isn't just clicking "Next" a few times. You need:
+When I started building Octofleet, I needed real-world scenarios to test the job system, the reconciliation engine, and the agent's ability to handle complex multi-step tasks. SQL Server deployment turned out to be ideal:
 
-- Separate drives for Data, Logs, and TempDB (nobody wants all their eggs in one basket)
-- 64KB allocation units for NTFS (SQL Server's sweet spot)
-- Proper folder structure
-- The actual installation with correct settings
-- Post-install configuration
+- **Multi-step workflows**: Disk preparation → Installation → Configuration
+- **State management**: Track what's installed, what's pending, what failed
+- **Real consequences**: Get it wrong and you have performance issues for weeks
 
-Do that across a dozen servers and you've lost a day. Do it wrong once, and you're troubleshooting performance issues for weeks.
+It forced me to build Octofleet's core systems properly. And now that it works, it's actually useful.
 
-## The Solution
+## What It Does Today
 
-With Octofleet, deploying SQL Server is now a three-step process:
+The current implementation handles the basics:
 
-1. Assign a SQL Server edition to a node in the dashboard
-2. The system automatically prepares disks (or detects existing ones)
-3. SQL Server installs itself with best-practice configuration
+1. **Assign a SQL Server edition** to a node in the dashboard
+2. **Automatic disk preparation** — detects unconfigured disks, formats with 64KB allocation units, creates proper folder structure
+3. **Silent installation** with sensible defaults
 
-That's it. The agent handles everything:
+Nothing revolutionary. But it's integrated into the same platform that handles your inventory, vulnerability scanning, and fleet monitoring. One dashboard, one agent, one less tool to manage.
 
-- **Disk Preparation**: Automatically detects unconfigured disks, initializes them as GPT, formats with 64KB allocation units, and creates the proper folder structure (D:\Data, E:\Logs, F:\TempDB)
-- **Drive Letter Management**: If your CD-ROM is hogging drive letter D, it gets politely moved aside
-- **Smart Disk Assignment**: Got three disks? Largest goes to Data, smallest to Logs, middle to TempDB. Two disks? We'll share intelligently. One disk? We make it work.
-- **Silent Installation**: SQL Server installs in the background with sane defaults
+## Where This Is Going
 
-## Under the Hood
+Here's where it gets interesting. SQL Server is just the first database workload I'm adding to Octofleet. The roadmap includes:
 
-The magic happens through Octofleet's job system. When you create a SQL Server assignment, the MSSQL reconciler kicks in:
+### Near-term (Q1 2026)
+- **AlwaysOn Availability Groups**: Automated cluster setup and failover configuration
+- **Multi-Instance Support**: Different editions on the same box
+- **Configuration Templates**: Save and reuse your preferred settings
+- **Backup Integration**: Automated backup schedules right after install
+
+### Mid-term (Q2-Q3 2026)
+- **Performance Monitoring**: Wait stats, query plans, index analysis — all in the Octofleet dashboard
+- **Maintenance Automation**: Index rebuilds, statistics updates, integrity checks
+- **AlwaysOn Health Monitoring**: AG synchronization status, failover alerts
+- **Cross-Instance Queries**: Run the same diagnostic across your entire SQL fleet
+
+### Long-term Vision
+- **PostgreSQL & MySQL Support**: Same workflow, different engines
+- **Database Migration Tooling**: Move workloads between instances
+- **Capacity Planning**: Predict when you'll need more resources
+
+The goal isn't to replace specialized DBA tools — it's to bring database operations into the same unified platform you're already using for endpoint management.
+
+## The Technical Bits
+
+For those curious about how it works under the hood:
 
 ```
 Assignment Created
       ↓
-Reconciler detects new assignment
+MSSQL Reconciler detects new assignment
       ↓
 Creates "Disk Prep" job → Agent runs PowerShell script
       ↓
@@ -63,20 +79,11 @@ Creates "Install SQL Server" job → Agent downloads & installs
 Node reports installed instance back to inventory
 ```
 
-Each step is fully logged, can be monitored in real-time, and failures trigger automatic retries with exponential backoff.
-
-## What's Next
-
-This is just the beginning. Single-instance deployment is live now, but the roadmap includes:
-
-- **AlwaysOn Availability Groups**: Automated cluster setup
-- **Multi-Instance Support**: Different editions on the same box
-- **Configuration Templates**: Save and reuse your preferred settings
-- **Backup Integration**: Automated backup schedules right after install
+Each step is fully logged, can be monitored in real-time, and failures trigger automatic retries with exponential backoff. The reconciler runs every 60 seconds, comparing desired state (assignments) with actual state (inventory).
 
 ## Try It Yourself
 
-Octofleet is open source. Grab it from GitHub, spin up the Docker stack, and deploy your first SQL Server in minutes instead of hours:
+Octofleet is open source. If you want to play with the SQL Server features — or contribute to making them better:
 
 ```bash
 git clone https://github.com/BenediktSchackenberg/octofleet.git
@@ -84,10 +91,12 @@ cd octofleet
 docker compose up -d
 ```
 
-The Windows agent auto-updates itself (yes, really — it pulls new versions directly from GitHub Releases), so once you've got it installed, you're always on the latest version.
+The Windows agent auto-updates itself from GitHub Releases, so you're always on the latest version.
 
 ---
 
-*Octofleet v0.4.50: Now with SQL Server auto-deployment. Reach every endpoint in your fleet — even the database servers.* 🐙
+**Bottom line**: SQL Server deployment in Octofleet isn't meant to compete with dedicated tools. It's a starting point — a foundation for bringing database management into a unified endpoint platform. 
 
-**[Check it out on GitHub →](https://github.com/BenediktSchackenberg/octofleet)**
+The tentacles are just getting started. 🐙
+
+**[Check out Octofleet on GitHub →](https://github.com/BenediktSchackenberg/octofleet)**
