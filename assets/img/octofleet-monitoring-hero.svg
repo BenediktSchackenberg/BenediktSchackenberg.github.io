@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a"/>
+      <stop offset="100%" style="stop-color:#1e293b"/>
+    </linearGradient>
+    <linearGradient id="octoGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#a855f7"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="400" fill="url(#bgGrad)"/>
+  
+  <!-- Grid lines -->
+  <g stroke="#334155" stroke-width="0.5" opacity="0.5">
+    <line x1="0" y1="100" x2="800" y2="100"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="300" x2="800" y2="300"/>
+    <line x1="200" y1="0" x2="200" y2="400"/>
+    <line x1="400" y1="0" x2="400" y2="400"/>
+    <line x1="600" y1="0" x2="600" y2="400"/>
+  </g>
+  
+  <!-- Monitoring screens -->
+  <g filter="url(#glow)">
+    <!-- Screen 1 - CPU -->
+    <rect x="50" y="120" width="140" height="90" rx="5" fill="#1e293b" stroke="#3b82f6" stroke-width="2"/>
+    <text x="70" y="145" fill="#3b82f6" font-family="monospace" font-size="12">CPU</text>
+    <rect x="60" y="155" width="20" height="40" fill="#3b82f6" opacity="0.3"/>
+    <rect x="60" y="175" width="20" height="20" fill="#3b82f6"/>
+    <rect x="85" y="155" width="20" height="40" fill="#3b82f6" opacity="0.3"/>
+    <rect x="85" y="165" width="20" height="30" fill="#3b82f6"/>
+    <rect x="110" y="155" width="20" height="40" fill="#3b82f6" opacity="0.3"/>
+    <rect x="110" y="180" width="20" height="15" fill="#3b82f6"/>
+    <rect x="135" y="155" width="20" height="40" fill="#22c55e" opacity="0.3"/>
+    <rect x="135" y="185" width="20" height="10" fill="#22c55e"/>
+    
+    <!-- Screen 2 - RAM -->
+    <rect x="610" y="120" width="140" height="90" rx="5" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+    <text x="630" y="145" fill="#22c55e" font-family="monospace" font-size="12">RAM</text>
+    <rect x="620" y="155" width="120" height="8" rx="2" fill="#334155"/>
+    <rect x="620" y="155" width="85" height="8" rx="2" fill="#22c55e"/>
+    <rect x="620" y="170" width="120" height="8" rx="2" fill="#334155"/>
+    <rect x="620" y="170" width="72" height="8" rx="2" fill="#22c55e"/>
+    <rect x="620" y="185" width="120" height="8" rx="2" fill="#334155"/>
+    <rect x="620" y="185" width="95" height="8" rx="2" fill="#f59e0b"/>
+    
+    <!-- Screen 3 - DISK -->
+    <rect x="50" y="230" width="140" height="90" rx="5" fill="#1e293b" stroke="#a855f7" stroke-width="2"/>
+    <text x="70" y="255" fill="#a855f7" font-family="monospace" font-size="12">DISK</text>
+    <circle cx="120" cy="285" r="25" fill="none" stroke="#334155" stroke-width="8"/>
+    <circle cx="120" cy="285" r="25" fill="none" stroke="#a855f7" stroke-width="8" stroke-dasharray="110 157" transform="rotate(-90 120 285)"/>
+    <text x="108" y="290" fill="#a855f7" font-family="monospace" font-size="11">70%</text>
+    
+    <!-- Screen 4 - Alert -->
+    <rect x="610" y="230" width="140" height="90" rx="5" fill="#1e293b" stroke="#ef4444" stroke-width="2"/>
+    <text x="630" y="255" fill="#ef4444" font-family="monospace" font-size="12">⚠ ALERTS</text>
+    <text x="630" y="280" fill="#94a3b8" font-family="monospace" font-size="10">HYPERV02: RAM 92%</text>
+    <text x="630" y="295" fill="#94a3b8" font-family="monospace" font-size="10">SQLSRV1: DISK 85%</text>
+    <circle cx="730" y="248" r="8" fill="#ef4444">
+      <animate attributeName="opacity" values="1;0.5;1" dur="1s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+  
+  <!-- Octopus body -->
+  <g transform="translate(400, 200)">
+    <!-- Main body -->
+    <ellipse cx="0" cy="-20" rx="60" ry="50" fill="url(#octoGrad)"/>
+    
+    <!-- Eyes -->
+    <ellipse cx="-20" cy="-35" rx="15" ry="18" fill="#f8fafc"/>
+    <ellipse cx="20" cy="-35" rx="15" ry="18" fill="#f8fafc"/>
+    <circle cx="-18" cy="-32" r="8" fill="#1e293b"/>
+    <circle cx="22" cy="-32" r="8" fill="#1e293b"/>
+    <circle cx="-16" cy="-34" r="3" fill="#f8fafc"/>
+    <circle cx="24" cy="-34" r="3" fill="#f8fafc"/>
+    
+    <!-- Smile -->
+    <path d="M-15 -5 Q0 10 15 -5" stroke="#f8fafc" stroke-width="3" fill="none" stroke-linecap="round"/>
+    
+    <!-- Tentacles reaching to screens -->
+    <!-- Left tentacles -->
+    <path d="M-50 20 Q-120 40 -180 -30" stroke="#a855f7" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M-45 35 Q-100 120 -180 100" stroke="#a855f7" stroke-width="10" fill="none" stroke-linecap="round"/>
+    
+    <!-- Right tentacles -->
+    <path d="M50 20 Q120 40 180 -30" stroke="#a855f7" stroke-width="12" fill="none" stroke-linecap="round"/>
+    <path d="M45 35 Q100 120 180 100" stroke="#a855f7" stroke-width="10" fill="none" stroke-linecap="round"/>
+    
+    <!-- Bottom tentacles (decorative) -->
+    <path d="M-30 45 Q-40 100 -60 130" stroke="#a855f7" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M0 50 Q0 110 -10 140" stroke="#a855f7" stroke-width="8" fill="none" stroke-linecap="round"/>
+    <path d="M30 45 Q40 100 60 130" stroke="#a855f7" stroke-width="8" fill="none" stroke-linecap="round"/>
+    
+    <!-- Suction cups (dots on tentacles) -->
+    <circle cx="-100" cy="10" r="4" fill="#c084fc"/>
+    <circle cx="-130" cy="-5" r="3" fill="#c084fc"/>
+    <circle cx="-155" cy="-18" r="3" fill="#c084fc"/>
+    <circle cx="100" cy="10" r="4" fill="#c084fc"/>
+    <circle cx="130" cy="-5" r="3" fill="#c084fc"/>
+    <circle cx="155" cy="-18" r="3" fill="#c084fc"/>
+  </g>
+  
+  <!-- Title -->
+  <text x="400" y="380" text-anchor="middle" fill="#f8fafc" font-family="system-ui, sans-serif" font-size="18" font-weight="bold">Performance Monitoring</text>
+</svg>
