@@ -1,82 +1,85 @@
 ---
 layout: post
-title: "Octofleet: Zero-Touch OS Deployment mit PXE Boot"
+title: "Octofleet: Zero-Touch OS Deployment with PXE Boot"
 date: 2026-02-21
 categories: [octofleet, automation]
-tags: [pxe, windows, deployment, devops]
-image: /assets/images/octofleet-logo.png
+tags: [pxe, windows, deployment, devops, infrastructure]
+image: /assets/images/octofleet-logo-v2.png
 ---
 
-# Octofleet: Zero-Touch OS Deployment mit PXE Boot 🐙
+# Octofleet: Zero-Touch OS Deployment with PXE Boot 🐙
 
-![Octofleet Logo](/assets/images/octofleet-logo.png){: width="256" }
+![Octofleet Logo](/assets/images/octofleet-logo-v2.png){: width="256" }
 
-Heute war ein produktiver Tag! Wir haben **Octofleet** um ein mächtiges Feature erweitert: **Zero-Touch OS Deployment via PXE Boot**.
+Today was a highly productive day! We've extended **Octofleet** with a powerful new feature: **Zero-Touch OS Deployment via PXE Boot**.
 
-## Was ist Octofleet?
+## What is Octofleet?
 
-Octofleet ist unsere Open-Source Endpoint Management Platform. Stell dir vor: Du hast 50 Server oder Workstations, die alle ein frisches Betriebssystem brauchen. Normalerweise heißt das: USB-Sticks brennen, BIOS-Settings ändern, durch Installer klicken... **Langweilig!**
+Octofleet is our open-source Endpoint Management Platform. Think of it as an octopus 🐙 with 8 arms, each handling a different server task: monitoring, patching, installing, configuring, securing, and more!
 
-Mit Octofleet geht das jetzt so:
+Imagine you have 50 servers or workstations that all need a fresh operating system. Normally that means: burning USB sticks, changing BIOS settings, clicking through installers... **Boring!**
 
-1. MAC-Adresse eingeben
-2. Betriebssystem auswählen
-3. Klick auf "Create Job"
-4. Server einschalten → **fertig!**
+With Octofleet, it's now as simple as:
 
-Kein USB-Stick. Kein Installer. Kein Rumgeklicke. Zero-Touch eben.
+1. Enter MAC address
+2. Select operating system
+3. Click "Create Job"
+4. Power on server → **done!**
 
-## Wie funktioniert PXE Boot?
+No USB stick. No installer. No clicking around. Zero-Touch.
 
-**PXE (Preboot Execution Environment)** erlaubt es einem Computer, direkt über das Netzwerk zu booten – ganz ohne lokale Festplatte oder USB.
+## How Does PXE Boot Work?
 
-Der Ablauf:
+**PXE (Preboot Execution Environment)** allows a computer to boot directly over the network – no local hard drive or USB required.
+
+The flow:
 
 ```
-1. Server startet → DHCP Request
-2. DHCP antwortet mit IP + PXE Server Adresse
-3. Server lädt iPXE Bootloader (via TFTP)
-4. iPXE fragt Octofleet API: "Was soll ich tun?"
-5. API antwortet: "Hier ist dein Boot-Script für Windows Server 2025!"
-6. WinPE startet → Partitioniert → Lädt Image → Installiert
-7. Windows bootet → Domain Join → Agent installiert → FERTIG!
+1. Server starts → DHCP Request
+2. DHCP responds with IP + PXE Server address
+3. Server loads iPXE bootloader (via TFTP)
+4. iPXE asks Octofleet API: "What should I do?"
+5. API responds: "Here's your boot script for Windows Server 2025!"
+6. WinPE starts → Partitions disk → Downloads image → Installs
+7. Windows boots → Domain Join → Agent installed → DONE!
 ```
 
-Das Schöne: Alles passiert über **HTTP**. Kein SMB-Share, keine Firewall-Probleme.
+The beauty: Everything happens over **HTTP**. No SMB shares, no firewall headaches.
 
-## Was wir heute gebaut haben
+## What We Built Today
 
 ### 🔧 Backend
 
-- **Provisioning API** mit CRUD-Endpoints für Tasks, Images und Templates
-- **Dynamische iPXE-Generierung** – jede MAC bekommt ihr eigenes Boot-Script
-- **Database Schema** für Provisioning Tasks
-- **Status-Callbacks** – der Server meldet seinen Fortschritt zurück
+- **Provisioning API** with CRUD endpoints for Tasks, Images, and Templates
+- **Dynamic iPXE generation** – each MAC address gets its own boot script
+- **Database schema** for provisioning tasks with full state tracking
+- **Status callbacks** – servers report their installation progress back to the API
 
 ### 🎨 Frontend
 
-- **Provisioning Dashboard** mit Live-Daten aus der API (keine Mock-Daten mehr!)
-- **"New Job" Dialog** – MAC eingeben, OS auswählen, los geht's
-- **Task Queue** mit Status-Anzeige (Pending → Booting → Installing → Done)
-- **Auto-Refresh** alle 10 Sekunden
+- **Provisioning Dashboard** with live data from the API (no more mock data!)
+- **"New Job" Dialog** – enter MAC, select OS, and go
+- **Task Queue** with real-time status (Pending → Booting → Installing → Done)
+- **Auto-refresh** every 10 seconds
+- **Delete and retry** functionality for failed tasks
 
 ### 📦 Windows Deployment
 
-- **Windows Server 2025** (Standard & Datacenter)
-- **Unattend.xml** für vollautomatische Installation:
-  - Deutsche Locale & Zeitzone
-  - Admin-Passwort vorkonfiguriert
-  - RDP aktiviert
-  - Domain Join automatisch
-- **WinPE Boot Image** mit curl.exe für HTTP-Downloads
+- **Windows Server 2025** (Standard & Datacenter editions)
+- **Unattend.xml** for fully automated installation:
+  - German locale & timezone (customizable)
+  - Admin password pre-configured
+  - RDP enabled out of the box
+  - Automatic Domain Join
+- **WinPE Boot Image** with curl.exe for HTTP downloads
 
 ### 🖥️ Hypervisor Support
 
-- **Hyper-V Generation 2** (UEFI) – getestet und läuft!
-- **KVM/libvirt** – Template vorbereitet mit VirtIO-Treibern
-- **Bare Metal** – Template für physische Server
+- **Hyper-V Generation 2** (UEFI) – tested and working!
+- **KVM/libvirt** – template prepared with VirtIO drivers
+- **Bare Metal** – template for physical servers
 
-## Der Tech Stack
+## The Tech Stack
 
 ```
 ┌─────────────────────────────────────────────┐
@@ -96,28 +99,43 @@ Das Schöne: Alles passiert über **HTTP**. Kein SMB-Share, keine Firewall-Probl
                   │ PXE/HTTP
 ┌─────────────────▼───────────────────────────┐
 │            Target Server                    │
-│      (booted via network → installed!)      │
+│      (boots via network → installed!)       │
 └─────────────────────────────────────────────┘
 ```
 
-## Was kommt als nächstes?
+## Why "Octofleet"?
 
-Das war erst der Anfang! Auf der Roadmap steht:
+Like an octopus with 8 arms, Octofleet handles multiple tasks simultaneously:
 
-- **Ubuntu/Linux Support** – Autoinstall & Cloud-Init
-- **Windows 11** – für Client-Deployments
-- **Windows Server 2019** – Legacy-Support
-- **Status-Callbacks** – Live-Progress im UI
-- **Systems Registry** – Provisionierte Systeme als permanente Entitäten
+1. 🔧 **Patching** – keeping systems up to date
+2. 🖥️ **Installing** – deploying fresh OS images
+3. 📊 **Monitoring** – tracking system health
+4. 🪟 **Windows Management** – domain join, roles, features
+5. 💻 **Terminal Access** – remote command execution
+6. 🌐 **Networking** – configuration and connectivity
+7. ⚙️ **Configuration** – settings and policies
+8. 🛡️ **Security** – vulnerability tracking and compliance
 
-## Fazit
+All from a single, unified platform!
 
-Von "Server einschalten" bis "Domain-joined & RDP-ready" vergehen jetzt nur noch **15-20 Minuten**. Ohne dass jemand einen Finger rühren muss. Das ist die Magie von Zero-Touch Deployment!
+## What's Next?
 
-Der Code ist Open Source auf GitHub: [BenediktSchackenberg/octofleet](https://github.com/BenediktSchackenberg/octofleet)
+This is just the beginning! On our roadmap:
 
-Fragen? Feedback? Schreib mir auf Discord!
+- **Ubuntu/Linux Support** – Autoinstall & Cloud-Init integration
+- **Windows 11** – for client deployments
+- **Windows Server 2019** – legacy support
+- **Live Status Callbacks** – real-time progress in the UI
+- **Systems Registry** – provisioned systems as permanent entities
+
+## Conclusion
+
+From "power on server" to "domain-joined & RDP-ready" now takes only **15-20 minutes**. Without anyone lifting a finger. That's the magic of Zero-Touch Deployment!
+
+The code is open source on GitHub: [BenediktSchackenberg/octofleet](https://github.com/BenediktSchackenberg/octofleet)
+
+Questions? Feedback? Hit me up on Discord!
 
 ---
 
-*🐙 Octofleet – Weil Server-Installation nicht langweilig sein muss.*
+*🐙 Octofleet – Because server installation shouldn't be boring.*
