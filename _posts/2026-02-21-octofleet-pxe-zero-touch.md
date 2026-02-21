@@ -4,12 +4,12 @@ title: "Octofleet: Zero-Touch OS Deployment with PXE Boot"
 date: 2026-02-21
 categories: [octofleet, automation]
 tags: [pxe, windows, deployment, devops, infrastructure]
-image: /assets/images/octofleet-logo-v2.png
+image: /assets/images/octofleet-logo-v3.png
 ---
 
 # Octofleet: Zero-Touch OS Deployment with PXE Boot 🐙
 
-![Octofleet Logo](/assets/images/octofleet-logo-v2.png){: width="256" }
+![Octofleet Logo](/assets/images/octofleet-logo-v3.png)
 
 Today was a highly productive day! We've extended **Octofleet** with a powerful new feature: **Zero-Touch OS Deployment via PXE Boot**.
 
