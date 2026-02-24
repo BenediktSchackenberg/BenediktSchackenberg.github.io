@@ -1,22 +1,22 @@
 ---
 layout: post
-title: "PXE Zero-Touch Deployment: Was ich dabei gelernt habe"
-subtitle: "Von wimboot Bugs bis zum automatischen Windows Rollout"
+title: "PXE Zero-Touch Deployment: Lessons Learned"
+subtitle: "From wimboot bugs to automated Windows rollouts"
 date: 2026-02-24
 tags: [octofleet, pxe, windows, deployment, devops]
 ---
 
-Nach ein paar intensiven Debugging-Sessions läuft das Zero-Touch Windows Deployment für Octofleet endlich. Hier die wichtigsten Erkenntnisse - vielleicht spart es dem ein oder anderen ein paar Stunden.
+After a few intense debugging sessions, Zero-Touch Windows Deployment for Octofleet finally works. Here are the key lessons learned - hopefully this saves someone a few hours.
 
-## Das Ziel
+## The Goal
 
-Windows Server 2025 automatisch auf VMs deployen. Kein manuelles Klicken, keine USB-Sticks. MAC-Adresse registrieren, VM starten, fertig.
+Deploy Windows Server 2025 automatically on VMs. No manual clicking, no USB sticks. Register MAC address, start VM, done.
 
-## Die Stolpersteine
+## The Pitfalls
 
-### 1. wimboot initrd injection ist unzuverlässig
+### 1. wimboot initrd injection is unreliable
 
-Mein erster Ansatz war, die Deployment-Scripts per iPXE initrd zu injizieren:
+My first approach was injecting deployment scripts via iPXE initrd:
 
 ```bash
 kernel ${pxe-server}/winpe/wimboot
@@ -25,7 +25,7 @@ initrd ${pxe-server}/winpe/boot.wim boot.wim
 boot
 ```
 
-Das Problem: Die Scripts kamen abgeschnitten oder gar nicht an. Nach viel Debugging die Erkenntnis: **Scripts müssen direkt IN die boot.wim**.
+The problem: Scripts arrived truncated or not at all. After lots of debugging, the insight: **Scripts must go directly INTO the boot.wim**.
 
 ```bash
 wimlib-imagex mountrw boot.wim 1 /tmp/mount
@@ -34,54 +34,54 @@ cp curl.exe /tmp/mount/Windows/System32/
 wimlib-imagex unmount --commit /tmp/mount
 ```
 
-WinPE führt `startnet.cmd` aus `/Windows/System32/` automatisch beim Boot aus. Problem gelöst.
+WinPE automatically executes `startnet.cmd` from `/Windows/System32/` on boot. Problem solved.
 
-### 2. Boot Index beachten!
+### 2. Watch the Boot Index!
 
-Die boot.wim von Windows hat zwei Images:
-- Index 1: WinPE (Kommandozeile)
-- Index 2: Windows Setup (GUI mit Treiber-Dialog)
+The Windows boot.wim contains two images:
+- Index 1: WinPE (command line)
+- Index 2: Windows Setup (GUI with driver dialog)
 
-Default Boot Index ist oft 2. Wenn ihr statt der Kommandozeile den "Select driver" Dialog seht:
+Default Boot Index is often 2. If you see the "Select driver" dialog instead of command line:
 
 ```bash
 wimlib-imagex info boot.wim 1 --boot
 ```
 
-Das setzt Boot Index auf 1 = pure WinPE.
+This sets Boot Index to 1 = pure WinPE.
 
-### 3. KVM/libvirt: SATA statt VirtIO
+### 3. KVM/libvirt: SATA instead of VirtIO
 
-VirtIO ist schneller, aber WinPE hat keine VirtIO-Treiber eingebaut. Die Optionen:
+VirtIO is faster, but WinPE doesn't include VirtIO drivers. The options:
 
-1. VirtIO-Treiber in boot.wim injizieren (kompliziert, braucht Windows DISM)
-2. Disk auf SATA umstellen (funktioniert sofort)
+1. Inject VirtIO drivers into boot.wim (complicated, needs Windows DISM)
+2. Switch disk to SATA (works immediately)
 
-Für Deployment nehme ich SATA. Performance ist egal wenn eh gerade 7GB über's Netzwerk fliegen.
+For deployment I use SATA. Performance doesn't matter when 7GB are flying over the network anyway.
 
-### 4. Hyper-V: Nur Gen2!
+### 4. Hyper-V: Gen2 only!
 
-Hyper-V Gen1 (BIOS) hat einen Bug mit wimboot - "Bad CPIO magic". Gen2 (UEFI) funktioniert problemlos.
+Hyper-V Gen1 (BIOS) has a bug with wimboot - "Bad CPIO magic". Gen2 (UEFI) works fine.
 
-### 5. Alte Hardware und iPXE RAM-Limit
+### 5. Old hardware and iPXE RAM limit
 
-Auf einem alten i5-2400 Board bekam ich "No space" Fehler. iPXE kann nur ~400MB in den RAM laden, egal wie viel System-RAM da ist. boot.wim mit 500MB+ = keine Chance.
+On an old i5-2400 board I got "No space" errors. iPXE can only load ~400MB into RAM, regardless of system RAM. boot.wim over 500MB = no chance.
 
-Moderne VMs haben das Problem nicht.
+Modern VMs don't have this problem.
 
-## Der finale Flow
+## The Final Flow
 
-1. VM startet, bootet PXE
-2. iPXE lädt wimboot + boot.wim
-3. WinPE startet, `startnet.cmd` läuft automatisch
-4. Netzwerk initialisieren
-5. Disk partitionieren (GPT/UEFI)
-6. Windows Image per HTTP laden (curl.exe)
+1. VM starts, boots PXE
+2. iPXE loads wimboot + boot.wim
+3. WinPE starts, `startnet.cmd` runs automatically
+4. Initialize network
+5. Partition disk (GPT/UEFI)
+6. Download Windows image via HTTP (curl.exe)
 7. DISM apply-image
-8. bcdboot für UEFI Bootloader
-9. Reboot → Windows startet
+8. bcdboot for UEFI bootloader
+9. Reboot → Windows starts
 
-Das minimale iPXE Script:
+The minimal iPXE script:
 
 ```bash
 #!ipxe
@@ -90,21 +90,21 @@ initrd -n boot.wim http://192.168.0.5:9080/winpe/boot.wim
 boot
 ```
 
-Ja, wirklich nur drei Zeilen. Der Rest passiert in der boot.wim.
+Yes, really just three lines. The rest happens inside boot.wim.
 
-## Fazit
+## Conclusion
 
-PXE Deployment ist kein Hexenwerk, aber die Details machen's. Die wichtigsten Learnings:
+PXE deployment isn't rocket science, but the details matter. Key takeaways:
 
-- Scripts IN die boot.wim, nicht per initrd
-- Boot Index = 1 für WinPE
-- SATA für KVM wenn keine Treiber-Integration
+- Scripts IN the boot.wim, not via initrd
+- Boot Index = 1 for WinPE
+- SATA for KVM when no driver integration
 - Hyper-V Gen2 only
 
-Das Setup läuft jetzt stabil für Windows Server 2022 und 2025. Als nächstes kommt Linux dazu.
+The setup now works reliably for Windows Server 2022 and 2025. Linux is next.
 
-Die komplette Doku liegt im [Octofleet Repo](https://github.com/BenediktSchackenberg/octofleet/tree/main/provisioning/docs).
+Full documentation is in the [Octofleet Repo](https://github.com/BenediktSchackenberg/octofleet/tree/main/provisioning/docs).
 
 ---
 
-*Octofleet ist mein Open-Source Endpoint Management Tool. Noch in Entwicklung, aber das PXE Deployment funktioniert schon ganz gut.*
+*Octofleet is my open-source endpoint management tool. Still in development, but PXE deployment already works pretty well.*
