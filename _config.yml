@@ -19,6 +19,7 @@ navbar-links:
   About: "about"
   Projects: "projects"
   Blog: "blog"
+  Tags: "tags"
   GitHub: "https://github.com/BenediktSchackenberg"
 
 # Social network links
