@@ -3,7 +3,9 @@ remote_theme: daattali/beautiful-jekyll@6.0.1
 
 # Site Settings
 title: Benedikt Schackenberg
-description: "Just an IT guy."
+description: "Software Engineer · Database Architect · Building tools that make IT operations easier."
+site-css:
+  - "/assets/css/custom.css"
 url: "https://schackenberg.com"
 baseurl: ""
 

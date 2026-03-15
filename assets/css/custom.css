@@ -1,0 +1,234 @@
+/* Dark Mode for beautiful-jekyll */
+
+:root {
+  --bg-primary: #0d1117;
+  --bg-secondary: #161b22;
+  --bg-tertiary: #1c2129;
+  --text-primary: #e6edf3;
+  --text-secondary: #8b949e;
+  --accent: #58a6ff;
+  --accent-hover: #79b8ff;
+  --border: #30363d;
+  --code-bg: #1c2129;
+  --nav-bg: #010409;
+}
+
+/* Base */
+body {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Links */
+a {
+  color: var(--accent) !important;
+}
+a:hover, a:focus {
+  color: var(--accent-hover) !important;
+}
+
+/* Navbar */
+.navbar-default,
+.navbar-custom {
+  background-color: var(--nav-bg) !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.navbar-custom .navbar-brand,
+.navbar-custom .nav li a,
+.navbar-custom .navbar-toggle .icon-bar {
+  color: var(--text-primary) !important;
+}
+.navbar-custom .navbar-toggle .icon-bar {
+  background-color: var(--text-primary) !important;
+}
+.navbar-custom .nav li a:hover,
+.navbar-custom .nav li a:focus {
+  color: var(--accent) !important;
+}
+.navbar-custom .navbar-collapse {
+  border-color: var(--border) !important;
+}
+
+/* Page header / intro */
+.intro-header {
+  background-color: var(--bg-primary) !important;
+}
+.intro-header .page-heading h1,
+.intro-header .post-heading h1,
+.intro-header .site-heading h1 {
+  color: var(--text-primary) !important;
+}
+.intro-header .page-heading .post-subheading,
+.intro-header .post-heading .post-subheading,
+.intro-header .page-heading h2,
+.intro-header .post-heading h2 {
+  color: var(--text-secondary) !important;
+}
+
+/* Main content */
+.container,
+.container-fluid,
+.container-md {
+  color: var(--text-primary);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: var(--text-primary) !important;
+}
+
+p, li, td, th, span, div {
+  color: var(--text-primary);
+}
+
+/* Blog post list */
+.post-preview,
+.post-entry {
+  background-color: var(--bg-secondary) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  padding: 20px !important;
+  margin-bottom: 20px !important;
+}
+
+/* Blockquotes */
+blockquote {
+  background-color: var(--bg-secondary) !important;
+  border-left: 4px solid var(--accent) !important;
+  color: var(--text-primary) !important;
+  padding: 12px 20px !important;
+  border-radius: 0 6px 6px 0 !important;
+}
+
+/* Code */
+code {
+  background-color: var(--code-bg) !important;
+  color: #f97583 !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 4px !important;
+}
+pre {
+  background-color: var(--code-bg) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 6px !important;
+  color: var(--text-primary) !important;
+}
+pre code {
+  color: var(--text-primary) !important;
+  border: none !important;
+}
+
+/* Rouge syntax highlighting */
+.highlight {
+  background-color: var(--code-bg) !important;
+  border-radius: 6px !important;
+}
+
+/* Tables */
+table {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border) !important;
+}
+th {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border) !important;
+}
+td {
+  border-color: var(--border) !important;
+}
+
+/* HR */
+hr {
+  border-color: var(--border) !important;
+}
+
+/* Footer */
+footer {
+  background-color: var(--nav-bg) !important;
+  border-top: 1px solid var(--border) !important;
+  color: var(--text-secondary) !important;
+}
+footer a {
+  color: var(--text-secondary) !important;
+}
+footer a:hover {
+  color: var(--accent) !important;
+}
+.footer-col p, .footer-copyright {
+  color: var(--text-secondary) !important;
+}
+
+/* Pagination */
+.pagination li a,
+.pagination li span {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border) !important;
+  color: var(--text-primary) !important;
+}
+.pagination li.active span {
+  background-color: var(--accent) !important;
+  border-color: var(--accent) !important;
+  color: #fff !important;
+}
+
+/* Avatar */
+.avatar-container {
+  border: 3px solid var(--border) !important;
+}
+
+/* Details/Summary */
+details {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 10px 15px;
+  margin: 10px 0;
+}
+summary {
+  cursor: pointer;
+  color: var(--accent);
+}
+
+/* Images - subtle rounding */
+.post-content img,
+article img {
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+/* Badges section styling */
+.badge-row img {
+  margin: 2px;
+}
+
+/* Card-like sections */
+.card-section {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+/* Hero improvements */
+.hero-title {
+  font-size: 1.8em;
+  margin-bottom: 0.5em;
+}
+.hero-subtitle {
+  color: var(--text-secondary);
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+}
+
+/* Input/form elements */
+input, textarea, select {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border) !important;
+}
+
+/* Selection color */
+::selection {
+  background-color: var(--accent);
+  color: #fff;
+}

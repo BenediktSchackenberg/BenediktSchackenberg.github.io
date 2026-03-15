@@ -7,9 +7,9 @@ permalink: /about/
 
 ## 👋 Hey there
 
-25+ years in IT — specialized in **Microsoft SQL Server**, **Azure Cloud**, **Performance Tuning**, and **High Availability**.
+I'm Benedikt — 25+ years in IT, specialized in **Microsoft SQL Server**, **Azure Cloud**, **Performance Tuning**, and **High Availability**.
 
-I'm someone who loves diving deep into tricky problems until everything just works.
+I love diving deep into tricky problems until everything just works. Currently building database infrastructure at **University Medical Center Mainz**.
 
 ---
 
