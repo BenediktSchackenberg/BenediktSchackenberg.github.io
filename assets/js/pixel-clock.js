@@ -516,7 +516,7 @@
       this.ctx = this.canvas.getContext('2d');
       this.ctx.imageSmoothingEnabled = false;
 
-      if (window.innerWidth < 600) {
+      if (window.innerWidth < 768) { this.canvas.style.display='none'; return; } if (false) {
         this.canvas.style.transform = 'scale(0.55)';
         this.canvas.style.transformOrigin = 'top left';
       }

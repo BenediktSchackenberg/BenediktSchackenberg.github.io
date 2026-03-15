@@ -8,7 +8,7 @@
   'use strict';
 
   // Wait for DOM
-  function init() {
+  function init() { if (window.innerWidth < 768) return;
     // Find the site title link in the navbar
     const titleEl = document.querySelector('.navbar-brand, .site-title a, h1.site-heading a, .navbar a.navbar-brand');
     if (!titleEl) return;
