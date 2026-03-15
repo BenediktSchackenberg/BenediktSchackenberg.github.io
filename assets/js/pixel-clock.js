@@ -142,18 +142,35 @@
   }
 
   // === WORKER SPRITE ===
-  function drawWorkerSprite(ctx, gx, footY, state, frame, dir, carrying) {
+  // Worker looks: each has unique colors
+  const LOOKS = [
+    { // Worker A: classic yellow helm, orange vest
+      helm: '#f0c040', helmShade: '#c89a20',
+      body: '#e06030', bodyShade: '#b84820', stripe: '#f0c040',
+      pants: '#4060a0', pantsShade: '#304878',
+      skin: '#e0b080', skinShade: '#c89060',
+    },
+    { // Worker B: white helm, blue vest, darker skin
+      helm: '#e8e8e8', helmShade: '#b0b0b0',
+      body: '#3080d0', bodyShade: '#2060a0', stripe: '#e8e8e8',
+      pants: '#505050', pantsShade: '#383838',
+      skin: '#c09060', skinShade: '#a07848',
+    },
+  ];
+
+  function drawWorkerSprite(ctx, gx, footY, state, frame, dir, carrying, lookIdx) {
     const x = Math.round(gx) - 2;
     const y = Math.round(footY) - 8;
     const f = frame % 4;
+    const L = LOOKS[lookIdx || 0];
 
     // Hardhat
-    gpx(ctx, x+1, y, C.helm); gpx(ctx, x+2, y, C.helm); gpx(ctx, x+3, y, C.helm);
-    gpx(ctx, x, y+1, C.helmShade); gpx(ctx, x+1, y+1, C.helm); gpx(ctx, x+2, y+1, C.helm);
-    gpx(ctx, x+3, y+1, C.helm); gpx(ctx, x+4, y+1, C.helmShade);
+    gpx(ctx, x+1, y, L.helm); gpx(ctx, x+2, y, L.helm); gpx(ctx, x+3, y, L.helm);
+    gpx(ctx, x, y+1, L.helmShade); gpx(ctx, x+1, y+1, L.helm); gpx(ctx, x+2, y+1, L.helm);
+    gpx(ctx, x+3, y+1, L.helm); gpx(ctx, x+4, y+1, L.helmShade);
 
     // Face
-    gpx(ctx, x+1, y+2, C.skin); gpx(ctx, x+2, y+2, C.skin); gpx(ctx, x+3, y+2, C.skin);
+    gpx(ctx, x+1, y+2, L.skin); gpx(ctx, x+2, y+2, L.skin); gpx(ctx, x+3, y+2, L.skin);
     ctx.fillStyle = '#202020';
     ctx.fillRect((x+1)*PX+1,(y+2)*PX+1,2,2);
     ctx.fillRect((x+3)*PX+1,(y+2)*PX+1,2,2);
@@ -166,17 +183,17 @@
     }
 
     // Neck + torso
-    gpx(ctx, x+2, y+3, C.skinShade);
-    gpx(ctx, x+1, y+3, C.body); gpx(ctx, x+3, y+3, C.body);
-    gpx(ctx, x+1, y+4, C.body); gpx(ctx, x+2, y+4, C.stripe); gpx(ctx, x+3, y+4, C.body);
-    gpx(ctx, x+1, y+5, C.bodyShade); gpx(ctx, x+2, y+5, C.belt); gpx(ctx, x+3, y+5, C.bodyShade);
+    gpx(ctx, x+2, y+3, L.skinShade);
+    gpx(ctx, x+1, y+3, L.body); gpx(ctx, x+3, y+3, L.body);
+    gpx(ctx, x+1, y+4, L.body); gpx(ctx, x+2, y+4, L.stripe); gpx(ctx, x+3, y+4, L.body);
+    gpx(ctx, x+1, y+5, L.bodyShade); gpx(ctx, x+2, y+5, C.belt); gpx(ctx, x+3, y+5, L.bodyShade);
 
     // Arms
     if (state === 'hammering') {
       const up = f%2===0;
       const as = dir>0 ? x+4 : x;
       const os = dir>0 ? x : x+4;
-      gpx(ctx, as, y+4, C.skin);
+      gpx(ctx, as, y+4, L.skin);
       if (up) {
         gpx(ctx, as, y+3, C.handle); gpx(ctx, as, y+2, C.hammer);
         const hx2 = dir>0 ? as+1 : as-1;
@@ -186,10 +203,10 @@
         const hx2 = dir>0 ? as+1 : as-1;
         if (hx2>=0 && hx2<GPW) gpx(ctx, hx2, y+5, C.hammer);
       }
-      gpx(ctx, os, y+4, C.skin);
+      gpx(ctx, os, y+4, L.skin);
     } else if (state === 'carrying') {
       // Both arms up holding something
-      gpx(ctx, x, y+3, C.skin); gpx(ctx, x+4, y+3, C.skin);
+      gpx(ctx, x, y+3, L.skin); gpx(ctx, x+4, y+3, L.skin);
       // The carried item (brick)
       if (carrying === 'brick') {
         gpx(ctx, x+1, y-1, C.brick); gpx(ctx, x+2, y-1, C.brick); gpx(ctx, x+3, y-1, C.brickShade);
@@ -197,45 +214,45 @@
         gpx(ctx, x-1>=0?x-1:0, y, C.plank); gpx(ctx, x+5<GPW?x+5:GPW-1, y, C.plank);
       }
     } else if (state === 'climbing') {
-      gpx(ctx, x, y+3, C.skin); gpx(ctx, x+4, y+3, C.skin);
+      gpx(ctx, x, y+3, L.skin); gpx(ctx, x+4, y+3, L.skin);
     } else if (state === 'sweeping') {
       const sw = f%2;
       const bs = dir>0 ? x+4 : x;
-      gpx(ctx, bs, y+4, C.skin);
+      gpx(ctx, bs, y+4, L.skin);
       gpx(ctx, bs, y+5, C.broom);
       gpx(ctx, bs+(dir>0?1:-1)>=0 ? bs+(dir>0?1:-1) : 0, y+6, C.broomHead);
       gpx(ctx, bs+(dir>0?(sw?2:0):(sw?-2:0)), y+7, C.broomHead);
-      gpx(ctx, dir>0?x:x+4, y+5, C.skin);
+      gpx(ctx, dir>0?x:x+4, y+5, L.skin);
     } else if (state === 'walking') {
-      gpx(ctx, x, y+4+(f%2), C.skin);
-      gpx(ctx, x+4, y+5-(f%2), C.skin);
+      gpx(ctx, x, y+4+(f%2), L.skin);
+      gpx(ctx, x+4, y+5-(f%2), L.skin);
     } else {
       // idle — hands on hips or at side
-      gpx(ctx, x, y+5, C.skin); gpx(ctx, x+4, y+5, C.skin);
+      gpx(ctx, x, y+5, L.skin); gpx(ctx, x+4, y+5, L.skin);
     }
 
     // Legs
     if (state === 'sitting') {
-      gpx(ctx, x, y+6, C.pants); gpx(ctx, x+1, y+6, C.pants);
-      gpx(ctx, x+3, y+6, C.pants); gpx(ctx, x+4, y+6, C.pants);
+      gpx(ctx, x, y+6, L.pants); gpx(ctx, x+1, y+6, L.pants);
+      gpx(ctx, x+3, y+6, L.pants); gpx(ctx, x+4, y+6, L.pants);
       gpx(ctx, x, y+7, C.boots); gpx(ctx, x+4, y+7, C.boots);
     } else if (state === 'walking' || state === 'carrying' || state === 'sweeping') {
       if (f===0||f===2) {
-        gpx(ctx,x+1,y+6,C.pants); gpx(ctx,x+3,y+6,C.pants);
+        gpx(ctx,x+1,y+6,L.pants); gpx(ctx,x+3,y+6,L.pants);
         gpx(ctx,x+1,y+7,C.boots); gpx(ctx,x+3,y+7,C.boots);
       } else if (f===1) {
-        gpx(ctx,x+(dir>0?0:2),y+6,C.pants); gpx(ctx,x+(dir>0?3:4),y+6,C.pantsShade);
+        gpx(ctx,x+(dir>0?0:2),y+6,L.pants); gpx(ctx,x+(dir>0?3:4),y+6,L.pantsShade);
         gpx(ctx,x+(dir>0?0:2),y+7,C.boots); gpx(ctx,x+(dir>0?3:4),y+7,C.boots);
       } else {
-        gpx(ctx,x+(dir>0?2:0),y+6,C.pants); gpx(ctx,x+(dir>0?4:1),y+6,C.pantsShade);
+        gpx(ctx,x+(dir>0?2:0),y+6,L.pants); gpx(ctx,x+(dir>0?4:1),y+6,L.pantsShade);
         gpx(ctx,x+(dir>0?2:0),y+7,C.boots); gpx(ctx,x+(dir>0?4:1),y+7,C.boots);
       }
     } else if (state === 'climbing') {
       const lo = f%2;
-      gpx(ctx,x+1,y+6+lo,C.pants); gpx(ctx,x+3,y+7-lo,C.pants);
+      gpx(ctx,x+1,y+6+lo,L.pants); gpx(ctx,x+3,y+7-lo,L.pants);
       gpx(ctx,x+1,y+7,C.boots); gpx(ctx,x+3,y+7,C.boots);
     } else {
-      gpx(ctx,x+1,y+6,C.pants); gpx(ctx,x+3,y+6,C.pants);
+      gpx(ctx,x+1,y+6,L.pants); gpx(ctx,x+3,y+6,L.pants);
       gpx(ctx,x+1,y+7,C.boots); gpx(ctx,x+3,y+7,C.boots);
     }
   }
@@ -255,9 +272,10 @@
   // === WORKER AI ===
   // Activities: digit-task, carry-brick, carry-plank, sweep, climb-and-hammer, wander, idle-look, sit-rest
   class Worker {
-    constructor(homeX, homeY) {
+    constructor(homeX, homeY, look) {
       this.x = homeX; this.y = homeY || GROUND_Y;
       this.homeX = homeX; this.homeY = homeY || GROUND_Y;
+      this.look = look || 0;
       this.state = 'idle'; this.carrying = null;
       this.frame = 0; this.frameTick = 0; this.dir = 1;
       this.activity = null; // current higher-level activity
@@ -480,7 +498,7 @@
     }
 
     draw(ctx) {
-      drawWorkerSprite(ctx, this.x, this.y, this.state, this.frame, this.dir, this.carrying);
+      drawWorkerSprite(ctx, this.x, this.y, this.state, this.frame, this.dir, this.carrying, this.look);
     }
   }
 
@@ -506,20 +524,13 @@
       this.digitPixels = {};
       this.particles = [];
 
-      // 5 workers, spread out, staggered start
+      // 2 workers with distinct looks
       this.workers = [
-        new Worker(6),
-        new Worker(18),
-        new Worker(28),
-        new Worker(42),
-        new Worker(52),
+        new Worker(12, null, 0),  // Yellow helm, orange vest
+        new Worker(40, null, 1),  // White helm, blue vest
       ];
-      // Stagger initial activities so they don't all start idle
       this.workers[0].actTimer = 5;
-      this.workers[1].actTimer = 25;
-      this.workers[2].actTimer = 45;
-      this.workers[3].actTimer = 10;
-      this.workers[4].actTimer = 35;
+      this.workers[1].actTimer = 30;
 
       this.lastMinute = -1;
       this.lastDigits = [-1,-1,-1,-1];
