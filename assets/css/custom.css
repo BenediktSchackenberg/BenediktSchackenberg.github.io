@@ -285,6 +285,42 @@ input, textarea, select {
   color: #fff;
 }
 
+/* Wider content area */
+.container {
+  max-width: 1200px !important;
+  width: 92% !important;
+}
+.container-md {
+  max-width: 1200px !important;
+}
+@media (min-width: 1200px) {
+  .container, .container-md, .container-lg {
+    max-width: 1200px !important;
+  }
+}
+
+/* Table dark fix */
+table,
+table thead,
+table tbody,
+table tr {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+}
+table th {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+}
+table td {
+  background-color: var(--bg-secondary) !important;
+  color: var(--text-primary) !important;
+  border: 1px solid var(--border) !important;
+}
+table tr:nth-child(even) td {
+  background-color: var(--bg-tertiary) !important;
+}
+
 /* Career Timeline */
 .timeline {
   position: relative;
