@@ -52,9 +52,16 @@ a:hover, a:focus {
 
 /* Navbar */
 .navbar-default,
-.navbar-custom {
+.navbar-custom,
+#main-navbar {
   background-color: var(--nav-bg) !important;
   border-bottom: 1px solid var(--border) !important;
+}
+.navbar-custom .avatar-container {
+  background-color: var(--nav-bg) !important;
+}
+.navbar-custom .avatar-container img {
+  background-color: var(--bg-secondary) !important;
 }
 .navbar-custom .navbar-brand,
 .navbar-custom .nav li a,
@@ -73,8 +80,11 @@ a:hover, a:focus {
 }
 
 /* Page header / intro */
-.intro-header {
+.intro-header,
+.page-heading,
+.jumbotron {
   background-color: var(--bg-primary) !important;
+  border: none !important;
 }
 .intro-header .page-heading h1,
 .intro-header .post-heading h1,
@@ -165,19 +175,38 @@ hr {
 }
 
 /* Footer */
-footer {
+footer,
+.footer,
+footer .container,
+footer .row {
   background-color: var(--nav-bg) !important;
   border-top: 1px solid var(--border) !important;
   color: var(--text-secondary) !important;
 }
-footer a {
+footer a,
+.footer a {
   color: var(--text-secondary) !important;
 }
-footer a:hover {
+footer a:hover,
+.footer a:hover {
   color: var(--accent) !important;
 }
 .footer-col p, .footer-copyright {
   color: var(--text-secondary) !important;
+}
+/* Social icons in footer */
+footer .footer-links a,
+footer .list-inline a {
+  color: var(--text-secondary) !important;
+  background: transparent !important;
+}
+footer .footer-links a:hover,
+footer .list-inline a:hover {
+  color: var(--accent) !important;
+}
+/* Remove inner footer box shadow/bg differences */
+footer *:not(a):not(i):not(svg) {
+  background-color: transparent !important;
 }
 
 /* Pagination */
