@@ -284,3 +284,60 @@ input, textarea, select {
   background-color: var(--accent);
   color: #fff;
 }
+
+/* Career Timeline */
+.timeline {
+  position: relative;
+  padding: 20px 0;
+  margin: 20px 0;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.timeline-item {
+  position: relative;
+  padding-left: 50px;
+  margin-bottom: 30px;
+}
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 14px;
+  top: 5px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-primary);
+}
+.timeline-date {
+  color: var(--accent);
+  font-weight: bold;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+.timeline-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+.timeline-company {
+  color: var(--text-secondary);
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.timeline-content ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.timeline-content li {
+  color: var(--text-secondary);
+  font-size: 0.95em;
+}
