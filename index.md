@@ -12,7 +12,7 @@ Currently working at **University Medical Center Mainz** in database infrastruct
 
 ## 🐙 OctoFleet — Open-Source Endpoint Management
 
-<div class="card-section">
+<div class="card-section" markdown="1">
 
 Monitor your entire fleet of Windows & Linux systems from a single dashboard — self-hosted, no vendor lock-in.
 

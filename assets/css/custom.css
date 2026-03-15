@@ -14,9 +14,32 @@
 }
 
 /* Base */
-body {
+body,
+html,
+#header,
+.page-body,
+.main-content,
+.container-md,
+.container-lg,
+.container-fluid,
+#main-navbar,
+.wrapper,
+.site-content,
+.post-container,
+article,
+.blog-post,
+.post-content {
   background-color: var(--bg-primary) !important;
   color: var(--text-primary) !important;
+}
+
+/* Kill any white backgrounds */
+* {
+  border-color: var(--border);
+}
+
+div:not(.card-section):not(.highlight):not(.post-preview):not(.post-entry) {
+  background-color: transparent;
 }
 
 /* Links */

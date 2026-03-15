@@ -11,7 +11,7 @@ permalink: /projects/
 
 ## 🐙 OctoFleet
 
-<div class="card-section">
+<div class="card-section" markdown="1">
 
 **Open-Source Endpoint Management Platform**
 
@@ -37,7 +37,7 @@ A self-hosted solution for managing Windows and Linux fleets. No cloud subscript
 
 ## 📊 DBA Dash WebView
 
-<div class="card-section">
+<div class="card-section" markdown="1">
 
 **Web Frontend for DBA Dash**
 
