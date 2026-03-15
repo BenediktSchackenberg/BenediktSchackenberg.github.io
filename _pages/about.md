@@ -171,23 +171,318 @@ I'm Benedikt — a software engineer and database architect with 25+ years in IT
 
 ## 📚 Project Portfolio
 
-| Year | Industry | Project | Tech | Role |
-|------|----------|---------|------|------|
-| 2024 | Energy | Azure SQL Security | Azure SQL, Data Factory, CI/CD | Enterprise Architect |
-| 2024 | Banking | MongoDB Cluster Troubleshooting | Kubernetes, Helm, ArgoCD | MongoDB Consultant |
-| 2022–2024 | Banking | Cloud SQL & Dataproc Migration | GCP, PySpark, Hadoop | Data Engineer |
-| 2021–2024 | Telecom | Analytics Platform & CI/CD | Vertex AI, Beam, Dataflow | Data Engineer |
-| 2019–2023 | Healthcare | SQL Operations & Optimization | SQL Server, PRTG, Fabric | DBA |
+<div class="card-section" markdown="1">
+
+### ⚡ Azure SQL Security Assessment
+**Period:** 08/2024 – 12/2024 · **Industry:** Energy · **Role:** Microsoft Azure SQL Enterprise Architect · **Team:** 200 (org)
+
+**Technologies:** `Microsoft Azure` `Azure SQL` `Data Factory` `GitHub` `CI/CD`
+
+**Key responsibilities:**
+- Security architecture assessment and policy revision
+- Implementing security functions and strategic analysis
+- Advising on Azure SQL security best practices at enterprise scale
+
+**Result:** Significantly improved security posture for Azure SQL databases
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 MongoDB Kubernetes Cluster Troubleshooting
+**Period:** 10/2024 – 12/2024 · **Industry:** Banking · **Role:** MongoDB Consultant · **Team:** 5
+
+**Technologies:** `Kubernetes` `ArgoCD` `MongoDB` `HelmChart`
+
+**Key responsibilities:**
+- Error analysis, documentation, and resolving deployment issues
+- Diagnosing and fixing HelmChart-based MongoDB cluster deployments
+
+**Result:** Error-free deployment of MongoDB cluster via HelmChart
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🚚 6-Node AlwaysOn Cluster (SQL Server 2017)
+**Period:** 05/2021 – present · **Industry:** Logistics · **Role:** Infrastructure Architect, Database Administrator · **Team:** 25
+
+**Technologies:** `SQL Server` `Azure` `Azure SQL` `Azure Functions` `Microsoft Fabric` `PRTG` `SQL Monitor` `Azure IoT` `Azure Synapse` `SSRS` `SSAS` `SSIS` `Power BI` `Redgate`
+
+**Key responsibilities:**
+- Infrastructure design and operation of a 6-node AlwaysOn cluster
+- Managing 91 Azure SQL databases
+- Advising management on SQL Server and Azure capabilities
+- Performance tuning and implementing active monitoring
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 Cloud SQL & Dataproc Migration (MySQL/Hadoop → Google Cloud)
+**Period:** 08/2022 – 06/2024 · **Industry:** Banking · **Role:** Data Engineer / Support Engineer
+
+**Technologies:** `Google Cloud` `MySQL` `Hadoop` `Spark` `Hive` `Python` `SQL` `PySpark`
+
+**Key responsibilities:**
+- Migration of on-prem MySQL and Hadoop workloads to Google Cloud
+- Implementing new cloud-native data management services
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏥 MongoDB Migration On-Prem to AWS
+**Period:** 01/2024 – 05/2024 · **Industry:** Healthcare · **Role:** IT System Engineer and Architect · **Team:** 5
+
+**Technologies:** `MongoDB` `AWS` `Jira` `RedHat`
+
+**Key responsibilities:**
+- Architecture consulting for cloud migration strategy
+- Technical implementation of on-premises to AWS migration
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 📡 Container-Based Analytics Platforms & CI/CD Pipelines
+**Period:** 04/2022 – 05/2024 · **Industry:** Telecom · **Role:** Data Engineer
+
+**Technologies:** `Google Cloud Platform` `Vertex AI` `Apache Beam` `Dataflow` `Python` `SQL` `PySpark`
+
+**Key responsibilities:**
+- Design and implementation of data pipelines in GCP
+- ML model integration with Vertex AI
+- Optimizing data processing workflows
+
+</div>
 
 <details>
-<summary>📋 More projects</summary>
+<summary>📜 Show earlier projects (2014–2023)</summary>
 
-| Year | Industry | Project | Tech | Role |
-|------|----------|---------|------|------|
-| 2021–2023 | Telecom | DWH Development | SSIS/SSAS/SSRS, Azure | Solution Architect |
-| 2019–2020 | Manufacturing | SAP Migration without Downtime | Azure SQL, Power BI | Principal Architect |
-| 2018–2019 | Public Sector | SQL Landscape Rebuild | AlwaysOn, Dynatrace | Principal DBA |
-| 2017–2018 | Banking | Reporting Modernization | SQL Server, Azure Service Bus | Consultant |
+<div class="card-section" markdown="1">
+
+### 🏦 Kubernetes 2nd Level Support
+**Period:** 05/2023 – 01/2024 · **Industry:** Finance · **Role:** IT System Engineer and Architect · **Team:** 25
+
+**Technologies:** `Docker` `RedHat` `Jira` `GitHub` `Helm`
+
+**Key responsibilities:**
+- Supporting existing Kubernetes cluster operations
+- Providing illness coverage and backup for platform team
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 Database Platform Migration to MongoDB
+**Period:** 02/2021 – 06/2024 · **Industry:** Finance · **Role:** IT System Engineer and Architect · **Team:** 50
+
+**Technologies:** `MongoDB` `Docker` `RedHat` `JSON` `Cassandra`
+
+**Key responsibilities:**
+- Migrating from Cassandra NoSQL to MongoDB
+- Advising and upskilling the internal team
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 Kubernetes Platform Setup with MongoDB
+**Period:** 06/2021 – 12/2023 · **Industry:** Finance · **Role:** IT System Engineer and Architect · **Team:** 34
+
+**Technologies:** `MongoDB` `Docker` `RedHat` `Jira` `Helm`
+
+**Key responsibilities:**
+- Initial Kubernetes cluster and MongoDB multicluster configuration
+- Platform handover to internal staff, 2nd level support, consulting
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 📡 Data Warehouse Development
+**Period:** 11/2020 – 04/2023 · **Industry:** Telecom · **Role:** Principal Consultant, Solution Architect · **Team:** 25
+
+**Technologies:** `SSAS` `SSIS` `SSRS` `Visual Studio` `RDBMS` `Azure Data Factory` `CI/CD` `GitLab`
+
+**Key responsibilities:**
+- Azure infrastructure design and DWH migration to Azure
+- Technical coaching, requirements analysis, solution design
+- Performance-optimized data modeling, ETL processes, reports
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏭 On-Premises to Azure Cloud Migration
+**Period:** 02/2022 – 05/2022 · **Industry:** Industrial Services · **Role:** Principal Consultant for Database Administration and Lead Developer · **Team:** 25
+
+**Technologies:** `Azure SQL` `Azure Cosmos DB` `SQL Managed Instance` `PaaS` `SharePoint Online` `SQL Server`
+
+**Key responsibilities:**
+- New Azure solution design and operations optimization
+- Migrating on-prem databases to cloud-based SQL
+- BI portal and SharePoint Online integration
+
+**Result:** Successful migration to Microsoft Cloud
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏥 SQL Server Operations & Optimization
+**Period:** 01/2019 – 02/2023 · **Industry:** Healthcare · **Role:** Senior Database Administrator
+
+**Technologies:** `SQL Server 2008/2014/2016` `Data Factory` `Microsoft Fabric` `AlwaysOn` `PRTG` `SQL Monitor`
+
+**Key responsibilities:**
+- Ensuring smooth SQL Server operations
+- Architecture consulting and migration to newer SQL Server versions
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🛡️ Data Warehouse / MS BI Consulting
+**Period:** 04/2021 – 07/2021 · **Industry:** Insurance · **Role:** IT Consultant / Auditor
+
+**Technologies:** `MS BI Stack` `SQL Server` `SSAS` `SSIS` `SSRS` `Power BI` `SCRUM` `Jira`
+
+**Key responsibilities:**
+- Data model audit and master data management for DWH
+- Audit of cubes, reports, SQL code, SSIS packages, Power BI reports
+- Performance optimization
+
+**Result:** Complete audit of complex DWH environment
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 SQL Server Migration (Regulatory Compliance)
+**Period:** 04/2020 – 09/2021 · **Industry:** Banking · **Role:** Principal Architect, Principal Database Administrator · **Team:** 9
+
+**Technologies:** `SQL Server` `SSIS` `Reporting Services` `Visual Studio` `Python`
+
+**Key responsibilities:**
+- SQL Server 2000 → 2019 migration
+- DTSX package conversion to SSIS, building subject-specific cubes
+- Testing, optimization, documentation
+
+**Result:** Passed internal audit — all regulatory requirements fulfilled
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏭 SAP Datacenter Migration (Zero Downtime)
+**Period:** 06/2019 – 03/2020 · **Industry:** Manufacturing · **Role:** Principal Architect and Principal Database Administrator · **Team:** 15
+
+**Technologies:** `Azure SQL` `Azure Synapse` `SSIS` `SSAS` `Power BI` `Jenkins` `Python` `Salesforce` `VMware` `CI/CD`
+
+**Key responsibilities:**
+- Solution design for data and service availability
+- Migrating SAP application database to new datacenter without service interruption
+
+**Result:** Successful migration without downtime or service disruption
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏛️ SQL Landscape Build & Optimization (Public Sector)
+**Period:** 04/2018 – 02/2019 · **Industry:** Public Sector · **Role:** Principal Architect, Coach, Principal Database Administrator · **Team:** 12
+
+**Technologies:** `SQL Server 2014/2019` `AlwaysOn` `Dynatrace` `PRTG` `SQL Monitor` `Redgate`
+
+**Key responsibilities:**
+- Building SQL Server landscape for central public service provider
+- Automated migration of systems, operations handbook for HA landscapes
+- Team coordination, performance tuning, knowledge transfer
+
+**Result:** Many systems successfully migrated and operated
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🛒 SQL Server Operations, 1st & 2nd Level Support
+**Period:** 04/2018 – 02/2019 · **Industry:** Retail · **Role:** Senior Database Administrator
+
+**Technologies:** `SQL Server 2008/2012` `AlwaysOn` `JIRA`
+
+**Key responsibilities:**
+- Support team coordination, architecture consulting
+- Security concepts & auditing, ticket handling, release implementation
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 Reporting Platform Modernization
+**Period:** 01/2017 – 03/2018 · **Industry:** Banking · **Role:** Principal Consultant / Architect and Senior Database Administrator
+
+**Technologies:** `SQL Server 2005/2008/2014` `Reporting Services` `Azure Service Bus` `AlwaysOn` `ClickView` `Visual Studio`
+
+**Key responsibilities:**
+- New solution design and project team coordination
+- Knowledge transfer, migration execution, SQL optimization
+
+**Result:** High customer satisfaction with modernized solution
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 Reporting Platform Expansion
+**Period:** 01/2017 – 03/2018 · **Industry:** Banking · **Role:** Architect and Senior Database Administrator
+
+**Technologies:** `SQL Server 2005/2008/2014` `AlwaysOn` `Reporting Services` `Azure Service Bus` `Hyper-V` `ClickView` `Visual Studio`
+
+**Key responsibilities:**
+- Implementing new requirements and creating reports
+- SQL Server landscape migration
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🎓 Microsoft Certified Trainer
+**Period:** 07/2016 – present · **Industry:** Various · **Role:** Trainer
+
+**Technologies:** `SQL Server` `Azure` `MS Architectures` `SQL Server BI` `AlwaysOn`
+
+**Key responsibilities:**
+- Delivering training, coaching, and knowledge transfer on MS technologies (up to 8 participants)
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🏦 SQL Server Landscape Build & Operations
+**Period:** 09/2014 – 12/2016 · **Industry:** Banking · **Role:** Architect and Senior Database Administrator
+
+**Technologies:** `SQL Server 2012/2014` `Reporting Services` `T-SQL` `Visual Studio` `Python` `MySQL` `AlwaysOn`
+
+**Key responsibilities:**
+- SQL landscape design, migration strategy, operations handbook
+- 1st & 2nd level support, ETL pipeline creation
+- SQL performance tuning, requirements gathering with business units
+
+</div>
+
+<div class="card-section" markdown="1">
+
+### 🌐 Open Source MongoDB/Kubernetes Community Support
+**Period:** 10/2019 – present · **Industry:** Community · **Role:** Developer
+
+**Technologies:** `MongoDB` `Docker` `Kubernetes` `RedHat`
+
+**Key responsibilities:**
+- Contributing to open source MongoDB and Kubernetes community projects
+
+</div>
 
 </details>
 
