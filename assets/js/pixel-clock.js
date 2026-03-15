@@ -1,42 +1,53 @@
 /**
- * Retro Pixel Construction Clock
- * Pixel-art digital clock with detailed construction worker sprites.
- * Inspired by standard-time.com — but retro/pixel style.
+ * Retro Pixel Construction Clock v3
+ * Bigger canvas, construction site with house, ladder, spread-out workers.
  */
 (function () {
   'use strict';
 
-  // === CONFIG ===
-  const PX = 3; // each "game pixel" = 3 canvas pixels
+  const PX = 4; // bigger pixels
   const DIGIT_W = 5, DIGIT_H = 7;
-  const COLON_W = 2;
-  const GAP = 1;
-  const MARGIN = 2;
 
-  // Layout: M [d0 5] G [d1 5] G [: 2] G [d2 5] G [d3 5] M
-  const CONTENT_W = 2 * MARGIN + 4 * DIGIT_W + 4 * GAP + COLON_W; // 30
-  const CANVAS_GP_W = CONTENT_W + 14; // extra room for workers wandering
-  const CANVAS_GP_H = 20; // more vertical room
-  const CANVAS_W = CANVAS_GP_W * PX;
-  const CANVAS_H = CANVAS_GP_H * PX;
+  // Canvas size in game pixels
+  const GPW = 64;
+  const GPH = 32;
+  const CW = GPW * PX; // 256
+  const CH = GPH * PX; // 128
 
   // Colors
-  const COL_BG = 'rgba(13,17,23,0.9)';
+  const COL_BG = 'rgba(13,17,23,0.92)';
   const COL_DIGIT = '#58a6ff';
+  const COL_DIGIT_GLOW = 'rgba(88,166,255,0.12)';
   const COL_HELM = '#f0c040';
   const COL_HELM_SHADE = '#c89a20';
   const COL_BODY = '#e06030';
   const COL_BODY_SHADE = '#b84820';
+  const COL_VEST_STRIPE = '#f0c040';
   const COL_PANTS = '#4060a0';
   const COL_PANTS_SHADE = '#304878';
   const COL_SKIN = '#e0b080';
   const COL_SKIN_SHADE = '#c89060';
   const COL_BOOTS = '#503018';
-  const COL_HAMMER_HEAD = '#a0a0a0';
-  const COL_HAMMER_HANDLE = '#8b6914';
+  const COL_HAMMER = '#a0a0a0';
+  const COL_HANDLE = '#8b6914';
   const COL_PARTICLE = '#8b949e';
   const COL_COLON = '#58a6ff';
+  const COL_GROUND = '#2a1f0e';
+  const COL_GROUND_LINE = '#6e4b1e';
+  const COL_LADDER = '#8b6914';
+  const COL_LADDER_RUNG = '#a07828';
+  // House colors
+  const COL_BRICK = '#6b3a2a';
+  const COL_BRICK_SHADE = '#4d2a1e';
+  const COL_ROOF = '#8b4513';
+  const COL_ROOF_SHADE = '#6b3510';
+  const COL_WINDOW = '#1a3a5c';
+  const COL_WINDOW_FRAME = '#4a6a8a';
+  const COL_DOOR = '#4d2a1e';
   const COL_SCAFFOLD = '#6e4b1e';
+  const COL_SCAFFOLD_PLANK = '#8b6914';
+
+  const GROUND_Y = GPH - 3;
 
   // 5x7 digit bitmaps
   const DIGITS = [
@@ -61,177 +72,288 @@
     return px;
   }
 
-  // Digit positions
-  const DIGIT_X = [];
-  let cx = MARGIN + 5;
-  for (let i = 0; i < 4; i++) {
-    if (i === 2) cx += COLON_W + GAP; // after colon
-    DIGIT_X.push(cx);
-    cx += DIGIT_W + GAP;
-  }
-  const DIGIT_Y = MARGIN + 2;
-  const COLON_X = DIGIT_X[1] + DIGIT_W + GAP;
+  // Digit positions — centered horizontally in upper area
+  const DIGIT_START_X = 10;
+  const DIGIT_Y = 3;
+  const DIGIT_GAP = 2;
+  const DIGIT_X = [
+    DIGIT_START_X,
+    DIGIT_START_X + DIGIT_W + DIGIT_GAP,
+    DIGIT_START_X + 2 * (DIGIT_W + DIGIT_GAP) + 3,
+    DIGIT_START_X + 3 * (DIGIT_W + DIGIT_GAP) + 3,
+  ];
+  const COLON_X = DIGIT_START_X + 2 * (DIGIT_W + DIGIT_GAP);
   const COLON_Y = DIGIT_Y;
-  const GROUND_Y = CANVAS_GP_H - 2; // ground line
+
+  // === HELPER ===
+  function px(ctx, gx, gy, col) {
+    ctx.fillStyle = col;
+    ctx.fillRect(gx * PX, gy * PX, PX, PX);
+  }
+
+  // === BACKGROUND SCENE ===
+  function drawScene(ctx) {
+    // Ground
+    for (let x = 0; x < GPW; x++) {
+      px(ctx, x, GROUND_Y, COL_GROUND);
+      px(ctx, x, GROUND_Y + 1, COL_GROUND);
+      px(ctx, x, GROUND_Y + 2, COL_GROUND);
+    }
+    // Ground surface line
+    for (let x = 0; x < GPW; x++) {
+      px(ctx, x, GROUND_Y, COL_GROUND_LINE);
+    }
+
+    // === HOUSE (right side, partially built) ===
+    const hx = 46; // house left edge
+    const hy = GROUND_Y; // bottom
+
+    // Back wall (brick pattern)
+    for (let y = hy - 12; y < hy; y++) {
+      for (let x = hx; x < hx + 14; x++) {
+        const isBrickEdge = (y % 3 === 0) || ((x + (y % 2 === 0 ? 0 : 1)) % 4 === 0);
+        px(ctx, x, y, isBrickEdge ? COL_BRICK_SHADE : COL_BRICK);
+      }
+    }
+
+    // Missing bricks at top (under construction)
+    for (let x = hx + 8; x < hx + 14; x++) {
+      px(ctx, x, hy - 12, COL_BG.replace('0.92', '1'));
+      ctx.clearRect(x * PX, (hy - 12) * PX, PX, PX);
+      ctx.fillStyle = COL_BG;
+      ctx.fillRect(x * PX, (hy - 12) * PX, PX, PX);
+    }
+    for (let x = hx + 10; x < hx + 14; x++) {
+      ctx.fillStyle = COL_BG;
+      ctx.fillRect(x * PX, (hy - 11) * PX, PX, PX);
+    }
+
+    // Roof (partial — left side done, right side in progress)
+    for (let i = 0; i < 7; i++) {
+      px(ctx, hx + i, hy - 13 - i, COL_ROOF);
+      px(ctx, hx + 13 - i, hy - 13 - i, i < 5 ? COL_ROOF : COL_ROOF_SHADE);
+      // Fill under roof triangle
+      for (let x = hx + i + 1; x < hx + 13 - i; x++) {
+        if (i < 6) px(ctx, x, hy - 13 - i, (i < 5) ? COL_ROOF_SHADE : COL_ROOF);
+      }
+    }
+
+    // Window (left)
+    for (let y = hy - 8; y < hy - 5; y++) {
+      for (let x = hx + 2; x < hx + 5; x++) {
+        px(ctx, x, y, COL_WINDOW);
+      }
+    }
+    // Window frame
+    px(ctx, hx + 1, hy - 8, COL_WINDOW_FRAME);
+    px(ctx, hx + 1, hy - 7, COL_WINDOW_FRAME);
+    px(ctx, hx + 1, hy - 6, COL_WINDOW_FRAME);
+    px(ctx, hx + 1, hy - 5, COL_WINDOW_FRAME);
+    px(ctx, hx + 5, hy - 8, COL_WINDOW_FRAME);
+    px(ctx, hx + 5, hy - 7, COL_WINDOW_FRAME);
+    px(ctx, hx + 5, hy - 6, COL_WINDOW_FRAME);
+    px(ctx, hx + 5, hy - 5, COL_WINDOW_FRAME);
+    for (let x = hx + 1; x <= hx + 5; x++) {
+      px(ctx, x, hy - 9, COL_WINDOW_FRAME);
+      px(ctx, x, hy - 5, COL_WINDOW_FRAME);
+    }
+    // Window cross
+    px(ctx, hx + 3, hy - 7, COL_WINDOW_FRAME);
+    px(ctx, hx + 3, hy - 6, COL_WINDOW_FRAME);
+
+    // Door opening (right)
+    for (let y = hy - 4; y < hy; y++) {
+      for (let x = hx + 9; x < hx + 12; x++) {
+        px(ctx, x, y, COL_DOOR);
+      }
+    }
+
+    // === SCAFFOLDING (next to house) ===
+    const sx = hx - 3;
+    // Vertical poles
+    for (let y = hy - 14; y < hy; y++) {
+      px(ctx, sx, y, COL_SCAFFOLD);
+      px(ctx, sx + 3, y, COL_SCAFFOLD);
+    }
+    // Horizontal planks
+    px(ctx, sx, hy - 7, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 1, hy - 7, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 2, hy - 7, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 3, hy - 7, COL_SCAFFOLD_PLANK);
+    px(ctx, sx, hy - 14, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 1, hy - 14, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 2, hy - 14, COL_SCAFFOLD_PLANK);
+    px(ctx, sx + 3, hy - 14, COL_SCAFFOLD_PLANK);
+
+    // === LADDER (between digits and house) ===
+    const lx = 38;
+    for (let y = hy - 16; y < hy; y++) {
+      px(ctx, lx, y, COL_LADDER);
+      px(ctx, lx + 2, y, COL_LADDER);
+    }
+    // Rungs every 3 pixels
+    for (let y = hy - 15; y < hy; y += 3) {
+      px(ctx, lx + 1, y, COL_LADDER_RUNG);
+    }
+
+    // === SMALL DETAILS ===
+    // Pile of bricks on ground (near house)
+    px(ctx, hx - 1, hy - 1, COL_BRICK);
+    px(ctx, hx - 2, hy - 1, COL_BRICK);
+    px(ctx, hx - 1, hy - 2, COL_BRICK_SHADE);
+
+    // Bucket near ladder
+    px(ctx, lx + 4, hy - 1, '#4a6a8a');
+    px(ctx, lx + 4, hy - 2, '#4a6a8a');
+    px(ctx, lx + 5, hy - 1, '#4a6a8a');
+
+    // Small cone on ground left
+    px(ctx, 5, hy - 1, COL_BODY);
+    px(ctx, 5, hy - 2, COL_HELM);
+  }
+
+  // === WORKER SPRITE (8 tall, 5 wide) ===
+  function drawWorkerSprite(ctx, gx, gy, state, frame, dir) {
+    const x = Math.round(gx) - 2;
+    const y = Math.round(gy) - 8;
+    const f = frame % 4;
+
+    // Hardhat
+    px(ctx, x + 1, y, COL_HELM);
+    px(ctx, x + 2, y, COL_HELM);
+    px(ctx, x + 3, y, COL_HELM);
+    px(ctx, x + 0, y + 1, COL_HELM_SHADE);
+    px(ctx, x + 1, y + 1, COL_HELM);
+    px(ctx, x + 2, y + 1, COL_HELM);
+    px(ctx, x + 3, y + 1, COL_HELM);
+    px(ctx, x + 4, y + 1, COL_HELM_SHADE);
+
+    // Face
+    px(ctx, x + 1, y + 2, COL_SKIN);
+    px(ctx, x + 2, y + 2, COL_SKIN);
+    px(ctx, x + 3, y + 2, COL_SKIN);
+    // Eyes
+    ctx.fillStyle = '#202020';
+    ctx.fillRect((x + 1) * PX + 1, (y + 2) * PX + 1, 2, 2);
+    ctx.fillRect((x + 3) * PX + 1, (y + 2) * PX + 1, 2, 2);
+    // Mouth
+    if (state === 'hammering' && f % 2 === 0) {
+      ctx.fillRect((x + 2) * PX + 1, (y + 2) * PX + 3, 2, 1); // open mouth effort
+    }
+
+    // Neck
+    px(ctx, x + 2, y + 3, COL_SKIN_SHADE);
+
+    // Torso with vest
+    px(ctx, x + 1, y + 3, COL_BODY);
+    px(ctx, x + 3, y + 3, COL_BODY);
+    px(ctx, x + 1, y + 4, COL_BODY);
+    px(ctx, x + 2, y + 4, COL_VEST_STRIPE); // reflective stripe
+    px(ctx, x + 3, y + 4, COL_BODY);
+    px(ctx, x + 1, y + 5, COL_BODY_SHADE);
+    px(ctx, x + 2, y + 5, COL_BODY_SHADE);
+    px(ctx, x + 3, y + 5, COL_BODY_SHADE);
+
+    // Arms + tool
+    if (state === 'hammering') {
+      const up = f % 2 === 0;
+      const armSide = dir > 0 ? x + 4 : x + 0;
+      const otherSide = dir > 0 ? x + 0 : x + 4;
+      px(ctx, armSide, y + 4, COL_SKIN);
+      if (up) {
+        px(ctx, armSide, y + 3, COL_HANDLE);
+        px(ctx, armSide, y + 2, COL_HAMMER);
+        px(ctx, armSide + (dir > 0 ? 1 : -1), y + 2, COL_HAMMER);
+      } else {
+        px(ctx, armSide, y + 5, COL_HANDLE);
+        px(ctx, armSide + (dir > 0 ? 1 : -1), y + 5, COL_HAMMER);
+      }
+      px(ctx, otherSide, y + 4, COL_SKIN);
+    } else if (state === 'climbing') {
+      // Arms up gripping ladder
+      px(ctx, x + 0, y + 3, COL_SKIN);
+      px(ctx, x + 4, y + 3, COL_SKIN);
+    } else if (state === 'walking') {
+      const swing = f % 2;
+      px(ctx, x + 0, y + 4 + swing, COL_SKIN);
+      px(ctx, x + 4, y + 5 - swing, COL_SKIN);
+    } else {
+      px(ctx, x + 0, y + 5, COL_SKIN);
+      px(ctx, x + 4, y + 5, COL_SKIN);
+    }
+
+    // Belt
+    px(ctx, x + 1, y + 5, COL_BOOTS);
+    px(ctx, x + 3, y + 5, COL_BOOTS);
+
+    // Legs + boots
+    if (state === 'sitting') {
+      px(ctx, x + 0, y + 6, COL_PANTS);
+      px(ctx, x + 1, y + 6, COL_PANTS);
+      px(ctx, x + 3, y + 6, COL_PANTS);
+      px(ctx, x + 4, y + 6, COL_PANTS);
+      px(ctx, x + 0, y + 7, COL_BOOTS);
+      px(ctx, x + 4, y + 7, COL_BOOTS);
+    } else if (state === 'walking') {
+      if (f === 0 || f === 2) {
+        px(ctx, x + 1, y + 6, COL_PANTS);
+        px(ctx, x + 3, y + 6, COL_PANTS);
+        px(ctx, x + 1, y + 7, COL_BOOTS);
+        px(ctx, x + 3, y + 7, COL_BOOTS);
+      } else if (f === 1) {
+        px(ctx, x + (dir > 0 ? 0 : 2), y + 6, COL_PANTS);
+        px(ctx, x + (dir > 0 ? 3 : 4), y + 6, COL_PANTS);
+        px(ctx, x + (dir > 0 ? 0 : 2), y + 7, COL_BOOTS);
+        px(ctx, x + (dir > 0 ? 3 : 4), y + 7, COL_BOOTS);
+      } else {
+        px(ctx, x + (dir > 0 ? 2 : 0), y + 6, COL_PANTS);
+        px(ctx, x + (dir > 0 ? 4 : 1), y + 6, COL_PANTS);
+        px(ctx, x + (dir > 0 ? 2 : 0), y + 7, COL_BOOTS);
+        px(ctx, x + (dir > 0 ? 4 : 1), y + 7, COL_BOOTS);
+      }
+    } else if (state === 'climbing') {
+      const legOff = f % 2;
+      px(ctx, x + 1, y + 6 + legOff, COL_PANTS);
+      px(ctx, x + 3, y + 7 - legOff, COL_PANTS);
+      px(ctx, x + 1, y + 7, COL_BOOTS);
+      px(ctx, x + 3, y + 7, COL_BOOTS);
+    } else {
+      px(ctx, x + 1, y + 6, COL_PANTS);
+      px(ctx, x + 3, y + 6, COL_PANTS);
+      px(ctx, x + 1, y + 7, COL_BOOTS);
+      px(ctx, x + 3, y + 7, COL_BOOTS);
+    }
+  }
 
   // === PARTICLE ===
   class Particle {
     constructor(x, y) {
       this.x = x; this.y = y;
-      this.vx = (Math.random() - 0.5) * 1.2;
-      this.vy = -Math.random() * 0.8 - 0.3;
+      this.vx = (Math.random() - 0.5) * 1.5;
+      this.vy = -Math.random() * 1.0 - 0.3;
       this.life = 1;
-      this.size = Math.random() < 0.5 ? 0.5 : 1;
+      this.size = Math.random() < 0.4 ? 0.5 : 1;
     }
     update() {
       this.x += this.vx; this.y += this.vy;
-      this.vy += 0.04; // gravity
-      this.life -= 0.02;
-    }
-  }
-
-  // === DETAILED WORKER SPRITE DRAWING ===
-  // Workers are 5 game-pixels wide, 8 game-pixels tall
-  // Drawn pixel-by-pixel for proper retro character look
-
-  function drawPx(ctx, gx, gy, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect(Math.round(gx * PX), Math.round(gy * PX), PX, PX);
-  }
-
-  function drawWorker(ctx, gx, gy, state, frame, dir) {
-    // gx, gy = game pixel coords of bottom-center
-    // Worker is 5 wide, 8 tall. Origin at bottom-center (foot level)
-    const x = Math.round(gx) - 2; // left edge
-    const y = Math.round(gy) - 8; // top edge
-    const f = frame % 4;
-
-    // -- HARDHAT (row 0-1) --
-    // Brim wider than head
-    drawPx(ctx, x + 1, y, COL_HELM);
-    drawPx(ctx, x + 2, y, COL_HELM);
-    drawPx(ctx, x + 3, y, COL_HELM);
-    // Hat top highlight
-    drawPx(ctx, x + 0, y + 1, COL_HELM_SHADE);
-    drawPx(ctx, x + 1, y + 1, COL_HELM);
-    drawPx(ctx, x + 2, y + 1, COL_HELM);
-    drawPx(ctx, x + 3, y + 1, COL_HELM);
-    drawPx(ctx, x + 4, y + 1, COL_HELM_SHADE);
-
-    // -- FACE (row 2) --
-    drawPx(ctx, x + 1, y + 2, COL_SKIN);
-    drawPx(ctx, x + 2, y + 2, COL_SKIN);
-    drawPx(ctx, x + 3, y + 2, COL_SKIN);
-    // Eyes (tiny dark dots)
-    ctx.fillStyle = '#303030';
-    ctx.fillRect(Math.round((x + 1) * PX) + 1, Math.round((y + 2) * PX) + 1, 1, 1);
-    if (state !== 'sitting') {
-      ctx.fillRect(Math.round((x + 3) * PX) + 1, Math.round((y + 2) * PX) + 1, 1, 1);
-    }
-
-    // -- NECK (row 3) --
-    drawPx(ctx, x + 2, y + 3, COL_SKIN_SHADE);
-
-    // -- BODY / VEST (row 3-5) --
-    // Safety vest (orange with yellow stripe)
-    drawPx(ctx, x + 1, y + 3, COL_BODY);
-    drawPx(ctx, x + 3, y + 3, COL_BODY);
-    drawPx(ctx, x + 1, y + 4, COL_BODY);
-    drawPx(ctx, x + 2, y + 4, COL_HELM); // yellow reflective stripe
-    drawPx(ctx, x + 3, y + 4, COL_BODY);
-    drawPx(ctx, x + 1, y + 5, COL_BODY_SHADE);
-    drawPx(ctx, x + 2, y + 5, COL_BODY_SHADE);
-    drawPx(ctx, x + 3, y + 5, COL_BODY_SHADE);
-
-    // -- ARMS --
-    if (state === 'hammering') {
-      // One arm out to side with hammer
-      const hammerUp = f % 2 === 0;
-      if (dir > 0) {
-        drawPx(ctx, x + 4, y + 4, COL_SKIN); // arm
-        // Hammer
-        if (hammerUp) {
-          drawPx(ctx, x + 4, y + 3, COL_HAMMER_HANDLE);
-          drawPx(ctx, x + 4, y + 2, COL_HAMMER_HEAD);
-          drawPx(ctx, x + 5 > CANVAS_GP_W - 1 ? CANVAS_GP_W - 1 : x + 5, y + 2, COL_HAMMER_HEAD);
-        } else {
-          drawPx(ctx, x + 5 > CANVAS_GP_W - 1 ? CANVAS_GP_W - 1 : x + 5, y + 4, COL_HAMMER_HANDLE);
-          drawPx(ctx, x + 5 > CANVAS_GP_W - 1 ? CANVAS_GP_W - 1 : x + 5, y + 5, COL_HAMMER_HEAD);
-        }
-        drawPx(ctx, x + 0, y + 4, COL_SKIN); // other arm at side
-      } else {
-        drawPx(ctx, x + 0, y + 4, COL_SKIN);
-        if (hammerUp) {
-          drawPx(ctx, x + 0, y + 3, COL_HAMMER_HANDLE);
-          drawPx(ctx, x + 0, y + 2, COL_HAMMER_HEAD);
-          drawPx(ctx, x - 1 < 0 ? 0 : x - 1, y + 2, COL_HAMMER_HEAD);
-        } else {
-          drawPx(ctx, x - 1 < 0 ? 0 : x - 1, y + 4, COL_HAMMER_HANDLE);
-          drawPx(ctx, x - 1 < 0 ? 0 : x - 1, y + 5, COL_HAMMER_HEAD);
-        }
-        drawPx(ctx, x + 4, y + 4, COL_SKIN);
-      }
-    } else {
-      // Arms at sides or swinging (walking)
-      if (state === 'walking') {
-        const swing = f % 2 === 0;
-        drawPx(ctx, x + 0, y + (swing ? 4 : 5), COL_SKIN);
-        drawPx(ctx, x + 4, y + (swing ? 5 : 4), COL_SKIN);
-      } else {
-        drawPx(ctx, x + 0, y + 4, COL_SKIN);
-        drawPx(ctx, x + 4, y + 4, COL_SKIN);
-      }
-    }
-
-    // -- PANTS (row 6) --
-    if (state === 'sitting') {
-      // Legs horizontal
-      drawPx(ctx, x + 0, y + 6, COL_PANTS);
-      drawPx(ctx, x + 1, y + 6, COL_PANTS);
-      drawPx(ctx, x + 2, y + 6, COL_PANTS_SHADE);
-      drawPx(ctx, x + 3, y + 6, COL_PANTS);
-      drawPx(ctx, x + 4, y + 6, COL_PANTS);
-      // Boots sticking out
-      drawPx(ctx, x + 0, y + 7, COL_BOOTS);
-      drawPx(ctx, x + 4, y + 7, COL_BOOTS);
-    } else if (state === 'walking') {
-      // Walking leg animation
-      if (f === 0 || f === 2) {
-        drawPx(ctx, x + 1, y + 6, COL_PANTS);
-        drawPx(ctx, x + 3, y + 6, COL_PANTS);
-        drawPx(ctx, x + 1, y + 7, COL_BOOTS);
-        drawPx(ctx, x + 3, y + 7, COL_BOOTS);
-      } else if (f === 1) {
-        // Left leg forward, right leg back
-        drawPx(ctx, x + (dir > 0 ? 0 : 2), y + 6, COL_PANTS);
-        drawPx(ctx, x + (dir > 0 ? 3 : 1), y + 6, COL_PANTS);
-        drawPx(ctx, x + (dir > 0 ? 0 : 2), y + 7, COL_BOOTS);
-        drawPx(ctx, x + (dir > 0 ? 4 : 1), y + 7, COL_BOOTS);
-      } else {
-        drawPx(ctx, x + (dir > 0 ? 2 : 0), y + 6, COL_PANTS);
-        drawPx(ctx, x + (dir > 0 ? 1 : 3), y + 6, COL_PANTS);
-        drawPx(ctx, x + (dir > 0 ? 2 : 0), y + 7, COL_BOOTS);
-        drawPx(ctx, x + (dir > 0 ? 1 : 4), y + 7, COL_BOOTS);
-      }
-    } else {
-      // Standing
-      drawPx(ctx, x + 1, y + 6, COL_PANTS);
-      drawPx(ctx, x + 3, y + 6, COL_PANTS);
-      drawPx(ctx, x + 1, y + 7, COL_BOOTS);
-      drawPx(ctx, x + 3, y + 7, COL_BOOTS);
+      this.vy += 0.05;
+      this.life -= 0.018;
     }
   }
 
   // === WORKER LOGIC ===
   class Worker {
-    constructor(x) {
+    constructor(x, role) {
       this.x = x;
+      this.homeX = x; // where they like to hang out
+      this.role = role; // 'digit', 'scaffold', 'ground'
       this.state = 'idle';
       this.frame = 0;
       this.frameTick = 0;
       this.dir = 1;
-      this.idleTimer = 30 + Math.random() * 120 | 0;
+      this.idleTimer = 30 + Math.random() * 100 | 0;
       this.task = null;
+      this.targetX = x;
     }
 
     assignTask(digitIdx, removePixels, placePixels) {
@@ -241,7 +363,7 @@
 
     update(clock) {
       this.frameTick++;
-      if (this.frameTick % 6 === 0) this.frame++;
+      if (this.frameTick % 5 === 0) this.frame++;
 
       if (this.task) {
         const t = this.task;
@@ -249,8 +371,8 @@
 
         if (t.phase === 'approach') {
           const dx = targetX - this.x;
-          if (Math.abs(dx) > 0.4) {
-            this.x += Math.sign(dx) * 0.35;
+          if (Math.abs(dx) > 0.5) {
+            this.x += Math.sign(dx) * 0.4;
             this.dir = Math.sign(dx);
             this.state = 'walking';
           } else {
@@ -258,7 +380,7 @@
             this.state = 'hammering';
           }
         } else if (t.phase === 'remove') {
-          if (this.frameTick % 4 === 0) {
+          if (this.frameTick % 3 === 0) {
             if (t.removeIdx < t.removePixels.length) {
               const p = t.removePixels[t.removeIdx];
               clock.clearPixel(DIGIT_X[t.digitIdx] + p.x, DIGIT_Y + p.y);
@@ -276,8 +398,9 @@
               t.placeIdx++;
             } else {
               this.task = null;
-              this.state = 'idle';
-              this.idleTimer = 50;
+              this.state = 'walking';
+              this.targetX = this.homeX;
+              this.idleTimer = 40;
             }
           }
         }
@@ -285,18 +408,24 @@
         this.idleTimer--;
         if (this.idleTimer <= 0) {
           const r = Math.random();
-          if (r < 0.25) {
+          if (r < 0.15 && this.role !== 'scaffold') {
             this.state = 'sitting';
-            this.idleTimer = 120 + Math.random() * 200 | 0;
-          } else {
+            this.idleTimer = 100 + Math.random() * 180 | 0;
+          } else if (r < 0.5) {
             this.state = 'walking';
-            this.targetX = 4 + Math.random() * (CANVAS_GP_W - 10);
-            this.idleTimer = 80 + Math.random() * 150 | 0;
+            // Wander within a zone based on role
+            const range = this.role === 'scaffold' ? 8 : 20;
+            this.targetX = this.homeX + (Math.random() - 0.5) * range;
+            this.targetX = Math.max(3, Math.min(GPW - 5, this.targetX));
+            this.idleTimer = 60 + Math.random() * 120 | 0;
+          } else {
+            this.state = 'idle';
+            this.idleTimer = 40 + Math.random() * 80 | 0;
           }
         }
         if (this.state === 'walking' && !this.task) {
-          const dx = (this.targetX || this.x) - this.x;
-          if (Math.abs(dx) > 0.4) {
+          const dx = this.targetX - this.x;
+          if (Math.abs(dx) > 0.5) {
             this.x += Math.sign(dx) * 0.12;
             this.dir = Math.sign(dx);
           } else {
@@ -307,7 +436,34 @@
     }
 
     draw(ctx) {
-      drawWorker(ctx, this.x, GROUND_Y, this.state, this.frame, this.dir);
+      drawWorkerSprite(ctx, this.x, GROUND_Y, this.state, this.frame, this.dir);
+    }
+  }
+
+  // === SCAFFOLD WORKER (on scaffold, higher up) ===
+  class ScaffoldWorker {
+    constructor(x, platformY) {
+      this.x = x;
+      this.platformY = platformY;
+      this.state = 'hammering';
+      this.frame = 0;
+      this.frameTick = 0;
+      this.dir = 1;
+      this.idleTimer = 60;
+    }
+
+    update() {
+      this.frameTick++;
+      if (this.frameTick % 5 === 0) this.frame++;
+      this.idleTimer--;
+      if (this.idleTimer <= 0) {
+        this.state = this.state === 'hammering' ? 'idle' : 'hammering';
+        this.idleTimer = 40 + Math.random() * 100 | 0;
+      }
+    }
+
+    draw(ctx) {
+      drawWorkerSprite(ctx, this.x, this.platformY, this.state, this.frame, this.dir);
     }
   }
 
@@ -320,26 +476,30 @@
         this.canvas.id = 'pixel-clock-canvas';
         document.body.appendChild(this.canvas);
       }
-      // Position: right of the site title area
       this.canvas.style.cssText = 'position:fixed;top:140px;left:30px;z-index:9999;border-radius:8px;pointer-events:none;';
-      this.canvas.width = CANVAS_W;
-      this.canvas.height = CANVAS_H;
+      this.canvas.width = CW;
+      this.canvas.height = CH;
       this.ctx = this.canvas.getContext('2d');
       this.ctx.imageSmoothingEnabled = false;
 
-      // Mobile scaling
       if (window.innerWidth < 600) {
-        this.canvas.style.transform = 'scale(0.65)';
-        this.canvas.style.transformOrigin = 'top right';
+        this.canvas.style.transform = 'scale(0.55)';
+        this.canvas.style.transformOrigin = 'top left';
       }
 
       this.digitPixels = {};
       this.particles = [];
+
+      // Workers spread across scene
       this.workers = [
-        new Worker(6),
-        new Worker(20),
-        new Worker(34),
+        new Worker(8, 'digit'),       // near digits, left
+        new Worker(25, 'digit'),      // near digits, right
+        new Worker(35, 'ground'),     // near ladder
+        new Worker(50, 'ground'),     // near house
       ];
+
+      // Worker on scaffold (high up, next to house)
+      this.scaffoldWorker = new ScaffoldWorker(44, GROUND_Y - 7);
 
       this.lastMinute = -1;
       this.lastDigits = [-1, -1, -1, -1];
@@ -413,34 +573,30 @@
       }
 
       this.workers.forEach(w => w.update(this));
+      this.scaffoldWorker.update();
       this.particles.forEach(p => p.update());
       this.particles = this.particles.filter(p => p.life > 0);
       this.colonTick++;
       if (this.colonTick % 30 === 0) this.colonVisible = !this.colonVisible;
 
       // === DRAW ===
-      ctx.clearRect(0, 0, CANVAS_W, CANVAS_H);
+      ctx.clearRect(0, 0, CW, CH);
 
       // Background
       ctx.fillStyle = COL_BG;
       const r = 8;
       ctx.beginPath();
-      ctx.moveTo(r, 0);
-      ctx.arcTo(CANVAS_W, 0, CANVAS_W, CANVAS_H, r);
-      ctx.arcTo(CANVAS_W, CANVAS_H, 0, CANVAS_H, r);
-      ctx.arcTo(0, CANVAS_H, 0, 0, r);
-      ctx.arcTo(0, 0, CANVAS_W, 0, r);
-      ctx.fill();
+      ctx.moveTo(r, 0); ctx.arcTo(CW, 0, CW, CH, r);
+      ctx.arcTo(CW, CH, 0, CH, r); ctx.arcTo(0, CH, 0, 0, r);
+      ctx.arcTo(0, 0, CW, 0, r); ctx.fill();
 
-      // Ground line (subtle scaffold/platform look)
-      ctx.fillStyle = COL_SCAFFOLD;
-      ctx.fillRect(PX, (GROUND_Y) * PX, CANVAS_W - 2 * PX, 1);
+      // Scene (house, ladder, scaffold, ground)
+      drawScene(ctx);
 
-      // Digit pixels
+      // Digit pixels with glow
       for (const key in this.digitPixels) {
         const [gx, gy] = key.split(',').map(Number);
-        // Slight glow effect
-        ctx.fillStyle = 'rgba(88,166,255,0.15)';
+        ctx.fillStyle = COL_DIGIT_GLOW;
         ctx.fillRect(gx * PX - 1, gy * PX - 1, PX + 2, PX + 2);
         ctx.fillStyle = COL_DIGIT;
         ctx.fillRect(gx * PX, gy * PX, PX, PX);
@@ -462,8 +618,9 @@
       });
       ctx.globalAlpha = 1;
 
-      // Workers (drawn last, on top)
+      // Workers
       this.workers.forEach(w => w.draw(ctx));
+      this.scaffoldWorker.draw(ctx);
 
       requestAnimationFrame(this.loop);
     }
