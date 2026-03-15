@@ -77,3 +77,6 @@ defaults:
     values:
       layout: "page"
       show-avatar: true
+
+# Pixel Clock Widget
+footer-extra: ["pixel-clock-footer.html"]
