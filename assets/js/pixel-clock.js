@@ -321,7 +321,7 @@
         document.body.appendChild(this.canvas);
       }
       // Position: right of the site title area
-      this.canvas.style.cssText = 'position:fixed;top:60px;right:20px;z-index:9999;border-radius:8px;pointer-events:none;';
+      this.canvas.style.cssText = 'position:fixed;top:140px;left:30px;z-index:9999;border-radius:8px;pointer-events:none;';
       this.canvas.width = CANVAS_W;
       this.canvas.height = CANVAS_H;
       this.ctx = this.canvas.getContext('2d');
