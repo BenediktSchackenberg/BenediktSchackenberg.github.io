@@ -71,12 +71,18 @@ defaults:
       layout: "post"
       comments: false
       show-avatar: true
+      head-extra:
+        - pixel-clock-head.html
   - scope:
       path: ""
       type: "pages"
     values:
       layout: "page"
       show-avatar: true
-
-# Pixel Clock Widget
-footer-extra: ["pixel-clock-footer.html"]
+      head-extra:
+        - pixel-clock-head.html
+  - scope:
+      path: "index.md"
+    values:
+      head-extra:
+        - pixel-clock-head.html
