@@ -1,0 +1,331 @@
+---
+layout: none
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Benedikt Schackenberg — Software Engineer</title>
+  <meta name="description" content="Software Engineer · Database Architect · Building tools that make IT operations easier.">
+  <link rel="canonical" href="https://schackenberg.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    html { font-size: 16px; scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #e0e0e0;
+      background: #0d1117;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: #58a6ff; text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: #79b8ff; }
+
+    /* === SPLIT LAYOUT === */
+    .site-wrap {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* Left: Content */
+    main {
+      width: 55%;
+      padding: 4rem 5%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Right: Profile image */
+    aside {
+      width: 45%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      background-image: url('/assets/images/benedikt.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    aside::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0d1117 0%, transparent 15%);
+    }
+
+    /* === NAVIGATION === */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.5rem 2.5rem;
+      display: flex;
+      gap: 2rem;
+      background: linear-gradient(to bottom, rgba(13,17,23,0.9) 0%, transparent 100%);
+      width: 45%;
+    }
+
+    nav a {
+      color: #c9d1d9;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: #fff; }
+
+    /* === CONTENT === */
+    .greeting {
+      font-size: 1rem;
+      color: #58a6ff;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      line-height: 1.1;
+      margin-bottom: 0.75rem;
+    }
+
+    .tagline {
+      font-size: 1.15rem;
+      color: #8b949e;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      max-width: 540px;
+    }
+
+    .bio {
+      font-size: 1rem;
+      color: #b1bac4;
+      max-width: 540px;
+      margin-bottom: 2.5rem;
+    }
+
+    .bio p { margin-bottom: 1rem; }
+
+    /* === PROJECTS PREVIEW === */
+    .projects {
+      margin-bottom: 2.5rem;
+    }
+
+    .project-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      transition: background 0.2s;
+      margin-bottom: 0.5rem;
+      border: 1px solid transparent;
+    }
+
+    .project-card:hover {
+      background: rgba(88, 166, 255, 0.05);
+      border-color: rgba(88, 166, 255, 0.1);
+    }
+
+    .project-icon {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+      width: 2rem;
+      text-align: center;
+    }
+
+    .project-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: #f0f6fc;
+      margin-bottom: 0.2rem;
+    }
+
+    .project-info p {
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin: 0;
+    }
+
+    .project-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 99px;
+      background: rgba(88, 166, 255, 0.1);
+      color: #58a6ff;
+      font-weight: 500;
+      margin-right: 0.4rem;
+      margin-top: 0.4rem;
+    }
+
+    /* === SOCIAL LINKS === */
+    .socials {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .socials a {
+      color: #8b949e;
+      font-size: 1.4rem;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .socials a:hover {
+      color: #f0f6fc;
+      transform: translateY(-2px);
+    }
+
+    /* === LATEST POST === */
+    .latest-post {
+      padding: 1.25rem;
+      border-left: 3px solid #58a6ff;
+      background: rgba(88, 166, 255, 0.03);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 2rem;
+      max-width: 540px;
+    }
+
+    .latest-post .label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #58a6ff;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .latest-post h3 {
+      font-size: 0.95rem;
+      color: #f0f6fc;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .latest-post .date {
+      font-size: 0.78rem;
+      color: #6e7681;
+    }
+
+    /* === FOOTER === */
+    .copyright {
+      font-size: 0.75rem;
+      color: #484f58;
+      margin-top: 3rem;
+    }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      .site-wrap { flex-direction: column-reverse; }
+      main { width: 100%; padding: 2rem 6%; }
+      aside {
+        width: 100%;
+        position: relative;
+        height: 50vh;
+      }
+      aside::after {
+        background: linear-gradient(to top, #0d1117 0%, transparent 40%);
+      }
+      nav {
+        width: 100%;
+        background: rgba(13,17,23,0.95);
+        padding: 1rem 1.5rem;
+        gap: 1.25rem;
+        justify-content: center;
+      }
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/about">About</a>
+    <a href="/projects">Projects</a>
+    <a href="/blog">Blog</a>
+    <a href="/tags">Tags</a>
+    <a href="https://github.com/BenediktSchackenberg">GitHub</a>
+  </nav>
+
+  <div class="site-wrap">
+    <main>
+      <div class="greeting">Hello, I'm</div>
+      <h1>Benedikt Schackenberg</h1>
+      <p class="tagline">Software Engineer · Database Architect · Building tools that make IT operations easier.</p>
+
+      <div class="bio">
+        <p>I build open-source infrastructure tools — from endpoint management platforms to privileged access automation. Most of my work involves C#, TypeScript, Python, and way too much PowerShell.</p>
+        <p>Currently shipping <a href="https://github.com/BenediktSchackenberg/octofleet">OctoFleet</a> (endpoint management) and <a href="https://github.com/BenediktSchackenberg/PAMlab">PAMlab</a> (PAM integration sandbox). Also contributing to <a href="https://github.com/NVIDIA/NemoClaw">NVIDIA NemoClaw</a>.</p>
+      </div>
+
+      <div class="projects">
+        <a href="https://github.com/BenediktSchackenberg/octofleet" class="project-card">
+          <span class="project-icon">🐙</span>
+          <div class="project-info">
+            <h3>OctoFleet</h3>
+            <p>Open-source endpoint management — inventory, patching, remote access, vulnerability scanning.</p>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Python</span>
+            <span class="project-tag">PostgreSQL</span>
+          </div>
+        </a>
+        <a href="https://github.com/BenediktSchackenberg/PAMlab" class="project-card">
+          <span class="project-icon">🔐</span>
+          <div class="project-info">
+            <h3>PAMlab</h3>
+            <p>Developer sandbox for privileged access management — mock Fudo PAM, Matrix42, Active Directory.</p>
+            <span class="project-tag">Node.js</span>
+            <span class="project-tag">PowerShell</span>
+            <span class="project-tag">React</span>
+          </div>
+        </a>
+        <a href="https://github.com/NVIDIA/NemoClaw" class="project-card">
+          <span class="project-icon">⚡</span>
+          <div class="project-info">
+            <h3>NemoClaw <span style="color:#6e7681;font-weight:300;">contrib</span></h3>
+            <p>NVIDIA's AI agent framework — sandbox hardening, audit logging, CLI refactoring.</p>
+            <span class="project-tag">TypeScript</span>
+            <span class="project-tag">Docker</span>
+            <span class="project-tag">Security</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="latest-post">
+        <div class="label">Latest Post</div>
+        <a href="/2026/03/26/pamlab-dev-sandbox.html">
+          <h3>PAMlab: A Dev Sandbox for Privileged Access Automation 🔐</h3>
+        </a>
+        <span class="date">March 26, 2026</span>
+      </div>
+
+      <div class="socials">
+        <a href="https://github.com/BenediktSchackenberg" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com/in/benedikt-schackenberg-b7422338b" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="mailto:benedikt@schackenberg.com" title="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+
+      <p class="copyright">&copy; 2026 Benedikt Schackenberg. Built with caffeine and curiosity.</p>
+    </main>
+
+    <aside></aside>
+  </div>
+
+</body>
+</html>
