@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% if page.title %}{{ page.title }} — {% endif %}Benedikt Schackenberg</title>
+  <meta name="description" content="{{ page.subtitle | default: site.description }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  {% for css in site.site-css %}<link rel="stylesheet" href="{{ css | relative_url }}">{% endfor %}
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      color: #e0e0e0;
+      background: #0d1117;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    a { color: #58a6ff; text-decoration: none; transition: color 0.2s ease; }
+    a:hover { color: #79b8ff; }
+
+    /* === SPLIT LAYOUT === */
+    .site-wrap { display: flex; min-height: 100vh; }
+
+    main {
+      width: 55%;
+      padding: 5rem 5% 3rem;
+      position: relative;
+      overflow-y: auto;
+    }
+
+    aside.profile-aside {
+      width: 45%;
+      position: fixed;
+      right: 0;
+      top: 0;
+      height: 100vh;
+      background-image: url('/assets/images/benedikt.jpg');
+      background-size: cover;
+      background-position: center top;
+    }
+
+    aside.profile-aside::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, #0d1117 0%, transparent 15%);
+    }
+
+    /* === NAVIGATION === */
+    nav.top-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.2rem 2.5rem;
+      display: flex;
+      justify-content: flex-end;
+      gap: 2rem;
+      background: linear-gradient(to bottom, rgba(13,17,23,0.95) 0%, rgba(13,17,23,0.7) 70%, transparent 100%);
+    }
+
+    nav.top-nav a {
+      color: #c9d1d9;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav.top-nav a:hover { color: #fff; }
+    nav.top-nav a.active { color: #58a6ff; }
+
+    /* === PAGE HEADER === */
+    .page-header {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .page-header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: #f0f6fc;
+      line-height: 1.2;
+      margin-bottom: 0.4rem;
+    }
+
+    .page-header .subtitle {
+      font-size: 1rem;
+      color: #8b949e;
+      font-weight: 300;
+    }
+
+    .page-header .meta {
+      font-size: 0.82rem;
+      color: #6e7681;
+      margin-top: 0.6rem;
+    }
+
+    .page-header .meta .tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      padding: 0.12rem 0.5rem;
+      border-radius: 99px;
+      background: rgba(88, 166, 255, 0.1);
+      color: #58a6ff;
+      font-weight: 500;
+      margin-right: 0.3rem;
+    }
+
+    /* === CONTENT === */
+    .content {
+      max-width: 680px;
+      font-size: 1rem;
+      color: #c9d1d9;
+    }
+
+    .content h1 { font-size: 1.8rem; font-weight: 700; color: #f0f6fc; margin: 2rem 0 0.75rem; }
+    .content h2 { font-size: 1.5rem; font-weight: 600; color: #f0f6fc; margin: 1.8rem 0 0.6rem; border-bottom: 1px solid #21262d; padding-bottom: 0.4rem; }
+    .content h3 { font-size: 1.2rem; font-weight: 600; color: #e6edf3; margin: 1.5rem 0 0.5rem; }
+    .content h4 { font-size: 1.05rem; font-weight: 600; color: #e6edf3; margin: 1.2rem 0 0.4rem; }
+
+    .content p { margin-bottom: 1rem; }
+    .content ul, .content ol { margin-bottom: 1rem; padding-left: 1.5rem; }
+    .content li { margin-bottom: 0.3rem; }
+
+    .content img {
+      max-width: 100%;
+      border-radius: 8px;
+      border: 1px solid #21262d;
+      margin: 1rem 0;
+    }
+
+    .content blockquote {
+      border-left: 3px solid #58a6ff;
+      padding: 0.5rem 1rem;
+      margin: 1rem 0;
+      background: rgba(88, 166, 255, 0.03);
+      border-radius: 0 6px 6px 0;
+      color: #8b949e;
+    }
+
+    .content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    .content table th {
+      background: #161b22;
+      color: #e6edf3;
+      font-weight: 600;
+      padding: 0.6rem 0.8rem;
+      text-align: left;
+      border-bottom: 2px solid #30363d;
+    }
+
+    .content table td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .content table tr:hover { background: rgba(88, 166, 255, 0.02); }
+
+    .content code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85em;
+      padding: 0.15rem 0.4rem;
+      background: #161b22;
+      border-radius: 4px;
+      color: #e6edf3;
+    }
+
+    .content pre {
+      background: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      overflow-x: auto;
+      margin: 1rem 0;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .content pre code {
+      padding: 0;
+      background: none;
+      border-radius: 0;
+    }
+
+    .content hr {
+      border: none;
+      border-top: 1px solid #21262d;
+      margin: 2rem 0;
+    }
+
+    .content strong { color: #e6edf3; }
+
+    /* === BADGES (from old posts) === */
+    .content img[src*="shields.io"] {
+      border: none;
+      display: inline;
+      margin: 0.2rem 0.1rem;
+      border-radius: 4px;
+    }
+
+    /* === FOOTER === */
+    .page-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #21262d;
+      font-size: 0.82rem;
+      color: #484f58;
+    }
+
+    .page-footer a { color: #6e7681; }
+    .page-footer a:hover { color: #8b949e; }
+
+    /* === BACK LINK === */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.85rem;
+      color: #8b949e;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #58a6ff; }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      .site-wrap { flex-direction: column; }
+      main { width: 100%; padding: 4.5rem 5% 2rem; }
+      aside.profile-aside { display: none; }
+      nav.top-nav {
+        background: rgba(13,17,23,0.97);
+        padding: 0.8rem 1rem;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      nav.top-nav a { font-size: 0.75rem; }
+      .page-header h1 { font-size: 1.6rem; }
+    }
+  </style>
+  {% for extra in page.head-extra %}{% include {{ extra }} %}{% endfor %}
+</head>
+<body>
+
+  <nav class="top-nav">
+    <a href="/" {% if page.url == '/' %}class="active"{% endif %}>Home</a>
+    <a href="/about" {% if page.url contains 'about' %}class="active"{% endif %}>About</a>
+    <a href="/projects" {% if page.url contains 'projects' %}class="active"{% endif %}>Projects</a>
+    <a href="/blog" {% if page.url contains 'blog' %}class="active"{% endif %}>Blog</a>
+    <a href="/tags" {% if page.url contains 'tags' %}class="active"{% endif %}>Tags</a>
+    <a href="https://github.com/BenediktSchackenberg">GitHub</a>
+  </nav>
+
+  <div class="site-wrap">
+    <main>
+      {{ content }}
+
+      <div class="page-footer">
+        &copy; 2026 Benedikt Schackenberg &middot;
+        <a href="https://github.com/BenediktSchackenberg">GitHub</a> &middot;
+        <a href="https://linkedin.com/in/benedikt-schackenberg-b7422338b">LinkedIn</a> &middot;
+        <a href="mailto:benedikt@schackenberg.com">Email</a>
+      </div>
+    </main>
+
+    <aside class="profile-aside"></aside>
+  </div>
+
+</body>
+</html>
