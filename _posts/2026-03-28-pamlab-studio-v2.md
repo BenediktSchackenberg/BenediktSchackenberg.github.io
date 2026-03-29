@@ -185,11 +185,13 @@ It's skippable and only shows once (localStorage flag). Small thing, but it's th
 
 Want to see it in action without cloning the repo? Here's an interactive walkthrough:
 
-<div style="position: relative; width: 100%; padding-bottom: 56.25%; margin: 30px 0;">
-<iframe src="https://raw.githack.com/BenediktSchackenberg/PAMlab/main/video-assets/demo-presentation-v2.html" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 2px solid #333; border-radius: 12px;" allowfullscreen></iframe>
+<div style="position: relative; width: 100%; max-width: 960px; margin: 30px auto;">
+<iframe id="pamlab-demo" src="https://raw.githack.com/BenediktSchackenberg/PAMlab/main/video-assets/demo-presentation-v2.html" style="width: 100%; height: 640px; border: 2px solid #333; border-radius: 12px; background: #0a0a0f;" allowfullscreen></iframe>
 </div>
 
-*Use arrow keys or click the dots to navigate. Best viewed fullscreen.*
+<p style="text-align: center; margin-top: -15px;">
+<em>Use arrow keys or click the navigation dots. <a href="https://raw.githack.com/BenediktSchackenberg/PAMlab/main/video-assets/demo-presentation-v2.html" target="_blank">Open fullscreen ↗</a></em>
+</p>
 
 ## The Numbers
 
