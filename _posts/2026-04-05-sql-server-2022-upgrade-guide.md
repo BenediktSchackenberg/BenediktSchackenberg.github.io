@@ -192,6 +192,67 @@ Once you're fully on 2022 with compatibility level 160:
 
 ---
 
+## Why SQL Server Upgrades Really Fail (It's Not the Technology)
+
+Here's something most upgrade guides won't tell you: the technical part is rarely where upgrades fall apart. The blockers are almost always organizational.
+
+**Third-party software is the #1 real-world killer.** You've done everything right — backups, testing, maintenance window booked — and then you discover your ERP vendor hasn't certified SQL Server 2022 yet. Or your hospital information system (HIS) has a hardcoded SQL Server version check that throws an error on anything newer than 2016. These things exist in production, and they will surprise you if you don't check upfront.
+
+Microsoft explicitly calls this out in their upgrade guidance: verify third-party compatibility *before* you start. This means contacting vendors, checking their compatibility matrices, and getting written confirmation. Don't rely on "it should work."
+
+**Other common reasons upgrades fail in practice:**
+- **Missing vendor sign-off** — upgrade happens, application breaks, vendor says "unsupported configuration, fix it yourself"
+- **No staging environment** — first test of the upgraded stack is production
+- **Incorrect expectations about downtime** — stakeholders weren't told there would be a maintenance window, causing last-minute cancellations
+- **Forgotten dependencies** — linked servers, SSIS packages, Reporting Services, custom CLR assemblies that need recompilation
+- **Skipped compatibility level raise** — databases upgraded but running with "handbrake on" at old compat level for months
+
+The pattern is always the same: the SQL Server upgrade itself takes 20 minutes. The surrounding project work takes weeks.
+
+---
+
+## My Recommendation from the Field
+
+If you ask me directly: **default to Side-by-Side migration over In-Place Upgrade**, especially in production environments.
+
+Yes, in-place is faster and simpler on paper. But side-by-side gives you something that in-place doesn't: your old server still exists and still works. If something goes wrong post-migration — an application compatibility issue surfaces 48 hours later, a stored procedure behaves differently at the new compatibility level — you can fail back immediately without a restore.
+
+The extra effort of a side-by-side migration (DNS alias switchover, migrating logins with dbatools) pays off the first time something unexpected happens. And in my experience, something unexpected happens on roughly one in three upgrades.
+
+The one exception: if you're running Always On AGs, use the rolling upgrade method. It's the only approach that lets you maintain HA throughout the process.
+
+---
+
+## Quick-Reference Checklist
+
+Print this out or put it in your runbook:
+
+**Pre-Upgrade**
+- [ ] Vendor compatibility confirmed (written, not verbal)
+- [ ] OS version supported (Windows Server 2019+ for SQL 2022)
+- [ ] No pending Windows restarts
+- [ ] All databases in FULL recovery model
+- [ ] Full backup taken and restore-tested
+- [ ] Query Store enabled for baseline collection
+- [ ] Maintenance window scheduled and communicated
+- [ ] Rollback plan documented
+- [ ] Auto-failover disabled (if Always On)
+
+**During Upgrade**
+- [ ] AG sync state verified before each replica upgrade (if rolling)
+- [ ] System databases checked post-upgrade
+- [ ] SQL Agent running
+- [ ] Application smoke test completed
+
+**Post-Upgrade**
+- [ ] Compatibility level raised (in separate maintenance window)
+- [ ] Query Store monitored for plan regressions (min. 1 week)
+- [ ] Auto-failover re-enabled (if Always On)
+- [ ] Documentation updated
+- [ ] Old server decommissioned (not immediately — keep it for 2–4 weeks)
+
+---
+
 ## Summary
 
 | Method | Downtime | Rollback Complexity | Best For |
