@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "NemoClaw: NVIDIA's Sandbox for AI Agents — and Why I Keep Contributing to It"
+title: "NemoClaw: NVIDIA's Open-Source Stack for Safer AI Agents — and Why I Keep Contributing to It"
 subtitle: "Tamper-evident audit logs, policy presets, and way too many rebases."
 date: 2026-04-14
 tags: [nemoclaw, nvidia, open-source, ai-safety, sandbox, contributing, security]
@@ -13,22 +13,28 @@ That's NemoClaw. And I kind of love it.
 
 ## What Even Is NemoClaw?
 
-Let me back up.
+Let me back up — and sort out three terms that get conflated a lot.
 
-NemoClaw is NVIDIA's open-source project for running AI coding agents — Claude, GPT, whatever you prefer — inside isolated, hardened sandboxes. Think of it as "Docker, but specifically designed so the AI can't escape and delete your production database."
+**OpenShell** is NVIDIA's secure container runtime for AI workloads. It's the actual sandbox layer: Landlock-based filesystem isolation, network proxy with policy enforcement, process restrictions. The thing that actually makes sure the agent can't read your SSH keys or phone home to a random server.
 
-The core idea: when you give an AI agent access to your terminal, your files, and your APIs, you need guardrails. Not because AI is inherently malicious, but because AI is *confidently wrong* in ways that can be catastrophic. NemoClaw is the project that takes "here's a powerful model" and adds "...and here's exactly what it's allowed to touch."
+**OpenClaw** is the agent framework — the layer that connects a language model to tools, memory, and channels like Slack or Discord.
+
+**NemoClaw** is the reference stack that ties both together. It's the CLI, the onboarding flow, the policy presets, the deployment tooling, and all the hardening decisions that turn "here's a container with an agent" into something you can actually run in production without lying awake at night.
+
+Think of it less as "Docker, but for AI" and more as the opinionated security wrapper that reduces the blast radius when an agent goes off-script — because they will, eventually.
+
+The core insight: when you give an AI agent access to your terminal, your files, and your APIs, you need guardrails. Not because AI is inherently malicious, but because AI is *confidently wrong* in ways that can be catastrophic. NemoClaw defines exactly what the agent is allowed to touch — and enforces it at the runtime level, not just by convention.
 
 **In concrete terms, NemoClaw lets you:**
 
-- **Run AI coding agents** (Claude, GPT-4, local Ollama/vLLM models) in a sandboxed container — the agent can write code, run tests, make API calls, and open PRs, but can't touch anything outside its defined scope
+- **Run AI coding agents** (Claude, GPT-4, local Ollama/vLLM models) inside an OpenShell sandbox — the agent can write code, run tests, make API calls, and open PRs, but stays within explicitly defined boundaries
 - **Define network policies** — exactly which endpoints the agent can reach, with which HTTP methods, on which paths. Want the agent to use Slack but not be able to delete channels? One YAML stanza.
 - **Use local or cloud inference** — NVIDIA NIM, vLLM, Ollama on your own hardware, or cloud providers. `nemoclaw onboard` walks you through the whole setup in minutes.
-- **Isolate filesystem access** — Landlock-based enforcement means the agent can only read/write what you explicitly allow. Your SSH keys, your production configs, your secrets — not accessible.
-- **Integrate with messaging** — Telegram, Slack, Discord. The agent can send you updates or accept instructions through these channels, with the same policy enforcement in place.
+- **Isolate filesystem access** — Landlock enforcement means the agent can only read/write what you explicitly allow. Your SSH keys, your production configs, your secrets — not accessible.
+- **Integrate with messaging** — Telegram, Slack, Discord. The agent can send updates or accept instructions through these channels, with the same policy enforcement in place.
 - **Automate enterprise workflows** — Jira, Outlook, GitHub. You configure the preset, the agent handles the repetitive work, and the policy layer makes sure it stays in its lane.
 
-The project is built on top of OpenShell (NVIDIA's container runtime for AI workloads) and the OpenClaw agent framework. The CLI is TypeScript, the orchestration is Python, the policy files are YAML, and the hardening is... a lot of bash. A *lot* of bash.
+The CLI is TypeScript, the orchestration is Python, the policy files are YAML, and the hardening is... a lot of bash. A *lot* of bash.
 
 ## Why Do I Contribute in My Free Time?
 
