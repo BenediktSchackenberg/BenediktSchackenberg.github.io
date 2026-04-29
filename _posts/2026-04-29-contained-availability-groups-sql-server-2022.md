@@ -1,218 +1,137 @@
 ---
 layout: post
-title: "Contained Availability Groups in SQL Server 2022: Finally, AG Gets Its Passport"
-subtitle: "How SQL Server 2022 fixed the most annoying thing about Always On — and why you should care"
+title: "SQL Server 2022 Contained Availability Groups: What Actually Changes for DBAs"
+subtitle: "A hands-on look at what Contained AGs solve, what they don't, and where the caveats are"
 date: 2026-04-29
 tags: [sql-server, high-availability, dba, always-on, sql-server-2022]
 thumbnail-img: /assets/images/contained-ag-thumb.png
 share-img: /assets/images/contained-ag-thumb.png
 ---
 
-# Contained Availability Groups: Finally, the AG Got Its Own Passport
+If you've been running SQL Server Always On Availability Groups for a while, you probably have a script somewhere that syncs logins between replicas. Maybe it's Ola Hallengren's, maybe it's something you wrote at midnight after a failover left your application users locked out. Either way — Contained Availability Groups in SQL Server 2022 are meant to fix exactly that class of problem.
 
-Picture this: You're a DBA. It's 2 AM. You're staring at a failed AG failover. The secondary just became primary, everything looks fine — except *nothing works*. Your logins are gone. Your SQL Agent jobs vanished. Your linked servers are missing. The application team is calling. The on-call manager is calling. Your cat is judging you.
-
-Welcome to the pre-SQL Server 2022 experience with Always On Availability Groups.
-
-But SQL Server 2022 brought something beautiful to fix this pain: **Contained Availability Groups**. Let's dig in.
+Here's what they actually do, what the limitations are, and a few things worth knowing before you build on them.
 
 ---
 
-## The Old Problem: AGs Were Basically Homeless
+## The Problem They Solve
 
-Traditional Availability Groups replicate your **user databases** brilliantly. Failover? Done. RPO near-zero? Done. Automatic failover? Absolutely.
+Traditional AGs replicate user databases. What they don't replicate is anything that lives in `master` or `msdb` at the instance level:
 
-But here's what they *didn't* replicate:
+- SQL Server logins
+- SQL Agent jobs
+- Database Mail profiles and accounts
+- Linked server definitions
+- Custom error messages
 
-- **Logins** (stored in `master`, not in your AG databases)
-- **SQL Agent Jobs** (stored in `msdb`, also not in your AG)
-- **Linked Servers** (also `master`)
-- **Database Mail profiles** (you guessed it — `msdb`)
-- **Custom error messages** (`master` again)
+This matters because after a failover, the new primary has your databases intact — but if the secondary never had the logins or jobs set up independently, things break. The standard answer has always been: keep your instance-level objects in sync manually, or with a script, or with a third-party tool.
 
-Every time you failed over, your AG databases landed on the secondary perfectly intact — but completely stranded, like a tourist who arrived in a foreign country without their wallet, phone, or pants.
-
-DBAs developed elaborate workarounds: manual login sync scripts, Ola Hallengren job copies, PowerShell automation, prayers to the SQL Server gods. Some of us wrote `sp_help_revlogin` so many times we can recite it in our sleep.
-
-There had to be a better way.
+It works, but it's overhead. You have to remember to run the sync after every change. And in disaster recovery scenarios where you're failing over to a completely separate environment, the list of things to recreate gets long fast.
 
 ---
 
-## Enter: Contained Availability Groups
+## What Contained AGs Do Differently
 
-SQL Server 2022 introduced **Contained Availability Groups** — a feature that gives your AG its own, self-contained system metadata. Think of it as giving the AG its own passport, its own wallet, and yes, its own pants.
+A Contained AG includes its own AG-local system databases. When you create the AG with the `CONTAINED` option, SQL Server creates two additional databases that are replicated as part of the AG:
 
-### What Does "Contained" Actually Mean?
+- `[AG_Name]_master` — the AG-local master context
+- `[AG_Name]_msdb` — the AG-local msdb context
 
-A Contained AG creates a **contained `master` and `msdb`** database *within the AG itself*. These AG-local system databases travel with the AG when it fails over.
+Logins, Agent jobs, DB Mail configuration and other supported objects that you create via the AG listener are stored in these AG-local databases — not in the instance-level `master` or `msdb`. When the AG fails over, these databases fail over with it.
 
-This means:
-- ✅ **Logins** — replicated within the AG
-- ✅ **SQL Agent Jobs** — replicated within the AG  
-- ✅ **Database Mail** — replicated within the AG
-- ✅ **Custom error messages** — replicated within the AG
-- ✅ **Linked servers** — replicated within the AG
-
-When you fail over, *everything comes with it*. No more 2 AM panic. No more sync scripts. Your secondary becomes primary and applications just... work.
-
----
-
-## How It Works Under the Hood
-
-When you create a Contained AG, SQL Server creates special system databases that are part of the AG:
+The syntax for creating one:
 
 ```sql
--- Creating a Contained Availability Group
-CREATE AVAILABILITY GROUP [MyContainedAG]
+CREATE AVAILABILITY GROUP [ContainedAG]
 WITH (
     CLUSTER_TYPE = WSFC,
-    CONTAINED              -- This is the magic word
+    CONTAINED
 )
 FOR DATABASE [YourDatabase]
 REPLICA ON
     N'Node1' WITH (
-        ENDPOINT_URL = N'TCP://Node1.domain.com:5022',
+        ENDPOINT_URL     = N'TCP://node1.domain.local:5022',
         AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
-        FAILOVER_MODE = AUTOMATIC
+        FAILOVER_MODE    = AUTOMATIC,
+        SEEDING_MODE     = AUTOMATIC
     ),
     N'Node2' WITH (
-        ENDPOINT_URL = N'TCP://Node2.domain.com:5022',
+        ENDPOINT_URL     = N'TCP://node2.domain.local:5022',
         AVAILABILITY_MODE = SYNCHRONOUS_COMMIT,
-        FAILOVER_MODE = AUTOMATIC
+        FAILOVER_MODE    = AUTOMATIC,
+        SEEDING_MODE     = AUTOMATIC
     );
 ```
 
-The `CONTAINED` keyword is doing a *lot* of heavy lifting there. Behind the scenes, SQL Server creates:
-
-- `master_<AG_Name>` — the AG-local master database
-- `msdb_<AG_Name>` — the AG-local msdb database
-
-These are replicated as part of the AG, just like your user databases.
-
-### Connecting to the Contained Context
-
-To manage objects *inside* the contained AG (logins, jobs, etc.), you connect via the **AG listener** — not directly to the instance:
+To work in the contained context, you connect via the **AG listener** — not directly to the instance. Objects created through the listener land in the AG-local system databases.
 
 ```sql
--- Connect via the AG listener to work in the contained context
--- This creates a login INSIDE the AG, not on the instance
-USE [master]
-GO
-
-CREATE LOGIN [AppServiceAccount]
-WITH PASSWORD = N'SuperSecurePassword123!',
-     DEFAULT_DATABASE = [YourDatabase];
-GO
-
--- Grant database access
-USE [YourDatabase]
-GO
-CREATE USER [AppServiceAccount] FOR LOGIN [AppServiceAccount];
-GO
+-- Connect via the listener, then create a login in the contained context
+CREATE LOGIN [app_user]
+    WITH PASSWORD = N'...',
+    DEFAULT_DATABASE = [YourDatabase];
 ```
 
-When connected through the listener, SQL Server knows you're working in the contained AG context and creates the login in the AG-local `master` — not the instance-level `master`.
+---
+
+## Practical Advantages
+
+**Failover consistency.** The clearest benefit: logins and Agent jobs that were created through the listener are present on both replicas automatically. No post-failover sync step, no manual script run.
+
+**Cleaner DR setup.** When you're setting up a DR site, the AG-local objects come along with the replication. You don't need a separate process to bring the secondary up to parity on instance-level objects — at least for the objects that are scoped to the AG.
+
+**Isolation in multi-AG environments.** If you're running multiple AGs on the same instances — common in consulting or shared infrastructure scenarios — Contained AGs let each AG carry its own context. A login created for AG-A doesn't need to exist at the instance level, reducing the risk of cross-AG credential drift.
 
 ---
 
-## The Practical Advantages (or: Why Your 2 AM Self Will Thank You)
+## What You Need to Know (The Less Obvious Parts)
 
-### 1. Zero-Script Failover — For Real This Time
+**Contained AGs are not a security boundary.** Microsoft is explicit about this. The AG-local context is for configuration consistency, not isolation. It doesn't prevent a sysadmin-level login on the instance from accessing data in the AG databases. Don't design a multi-tenant security model around this feature.
 
-Before Contained AGs, "seamless failover" was a marketing term that DBAs read with a knowing smirk. Yes, the data failed over. But then you had to run scripts to sync logins, re-create jobs, fix linked servers...
+**You can't convert an existing AG.** There's no `ALTER AVAILABILITY GROUP ... ADD CONTAINED`. If you want to move an existing AG to contained, you create a new one and migrate your databases to it. Worth factoring into upgrade planning.
 
-With Contained AGs, failover is actually seamless. The AG listener points to the new primary, and everything — logins, jobs, all of it — is right there waiting.
+**Instance-level objects still exist separately.** The AG-local `[AG_Name]_master` and `[AG_Name]_msdb` are *in addition to* the instance-level `master` and `msdb`, not instead of them. Startup procedures, instance-wide configurations (`sp_configure`), certificates and keys that aren't scoped to the AG — those still need to be managed independently on each replica.
 
-### 2. Disaster Recovery Just Got Way Simpler
-
-Remember setting up DR? You had a 47-page runbook that included:
-- Sync logins (Step 12)
-- Re-create SQL Agent jobs (Step 23)
-- Update linked server passwords (Step 31)
-- Hope you didn't forget anything (Step 47)
-
-With Contained AGs, your DR runbook for the AG-related stuff is basically:
-1. Fail over
-2. That's it
-
-Your junior DBA can do it. *At 2 AM.* Without calling you.
-
-### 3. Multi-Instance Cleanliness
-
-In environments with multiple SQL Server instances and multiple AGs, Contained AGs give you **isolation**. The logins and jobs for AG-A don't bleed into the instance-level configuration for AG-B. Each AG carries exactly what it needs.
-
-This is particularly useful in:
-- **Shared hosting** environments (multiple customer AGs on the same instances)
-- **Cloud migrations** — each AG is self-sufficient and portable
-- **Multi-tenant architectures** — tenant A's stuff stays with tenant A
-
-### 4. Easier Cloud and Container Migrations
-
-Moving a traditional AG to Azure SQL MI, or containerizing SQL Server? You had to script out and re-apply all the instance-level objects at the destination.
-
-With a Contained AG, the AG is much more self-sufficient. Less to reconstruct, less to forget, less to break.
+**Not everything in msdb is covered.** Some msdb objects don't replicate. SSIS packages stored in msdb, maintenance plan metadata, and certain system jobs are examples that you'll want to verify for your specific workload.
 
 ---
 
-## What's NOT Covered (Keep Your Expectations Realistic)
+## Quick Reference: Traditional vs. Contained AG
 
-Let's be honest — Contained AGs don't solve *everything*:
-
-| Still replicated by Contained AG | Still on-your-own |
-|----------------------------------|-------------------|
-| Logins (AG-local) | Instance-level logins (for things outside the AG) |
-| SQL Agent Jobs (AG-local) | Instance configuration (sp_configure, etc.) |
-| Database Mail profiles | Startup procedures |
-| Linked servers (AG-local) | SSIS packages in msdb (instance-level) |
-| Custom error messages | Certificates/keys not in the AG |
-
-The instance-level `master` and `msdb` still exist. The Contained AG gives you AG-local versions *in addition to* the instance-level ones. Objects that need to work at the instance level (like startup procs) still need manual sync.
-
-Also worth noting: you **cannot convert an existing AG** to a Contained AG directly. It's a create-new, migrate-to affair. Plan accordingly.
+| Object | Traditional AG | Contained AG |
+|---|---|---|
+| User database data | Replicated | Replicated |
+| SQL logins (AG-scope) | Manual sync | Replicated via listener |
+| SQL Agent jobs (AG-scope) | Manual sync | Replicated via listener |
+| DB Mail profiles | Manual sync | Replicated via listener |
+| Linked servers (AG-scope) | Manual sync | Replicated via listener |
+| Instance config (sp_configure) | Manual sync | Still manual |
+| Startup procedures | Manual sync | Still manual |
+| Security boundary | No | No |
+| Supported from | SQL Server 2012 | SQL Server 2022 |
 
 ---
 
-## Contained AG vs. Traditional AG: Quick Comparison
+## When It Makes Sense
 
-| Feature | Traditional AG | Contained AG |
-|---------|---------------|--------------|
-| User database replication | ✅ | ✅ |
-| Login replication | ❌ (manual sync) | ✅ |
-| SQL Agent job replication | ❌ (manual sync) | ✅ |
-| Database Mail profiles | ❌ (manual sync) | ✅ |
-| Linked servers | ❌ (manual sync) | ✅ |
-| Failover complexity | Medium–High | Low |
-| Convert existing AG | N/A | ❌ (new AG required) |
-| SQL Server version | 2012+ | 2022+ |
+Contained AGs are a solid choice when:
+
+- You're building new AG topologies on SQL Server 2022 and don't want to inherit the login-sync problem from the start
+- You have environments where failovers need to be clean without post-failover manual steps (DR drills, for example)
+- You're running multiple AGs on shared infrastructure and want object isolation per AG
+
+It's less useful if you're heavily invested in instance-level customization that falls outside what the contained context covers, or if you need to support SQL Server versions prior to 2022 across your replicas.
 
 ---
 
-## Should You Use It?
+## Bottom Line
 
-**Yes, if:**
-- You're on SQL Server 2022 (obviously)
-- You're tired of maintaining login sync scripts
-- You have multiple DBA-less teams that need to do failovers
-- You're building new AG topologies from scratch
-- You're in a multi-tenant or shared hosting scenario
+Contained Availability Groups remove a well-known operational gap in Always On setups. The implementation is clean — a single keyword at AG creation time, and from that point logins and jobs created through the listener travel with the AG.
 
-**Wait, if:**
-- You have a heavily customized instance-level setup that's hard to untangle
-- You're mid-migration and can't afford the disruption of rebuilding AGs
+The caveats are real but manageable: it's not a security boundary, it doesn't cover every msdb object, and instance-level configuration still needs separate attention. But for the core use case of login and Agent job consistency across failover, it does what it says.
 
-**No, if:**
-- You're still on SQL Server 2019 or older (upgrade first, then revisit)
+If you're spinning up new AGs on SQL Server 2022, there's little reason not to use it.
 
 ---
 
-## The Bottom Line
-
-Contained Availability Groups in SQL Server 2022 fix a problem that's been annoying DBAs since Always On was introduced in SQL Server 2012. Ten years of sync scripts, login drift, and 2 AM "where did my jobs go?" incidents — finally addressed with a single `CONTAINED` keyword.
-
-It's not magic. It doesn't replicate *everything*. But for the most common failover pain points — logins, jobs, mail profiles — it's a genuine quality-of-life improvement that your future self (especially your 2 AM future self) will deeply appreciate.
-
-Now if only someone could fix the AG dashboard in SSMS. But that's a blog post for another day. 😅
-
----
-
-*Have questions about Contained AGs or want to share your Always On war stories? Connect on [LinkedIn](https://linkedin.com/in/benedikt-schackenberg-b7422338b) — I collect SQL Server disaster recovery tales like trading cards.*
+*Running Always On in production and have questions or edge cases worth discussing? [LinkedIn](https://linkedin.com/in/benedikt-schackenberg-b7422338b) or open an issue on any of my projects — always happy to talk shop.*
